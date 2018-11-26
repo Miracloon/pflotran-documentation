@@ -1,0 +1,401 @@
+:Description: 2D Hanford Deep Vadose Zone BC Cribs Scenario
+:             3-Material Heterogeneous Scenario
+
+:=========================== flow mode ========================================
+MODE RICHARDS
+REFERENCE_TEMPERATURE 20.d0
+
+:=========================== chemistry ========================================
+CHEMISTRY
+  PRIMARY_SPECIES
+    Tracer
+  /
+  OUTPUT
+    Tracer
+  /
+END
+
+
+:=========================== solver options ===================================
+TIMESTEPPER
+  MAX_TS_CUTS 10
+  TS_ACCELERATION -1
+  DT_FACTOR 1.25d0 1.25d0 1.25d0 1.25d0 1.25d0 1.25d0 1.d0 1.d0 1.d0 1.d0 0.8d0 0.7d0 0.6d0 0.5d0
+  PRESSURE_DAMPENING_FACTOR 0.6d0
+  SATURATION_CHANGE_LIMIT 0.125d0
+END
+
+NEWTON_SOLVER FLOW
+  ITOL_STOMP 1.d-6
+  MAXIT 12
+END
+
+NEWTON_SOLVER TRANSPORT
+  ATOL 1.e-12
+END
+
+:=========================== discretization ===================================
+GRID
+  TYPE structured
+  NXYZ 432 1 256
+  BOUNDS
+    0.d0 216.d0   ! 432 * 0.5
+    0.d0 1.d0
+    0.d0 107.52d0 ! 256 * 0.42
+  /
+END
+
+:=========================== material properties ==============================
+MATERIAL_PROPERTY f1
+  ID 1
+  POROSITY 0.4082d0
+  PERMEABILITY
+    PERM_X 2.0023d-12
+    PERM_Y 2.0023d-12
+    PERM_Z 2.0023d-13
+  /
+  SATURATION_FUNCTION f1
+END
+
+MATERIAL_PROPERTY f2
+  ID 2
+  POROSITY 0.2206d0
+  PERMEABILITY
+    PERM_X 6.9517d-11
+    PERM_Y 6.9517d-11
+    PERM_Z 6.9517d-12
+  /
+  SATURATION_FUNCTION f2
+END
+
+MATERIAL_PROPERTY f3
+  ID 3
+  POROSITY 0.2400d0
+  PERMEABILITY
+    PERM_X 2.0752d-9
+    PERM_Y 2.0752d-9
+    PERM_Z 2.0752d-10
+  /
+  SATURATION_FUNCTION f3
+END
+
+MATERIAL_PROPERTY gravel
+  ID 4
+  POROSITY 0.4220d0
+  PERMEABILITY
+    PERM_X 2.3738d-9
+    PERM_Y 2.3738d-9
+    PERM_Z 2.3738d-10
+  /
+  SATURATION_FUNCTION gravel
+:  SATURATION_FUNCTION f3
+END
+
+:=========================== saturation functions =============================
+SATURATION_FUNCTION f1
+  SATURATION_FUNCTION_TYPE VAN_GENUCHTEN
+  PERMEABILITY_FUNCTION_TYPE MUALEM
+  RESIDUAL_SATURATION 0.d0
+  LAMBDA 0.2294d0
+  ALPHA 1.9529d-4
+END
+
+SATURATION_FUNCTION f2
+  SATURATION_FUNCTION_TYPE VAN_GENUCHTEN
+  PERMEABILITY_FUNCTION_TYPE MUALEM
+  RESIDUAL_SATURATION 0.d0
+  LAMBDA 0.3333d0
+  ALPHA 2.0306d-3
+END
+
+SATURATION_FUNCTION f3
+  SATURATION_FUNCTION_TYPE VAN_GENUCHTEN
+  PERMEABILITY_FUNCTION_TYPE MUALEM
+  RESIDUAL_SATURATION 0.d0
+  LAMBDA 0.3006d0
+  ALPHA 2.0725d-3
+END
+
+SATURATION_FUNCTION gravel
+  SATURATION_FUNCTION_TYPE VAN_GENUCHTEN
+  PERMEABILITY_FUNCTION_TYPE MUALEM
+  RESIDUAL_SATURATION 0.09d0
+  LAMBDA 0.6403d0
+  ALPHA 1.4314d-1
+END
+
+:=========================== output options ===================================
+OUTPUT
+  TIMES y 1956.0848733
+  TIMES y 1956.1615332
+  TIMES y 1956.3285421
+  PERIODIC TIME 0.01 y between 1956. y and 1956.1 y
+  PERIODIC TIME 0.02 y between 1956.2 y and 1956.3 y
+  PERIODIC TIME 0.1 y between 1956.4 y and 1957. y
+  PERIODIC TIME 1. y between 1957. y and 1965. y
+  PERIODIC TIME 5. y between 1965. y and 2020. y
+  PERIODIC TIME 10. y between 2020. y and 2300. y
+  PERIODIC TIME 25. y between 2300. y and 3000. y
+  FORMAT TECPLOT BLOCK
+  VELOCITIES
+END
+
+:=========================== times ============================================
+TIME
+  FINAL_TIME 3000.d0 y
+:  FINAL_TIME 1956.d0 y
+:  FINAL_TIME 1956.0848733d0 y
+:  FINAL_TIME 1956.1615332d0 y
+:  FINAL_TIME 1956.3285421d0 y
+  INITIAL_TIMESTEP_SIZE 1.d0 s
+  MAXIMUM_TIMESTEP_SIZE 1000.d0 yr at 0.0 yr
+  MAXIMUM_TIMESTEP_SIZE 1.d0 s at 1956.0 yr
+  MAXIMUM_TIMESTEP_SIZE 25.d0 y at 1956.00000003170979 yr
+  MAXIMUM_TIMESTEP_SIZE 1.d0 s at 1956.1615332 yr
+  MAXIMUM_TIMESTEP_SIZE 25.d0 y at 1956.16153331709792 yr
+END
+
+:=========================== observation points ===============================
+:OBSERVATION
+:  REGION Obs_pt_center
+:  VELOCITY
+:END
+
+:=========================== regions ==========================================
+REGION all
+  COORDINATES
+    -1.d20 -1.d20 -1.d20
+    1.d20 1.d20 1.d20
+  /
+END
+
+REGION f1
+  COORDINATES
+    -1.d20 -1.d20 39.9d0
+    1.d20 1.d20 79.8d0
+  /
+END
+REGION f2
+  COORDINATES
+    -1.d20 -1.d20 0.d0
+    1.d20 1.d20 39.9d0
+  /
+END
+
+REGION f3
+  COORDINATES
+    -1.d20 -1.d20 79.8d0
+    1.d20 1.d20 107.52d0 
+  /
+END
+
+REGION gravel
+  COORDINATES
+    -1.d20 -1.d20 104.58d0
+    1.d20 1.d20 107.52d0 
+  /
+END
+
+REGION top
+  FACE top
+  COORDINATES
+    -1.d20 -1.d20 107.52d0
+    1.d20 1.d20 107.52d0
+  /
+END
+
+REGION top_west
+  FACE top
+  COORDINATES
+    -1.d20 -1.d20 107.52d0
+    74.d0 1.d20 107.52d0
+  /
+END
+
+REGION crib_216-B-17
+  FACE top
+  COORDINATES
+    74.d0 -1.d20 107.52d0
+    78.5d0 1.d20 107.52d0
+  /
+END
+
+REGION top_center
+  FACE top
+  COORDINATES
+    78.5d0 -1.d20 107.52d0
+    143.d0 1.d20 107.52d0
+  /
+END
+
+REGION crib_216-B-18
+  FACE top
+  COORDINATES
+    143.d0 -1.d20 107.52d0
+    147.5d0 1.d20 107.52d0
+  /
+END
+
+REGION top_east
+  FACE top
+  COORDINATES
+    147.5d0 -1.d20 107.52d0
+    216.d0 1.d20 107.52d0
+  /
+END
+
+REGION bottom
+  FACE bottom
+  COORDINATES
+    -1.d20 -1.d20 0.d0
+    1.d20 1.d20 0.d0
+  /
+END
+
+:=========================== flow conditions ==================================
+FLOW_CONDITION initial
+  TYPE
+    PRESSURE hydrostatic
+  /
+  DATUM 0.d0 0.d0 0.d0
+  PRESSURE 101325.d0
+END
+
+FLOW_CONDITION recharge
+  TYPE
+    FLUX neumann
+  /
+  INTERPOLATION STEP
+  FLUX list
+    TIME_UNITS y
+    DATA_UNITS m/s
+    0.d0 1.10910676d-10
+    1956.d0 1.489340d-09
+  /
+END
+
+FLOW_CONDITION crib_216-B-17
+  TYPE
+    FLUX neumann
+  /
+  INTERPOLATION STEP
+  FLUX list
+    TIME_UNITS y
+    DATA_UNITS m/s
+    0.d0 1.10910676d-10
+    1956.d0 2.54481d-06
+    1956.0848733d0 1.489340d-09
+  /
+END
+
+FLOW_CONDITION crib_216-B-18
+  TYPE
+    FLUX neumann
+  /
+  INTERPOLATION STEP
+  FLUX list
+    TIME_UNITS y
+    DATA_UNITS m/s
+    0.d0 1.10910676d-10
+    1956.162218d0 3.31019d-06
+    1956.329227d0 1.489340d-09
+  /
+END
+
+:=========================== transport conditions =============================
+TRANSPORT_CONDITION initial
+  TYPE dirichlet_zero_gradient
+  CONSTRAINT_LIST
+    0.d0 initial
+  /
+END
+
+TRANSPORT_CONDITION crib_216-B-17
+  TYPE dirichlet
+  TIME_UNITS y
+  CONSTRAINT_LIST
+    0.d0 initial
+    1956.d0 crib_216-B-17
+    1956.0848733d0 initial
+  /
+END
+
+TRANSPORT_CONDITION crib_216-B-18
+  TYPE dirichlet
+  TIME_UNITS y
+  CONSTRAINT_LIST
+    0.d0 initial
+    1956.162218d0 crib_216-B-18
+    1956.329227d0 initial
+  /
+END
+
+:=========================== constraints ======================================
+CONSTRAINT initial
+  CONCENTRATIONS
+    Tracer 1.d-40 F
+  /
+END
+
+CONSTRAINT crib_216-B-17
+  CONCENTRATIONS
+!From Vicky
+    Tracer 1.881389E-06 F  
+  /
+END
+
+CONSTRAINT crib_216-B-18
+  CONCENTRATIONS
+!From Vicky
+    Tracer 2.266885E-06 F  
+  /
+END
+
+:=========================== condition couplers ===============================
+: initial condition
+INITIAL_CONDITION
+  FLOW_CONDITION initial
+  TRANSPORT_CONDITION initial
+  REGION all
+END
+
+BOUNDARY_CONDITION outlet
+  FLOW_CONDITION initial
+  TRANSPORT_CONDITION initial
+  REGION bottom
+END
+
+BOUNDARY_CONDITION top_west
+  FLOW_CONDITION recharge
+  TRANSPORT_CONDITION initial
+  REGION top_west
+END
+
+BOUNDARY_CONDITION crib_216-B-17
+  FLOW_CONDITION crib_216-B-17
+  TRANSPORT_CONDITION crib_216-B-17
+  REGION crib_216-B-17
+END
+
+BOUNDARY_CONDITION top_center
+  FLOW_CONDITION recharge
+  TRANSPORT_CONDITION initial
+  REGION top_center
+END
+
+BOUNDARY_CONDITION crib_216-B-18
+  FLOW_CONDITION crib_216-B-18
+  TRANSPORT_CONDITION crib_216-B-18
+  REGION crib_216-B-18
+END
+
+BOUNDARY_CONDITION top_east
+  FLOW_CONDITION recharge
+  TRANSPORT_CONDITION initial
+  REGION top_east
+END
+
+:=========================== stratigraphy couplers ============================
+STRATA
+  MATERIAL hdvz_material_ids.h5
+END
