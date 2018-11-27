@@ -1,0 +1,13 @@
+# Dockerfile
+FROM ubuntu:latest
+RUN apt-get update -q
+
+RUN apt-get install -y ssh
+RUN apt-get install -y python3
+RUN apt-get install -y python-pip
+RUN apt-get install -y git
+RUN apt-get install -y make
+
+RUN mkdir /app
+WORKDIR /app
+Add . /app
