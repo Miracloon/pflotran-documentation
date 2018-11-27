@@ -2,7 +2,7 @@
 
 app:
   build:
-    image: codeship/pflotran-documenation
+    image: codeship/pflotran-documentation
     dockerfile: Dockerfile
   encrypted_env_file: codeship.env.encrypted
   volumes:
