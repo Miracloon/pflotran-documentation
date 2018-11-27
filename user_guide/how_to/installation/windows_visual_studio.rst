@@ -276,7 +276,7 @@ Installation Instructions
 8. Congratulations. Build the project.
      
 
-.. _Git http://git-scm.com>
+.. _Git: http://git-scm.com>
 .. _petsc-dev: http://www.mcs.anl.gov/petsc/developers/index.html
 .. _HDF5: http://www.hdfgroup.org/HDF5
 .. _Cygwin: http://www.cygwin.com
