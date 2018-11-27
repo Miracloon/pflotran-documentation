@@ -3,9 +3,9 @@
 - name: build documentation
   tag: master
   service: app
-  command: ./build.sh
+  command: ./tools/build.sh
 
 - name: scp to server
   tag: master
   service: app
-  command: ./deploy.sh
+  command: ./tools/deploy.sh
