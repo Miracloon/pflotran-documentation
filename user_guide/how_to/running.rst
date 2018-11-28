@@ -53,9 +53,7 @@ STEP 1:
   Detailed instructions on how to create an input deck file are here: 
   :ref:`creating-an-input-deck-file`. Additionally, you can browse the input
   deck files located within the regression test directory 
-  ``$PFLOTRAN_DIR/regression_tests``. You can also look at the input files
-  used to in the verification testing suite here: :ref:`flow-qa-tests`,
-  :ref:`thermal-qa-tests`, :ref:`gas-qa-tests`.
+  ``$PFLOTRAN_DIR/regression_tests``.
   
 STEP 2:
 

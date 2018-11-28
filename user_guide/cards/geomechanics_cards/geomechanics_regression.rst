@@ -9,18 +9,12 @@ Dumps a regression file with data at selected vertices. This can then be used fo
 Required Cards:
 ---------------
 VERTICES
- <list of ints>
-/
-
-List of vertices where the regression is to be performed.
+ List of vertices where the regression is to be performed.
 
 Option Cards:
 -------------
 VARIABLES
-  <list of variables>
-/
-
-Provide a list of variables that will be dumped in the regression output.
+ Provide a list of variables that will be dumped in the regression output.
 
 Examples
 --------

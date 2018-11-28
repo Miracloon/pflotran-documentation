@@ -10,9 +10,8 @@ PFLOTRAN Documentation
 
 **PFLOTRAN is on** `Bitbucket`_ **!** 
 
-:download:`Click here <_build/latex/PFLOTRANdocumentation.pdf>` to download a 
-pdf version of the PFLOTRAN documentation. 
-
+.. :download:`Click here <_build/latex/PFLOTRANdocumentation.pdf>` to 
+   download a pdf version of the PFLOTRAN documentation. 
 
 PFLOTRAN is an open source, state-of-the-art massively parallel subsurface flow 
 and reactive transport code. The code is developed under a GNU LGPL license 
@@ -156,23 +155,26 @@ QA Test Suite
 .. toctree::
    :maxdepth: 2
    
+   /qa_tests/pc_sat_rel_perm.rst
+
+..
    /qa_tests/intro_howto.rst
    /qa_tests/intro_thermal.rst
    /qa_tests/intro_flow.rst
    /qa_tests/intro_gas.rst
    /qa_tests/intro_transport.rst
-   /qa_tests/pc_sat_rel_perm.rst
 
-.. toctree::
-   :hidden:
-   
-   include_toctree_thermal_steady.rst
-   include_toctree_thermal_transient.rst
-   include_toctree_flow_steady.rst
-   include_toctree_flow_transient.rst
-   include_toctree_gas_steady.rst
-   include_toctree_transport_steady.rst
-   include_toctree_transport_transient.rst
+..
+  .. toctree::
+     :hidden:
+     
+     include_toctree_thermal_steady.rst
+     include_toctree_thermal_transient.rst
+     include_toctree_flow_steady.rst
+     include_toctree_flow_transient.rst
+     include_toctree_gas_steady.rst
+     include_toctree_transport_steady.rst
+     include_toctree_transport_transient.rst
 
 FAQ
 ===

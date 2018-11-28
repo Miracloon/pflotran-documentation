@@ -3,7 +3,7 @@ Back to :ref:`card-index`
 .. _geomechanics-condition-card:
 
 GEOMECHANICS_CONDITION
-==============
+======================
 Condition coupler between regions and geomechanics boundary conditions. Since the geomechanics is solved in a quasi-steady manner, initial conditions are not needed. Displacement or force conditions can be specified. Note that the values specified for displacement or force conditions will be applied to all the nodes of the region that the condition is coupled to. If one wants to specify a force F on on a face, then the F needs to be distributed based on the area around each node on that face. For example, if the top face has nodes configuration as follows:
 
 1–2–3

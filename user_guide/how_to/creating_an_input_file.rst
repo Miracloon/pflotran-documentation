@@ -43,9 +43,7 @@ Example Input Decks
 variably-saturated flow problem.
 
 Additionally, you can browse the input deck files located within the regression 
-test directory ``$PFLOTRAN_DIR/regression_tests``. You can also look at the 
-input files used to in the verification testing suite here: :ref:`flow-qa-tests`,
-:ref:`thermal-qa-tests`, :ref:`gas-qa-tests`.
+test directory ``$PFLOTRAN_DIR/regression_tests``. 
 
 The following shows an input file "skeleton:"
 
