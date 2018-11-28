@@ -42,6 +42,7 @@ SATURATION_FUNCTION <string>
      should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
      :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
      ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
       + LIQUID_RESIDUAL_SATURATION
       + GAS_RESIDUAL_SATURATION
       + PCT_A 
@@ -53,6 +54,7 @@ SATURATION_FUNCTION <string>
      should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
      :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
      ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
       + LIQUID_RESIDUAL_SATURATION
       + PCT_A 
       + PCT_EXP
@@ -63,6 +65,7 @@ SATURATION_FUNCTION <string>
      should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
      :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
      ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
       + LIQUID_RESIDUAL_SATURATION
       + GAS_RESIDUAL_SATURATION
       + PCT_A 
@@ -84,6 +87,7 @@ SATURATION_FUNCTION <string>
      should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
      :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
      ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
       + LIQUID_RESIDUAL_SATURATION
       + GAS_RESIDUAL_SATURATION
       + PCT_A 
@@ -94,6 +98,7 @@ SATURATION_FUNCTION <string>
      should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
      :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
      ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
       + LIQUID_RESIDUAL_SATURATION
       + GAS_RESIDUAL_SATURATION
       + PCT_A 
@@ -109,6 +114,7 @@ SATURATION_FUNCTION <string>
      should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
      :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
      ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
       + LIQUID_RESIDUAL_SATURATION
       + PCT_A
       + PCT_EXP
