@@ -13,7 +13,9 @@ echo 'building html'
 make clean
 make html 2>&1 | tee $MAKE_LOG
 NUM_ERROR=$(grep -c "ERROR:" "$MAKE_LOG")
-if [ $NUM_ERROR -eq 0 ]; then
+NUM_WARNING=$(grep -c "ERROR:" "$MAKE_LOG")
+NUM_TOTAL=`expr $NUM_ERROR + $NUM_WARNING`
+if [ $NUM_TOTAL -eq 0 ]; then
   echo 'build succeeded'
   echo 'building tarball'
   cd _build/html
@@ -26,9 +28,17 @@ if [ $NUM_ERROR -eq 0 ]; then
   fi
 else
   echo
-  echo 'build failed due to the following errors:'
-  echo
-  grep 'ERROR:' $MAKE_LOG
+  echo 'build failed due to the following errors or errors:'
+  if [ $NUM_ERROR -gt 0]; then
+    echo
+    echo 'Errors:'
+    grep 'ERROR:' $MAKE_LOG
+  fi
+  if [ $NUM_WARNING -gt 0]; then
+    echo
+    echo 'Warnings:'
+    grep 'WARNING:' $MAKE_LOG
+  fi
   echo
   exit_status = 1
 fi
