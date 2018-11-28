@@ -1,7 +1,6 @@
 Back to :ref:`card-index`
 
 .. _grid-card:
-...jkdjf
 
 GRID
 ====
