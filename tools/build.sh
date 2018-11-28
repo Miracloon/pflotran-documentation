@@ -5,8 +5,8 @@ MAKE_LOG="make.log"
 echo 'begin build'
 
 echo 'downloading local sphinx libraries'
-pip install -U sphinx
-apt-get install -y libxml2-dev
+#pip install -U sphinx
+#apt-get install -y libxml2-dev
 
 cd /app/documentation
 echo 'building html'
@@ -28,13 +28,13 @@ if [ $NUM_TOTAL -eq 0 ]; then
   fi
 else
   echo
-  echo 'build failed due to the following errors or errors:'
-  if [ $NUM_ERROR -gt 0]; then
+  echo 'build failed due to the following warnings or errors:'
+  if [ $NUM_ERROR -gt 0 ]; then
     echo
     echo 'Errors:'
     grep 'ERROR:' $MAKE_LOG
   fi
-  if [ $NUM_WARNING -gt 0]; then
+  if [ $NUM_WARNING -gt 0 ]; then
     echo
     echo 'Warnings:'
     grep 'WARNING:' $MAKE_LOG
