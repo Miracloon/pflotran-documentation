@@ -15,7 +15,7 @@ make html 2>&1 | tee $MAKE_LOG
 NUM_ERROR=$(grep -c "ERROR:" "$MAKE_LOG")
 NUM_WARNING=$(grep -c "WARNING:" "$MAKE_LOG")
 NUM_TOTAL=`expr $NUM_ERROR + $NUM_WARNING`
-exit_status = 0
+exit_status=0
 if [ $NUM_TOTAL -eq 0 ]; then
   echo 'build succeeded'
   echo 'building tarball'
@@ -45,6 +45,6 @@ else
   echo
   echo 'build failed due to the preceding warnings or errors'
   echo
-  exit_status = 1
+  exit_status=1
 fi
 exit $exit_status
