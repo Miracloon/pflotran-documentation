@@ -1,10 +1,19 @@
 #!/bin/sh
 
 MAKE_LOG="make.log"
+# environment variables
+MAKE_LOG="make.log"
+# the following conditional allows one to run this script outside of
+# codeship
+if [ -d /app ]; then
+  APP_DIR=/app
+else
+  APP_DIR=`pwd`
+fi
 
 echo 'begin build'
 
-cd /app/documentation
+cd $APP_DIR/documentation
 echo 'building html'
 make clean
 make html 2>&1 | tee $MAKE_LOG
