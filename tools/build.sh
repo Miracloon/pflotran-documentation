@@ -1,5 +1,7 @@
 #!/bin/sh
 
+MAKE_LOG="make.log"
+
 echo 'begin build'
 
 echo 'downloading local sphinx libraries'
@@ -9,9 +11,9 @@ apt-get install -y libxml2-dev
 cd /app/documentation
 echo 'building html'
 make clean
-make html
-exit_status=$?
-if [ $exit_status -eq 0 ]; then
+make html 2>&1 | tee $MAKE_LOG
+NUM_ERROR=$(grep -c "ERROR:" "$MAKE_LOG")
+if [ $NUM_ERROR -eq 0 ]; then
   echo 'build succeeded'
   echo 'building tarball'
   cd _build/html
