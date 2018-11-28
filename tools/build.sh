@@ -4,8 +4,6 @@ MAKE_LOG="make.log"
 
 echo 'begin build'
 
-echo 'downloading local sphinx libraries'
-
 cd /app/documentation
 echo 'building html'
 make clean
