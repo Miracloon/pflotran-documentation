@@ -25,6 +25,11 @@ if [ $NUM_ERROR -eq 0 ]; then
     echo 'tarball succeeded'
   fi
 else
-  echo 'build failed'
+  echo
+  echo 'build failed due to the following errors:'
+  echo
+  grep 'ERROR:' $MAKE_LOG
+  echo
+  exit_status = 1
 fi
 exit $exit_status
