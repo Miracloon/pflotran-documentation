@@ -13,7 +13,7 @@ echo 'building html'
 make clean
 make html 2>&1 | tee $MAKE_LOG
 NUM_ERROR=$(grep -c "ERROR:" "$MAKE_LOG")
-NUM_WARNING=$(grep -c "ERROR:" "$MAKE_LOG")
+NUM_WARNING=$(grep -c "WARNING:" "$MAKE_LOG")
 NUM_TOTAL=`expr $NUM_ERROR + $NUM_WARNING`
 if [ $NUM_TOTAL -eq 0 ]; then
   echo 'build succeeded'
