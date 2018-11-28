@@ -5,8 +5,6 @@ MAKE_LOG="make.log"
 echo 'begin build'
 
 echo 'downloading local sphinx libraries'
-#pip install -U sphinx
-#apt-get install -y libxml2-dev
 
 cd /app/documentation
 echo 'building html'
