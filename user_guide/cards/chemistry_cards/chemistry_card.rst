@@ -18,6 +18,11 @@ Optional Cards:
 SECONDARY_SPECIES
  List of secondary aqueous species or complexes.
 
+DECOUPLED_EQUILIBRIUM_REACTIONS
+ List of equilibrium reaction species from the database to be decoupled, 
+ likely so that the associated primary and secondary species in the 
+ database can be used in kinetic reactions.
+
 :ref:`radioactive-decay-reaction-card`
  Parameters for kinetic radioactive decay reactions.
 
