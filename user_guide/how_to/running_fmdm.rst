@@ -6,7 +6,7 @@ Running PFLOTRAN linked to FMDM
 STEP 1:
 
   It is recommended that you clone a fresh PFLOTRAN repository, for example,
-  calling it ``~/software/PFLOTRAN-FMDM``. Build PFLOTRAN-FMDM using the 
+  calling it ``~/software/pflotran-fmdm``. Build pflotran-fmdm using the 
   following commands (the upper level directories are an example only):
   
   ::
@@ -27,14 +27,14 @@ STEP 2:
 STEP 3:
 
   Move into the FMDM respository directory v2.3 and compile ``pflotran_fmdm`` using
-  the same ``PFLOTRAN_DIR`` and ``PFLOTRAN_ARCH`` evironmental settings as the 
+  the same ``PFLOTRANFMDM_DIR`` and ``PFLOTRAN_ARCH`` evironmental settings as the 
   PFLOTRAN-FMDM repository which contains the ``libpflotran.a`` file (e.g. see STEP 
   1 above).
   
   ::
   
    > cd ~/software/fmdm/v2.3
-   > make pflotran_fmdm PFLOTRAN_DIR=~/software/pflotran-fmdm
+   > make pflotran_fmdm PFLOTRANFMDM_DIR=~/software/pflotran-fmdm
    
 STEP 4:
 
