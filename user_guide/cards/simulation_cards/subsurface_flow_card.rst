@@ -59,6 +59,10 @@ OPTIONS
   MAX_CFL <float>
     Restricts flow process model timestep size to <= <float> specified.
 
+  SKIP_RESTART
+    On a restarted simulation, employs the initial condition for process 
+    model instead of the restarted solution.
+
 Examples
 --------
 ::
