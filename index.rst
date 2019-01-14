@@ -48,6 +48,7 @@ User's Guide
    /user_guide/how_to/installation/windows_visual_studio.rst
    /user_guide/how_to/installation/legacy_build.rst
    /user_guide/how_to/installation/machine_specific.rst
+   /user_guide/how_to/installation/vm.rst
    /user_guide/how_to/installation/previous_petsc_releases.rst
    /user_guide/how_to/simple_flow_problem.rst
    /user_guide/how_to/running_fmdm.rst

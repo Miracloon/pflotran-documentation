@@ -6,7 +6,8 @@ Installing PFLOTRAN
 
 **PFLOTRAN is on** `Bitbucket`_ 
 
-PFLOTRAN can be installed on Linux, Mac, and Windows systems. 
+PFLOTRAN can be installed on Linux, Mac, and Windows systems, or through a
+virtual machine. 
 We provide instructions for these systems in the links below. 
 Please note, a Windows installer is not yet available. PFLOTRAN
 can only be used on Windows either via Cygwin, or Visual Studio.
@@ -25,6 +26,7 @@ can only be used on Windows either via Cygwin, or Visual Studio.
 
 * :ref:`machine-specific-petsc-configs`
 
+* :ref:`linux-vm`
 
 .. _Bitbucket: https://bitbucket.org/pflotran/pflotran/wiki/Home
 
