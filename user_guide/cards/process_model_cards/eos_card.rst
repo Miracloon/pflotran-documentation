@@ -112,7 +112,7 @@ HENRYS_CONSTANT <string> <optional parameters>
   
   HENRYS_CONSTANT CONSTANT  <float>
     Set Henry's constant (the solubility of gas in liquid) to a fixed value. 
-    The units for Henry's constant are 1/Pa.
+    The units for Henry's constant are [Pa].
     
   HENRYS_CONSTANT DEFAULT
     Calculate Henry's constant using correlations for water-vapor/air mixutures (Fernandez-Prini et al.).
