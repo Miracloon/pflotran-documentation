@@ -256,7 +256,15 @@ MECHANISM <type_string>
 
       SPECIFIC_SURFACE_AREA 2.78d-3 cm^2/g
       
-* **Optional sub-block for ALL types:**
+* **Optional keywords for ALL MECHANISM types:**      
+
+  SEED <integer>
+  
+   Specifies a seed number (must be an integer) which seeds the random number 
+   generator that selects waste package degradation rates from the truncated
+   normal distribution. If this keyword is omitted, the default seed value is 1.
+      
+* **Optional sub-block for ALL MECHANISM types:**
 
   CANISTER_DEGRADATION_MODEL sub-block (optional for all mechanism types)
 
