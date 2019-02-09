@@ -19,26 +19,35 @@ TYPE
  Opens the TYPE sub-block. Within this sub-block, the type of the flow 
  condition is specified. Options for TYPE are specific to which mode you 
  are running in. 
-  
-TYPE in ``RICHARDS Mode``  
-+++++++++++++++++++++++++
- There are three main option types in ``RICHARDS Mode``: PRESSURE <string>, 
- FLUX <string>, RATE <string>, where <string> specifies further options for
- each:
-  
- TYPE [PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, CONDUCTANCE}, 
-   RATE {MASS_RATE, VOLUMETRIC_RATE, SCALED_MASS_RATE, SCALED_VOLUMETRIC_RATE}, 
-   FLUX {NEUMANN}]
-         
-  * PRESSURE DIRICHLET: specified a fixed pressure across the entire condition.
 
-  * PRESSURE HYDROSTATIC: specifies a hydrostatic condition.
+.. leaving out heterogeneous conditions for now as they are mainly support
+   by surface flow and more of an expert capability
+  
+TYPE specification in RICHARDS and TH flow modes
+++++++++++++++++++++++++++++++++++++++++++++++++
+ TYPE 
+  [PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, CONDUCTANCE}, 
+  RATE {MASS_RATE, VOLUMETRIC_RATE, SCALED_MASS_RATE, SCALED_VOLUMETRIC_RATE}, 
+  FLUX {NEUMANN},
+  TEMPERATURE {DIRICHLET},
+  ENERGY_RATE {ENERGY_RATE, SCALED_ENERGY_RATE},
+  ENERGY_FLUX {NEUMANN}]
+         
+  * PRESSURE DIRICHLET: specifies a fixed pressure across the entire condition.
+
+  * PRESSURE HYDROSTATIC: specifies a hydrostatic condition where a 
+    hydrostatic pressure profile is assigned based on the defined 
+    DATUM (and GRADIENT, if applicable) and the function rho*g*h where 
+    rho is water density, g is gravity and h is the distance from the 
+    DATUM. Note that the water density is incrementally updated as the 
+    algorithm moves above or below the DATUM at which the assigned 
+    pressure and temperature are defined.
 
   * PRESSURE SEEPAGE: a seepage face condition is similar to a hydrostatic, 
     EXCEPT that flow may only come into the domain when the boundary face 
     pressure is above a user defined reference pressure. The flow out of the 
     domain is unmodified and is possible at all times. The default reference 
-    pressure is atmospheric pressure.
+    pressure is atmospheric pressure (101325 Pa).
 
   * PRESSURE CONDUCTANCE: the conductance type condition is designed to mimic a 
     lower permeability soil layer at the boundary of a domain (e.g. a mud layer 
@@ -48,9 +57,9 @@ TYPE in ``RICHARDS Mode``
     grid cell and its size (i.e. distance from cell center to boundary) no 
     longer matter. The conductance coefficient is a fit parameter.
 
-  * RATE MASS_RATE: specifies a mass extraction/injection rate.
+  * FLUX NEUMANN: specifies a Darcy flux. 
 
-  * RATE ENERGY_RATE: specifies an energy extraction/injection rate.
+  * RATE MASS_RATE: specifies a mass extraction/injection rate.
 
   * RATE VOLUMETRIC_RATE: specifies a volumetric extraction/injection rate.
 
@@ -59,47 +68,43 @@ TYPE in ``RICHARDS Mode``
     is one of the scaling options below.
 
   * RATE SCALED_VOLUMETRIC_RATE <string>: specifies a volumetric 
-    extraction/injection rate  scaled/distributed among grid cells in the 
+    extraction/injection rate scaled/distributed among grid cells in the 
     coupled region, where <string> is one of the scaling options below.
 
-    Scaling options:
-      * PERM: scaling weighted as a function of cell volume and X permeability
+  * ENERGY_RATE ENERGY_RATE: specifies an energy extraction/injection rate.
 
-      * NEIGHBOR_PERM: scaling weighted as a function of the interfacial area 
-        and permeability of neighboring cells (in x,y)
+  * ENERGY_RATE SCALED_ENERGY_RATE: specifies an energy extraction/injection 
+    rate scaled/distributed among grid cells in the coupled region, 
+    where <string> is one of the scaling options below. Note that in this
+    case, the VOLUME scaling option makes the most sense.
 
-      * VOLUME: scaling weighted as a function of cell volume
-
-  * FLUX NEUMANN: specifies a Darcy flux. 
-
-    
-TYPE in ``GENERAL Mode``
-++++++++++++++++++++++++
- There are eleven main option types in ``GENERAL Mode``: 
-  
- TYPE [LIQUID_PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, HETEROGENEOUS_SURFACE_SEEPAGE, CONDUCTANCE}, 
-     GAS_PRESSURE {DIRICHLET}, 
-     LIQUID_SATURATION {DIRICHLET}, 
-     GAS_SATURATION {DIRICHLET}, 
-     TEMPERATURE {DIRICHLET}, 
-     MOLE_FRACTION {DIRICHLET}, 
-     RELATIVE_HUMIDITY {DIRICHLET}, 
-     LIQUID_FLUX {NEUMANN}, 
-     GAS_FLUX {NEUMANN}, 
-     ENERGY_FLUX {NEUMANN}, 
-     RATE {MASS_RATE, VOLUMETRIC_RATE, SCALED_MASS_RATE, SCALED_VOLUMETRIC_RATE, HETEROGENEOUS_MASS_RATE, HETEROGENEOUS_VOLUMETRIC_RATE}]
+TYPE specification in GENERAL flow mode
++++++++++++++++++++++++++++++++++++++++
+ TYPE 
+  [LIQUID_PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, CONDUCTANCE}, 
+  GAS_PRESSURE {DIRICHLET}, 
+  LIQUID_SATURATION {DIRICHLET}, 
+  GAS_SATURATION {DIRICHLET}, 
+  TEMPERATURE {DIRICHLET}, 
+  MOLE_FRACTION {DIRICHLET}, 
+  RELATIVE_HUMIDITY {DIRICHLET}, 
+  LIQUID_FLUX {NEUMANN}, 
+  GAS_FLUX {NEUMANN}, 
+  ENERGY_FLUX {NEUMANN}, 
+  RATE {MASS_RATE, SCALED_MASS_RATE}]
           
-  * RATE for ``GENERAL Mode`` is the same as RATE for ``RICHARDS Mode``, see 
-    above.
+  * LIQUID_PRESSURE DIRICHLET: specified a fixed pressure.
+    Note that HYDROSTATIC can be used, but only within the saturated zone
+    (liquid phase state only).
+     
+  * GAS_PRESSURE DIRICHLET: specifies a fixed gas pressure
+    (two-phase and gas state only).
   
-  * LIQUID_PRESSURE options are the same as PRESSURE for ``RICHARDS Mode``, see 
-    above, EXCEPT LIQUID_PRESSURE HETEROGENEOUS_SURFACE_SEEPAGE <string>: ?
-    
-  * GAS_PRESSURE DIRICHLET:
+  * LIQUID_SATURATION DIRICHLET: specifies a liquid phase saturation
+    (two phase state only).
   
-  * LIQUID_SATURATION DIRICHLET: specifies a liquid phase saturation.
-  
-  * GAS_SATURATION DIRICHLET: specifies a gas phase saturation.
+  * GAS_SATURATION DIRICHLET: specifies a gas phase saturation
+    (two phase state only).
   
   * TEMPERATURE DIRICHLET: specifies a temperature.
   
@@ -109,29 +114,72 @@ TYPE in ``GENERAL Mode``
   
   * GAS_FLUX NEUMANN: specifies a gas phase Darcy flux.
   
-  * RELATIVE_HUMIDITY DIRICHLET: specifies a relative humidity.
+  * RELATIVE_HUMIDITY DIRICHLET: specifies a relative humidity from which
+    an air partial pressure will be calculated 
+    (gas phase state only).
   
-  * MOLE_FRACTION DIRICHLET: specifies a gas/fluid? mole fraction.
+  * MOLE_FRACTION DIRICHLET: specifies the air mole fraction in the 
+    gas or liquid phase 
+    (liquid and gas phase states only).
        
-  * ``GENERAL Mode`` flow conditions must include a TEMPERATURE and a 
-    MOLE_FRACTION or GAS_SATURATION/LIQUID_SATURATION (but not both SATURATION 
-    and a MOLE_FRACTION).
-    
-  * Initial thermodynamic states for combinations of dirichlet-based conditions: 
-  
-    * GAS_PRESSURE + GAS_SATURATION = two-phase state, 
-    
-    * LIQUID_PRESSURE + MOLE_FRACTION = single-phase liquid state,
-    
-    * GAS_PRESSURE + (MOLE_FRACTION | RELATIVE_HUMIDITY) = single-phase gas 
-      state
-      
-  * ``GENERAL Mode`` dirichlet-based pressure or temperature must include 
-    TEMPERATURE, LIQUID_PRESSURE or GAS_PRESSURE, and 
-    MOLE_FRACTION/RELATIVE_HUMIDITY (gas state only) or 
-    GAS_SATURATION/LIQUID_SATURATION.
+  * RATE MASS_RATE: specifies a mass extraction/injection rate. **Note that
+    this actually applies to energy too.**
 
+  * RATE SCALED_MASS_RATE <string>: specifies an extraction/injection rate 
+    scaled/distributed among grid cells in the coupled region, where <string>
+    is one of the scaling options below. **Note that
+    this actually applies to energy too.**
+
+ Initial thermodynamic states for combinations of Dirichlet-based conditions: 
+
+  * GAS_PRESSURE + GAS_SATURATION = two-phase state, 
+    
+  * LIQUID_PRESSURE + MOLE_FRACTION = single-phase liquid state,
+    
+  * GAS_PRESSURE + (MOLE_FRACTION | RELATIVE_HUMIDITY) = single-phase gas 
+    state
+      
+ GENERAL mode flow conditions must include a TEMPERATURE and a 
+ MOLE_FRACTION/RELATIVE_HUMIDITY or GAS_SATURATION/LIQUID_SATURATION 
+ (but not both SATURATION and a MOLE_FRACTION/RELATIVE_HUMIDITY).
+    
+TYPE specification in WIPP_FLOW flow mode
++++++++++++++++++++++++++++++++++++++++++
+ TYPE 
+  [LIQUID_PRESSURE {DIRICHLET}, 
+  LIQUID_SATURATION {DIRICHLET}, 
+  GAS_SATURATION {DIRICHLET}, 
+  LIQUID_FLUX {NEUMANN}, 
+  GAS_FLUX {NEUMANN}, 
+  RATE {MASS_RATE, SCALED_MASS_RATE
+          
+  * LIQUID_PRESSURE DIRICHLET: specified a fixed pressure.
+     
+  * LIQUID_SATURATION DIRICHLET: specifies a liquid phase saturation
   
+  * GAS_SATURATION DIRICHLET: specifies a gas phase saturation
+  
+  * LIQUID_FLUX NEUMANN: specifies a liquid phase Darcy flux.
+  
+  * GAS_FLUX NEUMANN: specifies a gas phase Darcy flux.
+
+  * RATE MASS_RATE: specifies a mass extraction/injection rate.
+
+  * RATE SCALED_MASS_RATE <string>: specifies an extraction/injection rate 
+    scaled/distributed among grid cells in the coupled region, where <string>
+    is one of the scaling options below.
+
+RATE Scaling Options:
++++++++++++++++++++++
+ * PERM: scaling weighted as a function of cell volume and X permeability
+
+ * NEIGHBOR_PERM: scaling weighted as a function of the interfacial area 
+   and permeability of neighboring cells (in x,y)
+
+ * VOLUME: scaling weighted as a function of cell volume
+    
+Value specification for all flow modes:
++++++++++++++++++++++++++++++++++++++++
 For each TYPE option specified in the TYPE sub-block described above, a
 corresponding type-value card must be included that specifies the
 value of the TYPE. The possible type-value cards include:
@@ -168,10 +216,17 @@ ENERGY_FLUX <float>
 RELATIVE_HUMIDITY <float>
  The relative humidity [-] applied at the boundary.
 
-RATE <float> [<float> float>]
+RATE <float> [<float> [<float>]]
  Injection/extraction rate in kg/s (mass) or m\ :sup:`3`\/s (volumetric).  
- Positive in, negative out. For multiphase flow, the rate is by component and 
+ Positive in, negative out. 
+ For WIPP_FLOW mode, the rate is by component (i.e. water component [kg/s], 
+ air component [kg/s])
+ For GENERAL mode, the rate is by component and 
  energy (i.e. water component [kg/s], air component [kg/s], energy [MW]).
+
+ **A list or external file may be used instead of specifying a float using** 
+ **the keywords: LIST or FILE <string>.  To do so, one must provide an** 
+ **external file with a** :ref:`rank-one` **or a** :ref:`rank-three`. 
 
 LIQUID_SATURATION <float>
  The liquid saturation [-] applied at the boundary.
@@ -184,47 +239,61 @@ MOLE_FRACTION <float>
 
 **A list or external file may be used instead of specifying a float using** 
 **the keywords: LIST or FILE <string>.  To do so, one must provide an** 
-**external file with a** :ref:`rank-one`.
+**external file with a** :ref:`rank-one`
 
 Optional Cards:
 ---------------
 
 DATUM <float float float>
- X,Y,Z coordinate of where the flow condition is applied.  I.e. If type is 
- PRESSURE HYDROSTATIC, the datum coordinate is where the PRESSURE value is set, 
- and other pressures in the vertical hydrostatic condition are calculated from 
- that reference point.
+ Reference X,Y, Z coordinate for defining the flow condition.  
+ E.g. If type is PRESSURE HYDROSTATIC, the datum coordinate is 
+ where the PRESSURE value is set, and other pressures in the 
+ hydrostatic condition are calculated in the vertical and horizontal 
+ (if a GRADIENT is defined) based on that reference point.
+
+ **An external file may be used instead of specifying floats using the** 
+ **keywords: FILE <string>.  To do so, one must provide an external file** 
+ **with a** :ref:`rank-three`.
 
 GRADIENT
- Gradient for the datum coordinate.  Gradient in X and Y is a unitless gradient 
- plane <dh/dx, dh/dy> based on change in elevation with change in direction.  
- Gradient in Z is in dp/dz, change in pressure [Pa] with respect to elevation.
+ Opens a block defining a pressure or temperature gradient based on the 
+ datum coordinate.  
+
+ **An external file may be used instead of specifying floats using the** 
+ **keywords: FILE <string>.  To do so, one must provide an external file** 
+ **with a** :ref:`rank-three`.
 
  PRESSURE <float float float>
-  Specifies the gradient in the x y z directions.
+  When the Z value is zero (0.),
+   Specifies the unitless head gradient in the x and y directions through
+   the gradient plane <dh/dx, dh/dy> [m/m]
+  When the Z value is nonzero,
+   Specifies a pressure gradient in x y z <dp/dx, dp/dy, dp/dz> [Pa/m].
 
-  **An external file may be used instead of specifying floats using the** 
-  **keywords: FILE <string>.  To do so, one must provide an external file** 
-  **with a** :ref:`rank-three`.
+ TEMPERATURE <float float float>
+  Specifies the temperature gradient in the x y z <dT/dx, dT/dy, dT/dz> 
+  [C/m].
 
 INTERPOLATION <string>
  Interpolation scheme used to calculate transient update, where the options
- for <string> include: [linear, step (default)].
+ for <string> include: [LINEAR, STEP (default)].
 
 CYCLIC
  Cycles a transient data set back to initial value when maximum data set time 
- is exceeded.
+ is exceeded, repeatedly cycling through the data.
 
 SYNC_TIMESTEP_WITH_UPDATE
- Forces waypoints to be set for each time in a timeseries. 
+ Forces waypoints to be set for each time in a timeseries forcing 
+ time stepping to match the waypoints. 
 
 CONDUCTANCE <float>
  Conductance coefficient used when a conductance condition is specified.
  
-
 Examples
 --------
 
+RICHARDS Mode Examples
+++++++++++++++++++++++
  ::
 
   FLOW_CONDITION Initial
@@ -295,9 +364,30 @@ Examples
     RATE 2.d-2 kg/day
   END  
 
-``GENERAL Mode`` Examples
-+++++++++++++++++++++++++
+TH Mode Examples
+++++++++++++++++
+ ::
 
+  FLOW_CONDITION initial
+    TYPE
+      PRESSURE DIRICHLET
+      TEMPERATURE DIRICHLET
+    /
+    PRESSURE 1.D5
+    TEMPERATURE DATASET Temperature
+  END
+
+  FLOW_CONDITION recharge
+    TYPE
+      FLUX NEUMANN
+      TEMPERATURE DIRICHLET
+    /
+    FLUX 10 cm/y
+    TEMPERATURE 25.D0
+  END
+
+GENERAL Mode Examples
++++++++++++++++++++++
  ::
 
   FLOW_CONDITION Liquid
@@ -324,9 +414,9 @@ Examples
   
   FLOW_CONDITION east_face
     TYPE
-      TEMPERATURE dirichlet
-      LIQUID_PRESSURE dirichlet
-      MOLE_FRACTION dirichlet
+      TEMPERATURE DIRICHLET
+      LIQUID_PRESSURE DIRICHLET
+      MOLE_FRACTION DIRICHLET
     /
     TEMPERATURE DATASET temperature_bc_east
     LIQUID_PRESSURE 101325 Pa
@@ -346,9 +436,9 @@ Examples
   
   FLOW_CONDITION west_face
     TYPE
-      ENERGY_FLUX neumann
-      LIQUID_FLUX neumann
-      GAS_FLUX neumann
+      ENERGY_FLUX NEUMANN
+      LIQUID_FLUX NEUMANN
+      GAS_FLUX NEUMANN
     /
     ENERGY_FLUX -1.0d0 W/m^2
     LIQUID_FLUX 0.d0 m/yr
@@ -388,9 +478,9 @@ Examples
   
   FLOW_CONDITION left_end
     TYPE
-      TEMPERATURE dirichlet
-      LIQUID_PRESSURE dirichlet
-      MOLE_FRACTION dirichlet
+      TEMPERATURE DIRICHLET
+      LIQUID_PRESSURE DIRICHLET
+      MOLE_FRACTION DIRICHLET
     /
     TEMPERATURE LIST
       # T = Tb*t; Tb=2C
@@ -407,3 +497,15 @@ Examples
     MOLE_FRACTION 1.d-10
   END
 
+WIPP_FLOW Mode Examples
++++++++++++++++++++++++
+ ::
+
+  FLOW_CONDITION INITIAL
+    TYPE
+      LIQUID_PRESSURE DIRICHLET
+      LIQUID_SATURATION DIRICHLET
+    END
+    LIQUID_PRESSURE 1.280390d5
+    LIQUID_SATURATION 6.5d-1
+  END

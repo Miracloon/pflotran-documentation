@@ -4,125 +4,146 @@ Back to :ref:`card-index`
 
 CHARACTERISTIC_CURVES
 =====================
-Specifies the relative permeability and saturation function and parameters to be 
-associated with a material property. 
-**This card is currently only supported for GENERAL and RICHARDS modes. The** 
-:ref:`saturation-function-card` **card should be used in all other flow modes.**
+Specifies the characteristic curves (e.g. relative permeability and saturation functions and associated parameters) to be associated with a material property. 
+**This card is currently only supported for the GENERAL, RICHARDS and WIPP_FLOW flow modes. The** :ref:`saturation-function-card` **card should be used in all other flow modes.**
 
 Required Blocks and Cards:
 **************************
 SATURATION_FUNCTION <string>
-  Opens a saturation function block, where <string> indicates the type of 
-  saturation function. The options include: BROOKS_COREY, LINEAR, VAN_GENUCHTEN,
-  several BRAGFLO-related options (called KRP's), and MODIFIED_KOSUGI. 
+  Opens a saturation function block, where <string> indicates the type of saturation function to be employed. 
+  Commonly used saturation functions include :ref:`BROOKS_COREY<cc-brooks-corey-card>` and :ref:`VAN_GENUCHTEN<cc-van-genuchten-card>`, but many others are also available.
   The available saturation functions are documented in the Theory Guide under 
   :ref:`pc-sat-functions-general`.  
 
-  Required cards within the SATURATION_FUNCTION block:
-   * BROOKS_COREY (:ref:`see QA plot <bc-sat-pc>`)
-      + LIQUID_RESIDUAL_SATURATION
-      + ALPHA
-      + LAMBDA
-      + SMOOTH (optional, but highly recommended, see :ref:`parameter-definitions`)
-   * LINEAR (:ref:`see QA plot <lin-sat-pc>`)
-      + LIQUID_RESIDUAL_SATURATION
-      + ALPHA
-   * VAN_GENUCHTEN (:ref:`see QA plot <vg-sat-pc>`)
-      + LIQUID_RESIDUAL_SATURATION
-      + ALPHA
-      + M
-   * MODIFIED_KOSUGI (:ref:`see QA plot <mk_sat>`)
-      + NPARAM
-      + SIGMAZ
-      + MUZ
-      + RMAX
-      + R0
-   * BRAGFLO_KRP1 (:ref:`see QA plot <krp1-sat-pc>`) 
-     Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
-     should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
-     :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
-     ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+  Supported SATURATION_FUNCTIONs (along with their required cards):
 
-      + LIQUID_RESIDUAL_SATURATION
-      + GAS_RESIDUAL_SATURATION
-      + PCT_A 
-      + PCT_EXP
-      + M
-      + KPC
-   * BRAGFLO_KRP2 (:ref:`see QA plot <krp2-sat-pc>`) 
-     Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
-     should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
-     :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
-     ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+  .. _cc-brooks-corey-card:
 
-      + LIQUID_RESIDUAL_SATURATION
-      + PCT_A 
-      + PCT_EXP
-      + LAMBDA
-      + KPC
-   * BRAGFLO_KRP3 (:ref:`see QA plot <krp3-sat-pc>`) 
-     Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
-     should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
-     :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
-     ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+  * BROOKS_COREY (:ref:`see QA plot <bc-sat-pc>`)
 
-      + LIQUID_RESIDUAL_SATURATION
-      + GAS_RESIDUAL_SATURATION
-      + PCT_A 
-      + PCT_EXP
-      + LAMBDA
-      + KPC
-   * BRAGFLO_KRP4 (:ref:`see QA plot <krp4-sat-pc>`)
-     Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
-     should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
-     :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
-     ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+    + LIQUID_RESIDUAL_SATURATION
+    + ALPHA
+    + LAMBDA
+    + SMOOTH (optional, but highly recommended, see :ref:`parameter-definitions`)
+  * LINEAR (:ref:`see QA plot <lin-sat-pc>`)
 
-      + GAS_RESIDUAL_SATURATION
-      + PCT_A 
-      + PCT_EXP
-      + LAMBDA
-      + KPC
-   * BRAGFLO_KRP5 (:ref:`see QA plot <krp5-sat-pc>`)
-     Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
-     should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
-     :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
-     ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+    + LIQUID_RESIDUAL_SATURATION
+    + ALPHA
 
-      + LIQUID_RESIDUAL_SATURATION
-      + GAS_RESIDUAL_SATURATION
-      + PCT_A 
-      + PCT_EXP
-      + KPC
-   * BRAGFLO_KRP8 (:ref:`see QA plot <krp8-sat-pc>`) 
-     Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
-     should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
-     :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
-     ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+  * MODIFIED_KOSUGI (:ref:`see QA plot <mk_sat>`)
 
-      + LIQUID_RESIDUAL_SATURATION
-      + GAS_RESIDUAL_SATURATION
-      + PCT_A 
-      + PCT_EXP
-      + M
-      + KPC
-   * BRAGFLO_KRP9 (:ref:`see QA plot <krp9-sat-pc>`)
-      + LIQUID_RESIDUAL_SATURATION
-   * BRAGFLO_KRP11 (:ref:`see QA plot <krp11-sat-pc>`)
-      + [no parameters needed]
-   * BRAGFLO_KRP12 (:ref:`see QA plot <krp12-sat-pc>`)
-     Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
-     should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
-     :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
-     ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+    + NPARAM
+    + SIGMAZ
+    + MUZ
+    + RMAX
+    + R0
 
-      + LIQUID_RESIDUAL_SATURATION
-      + PCT_A
-      + PCT_EXP
-      + LAMBDA
-      + S_MIN
-      + S_EFFMIN
-      + KPC
+  .. _cc-van-genuchten-card:
+
+  * VAN_GENUCHTEN (:ref:`see QA plot <vg-sat-pc>`)
+
+    + LIQUID_RESIDUAL_SATURATION
+    + ALPHA
+    + M
+
+  WIPP-specific SATURATION_FUNCTIONs:
+
+  * BRAGFLO_KRP1 (:ref:`see QA plot <krp1-sat-pc>`) 
+    Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
+    should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
+    :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
+    ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
+    + LIQUID_RESIDUAL_SATURATION
+    + GAS_RESIDUAL_SATURATION
+    + PCT_A 
+    + PCT_EXP
+    + M
+    + KPC
+
+  * BRAGFLO_KRP2 (:ref:`see QA plot <krp2-sat-pc>`) 
+    Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
+    should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
+    :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
+    ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
+    + LIQUID_RESIDUAL_SATURATION
+    + PCT_A 
+    + PCT_EXP
+    + LAMBDA
+    + KPC
+
+  * BRAGFLO_KRP3 (:ref:`see QA plot <krp3-sat-pc>`) 
+    Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
+    should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
+    :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
+    ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
+    + LIQUID_RESIDUAL_SATURATION
+    + GAS_RESIDUAL_SATURATION
+    + PCT_A 
+    + PCT_EXP
+    + LAMBDA
+    + KPC
+
+  * BRAGFLO_KRP4 (:ref:`see QA plot <krp4-sat-pc>`)
+    Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
+    should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
+    :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
+    ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
+    + GAS_RESIDUAL_SATURATION
+    + PCT_A 
+    + PCT_EXP
+    + LAMBDA
+    + KPC
+
+  * BRAGFLO_KRP5 (:ref:`see QA plot <krp5-sat-pc>`)
+    Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
+    should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
+    :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
+    ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
+    + LIQUID_RESIDUAL_SATURATION
+    + GAS_RESIDUAL_SATURATION
+    + PCT_A 
+    + PCT_EXP
+    + KPC
+
+  * BRAGFLO_KRP8 (:ref:`see QA plot <krp8-sat-pc>`) 
+    Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
+    should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
+    :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
+    ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
+    + LIQUID_RESIDUAL_SATURATION
+    + GAS_RESIDUAL_SATURATION
+    + PCT_A 
+    + PCT_EXP
+    + M
+    + KPC
+
+  * BRAGFLO_KRP9 (:ref:`see QA plot <krp9-sat-pc>`)
+
+    + LIQUID_RESIDUAL_SATURATION
+
+  * BRAGFLO_KRP11 (:ref:`see QA plot <krp11-sat-pc>`)
+
+    + [no parameters needed]
+
+  * BRAGFLO_KRP12 (:ref:`see QA plot <krp12-sat-pc>`)
+    Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
+    should be replaced with ``IGNORE_PERMEABILITY`` and ``ALPHA``, where 
+    :math:`1/\alpha = P_t = ak^v` where ``ALPHA``:math:`=\alpha`, 
+    ``PCT_A``:math:`=a`, and ``PCT_EXP``:math:`=v`.
+
+    + LIQUID_RESIDUAL_SATURATION
+    + PCT_A
+    + PCT_EXP
+    + LAMBDA
+    + S_MIN
+    + S_EFFMIN
+    + KPC
 
   The parameters ALPHA, LAMBDA, M, LIQUID_RESIDUAL_SATURATION,
   GAS_RESIDUAL_SATURATION, KPC, S_MIN, S_EFFMIN, NPARAM, SIGMAZ, MUZ, RMAX,

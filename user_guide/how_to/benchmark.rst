@@ -75,65 +75,65 @@ PFLOTRAN Input File
 
     # == chemistry ================================================================
     CHEMISTRY
-    #OPERATOR_SPLIT
-    PRIMARY_SPECIES
-    Na+
-    #K+
-    Ca++
-    Mg++
-    H+
-    HCO3-
-    Cl-
-    Tracer
-    /
-    SECONDARY_SPECIES
-    OH-
-    CO3--
-    CO2(aq)
-    CaOH+
-    CaCO3(aq)
-    CaHCO3+
-    CaCl+
-    MgCO3(aq)
-    MgHCO3+
-    MgCl+
-    HCl(aq)
-    #KCl(aq)
-    NaCl(aq)
-    NaOH(aq)
-    /
-    GAS_SPECIES
-    CO2(g)
-    /
-    MINERALS
-    Halite
-    /
-
-    MINERAL_KINETICS
-    Halite
-    RATE_CONSTANT 1.e-30
-    /
-    /
-    SORPTION
-      ION_EXCHANGE_RXN
-    # MINERAL Halite
-      CEC 71.004  ! mol/m^3
-      CATIONS
-        Ca++   1.0 REFERENCE
-        Na+    0.125893
-        Mg++   0.691831
+      #OPERATOR_SPLIT
+      PRIMARY_SPECIES
+        Na+
+        #K+
+        Ca++
+        Mg++
+        H+
+        HCO3-
+        Cl-
+        Tracer
       /
-    /
+      SECONDARY_SPECIES
+        OH-
+        CO3--
+        CO2(aq)
+        CaOH+
+        CaCO3(aq)
+        CaHCO3+
+        CaCl+
+        MgCO3(aq)
+        MgHCO3+
+        MgCl+
+        HCl(aq)
+        #KCl(aq)
+        NaCl(aq)
+        NaOH(aq)
+      /
+      GAS_SPECIES
+        CO2(g)
+      /
+      MINERALS
+        Halite
+      /
+
+      MINERAL_KINETICS
+        Halite
+          RATE_CONSTANT 1.e-30
+        /
+      /
+      SORPTION
+        ION_EXCHANGE_RXN
+      # MINERAL Halite
+        CEC 71.004  ! mol/m^3
+        CATIONS
+          Ca++   1.0 REFERENCE
+          Na+    0.125893
+          Mg++   0.691831
+        /
+      /
     /
     DATABASE /Users/lichtner/projects/parallel/repository/pflotran/database/hanford.dat
     LOG_FORMULATION
     ACTIVITY_COEFFICIENTS ! NEWTON_ITERATION
     MOLAL
     OUTPUT
-    All
-    TOTAL
-    FREE_ION
-    /
+      All
+      TOTAL
+      FREE_ION
+      /
     /
 
     # == reference variables ======================================================
@@ -141,82 +141,82 @@ PFLOTRAN Input File
 
     # == time stepping ============================================================
     TIMESTEPPER
-    TS_ACCELERATION 8
-    MAX_STEPS 100000
-    #MAX_STEPS 1
+      TS_ACCELERATION 8
+      MAX_STEPS 100000
+      #MAX_STEPS 1
     /
 
     # == discretization ===========================================================
     GRID
-    TYPE structured
-    NXYZ 250 1 1
-    BOUNDS
-    0.d0 0.d0 0.d0
-    0.481d0 1.d0 1.d0
-    /
+      TYPE structured
+      NXYZ 250 1 1
+      BOUNDS
+        0.d0 0.d0 0.d0
+        0.481d0 1.d0 1.d0
+      /
     /
 
     # == flow solvers =============================================================
     NEWTON_SOLVER FLOW
-    PRECONDITIONER_MATRIX_TYPE AIJ
-    RTOL 1.d-8
-    ATOL 1.d-8
-    STOL 1.d-30
-    ITOL_UPDATE 1.d0
-    #NO_INFINITY_NORM
-    #NO_PRINT_CONVERGENCE
-    #PRINT_DETAILED_CONVERGENCE
+      PRECONDITIONER_MATRIX_TYPE AIJ
+      RTOL 1.d-8
+      ATOL 1.d-8
+      STOL 1.d-30
+      ITOL_UPDATE 1.d0
+      #NO_INFINITY_NORM
+      #NO_PRINT_CONVERGENCE
+      #PRINT_DETAILED_CONVERGENCE
     /
 
     LINEAR_SOLVER FLOW
-    #KSP_TYPE PREONLY
-    #PC_TYPE LU
-    #KSP_TYPE FGMRES !samrai
-    #PC_TYPE SHELL !samrai
+      #KSP_TYPE PREONLY
+      #PC_TYPE LU
+      #KSP_TYPE FGMRES !samrai
+      #PC_TYPE SHELL !samrai
     /
 
     # == transport solvers ========================================================
     NEWTON_SOLVER TRANSPORT
-    PRECONDITIONER_MATRIX_TYPE AIJ
-    RTOL 1.d-8
-    ATOL 1.d-8
-    STOL 1.d-30
-    #NO_INFINITY_NORM
-    #NO_PRINT_CONVERGENCE
-    #PRINT_DETAILED_CONVERGENCE
+      PRECONDITIONER_MATRIX_TYPE AIJ
+      RTOL 1.d-8
+      ATOL 1.d-8
+      STOL 1.d-30
+      #NO_INFINITY_NORM
+      #NO_PRINT_CONVERGENCE
+      #PRINT_DETAILED_CONVERGENCE
     /
 
     LINEAR_SOLVER TRANSPORT
-    #PC_TYPE LU
-    #KSP_TYPE PREONLY
-    #KSP_TYPE FGMRES ! samrai
-    #PC_TYPE SHELL !samrai
+      #PC_TYPE LU
+      #KSP_TYPE PREONLY
+      #KSP_TYPE FGMRES ! samrai
+      #PC_TYPE SHELL !samrai
     /
 
     # == fluid properties =========================================================
     FLUID_PROPERTY
-    DIFFUSION_COEFFICIENT 1.d-9
-    #DIFFUSION_COEFFICIENT 9.33333e-7
+      DIFFUSION_COEFFICIENT 1.d-9
+      #DIFFUSION_COEFFICIENT 9.33333e-7
     /
 
     # == material properties ======================================================
     MATERIAL_PROPERTY HD
-    ID 1
-    SATURATION_FUNCTION default
-    POROSITY 0.61
-    TORTUOSITY 1.0
-    #LONGITUDINAL_DISPERSIVITY 0.001
-    PERMEABILITY
-    PERM_ISO 5.43d-13
-    /
+      ID 1
+      SATURATION_FUNCTION default
+      POROSITY 0.61
+      TORTUOSITY 1.0
+      #LONGITUDINAL_DISPERSIVITY 0.001
+      PERMEABILITY
+        PERM_ISO 5.43d-13
+      /
     /
 
     # == saturation / permeability functions ======================================
     SATURATION_FUNCTION HD
-    SATURATION_FUNCTION_TYPE VAN_GENUCHTEN
-    RESIDUAL_SATURATION 0.115
-    LAMBDA 0.286
-    ALPHA 1.9401d-4
+      SATURATION_FUNCTION_TYPE VAN_GENUCHTEN
+      RESIDUAL_SATURATION 0.115
+      LAMBDA 0.286
+      ALPHA 1.9401d-4
     /
 
     #=========================== saturation functions =============================
@@ -225,194 +225,194 @@ PFLOTRAN Input File
 
     # == output ===================================================================
     OUTPUT
-    TIMES s 10307.1 33498.2 41228.6
-    PERIODIC_OBSERVATION TIMESTEP 1
-    #PERIODIC TIMESTEP 1
-    #PERIODIC TIME 0.04 y
-    SCREEN PERIODIC 10
-    #FORMAT HDF5
-    FORMAT TECPLOT POINT
-    VELOCITIES
+      TIMES s 10307.1 33498.2 41228.6
+      PERIODIC_OBSERVATION TIMESTEP 1
+      #PERIODIC TIMESTEP 1
+      #PERIODIC TIME 0.04 y
+      SCREEN PERIODIC 10
+      #FORMAT HDF5
+      FORMAT TECPLOT POINT
+      VELOCITIES
     /
 
     # == times ====================================================================
     TIME
-    FINAL_TIME 41228.6 s
-    INITIAL_TIMESTEP_SIZE 1. s
-    MAXIMUM_TIMESTEP_SIZE 20. s
-    MAXIMUM_TIMESTEP_SIZE 1. s at 10200. s
-    MAXIMUM_TIMESTEP_SIZE 20. s at 10350 s
-    MAXIMUM_TIMESTEP_SIZE 1. s at 33300 s
-    MAXIMUM_TIMESTEP_SIZE 20. s at 33600 s
+      FINAL_TIME 41228.6 s
+      INITIAL_TIMESTEP_SIZE 1. s
+      MAXIMUM_TIMESTEP_SIZE 20. s
+      MAXIMUM_TIMESTEP_SIZE 1. s at 10200. s
+      MAXIMUM_TIMESTEP_SIZE 20. s at 10350 s
+      MAXIMUM_TIMESTEP_SIZE 1. s at 33300 s
+      MAXIMUM_TIMESTEP_SIZE 20. s at 33600 s
     /
 
     # == regions ==================================================================
     REGION all
-    COORDINATES
-    0.d0 0.d0 0.d0
-    0.481d0 1.d0 1.d0
-    /
+      COORDINATES
+        0.d0 0.d0 0.d0
+        0.481d0 1.d0 1.d0
+      /
     /
 
     REGION west
-    FACE WEST
-    COORDINATES
-    0. 0. 0.
-    0. 1. 1.
-    /
+      FACE WEST
+      COORDINATES
+        0. 0. 0.
+        0. 1. 1.
+      /
     /
 
     REGION east
-    FACE EAST
-    COORDINATES
-    0.481 0. 0.
-    0.481 1. 1.
-    /
+      FACE EAST
+      COORDINATES
+        0.481 0. 0.
+        0.481 1. 1.
+      /
     /
 
     OBSERVATION
-    REGION east
+      REGION east
     /
 
     # == flow conditions ==========================================================
     skip
     FLOW_CONDITION west
-    TYPE
-    FLUX neumann
-    /
-    FLUX 0.317098d-7 ! 1 m/y
-    #FLUX 1.5855d-9 ! 5 cm/y
-    #FLUX file 200w_recharge_1951-2000_daily.dat
+      TYPE
+        FLUX NEUMANN
+      /
+      FLUX 0.317098d-7 ! 1 m/y
+      #FLUX 1.5855d-9 ! 5 cm/y
+      #FLUX file 200w_recharge_1951-2000_daily.dat
     /
     noskip
 
     FLOW_CONDITION Initial
-    TYPE
-    PRESSURE hydrostatic
-    /
-    DATUM 0.d0 0.d0 0.d0
-    PRESSURE 101325.d0
+      TYPE
+        PRESSURE HYDROSTATIC
+      /
+      DATUM 0.d0 0.d0 0.d0
+      PRESSURE 101325.d0
     /
 
     FLOW_CONDITION west
-    TYPE
-    PRESSURE hydrostatic
-    /
-    DATUM 0.d0 0.d0 0.d0
-    PRESSURE 101425.d0
+      TYPE
+        PRESSURE HYDROSTATIC
+      /
+      DATUM 0.d0 0.d0 0.d0
+      PRESSURE 101425.d0
     END
 
     FLOW_CONDITION east
-    TYPE
-    PRESSURE hydrostatic
-    /
-    DATUM 0.d0 0.d0 0.d0
-    PRESSURE 101325.d0
+      TYPE
+        PRESSURE HYDROSTATIC
+      /
+      DATUM 0.d0 0.d0 0.d0
+      PRESSURE 101325.d0
     END
 
     # == transport conditions =====================================================
     TRANSPORT_CONDITION Initial
-    TYPE dirichlet
-    CONSTRAINT_LIST
-    0.d0 Initial
-    /
+      TYPE DIRICHLET
+      CONSTRAINT_LIST
+        0.d0 Initial
+      /
     /
 
     TRANSPORT_CONDITION east
-    TYPE dirichlet
-    CONSTRAINT_LIST
-    0.d0 Initial
-    /
+      TYPE DIRICHLET
+      CONSTRAINT_LIST
+        0.d0 Initial
+      /
     /
 
     TRANSPORT_CONDITION west
-    TYPE dirichlet
-    CONSTRAINT_LIST
-    0.d0    Inlet1
-    10307.1 Inlet2
-    33498.2 Inlet3
-    /
+      TYPE DIRICHLET
+      CONSTRAINT_LIST
+        0.d0    Inlet1
+        10307.1 Inlet2
+        33498.2 Inlet3
+      /
     /
 
     # == couplers =================================================================
     INITIAL_CONDITION Initial
-    #FLOW_CONDITION Initial
-    TRANSPORT_CONDITION Initial
-    REGION all
+      #FLOW_CONDITION Initial
+      TRANSPORT_CONDITION Initial
+      REGION all
     /
 
     BOUNDARY_CONDITION
-    #FLOW_CONDITION west
-    TRANSPORT_CONDITION west
-    REGION west
+      #FLOW_CONDITION west
+      TRANSPORT_CONDITION west
+      REGION west
     END
 
     BOUNDARY_CONDITION
-    #FLOW_CONDITION east
-    TRANSPORT_CONDITION east
-    REGION east
+      #FLOW_CONDITION east
+      TRANSPORT_CONDITION east
+      REGION east
     END
 
     # == stratigraphy =============================================================
     STRATA
-    MATERIAL HD
-    REGION all
+      MATERIAL HD
+      REGION all
     /
 
     # == transport constraints ====================================================
     CONSTRAINT Initial
-    CONCENTRATIONS
-    Na+           4.65d-3  T
-    #K+            2.d-4    T
-    Ca++          5.2d-3   T
-    Mg++          4.55e-3  T
-    H+            4.6     pH
-    HCO3-        -3.5      G   CO2(g)
-    Cl-           1.d-3    Z
-    Tracer        4.65d-3  T
-    /
-    MINERALS
-    Halite        0.5 1.
-    /
+      CONCENTRATIONS
+        Na+           4.65d-3  T
+        #K+            2.d-4    T
+        Ca++          5.2d-3   T
+        Mg++          4.55e-3  T
+        H+            4.6     pH
+        HCO3-        -3.5      G   CO2(g)
+        Cl-           1.d-3    Z
+        Tracer        4.65d-3  T
+      /
+      MINERALS
+        Halite        0.5 1.
+      /
     /
 
     CONSTRAINT Inlet1
-    CONCENTRATIONS
-    Na+           1.d-16  T
-    #K+            1.d-10  T
-    Ca++          5.3d-3  T
-    Mg++          1.e-16  T
-    H+            4.6    pH
-    HCO3-        -3.5     G   CO2(g)
-    Cl-           3.d-4   Z
-    Tracer        9.4d-3  T
-    /
+      CONCENTRATIONS
+        Na+           1.d-16  T
+        #K+            1.d-10  T
+        Ca++          5.3d-3  T
+        Mg++          1.e-16  T
+        H+            4.6    pH
+        HCO3-        -3.5     G   CO2(g)
+        Cl-           3.d-4   Z
+        Tracer        9.4d-3  T
+      /
     /
 
     CONSTRAINT Inlet2
-    CONCENTRATIONS
-    Na+           4.6d-3  T
-    #K+            1.d-10  T
-    Ca++          1.d-16  T
-    Mg++          2.4e-3  T
-    H+            4.6    pH
-    HCO3-        -3.5     G   CO2(g)
-    Cl-           3.d-4   Z
-    Tracer        9.4d-3  T
-    /
+      CONCENTRATIONS
+        Na+           4.6d-3  T
+        #K+            1.d-10  T
+        Ca++          1.d-16  T
+        Mg++          2.4e-3  T
+        H+            4.6    pH
+        HCO3-        -3.5     G   CO2(g)
+        Cl-           3.d-4   Z
+        Tracer        9.4d-3  T
+      /
     /
 
     CONSTRAINT Inlet3
-    CONCENTRATIONS
-    Na+           4.65d-3 T
-    #K+            1.d-10  T
-    Ca++          5.2d-3  T
-    Mg++          4.55e-3 T
-    H+            4.6    pH
-    HCO3-        -3.5     G   CO2(g)
-    Cl-           3.d-4   Z
-    Tracer        9.4d-3  T
-    /
+      CONCENTRATIONS
+        Na+           4.65d-3 T
+        #K+            1.d-10  T
+        Ca++          5.2d-3  T
+        Mg++          4.55e-3 T
+        H+            4.6    pH
+        HCO3-        -3.5     G   CO2(g)
+        Cl-           3.d-4   Z
+        Tracer        9.4d-3  T
+      /
     /
 
     END_SUBSURFACE
@@ -584,7 +584,7 @@ PFLOTRAN Input File
     END
 
     REGION west
-      FACE west
+      FACE WEST
       COORDINATES
         0.d0 0.d0 0.d0
         0.d0 1.d0 1.d0
@@ -592,7 +592,7 @@ PFLOTRAN Input File
     END
 
     REGION east
-      FACE east
+      FACE EAST
       COORDINATES
         100.d0 0.d0 0.d0
         100.d0 1.d0 1.d0
@@ -601,21 +601,21 @@ PFLOTRAN Input File
 
     #=========================== transport conditions =============================
     TRANSPORT_CONDITION initial
-      TYPE dirichlet
+      TYPE DIRICHLET
       CONSTRAINT_LIST
         0.d0 initial
       /
     END
 
     TRANSPORT_CONDITION inlet
-      TYPE dirichlet
+      TYPE DIRICHLET
       CONSTRAINT_LIST
         0.d0 inlet
       /
     END
 
     TRANSPORT_CONDITION outlet
-      TYPE zero_gradient
+      TYPE ZERO_GRADIENT
       CONSTRAINT_LIST
         0.d0 inlet
       /
@@ -1262,7 +1262,7 @@ PFLOTRAN input file ``sx115.in``:
     #=========================== flow conditions ==================================
     FLOW_CONDITION initial
       TYPE
-        PRESSURE hydrostatic
+        PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 6.d0
       PRESSURE 101325.d0
@@ -1270,7 +1270,7 @@ PFLOTRAN input file ``sx115.in``:
 
     FLOW_CONDITION infiltration
       TYPE
-        FLUX neumann
+        FLUX NEUMANN
       /
     # FLUX 2.53678e-8 ! 0.08 m/yr
     # FLUX 2.53678e-9 ! 0.08 m/yr
@@ -1280,7 +1280,7 @@ PFLOTRAN input file ``sx115.in``:
 
     FLOW_CONDITION water_table
       TYPE
-        PRESSURE hydrostatic
+        PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 6.d0
       PRESSURE 101325.d0
@@ -1301,28 +1301,28 @@ PFLOTRAN input file ``sx115.in``:
 
     #=========================== transport conditions =============================
     TRANSPORT_CONDITION initial
-      TYPE zero_gradient
+      TYPE ZERO_GRADIENT
       CONSTRAINT_LIST
         0.d0 initial
       /
     END
 
     TRANSPORT_CONDITION boundary
-      TYPE zero_gradient
+      TYPE ZERO_GRADIENT
       CONSTRAINT_LIST
         0.d0 initial
       /
     END
 
     TRANSPORT_CONDITION infiltration
-      TYPE dirichlet
+      TYPE DIRICHLET
       CONSTRAINT_LIST
         0.d0 infiltration
       /
     END
 
     TRANSPORT_CONDITION source
-      TYPE dirichlet
+      TYPE DIRICHLET
       CONSTRAINT_LIST
         0.d0 well
       /

@@ -4,15 +4,23 @@ Back to :ref:`card-index`
 
 RESTART
 =======
-Specifies restart options so you can continue running a simulation where it 
-left off.
+Specifies restart options so one can continue running a simulation where it left off (e.g. due to system failure, :ref:`WALL_CLOCK_STOP<wallclock-stop-card>` shutdown, or :ref:`FINAL_TIME<final-time-card>`).
 
 Required Cards:
 ---------------
-RESTART <string> <optional RESET>
- Specifies the name of the restart file and, optionally, the keyword RESET
- that forces the simulation to revert back to the initial simulation time
- (0. unless otherwise specified in the input file).
+RESTART
+ Opens ths RESTART block.
+
+FILENAME <string>
+ Specifies the name of the restart file.
+
+Optional Cards:
+---------------
+RESET_TO_TIME_ZERO
+ Resets the simulation to time zero enabling the user to use state variables defined in a checkpoint file as an initial condition.
+
+REALIZATION_DEPENDENT
+ Instructs the code to insert the realization ID (R#) into the restart name. "-restart" must be present in the filename, and the code will insert "R#" prior to "-restart".  E.g. pflotran-restart.h5 -> pflotranR1-restart.h5.
 
 Examples
 --------
@@ -21,11 +29,17 @@ Restart the program running from where it left off when the file
  
 ::
 
-  RESTART pflotran.chk3000
+  RESTART 
+    FILENAME pflotran.chk3000
+  END
 
 Restart the simulation from the end of the previous simulation, but set the 
-time back to the initial simulation time:
+time back to the initial simulation time (time zero):
 
 ::
 
- RESTART restart.chk RESET
+ RESTART 
+   FILENAME restart.h5
+   RESET_TO_TIME_ZERO
+ END
+    

@@ -85,7 +85,7 @@ Examples
       0.d0 0.d0 95.d0 
       0.d0 120.d0 110.d0
     /
-    FACE west
+    FACE WEST
   /
 
   REGION East
@@ -93,7 +93,7 @@ Examples
       120.d0 0.d0 95.d0 
       120.d0 120.d0 110.d0
     /
-    FACE east
+    FACE EAST
   /
 
   REGION South
@@ -101,7 +101,7 @@ Examples
       0.d0 0.d0 95.d0 
       120.d0 0.d0 110.d0
     /
-    FACE south
+    FACE SOUTH
   /
 
   REGION South_Cartesian

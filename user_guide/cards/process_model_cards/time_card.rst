@@ -8,6 +8,9 @@ Specifies the time step sizes and final simulation time.
 
 Required Cards
 --------------
+
+.. _final-time-card:
+
 FINAL_TIME <float> <string>
  Specified the final time of the simulation with units.
 

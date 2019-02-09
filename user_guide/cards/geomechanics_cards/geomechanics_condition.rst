@@ -75,56 +75,56 @@ Examples
 
   GEOMECHANICS_CONDITION west_geomech
     TYPE
-      DISPLACEMENT_X dirichlet
+      DISPLACEMENT_X DIRICHLET
     END
       DISPLACEMENT_X 0.0
   END
 
   GEOMECHANICS_CONDITION east_geomech
     TYPE
-      DISPLACEMENT_X dirichlet
+      DISPLACEMENT_X DIRICHLET
     END
       DISPLACEMENT_X 0.0
   END
 
   GEOMECHANICS_CONDITION north_geomech
     TYPE
-      DISPLACEMENT_Y dirichlet
+      DISPLACEMENT_Y DIRICHLET
     END
       DISPLACEMENT_Y 0.0
   END
 
   GEOMECHANICS_CONDITION bottom_geomech
     TYPE
-      DISPLACEMENT_Z dirichlet
+      DISPLACEMENT_Z DIRICHLET
     END
       DISPLACEMENT_Z 0.0
   END
 
   GEOMECHANICS_CONDITION south_geomech
     TYPE
-      DISPLACEMENT_Y dirichlet
+      DISPLACEMENT_Y DIRICHLET
     END
       DISPLACEMENT_Y 0.0
   END
 
   GEOMECHANICS_CONDITION top_corner_force
     TYPE
-      FORCE_Z dirichlet
+      FORCE_Z DIRICHLET
     END
       FORCE_Z -68832.8125
   END
 
   GEOMECHANICS_CONDITION top_boundary_force
     TYPE
-      FORCE_Z dirichlet
+      FORCE_Z DIRICHLET
     END
       FORCE_Z -137665.625
   END
 
   GEOMECHANICS_CONDITION top_internal_force
     TYPE
-      FORCE_Z dirichlet
+      FORCE_Z DIRICHLET
     END
       FORCE_Z -275331.25
   END

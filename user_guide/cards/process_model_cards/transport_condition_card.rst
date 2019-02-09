@@ -55,14 +55,14 @@ Examples
 
 
   TRANSPORT_CONDITION Initial
-    TYPE dirichlet_zero_gradient
+    TYPE DIRICHLET_ZERO_GRADIENT
     CONSTRAINT_LIST
       0.d0 initial
     /
   /
 
   TRANSPORT_CONDITION U_source
-    TYPE dirichlet
+    TYPE DIRICHLET_ZERO_GRADIENT
     TIME_UNITS s
     CONSTRAINT_LIST
       0.d0 U_source

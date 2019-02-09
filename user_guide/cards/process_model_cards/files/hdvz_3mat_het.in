@@ -197,7 +197,7 @@ REGION gravel
 END
 
 REGION top
-  FACE top
+  FACE TOP
   COORDINATES
     -1.d20 -1.d20 107.52d0
     1.d20 1.d20 107.52d0
@@ -205,7 +205,7 @@ REGION top
 END
 
 REGION top_west
-  FACE top
+  FACE TOP
   COORDINATES
     -1.d20 -1.d20 107.52d0
     74.d0 1.d20 107.52d0
@@ -213,7 +213,7 @@ REGION top_west
 END
 
 REGION crib_216-B-17
-  FACE top
+  FACE TOP
   COORDINATES
     74.d0 -1.d20 107.52d0
     78.5d0 1.d20 107.52d0
@@ -221,7 +221,7 @@ REGION crib_216-B-17
 END
 
 REGION top_center
-  FACE top
+  FACE TOP
   COORDINATES
     78.5d0 -1.d20 107.52d0
     143.d0 1.d20 107.52d0
@@ -229,7 +229,7 @@ REGION top_center
 END
 
 REGION crib_216-B-18
-  FACE top
+  FACE TOP
   COORDINATES
     143.d0 -1.d20 107.52d0
     147.5d0 1.d20 107.52d0
@@ -237,7 +237,7 @@ REGION crib_216-B-18
 END
 
 REGION top_east
-  FACE top
+  FACE TOP
   COORDINATES
     147.5d0 -1.d20 107.52d0
     216.d0 1.d20 107.52d0
@@ -245,7 +245,7 @@ REGION top_east
 END
 
 REGION bottom
-  FACE bottom
+  FACE BOTTOM
   COORDINATES
     -1.d20 -1.d20 0.d0
     1.d20 1.d20 0.d0
@@ -255,7 +255,7 @@ END
 :=========================== flow conditions ==================================
 FLOW_CONDITION initial
   TYPE
-    PRESSURE hydrostatic
+    PRESSURE HYDROSTATIC
   /
   DATUM 0.d0 0.d0 0.d0
   PRESSURE 101325.d0
@@ -263,10 +263,10 @@ END
 
 FLOW_CONDITION recharge
   TYPE
-    FLUX neumann
+    FLUX NEUMANN
   /
   INTERPOLATION STEP
-  FLUX list
+  FLUX LIST
     TIME_UNITS y
     DATA_UNITS m/s
     0.d0 1.10910676d-10
@@ -276,10 +276,10 @@ END
 
 FLOW_CONDITION crib_216-B-17
   TYPE
-    FLUX neumann
+    FLUX NEUMANN
   /
   INTERPOLATION STEP
-  FLUX list
+  FLUX LIST
     TIME_UNITS y
     DATA_UNITS m/s
     0.d0 1.10910676d-10
@@ -290,10 +290,10 @@ END
 
 FLOW_CONDITION crib_216-B-18
   TYPE
-    FLUX neumann
+    FLUX NEUMANN
   /
   INTERPOLATION STEP
-  FLUX list
+  FLUX LIST
     TIME_UNITS y
     DATA_UNITS m/s
     0.d0 1.10910676d-10
@@ -304,14 +304,14 @@ END
 
 :=========================== transport conditions =============================
 TRANSPORT_CONDITION initial
-  TYPE dirichlet_zero_gradient
+  TYPE DIRICHLET_ZERO_GRADIENT
   CONSTRAINT_LIST
     0.d0 initial
   /
 END
 
 TRANSPORT_CONDITION crib_216-B-17
-  TYPE dirichlet
+  TYPE DIRICHLET
   TIME_UNITS y
   CONSTRAINT_LIST
     0.d0 initial
@@ -321,7 +321,7 @@ TRANSPORT_CONDITION crib_216-B-17
 END
 
 TRANSPORT_CONDITION crib_216-B-18
-  TYPE dirichlet
+  TYPE DIRICHLET
   TIME_UNITS y
   CONSTRAINT_LIST
     0.d0 initial

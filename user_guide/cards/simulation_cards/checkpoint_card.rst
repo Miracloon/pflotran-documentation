@@ -10,11 +10,7 @@ Required Cards:
 ---------------
 
 CHECKPOINT
- Opens the CHECKPOINT block, although block form is not required if only one 
- option is specified. The checkpoint card block must be located within the 
- :ref:`simulation-card` block.
-
-At least one of the following must be used:
+ Opens the CHECKPOINT block and turns on checkpointing with a default '-restart.*' file being generated at the end of a simulation. The TIMES and PERIODIC TIME/TIMESTEP cards below are necessary for checkpointing at specific times or timestep increments. The checkpoint card block must be located within the :ref:`simulation-card` block.
 
 TIMES <time_unit> <double> <double> . . . <double>
  Specifies the points in time when checkpoint file output is desired, where 
@@ -37,6 +33,9 @@ Optional Cards:
 FORMAT <string>
  Indicates the checkpoint file format. Only <string> = BINARY or HDF5 supported.
  If FORMAT is not specified, the default format is BINARY.
+
+TIME_UNITS <time_unit>
+ By default, the time units for checkpoint files are consistent with the time units for all output. This card allows one to override the default time units so that checkpoint files are in a different unit of time.
 
 **If a periodic timestep is chosen, checkpoint files will be named** 
 **"pflotran-ts<int>.chk", where "ts" stands for timestep, and <int> is the** 
@@ -66,6 +65,7 @@ Examples
       PERIODIC TIMESTEP 5
       TIMES y 10. 20. 25. 50. 55.
       FORMAT HDF5
+      TIME_UNITS d
     /
     RESTART restart.chk 0.
   END

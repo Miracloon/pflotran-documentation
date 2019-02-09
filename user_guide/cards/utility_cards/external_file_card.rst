@@ -31,9 +31,9 @@ where the contents of flow_conditions.txt reads:
   
   FLOW_CONDITION initial
     TYPE
-      TEMPERATURE dirichlet
-      GAS_SATURATION dirichlet
-      GAS_PRESSURE dirichlet
+      TEMPERATURE DIRICHLET
+      GAS_SATURATION DIRICHLET
+      GAS_PRESSURE DIRICHLET
     /
     TEMPERATURE 25.d0 C
     GAS_SATURATION 1.0
@@ -42,9 +42,9 @@ where the contents of flow_conditions.txt reads:
 
   FLOW_CONDITION left_end
     TYPE
-      TEMPERATURE dirichlet
-      GAS_SATURATION dirichlet
-      GAS_PRESSURE dirichlet
+      TEMPERATURE DIRICHLET
+      GAS_SATURATION DIRICHLET
+      GAS_PRESSURE DIRICHLET
     /
     TEMPERATURE 25.d0 C
     GAS_SATURATION 1.0
@@ -53,9 +53,9 @@ where the contents of flow_conditions.txt reads:
 
   FLOW_CONDITION right_end
     TYPE
-      TEMPERATURE dirichlet
-      GAS_SATURATION dirichlet
-      GAS_PRESSURE dirichlet
+      TEMPERATURE DIRICHLET
+      GAS_SATURATION DIRICHLET
+      GAS_PRESSURE DIRICHLET
     /
     TEMPERATURE 25.d0 C
     GAS_SATURATION 1.0

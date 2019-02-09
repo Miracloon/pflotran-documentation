@@ -160,14 +160,14 @@ An example input record file is shown below:
 	      X coordinate(s): 0.0000000E+00  0.0000000E+00 m
 	      Y coordinate(s): 0.0000000E+00  1.0000000E+01 m
 	      Z coordinate(s): 0.0000000E+00  1.0000000E+01 m
-			face: west
+			face: WEST
   ---------------------------: 
 		      region: right_end
 		  defined by: COORDINATE(S)
 	      X coordinate(s): 1.0000000E+02  1.0000000E+02 m
 	      Y coordinate(s): 0.0000000E+00  1.0000000E+01 m
 	      Z coordinate(s): 0.0000000E+00  1.0000000E+01 m
-			face: east
+			face: EAST
   ---------------------------: 
   
   --------------------------------------------------------------------------------
@@ -325,27 +325,27 @@ An example input record file is shown below:
   ---------------------------: FLOW CONDITIONS
 	  flow condition name: initial
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
   ---------------------------: 
 	  flow condition name: left_end
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
   ---------------------------: 
 	  flow condition name: right_end
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
 	  sub condition name: 
-	  sub condition type: dirichlet
+	  sub condition type: DIRICHLET
   ---------------------------: 
   
   --------------------------------------------------------------------------------

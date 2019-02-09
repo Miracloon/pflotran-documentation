@@ -69,7 +69,7 @@ Examples
 
   FLOW_CONDITION river
     TYPE
-      PRESSURE hydrostatic
+      PRESSURE HYDROSTATIC
     /
     DATUM DATASET y_river_boundary_head
     PRESSURE 101325.d0
