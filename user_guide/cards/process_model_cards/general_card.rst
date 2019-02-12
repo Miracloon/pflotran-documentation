@@ -48,7 +48,7 @@ WINDOW_EPSILON <float>
 
 **Newton Solver Options**
 
-MAX_NEWTON_ITERATIONS
+MAX_NEWTON_ITERATIONS <integer>
  Specify the maximum number of allowable Newton iterations. Default is 8.
 
 LOGGING_VERBOSITY <integer>
@@ -103,25 +103,25 @@ SAT_ABS_UPDATE_INF_TOL <float>
 XMOL_ABS_UPDATE_INF_TOL <float>
  Specity a maximum absolute change in solute mass fraction in the aqueous phase over a given time step.
 
-PRES_REL_UPDATE_INF_TOL
+PRES_REL_UPDATE_INF_TOL <float>
  Specify a single maximum relative change in liquid phase, gas phase, and air partial pressure over a given time step. 
 
-LIQUID_PRES_REL_UPDATE_INF_TOL
+LIQUID_PRES_REL_UPDATE_INF_TOL <float>
  Specify a maximum relative change in liquid phase pressure over a given time step.
 
-GAS_PRES_REL_UPDATE_INF_TOL
+GAS_PRES_REL_UPDATE_INF_TOL <float>
  Specify a maximum relative change in gas phase pressure over a given time step.
 
-AIR_PRES_REL_UPDATE_INF_TOL
+AIR_PRES_REL_UPDATE_INF_TOL <float>
  Specify a maximum relative change in air pressure over a given time step.
 
-TEMP_REL_UPDATE_INF_TOL
+TEMP_REL_UPDATE_INF_TOL <float>
  Specify a maximum relative change in temperature over a given time step.
 
-SAT_REL_UPDATE_INF_TOL
+SAT_REL_UPDATE_INF_TOL <float>
  Specify a maximum relative change in phase saturation over a given time step.
 
-XMOL_REL_UPDATE_INF_TOL
+XMOL_REL_UPDATE_INF_TOL <float>
  Specify a maximum relative change in mass fraction of solute in the aqueous phase over a given timestep.
 
 Examples
