@@ -58,6 +58,12 @@ ORIGIN <float float float>
 INVERT_Z
  Inverts the z axis (positive Z is down instead of default up)
 
+PERM_TENSOR_TO_SCALAR_MODEL <string>
+ Specifies the algorithm for converting the diagonal permeability tensor
+ to a scalar at a face for a flux calculation. Options include [LINEAR,
+ FLOW, POTENTIAL]. Defaults: LINEAR for structured grids, and POTENTIAL for
+ unstructured grids. 
+
 Examples
 --------
 
