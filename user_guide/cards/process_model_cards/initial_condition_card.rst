@@ -13,21 +13,17 @@ appling them to appropriate REGIONs using this card.
 
 Required Cards:
 ---------------
-INITIAL_CONDITION <name>
-  Opens the INITIAL_CONDITION block, where <string> is the name of the 
-  initial condition (name is optional).
+INITIAL_CONDITION <optional string>
+ Opens the INITIAL_CONDITION block, labeling it with the <optional string>
 
-FLOW_CONDITION <name>
-  If a :ref:`flow-condition-card` has been defined, specify it here by the 
-  given name of the flow condition.
+FLOW_CONDITION <string>
+ Name of the associated :ref:`flow-condition-card`
 
-TRANSPORT_CONDITION <name>
-  If a :ref:`transport-condition-card` has been defined, specify it here by the 
-  given name of the transport condition.
+TRANSPORT_CONDITION <string>
+ Name of the associated :ref:`transport-condition-card`
   
-REGION <name>
- Specifies the name of the :ref:`region-card` that the set of flow and/or 
- transport conditions will be applied to.
+REGION <string>
+ Name of the associated :ref:`region-card`
 
 Examples
 --------

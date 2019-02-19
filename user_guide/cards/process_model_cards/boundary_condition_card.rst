@@ -13,21 +13,17 @@ appling them to appropriate REGIONs using this card.
 
 Required Cards:
 ---------------
-BOUNDARY_CONDITION <name>
-  Opens the BOUNDARY_CONDITION block, where <string> is the name of the 
-  boundary condition (name is optional).
+BOUNDARY_CONDITION <optional string>
+ Opens the BOUNDARY_CONDITION block, labeling it with the <optional string>. The label is useful for output purposes (e.g. labeling mass flux across the boundary region in the mass balance [\*-mas.dat] file).
 
-FLOW_CONDITION <name>
-  If a :ref:`flow-condition-card` has been defined, specify it here by the 
-  given name of the flow condition.
+FLOW_CONDITION <string>
+ Name of the associated :ref:`flow-condition-card`
 
-TRANSPORT_CONDITION <name>
-  If a :ref:`transport-condition-card` has been defined, specify it here by the 
-  given name of the transport condition.
+TRANSPORT_CONDITION <string>
+ Name of the associated :ref:`transport-condition-card`
   
-REGION <name>
- Specifies the name of the :ref:`region-card` that the set of flow and/or 
- transport conditions will be applied to.
+REGION <string>
+ Name of the associated :ref:`region-card`
 
 Examples
 --------
