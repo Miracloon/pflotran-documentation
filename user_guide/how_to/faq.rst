@@ -314,7 +314,7 @@ Permeability and/or Porosity
 Permeability and porosity datasets are cell-indexed HDF5 datasets, but they 
 differ slightly from all other datasets in that they are not placed in a group 
 and they must be named "Permeability" and "Porosity".  This will change in the 
-future, but for now, they must use those names.  See the :ref:`dataset-new-card` 
+future, but for now, they must use those names.  See the :ref:`dataset-card` 
 card.
 
 Useful python scripts: 
