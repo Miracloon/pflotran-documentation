@@ -34,16 +34,22 @@ PRINT_JACOBIAN_NORM
 PRINT_COUPLERS
  Prints each coupler to a file (for checking boundary connections).
 
-PRINT_NUMERICAL_DERIVATIVES
+.. PRINT_NUMERICAL_DERIVATIVES
  Not yet supported, but when finished, this will print the values of the 
  numerical derivative used to create the Jacobian matrix.
 
-WAYPOINTS
- Prints a list of waypoints to the screen and to the pflotran.out file.
+PRINT_WAYPOINTS
+ Prints the list of waypoints to the screen and to the pflotran.out file.
 
-BINARY_FORMAT
-  Saves the PETSc vectors and matrices in binary format. The default output 
-  format for the PETSc vectors and matrices is ASCII.
+FORMAT
+ Sets the format for exported PETSc vectors (solution, residual, etc.) and matrices (Jacobian). Supported formats include: 
+  * ASCII: [\*.out]
+  * BINARY: [\*.bin]
+  * MATLAB: [\*.mat]
+  * NATIVE: [\*.bin] PETSc parallel layout. Vectors and matrices are printed in their parallel layout and not converted back to natural numbering.
+
+APPEND_COUNTS_TO_FILENAMES
+ Appends the cumulative timestep, timestep cut, and Newton iteration counts to the filename.
 
 Examples
 --------
@@ -53,5 +59,7 @@ Examples
    PRINT_SOLUTION
    PRINT_RESIDUAL
    PRINT_JACOBIAN
+   FORMAT MATLAB
+   APPEND_COUNTS_TO_FILENAMES
  END
 

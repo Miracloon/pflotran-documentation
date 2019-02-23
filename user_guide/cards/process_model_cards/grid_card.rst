@@ -11,7 +11,21 @@ Required Cards:
 ---------------
 
 TYPE <type>
- Grid type (options: structured, structured cylindrical, unstructured (implicit), unstructured_explicit)
+ Grid type.  Options: STRUCTURED, UNSTRUCTURED, UNSTRUCTURED_EXPLICIT
+
+ * STRUCTURED
+
+   - CARTESIAN (default)
+   - CYLINDRICAL
+   - SPHERICAL
+
+ * UNSTRUCTURED <filename>
+
+   Standard finite element format where cells (elements) are defined by lists of vertices and vertices are defined by coordinates. We often refer to these as *implicit* unstructured grids. See :download:`PFLOTRAN_cell_numbering_schemes.pdf <files/PFLOTRAN_cell_numbering_schemes.pdf>` for cell face and vertex numbering schemes.
+
+ * UNSTRUCTURED_EXPLICIT <filename>
+
+   The grid is defined by a list of cells (coordinates + volume) and connectivity (two cell ids + shared face center coordinate).
 
 NXYZ <int int int>
  # of cells in x, y, z dimensions (structured only)
