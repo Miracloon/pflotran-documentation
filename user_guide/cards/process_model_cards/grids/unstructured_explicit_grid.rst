@@ -12,7 +12,7 @@ Defines an unstructured grid through a list of cells and connectivity. Cells are
 ASCII File Format
 -----------------
 
-The first line specifies the number of cells, followed by one line per cell defining the cell ID, centroid coordinates and volume (in units of meters). The number of connections are then specified, followed by one line per connection defining the two cell ids on either side of the connection, the face centroid coordinates and the face area.
+The first line specifies the number of cells, followed by one line per cell defining the cell ID, center coordinate and volume (in units of meters). The number of connections are then specified, followed by one line per connection defining the two cell ids on either side of the connection, the face center coordinate and the face area. *Note that the center coordinates for Voronoi cells and faces are not necessarily the centroid.*
 
 CELLS <integer>: Number of cells in grid
 
