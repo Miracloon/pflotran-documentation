@@ -25,6 +25,12 @@ DENSITY <string> <optional parameters>
  DENSITY EXPONENTIAL <float> <float> <float> (ref. density [rho0], ref. pressure [p0], compressibility)
   Exponential function: rho0 * exp(compressibility*(pressure - p0))
 
+ DENSITY IF97
+  Liquid water density EOS based on International Association for the Properties of Water and Steam Standard IF97
+
+ STEAM_DENSITY IF97
+  Superheated vapor density EOS based on International Association for the Properties of Water and Steam Standard IF97
+
  DENSITY DEFAULT
   Default water EOS based on International Formulation Committee of the Sixth International Conference on Properties of Steam (1967).
   Density is calculated as a function of temperature and pressure.
@@ -33,6 +39,12 @@ ENTHALPY <string> <optional parameters>
   
  ENTHALPY CONSTANT <float>
   Units of enthalpy should be in J/kmol.
+
+ ENTHALPY IF97
+  Liquid water enthalpy EOS based on International Association for the Properties of Water and Steam Standard IF97
+
+ STEAM_ENTHALPY IF97
+  Superheated vapor enthalpy EOS based on International Association for the Properties of Water and Steam Standard IF97
 
  ENTHALPY DEFAULT
   Default water EOS based on International Formulation Committee of the Sixth International Conference on Properties of Steam (1967).
