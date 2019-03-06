@@ -19,13 +19,13 @@ TYPE <type>
    - CYLINDRICAL
    - SPHERICAL
 
- * UNSTRUCTURED <filename>
+ * :ref:`unstructured-implicit-grid-card` <filename>
 
    Standard finite element format where cells (elements) are defined by lists of vertices and vertices are defined by coordinates. We often refer to these as *implicit* unstructured grids. See :download:`PFLOTRAN_cell_numbering_schemes.pdf <files/PFLOTRAN_cell_numbering_schemes.pdf>` for cell face and vertex numbering schemes.
+   
+ * :ref:`unstructured-explicit-grid-card` <filename>
 
- * UNSTRUCTURED_EXPLICIT <filename>
-
-   The grid is defined by a list of cells (coordinates + volume) and connectivity (two cell ids + shared face center coordinate).
+   The grid is defined by a list of cells and connectivity. Cells are defined by an id, coordinate and volume while connections are composed of two cell ids, an area and a face-center coordinate.
 
 NXYZ <int int int>
  # of cells in x, y, z dimensions (structured only)
@@ -193,3 +193,56 @@ But all REGIONs must include Y coordinates of 0 and 1.  E.g.
       100.d0 1.d0 10.d0
     /
   END
+
+Unstructured Mesh Examples
+..........................
+
+Format
+
+
+Example implicit unstructured mesh (see `mixed.ugi`_)
+
+.. _mixed.ugi: https://bitbucket.org/pflotran/pflotran/src/master/regression_tests/default/discretization/mixed.ugi
+
+ ::
+
+  15 24
+  P 4 5 6 2 1
+  T 4 3 5 1
+  W 2 7 6 4 9 5
+  W 8 7 2 10 9 4
+  W 10 9 4 21 14 11
+  H 19 9 5 12 17 7 6 16
+  T 5 13 14 15
+  T 5 14 9 15
+  P 5 9 19 12 15
+  P 13 5 12 22 15
+  H 20 10 9 19 18 8 7 17
+  H 24 21 14 23 20 10 9 19
+  P 23 19 9 14 15
+  P 22 12 19 23 15
+  P 22 23 14 13 15
+  5.000000e+00 5.000000e+00 5.000000e+00
+  5.000000e+00 2.500000e+00 5.000000e+00
+  5.000000e+00 5.000000e+00 2.500000e+00
+  5.000000e+00 2.500000e+00 2.500000e+00
+  2.500000e+00 5.000000e+00 2.500000e+00
+  2.500000e+00 5.000000e+00 5.000000e+00
+  2.500000e+00 2.500000e+00 5.000000e+00
+  2.500000e+00 0.000000e+00 5.000000e+00
+  2.500000e+00 2.500000e+00 2.500000e+00
+  2.500000e+00 0.000000e+00 2.500000e+00
+  5.000000e+00 2.500000e+00 0.000000e+00
+  0.000000e+00 5.000000e+00 2.500000e+00
+  2.500000e+00 5.000000e+00 0.000000e+00
+  2.500000e+00 2.500000e+00 0.000000e+00
+  1.250000e+00 3.750000e+00 1.250000e+00
+  0.000000e+00 5.000000e+00 5.000000e+00
+  0.000000e+00 2.500000e+00 5.000000e+00
+  0.000000e+00 0.000000e+00 5.000000e+00
+  0.000000e+00 2.500000e+00 2.500000e+00
+  0.000000e+00 0.000000e+00 2.500000e+00
+  2.500000e+00 0.000000e+00 0.000000e+00
+  0.000000e+00 5.000000e+00 0.000000e+00
+  0.000000e+00 2.500000e+00 0.000000e+00
+  0.000000e+00 0.000000e+00 0.000000e+00

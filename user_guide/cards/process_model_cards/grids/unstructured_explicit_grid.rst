@@ -1,0 +1,82 @@
+Back to :ref:`card-index`
+
+Back to :ref:`grid-card`
+
+.. _unstructured-explicit-grid-card:
+
+UNSTRUCTURED_EXPLICIT
+=====================
+
+Defines an unstructured grid through a list of cells and connectivity. Cells are defined by an id, coordinate and volume while connections are composed of two cell ids, an area and a face-center coordinate.
+
+ASCII File Format
+-----------------
+
+The first line specifies the number of cells, followed by one line per cell defining the cell ID, centroid coordinates and volume (in units of meters). The number of connections are then specified, followed by one line per connection defining the two cell ids on either side of the connection, the face centroid coordinates and the face area.
+
+CELLS <integer>: Number of cells in grid
+
+CONNECTIONS <integer>: Number of connections in grid
+
+ ::
+
+  CELLS #
+  1 X_coordinate Y_coordinate Z_coordinate VOLUME
+  ...
+  # X_coordinate Y_coordinate Z_coordinate VOLUME
+  CONNECTIONS @
+  CELL_a CELL_b X_coordinate Y_coordinate Z_coordinate AREA
+  ...
+  CELL_y CELL_z X_coordinate Y_coordinate Z_coordinate AREA
+
+Example
+.......
+
+Example explict unstructured grid (see `mixed.uge`_)
+
+.. _mixed.uge: https://bitbucket.org/pflotran/pflotran/src/master/regression_tests/default/discretization/mixed.uge
+
+ ::
+
+  CELLS 15
+  1 4.0625 4.0625 4.0625 5.20833
+  2 4.375 4.375 3.125 2.60417
+  3 3.3333 3.3333 3.75 7.8125
+  4 3.3333 1.6667 3.75 7.8125
+  5 3.3333 1.6667 1.25 7.8125
+  6 1.25 3.75 3.75 15.625
+  7 2.1875 4.0625 0.9375 1.30208
+  8 2.1875 3.4375 1.5625 1.30208
+  9 1.25 3.75 2.1875 2.60417
+  10 1.25 4.6875 1.25 2.60417
+  11 1.25 1.25 3.75 15.625
+  12 1.25 1.25 1.25 15.625
+  13 1.25 2.8125 1.25 2.60417
+  14 0.3125 3.75 1.25 2.60417
+  15 1.25 3.75 0.3125 2.60417
+  CONNECTIONS 24
+  1 2 4.16667 4.16667 3.3333 6.25
+  1 3 3.75 3.75 3.75 8.8388
+  3 4 3.75 2.5 3.75 6.25
+  3 6 2.5 3.75 3.75 6.25
+  4 5 3.3333 1.6667 2.5 3.125
+  4 11 2.5 1.25 3.75 6.25
+  5 12 2.5 1.25 1.25 6.25
+  6 9 1.25 3.75 2.5 6.25
+  6 11 1.25 2.5 3.75 6.25
+  7 8 2.08333 3.75 1.25 2.2097
+  7 10 2.08333 4.5833 1.25 2.2097
+  7 15 2.08333 3.75 0.41667 2.2097
+  8 9 2.08333 3.75 2.08333 2.2097
+  8 13 2.08333 2.91667 1.25 2.2097
+  9 10 1.25 4.48333 2.08333 2.2097
+  9 13 1.25 2.91667 2.08333 2.2097
+  9 14 0.41667 3.75 2.08333 2.2097
+  10 14 0.41667 4.48333 1.25 2.2097
+  10 15 1.25 4.48333 0.41667 2.2097
+  11 12 1.25 1.25 2.5 6.25
+  12 13 1.25 2.5 1.25 6.25
+  13 14 0.41667 2.91667 1.25 2.2097
+  13 15 1.25 2.91667 0.41667 2.2097
+  14 15 0.41667 3.75 0.41667 2.2097
+  

@@ -109,6 +109,7 @@ Utility Cards
    :glob:
    
    /user_guide/cards/pages/*
+   /user_guide/cards/process_model_cards/grids/*
 
 Theory Guide
 ============
