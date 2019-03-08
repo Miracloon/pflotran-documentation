@@ -14,20 +14,24 @@ TIMESTEPPER <string>
 Optional Cards:
 ---------------
 NUM_STEPS_AFTER_TS CUT <int>
- Number of time steps after a time step cut that the time step size must be held 
- constant.  Use 0 to ramp up immediately.
+ Number of time steps after a time step cut that the time step size must be held constant.  Use 0 to ramp up immediately.
 
-MAX_STEPS <int>
- Maximum time step after which the simulation will be terminated
+MAXIMUM_NUMBER_OF_TIMESTEPS <int>
+ Maximum time step after which the simulation will be terminated (default: 999999). 
+ Abbreviated card: MAX_STEPS
 
 TS_ACCELERATION <int>
  Integer indexing time step acceleration ramp (**expert users only**). Use in 
- conjunction with DT_FACTOR.
+ conjunction with DT_FACTOR (default: 5).
 
-MAX_TS_CUTS <int>
+MAXIMUM_CONSECUTIVE_TS_CUTS <int>
  Maximum number of consecutive time step cuts before the simulation is 
  terminated with plot of the current solution printed to a 
- ``XXX_cut_to_failure.tec`` file for debugging.
+ ``XXX_cut_to_failure.tec`` file for debugging. 
+ Abbreviated card: MAX_TS_CUTS
+
+MINIMUM_TIMESTEP_SIZE <float>
+ Minimum allowable time step size, below which the simulation will stop.
 
 MAX_NUM_CONTIGUOUS_REVERTS <int>
  When a time step is cut to match a sync (e.g. waypoint), the previous time
@@ -47,6 +51,9 @@ TIMESTEP_REDUCTION_FACTOR <float>
 TIMESTEP_MAXIMUM_GROWTH_FACTOR <float>
  The maximum factor by which the time step can be increased between time steps (default: 2.).
 
+TIMESTEP_OVERSTEP_REL_TOLERANCE <float>
+ If a waypoint lies just beyond the end of a time step, the time step size will be increased to meet that waypoint if (waypoint_time <= time + time_step_size * TIMESTEP_OVERSTEP_REL_TOLERANCE). This helps avoid small time steps to meet waypoint times.
+
 INITIALIZE_TO_STEADY_STATE
  Flag requesting that a steady state solution be computed based on boundary and 
  initial conditions at the beginning of the simulation (**Warning: not robust**)
@@ -61,6 +68,13 @@ Examples
 
   TIMESTEPPER FLOW
     TS_ACCELERATION 8
-    MAX_STEPS 10000  ! terminates simulation after 10,000 time steps
-    MAX_TS_CUTS 5    ! terminates simulation after 5 consecutive time step cuts
+    MAXIMUM_NUMBER_OF_TIMESTEPS 10000 ! terminates simulation after 10,000 time steps
+    MAX_TS_CUTS 5                     ! terminates simulation after 5 consecutive time step cuts
+  END
+
+  TIMESTEPPER FLOW
+    TIMESTEP_MAXIMUM_GROWTH_FACTOR 1.250000
+    MAXIMUM_CONSECUTIVE_TS_CUTS 30
+    TS_ACCELERATION 10
+    DT_FACTOR 1.25 1.25 1.25 1.1 1.0 1.0 0.8 0.6 0.4 0.33
   END
