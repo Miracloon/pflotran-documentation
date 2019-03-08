@@ -59,9 +59,6 @@ MAXIT <int>
 LU_ZERO_PIVOT_TOL <float>
  Specifies zero pivot tolerance for ILU/LU preconditioners.
 
-VERBOSE_LOGGING
- Causes verbose logging of solver performance to be printed to the screen, which may be helpful when resolving convergence issues.
-
 STOP_ON_FAILURE
  Forces the simulation to stop when the linear solver fails to converge.
 Examples

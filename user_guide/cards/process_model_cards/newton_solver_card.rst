@@ -89,9 +89,6 @@ MATRIX_TYPE <string>
 PRECONDITIONER_MATRIX_TYPE <string >
  Format of preconditioning matrix. PETSc Mat (i.e. AIJ, BAIJ, or HYPRESTRUCT).  Default is same as solver.
 
-VERBOSE_LOGGING
- Causes verbose logging of solver performance to be printed to the screen, which may be helpful when resolving convergence issues.
-
 CONVERGENCE_INFO
  Opens a block for toggling ON/OFF convergence information in screen output (default: YES). See example below.
 
