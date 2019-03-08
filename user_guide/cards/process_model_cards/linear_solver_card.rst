@@ -61,6 +61,7 @@ LU_ZERO_PIVOT_TOL <float>
 
 STOP_ON_FAILURE
  Forces the simulation to stop when the linear solver fails to converge.
+
 Examples
 --------
  ::
