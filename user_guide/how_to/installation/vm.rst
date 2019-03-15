@@ -5,7 +5,7 @@ Linux Virtual Machine Installation Instructions
 
 An Ubuntu 16.04 virtual machine (VM) with PFLOTRAN and supporting software 
 (i.e. GNU compilers, python [h5py, matplotlib], ParaView) can be downloaded 
-from Google Drive. This virtual machine is small (4 cores, 4 GB memory, 25 GB hard drive) and designed for use in PFLOTRAN short courses; so please bear in mind that it is not ideal for large simulations or parallel computing, and the regression tests will not pass due to the 4-core limitation.
+from Google Drive. This virtual machine is small (2 cores, 4 GB memory, 25 GB hard drive) and designed for use in PFLOTRAN short courses; so please bear in mind that it is not ideal for large simulations or parallel computing, and the regression tests will not pass due to the 2-core limitation.
 
 Installation Instructions
 -------------------------
@@ -27,7 +27,7 @@ Installation Instructions
 6. Click on the newly loaded virtual machine (with the same name) and click on 
    *Start*.
 
-The virtual machine will load.  The username and password for this VM are "user" should the machine become locked. The PFLOTRAN repository is located in the directory named *pflotran* while the PFLOTRAN executable is at *pflotran/src/pflotran/pflotran*.  
+The virtual machine will load.  The username and password for this VM are *user* and *pflotran*, respectively, should the machine become locked. The PFLOTRAN repository is located in the directory named *pflotran* while the PFLOTRAN executable is at *pflotran/src/pflotran/pflotran*.  
 
 *Note:* Should any of the instructions above be out-of-date, please email pflotran-dev at googlegroups dot com.
 
