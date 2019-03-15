@@ -13,15 +13,15 @@ Installation Instructions
 1. Download and install the appropriate version of VirtualBox_ for your machine
    (Windows, OS X, Linux).
 
-2. Download the `PFLOTRAN VM`_ named with the following convention: "PFLOTRAN 
-   UbuntuXX Month Year.zip", and unzip in a local directory.
+2. Download the `PFLOTRAN VM`_ named with the following convention: 
+   "pflotran-ubuntuXX-mon-year.zip", and unzip in a local directory.
 
 3. Start VirtualBox.
 
 4. From the menu, select *Machine -> Add*.
 
 5. Navigate to the directory where the zipfile was unzipped and load the file:
-   *PFLOTRAN UbuntuXX Month Year.vbox*. Note: only .vbox files will be 
+   *pflotran-ubuntuXX-mon-year.vbox*. Note: only .vbox files will be 
    displayed.
 
 6. Click on the newly loaded virtual machine (with the same name) and click on 
