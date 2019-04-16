@@ -3,7 +3,7 @@ Back to :ref:`card-index`
 .. _wipp-source-sink-card:
 
 WIPP_SOURCE_SINK
-==================
+================
 The WIPP Source Sink Process Model is :ref:`formally documented here <pm_wipp_source_sink>`.
 
 Specifies the WIPP gas/brine generation process model. This process model is

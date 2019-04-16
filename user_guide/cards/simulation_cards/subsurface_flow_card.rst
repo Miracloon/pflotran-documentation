@@ -18,9 +18,11 @@ Water Modes
 
  :ref:`richards-card`: single-phase variably saturated flow
 
- :ref:`general-card`: two-phase air-water-energy
-
  :ref:`th-card`: variably saturated flow and energy (and optional ice phase)
+
+ :ref:`wipp-flow-card`: two-phase immiscible air-water
+
+ :ref:`general-card`: two-phase air-water-energy
 
 Supercritical CO\ :sub:`2`\  Modes
 ++++++++++++++++++++++++++++++++++
