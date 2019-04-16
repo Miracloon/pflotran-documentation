@@ -13,10 +13,10 @@ Defines options for the WIPP_FLOW subsurface flow mode.
 Options
 -------
 LIQUID_RESIDUAL_INFINITY_TOL <float>
- Infinity norm tolerance for liquid residual equation. Units depend on the units of the residual: [kg/m\ :sup:`3` \ ] with BRAGFLO_RESIDUAL_UNITS and [kmol/sec] without. Default = 1.e-2
+ Infinity norm tolerance for liquid residual equation. Units depend on the units of the residual: [kg/m\ :sup:`3` \] with BRAGFLO_RESIDUAL_UNITS and [kmol/sec] without. Default = 1.e-2
 
 GAS_RESIDUAL_INFINITY_TOL <float>
- Infinity norm tolerance for gas residual equation. Units depend on the units of the residual: [kg/m\ :sup:`3`\ ] with BRAGFLO_RESIDUAL_UNITS and [kmol/sec] without. Default = 1.e-2
+ Infinity norm tolerance for gas residual equation. Units depend on the units of the residual: [kg/m\ :sup:`3`\] with BRAGFLO_RESIDUAL_UNITS and [kmol/sec] without. Default = 1.e-2
 
 MAX_ALLOW_REL_LIQ_PRES_CHANG_NI <float>
  Maximum allowable relative change in liquid pressure between Newton iterations. Default = 1.e-2
@@ -34,7 +34,7 @@ GAS_COMPONENT_FORMULA_WEIGHT <float>
  Molecular weight of gas component gas phase. Default = 2.01588 for H\ :sub:`2(g)`\
 
 BRAGFLO_RESIDUAL_UNITS
- Forces the residual calculation to be expressed in units of kg/kg/m\ :sup:`3`\ instead of kmol/sec.
+ Forces the residual calculation to be expressed in units of kg/m\ :sup:`3` \ instead of kmol/sec.
 
 MATCH_BRAGFLO_OUTPUT
  Prints screen output in format more compatible with BRAGFLO for comparison purposes.

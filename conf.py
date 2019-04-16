@@ -85,7 +85,7 @@ language = None
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store',
-		    'user_guide/cards/process_model_cards/wipp*']
+		    'user_guide/cards/process_model_cards/wipp_source_sink*']
 if tags.has('wipp'):
   exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
