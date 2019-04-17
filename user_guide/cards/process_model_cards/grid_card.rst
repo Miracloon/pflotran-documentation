@@ -41,7 +41,7 @@ BOUNDS (may not be used with DXYZ)
   
  Notes: 
   1. The origin is automatically calculated based on the lower bound.
-  2. Cylindrical grids include only x and z coordinates.
+  2. Cylindrical grids include only two values per line (for x and z) while spherical grids include only one.
 
 DXYZ (may not be used with BOUNDS)
  Specifies grid spacing of structured Cartesian grid (see examples below).  
@@ -53,9 +53,9 @@ DXYZ (may not be used with BOUNDS)
      dz
    /
 
-Use line continuation through a backslash '\' when lines exceed ~80 characters 
-(see DXYZ examples below). PFLOTRAN input can handle lines of 512 characters, 
-but that may change.
+ Notes:
+  1. For each dimension, enter a single value (which is applied to all cells in the respective dimension) or multiple values (equal to the number of cells in the respective dimension; e.g. NX values).
+  2. Use line continuation through a backslash '\' when lines exceed ~80 characters (see DXYZ examples below). PFLOTRAN input can handle lines of 512 characters, but that may change.
 
 FILE <filename>
   Name of file containing grid information (unstructured only)
@@ -64,10 +64,10 @@ Optional Cards:
 ---------------
 
 GRAVITY <float float float>
- Specifies gravity vector (default: 0. 0. -9.8068)
+ Specifies directional gravity vector. Default = <0,0,-9.8068>
 
 ORIGIN <float float float>
- Coordinate of grid origin (default: 0. 0. 0.)
+ Coordinate of grid origin. Required with DXYZ should the origin not lie at <0,0,0>. Default = <0,0,0>
 
 INVERT_Z
  Inverts the z axis (positive Z is down instead of default up)
@@ -77,6 +77,24 @@ PERM_TENSOR_TO_SCALAR_MODEL <string>
  to a scalar at a face for a flux calculation. Options include [LINEAR,
  FLOW, POTENTIAL]. Defaults: LINEAR for structured grids, and POTENTIAL for
  unstructured grids. 
+
+MAX_CELLS_SHARING_A_VERTEX <int>
+ Specifies the maximum number of cells sharing a single vertex. Necessary for expansing arrays used to read in complex grids where a vertex is shared by a large number of cells. Default = 24
+
+STENCIL_WIDTH <int>
+ Width of structured grid stencil. Default = 1
+
+STENCIL_TYPE <string>
+ Specifies stencil with options BOX or STAR. Default = STAR
+
+DOMAIN_FILENAME <string>
+ Specifies the path to the filename defining explicit unstructured grid geometry for inclusion in HDF5 output enabling plotting in Paraview/Visit.
+
+UPWIND_FRACTION_METHOD <string>
+ Specifies the approach used to calculate the upwind fraction for UNSTRUCTURED_EXPLICIT grids. Options include [FACE_CENTER_PROJECTION (default), CELL_VOLUME, ABSOLUTE_DISTANCE].
+
+2ND_ORDER_BOUNDARY_CONDITION
+ A simple approach to boundary ghost cells. Specifies that boundary conditions be applied a full cell width away from the cell center instead of a half cell width (at the face). Only supported for structured grids.
 
 Examples
 --------
@@ -194,13 +212,13 @@ But all REGIONs must include Y coordinates of 0 and 1.  E.g.
     /
   END
 
-Unstructured Mesh Examples
+Unstructured Grid Examples
 ..........................
 
 Format
 
 
-Example implicit unstructured mesh (see `mixed.ugi`_)
+Example implicit unstructured grid (see `mixed.ugi`_)
 
 .. _mixed.ugi: https://bitbucket.org/pflotran/pflotran/src/master/regression_tests/default/discretization/mixed.ugi
 
