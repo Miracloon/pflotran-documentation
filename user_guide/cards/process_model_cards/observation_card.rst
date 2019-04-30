@@ -16,13 +16,9 @@ OBSERVATION
  Opens the OBSERVATION block.
 
 :ref:`region-card` <string>
- Specifies the name of the region (i.e. point in space) within the problem 
- domain at which the observation is placed.  
+ Specifies the name of the region (i.e. point in space) within the problem domain at which the observation is placed. Only one region may be defined per block.
 
-**Note: One should use the singular COORDINATE keyword to define a point in** 
-**space when defining the region, not a 2D surface or 3D volume, as** 
-**observation points will be placed within all grid cells within the surface** 
-**or volume.**
+**Note: One should use the singular COORDINATE keyword to define a point in space when defining the region, not a 2D surface or 3D volume, as observation points will be placed within all grid cells within the surface or volume.**
 
 Optional Cards:
 ---------------
