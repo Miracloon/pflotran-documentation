@@ -7,12 +7,6 @@ PFLOTRAN Documentation
 **********************
 .. image:: /_static/pflotran_logo.jpg
 
-
-**PFLOTRAN is on** `Bitbucket`_ **!** 
-
-.. :download:`Click here <_build/latex/PFLOTRANdocumentation.pdf>` to 
-   download a pdf version of the PFLOTRAN documentation. 
-
 PFLOTRAN is an open source, state-of-the-art massively parallel subsurface flow 
 and reactive transport code. The code is developed under a GNU LGPL license 
 allowing for third parties to interface proprietary software with the code, 
@@ -22,7 +16,18 @@ The choice of Fortran over C/C++ was based primarily on the need to enlist and
 preserve tight collaboration with experienced domain scientists, without which 
 PFLOTRAN's sophisticated process models would not exist.
 
+**The PFLOTRAN source code repository is on** `Bitbucket`_ **!** 
+
+Need help beyond the documentation below? 
+ | Search topics at or submit a question to the `pflotran-users`_ Google Group.
+ | Email user questions to pflotran-users at googlegroups dot com
+ | Email bug reports to pflotran-dev at googlegroups dot com
+
+.. :download:`Click here <_build/latex/PFLOTRANdocumentation.pdf>` to 
+   download a pdf version of the PFLOTRAN documentation. 
+
 .. _Bitbucket: https://bitbucket.org/pflotran/pflotran/wiki/Home
+.. _pflotran-users: https://groups.google.com/d/forum/pflotran-users
 
 User's Guide
 ============
