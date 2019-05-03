@@ -48,8 +48,7 @@ MINERALS
   Reaction sandbox for custom, user-defined reactions.
 
 DATABASE <string>
- Path/filename for reaction database.  Description of 
- :ref:`geochemical-database` or :ref:`thermodynamic-database`.
+ Path/filename for reaction database.  For descriptions of the database format, see the brief :ref:`geochemical-database`, or :ref:`thermodynamic-database`, a more indepth description from the theory guide.
 
 LOG_FORMULATION
  Flag for solving Newton-Raphson equations with derivatives computed with 
