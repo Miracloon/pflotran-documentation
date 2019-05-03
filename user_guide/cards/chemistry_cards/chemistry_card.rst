@@ -49,7 +49,7 @@ MINERALS
 
 DATABASE <string>
  Path/filename for reaction database.  Description of 
- :ref:`geochemical-database`.
+ :ref:`geochemical-database` or :ref:`thermodynamic-database`.
 
 LOG_FORMULATION
  Flag for solving Newton-Raphson equations with derivatives computed with 

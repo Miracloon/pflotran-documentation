@@ -1307,6 +1307,8 @@ condition as e.g.:
 Output is given in terms of :math:`\alpha` and :math:`C` from which the
 mean age :math:`A` can be obtained as :math:`A= \alpha/C`.
 
+.. _thermodynamic-database:
+
 Thermodynamic Database
 ~~~~~~~~~~~~~~~~~~~~~~
 
