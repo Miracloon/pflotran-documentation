@@ -125,7 +125,7 @@ XMOL_REL_UPDATE_INF_TOL <float>
  Specify a maximum relative change in mass fraction of solute in the aqueous phase over a given timestep.
 
 NO_STATE_TRANSITION_OUTPUT
- Removes state change outputs, (9): State Transition: 2 Phase -> Gas at Cell    23331', on the screen.
+ Eliminates “State Transition” screen output. E.g. *State Transition: 2 Phase -> Gas at Cell 23331*
 
 Examples
 --------
