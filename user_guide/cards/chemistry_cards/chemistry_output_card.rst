@@ -78,6 +78,9 @@ MINERAL_SATURATION_INDEX
  (including any equilibrium minerals).  If one lists 'ALL', saturation indices 
  for all minerals (including those under the MINERAL block) will be printed.
 
+MINERAL_SURFACE_AREA
+ Outputs mineral specific surface areas for all minerals specified in OUTPUT block. If one lists 'ALL', surface areas for all minerals will be printed.
+
 AGE
  Groundwater age is printed.
 
