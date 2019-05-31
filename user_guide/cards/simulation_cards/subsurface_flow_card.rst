@@ -61,6 +61,9 @@ OPTIONS
   MAX_CFL <float>
     Restricts flow process model timestep size to <= <float> specified.
 
+  REVERT_PARAMETERS_ON_RESTART
+    Reverts permeability and porosity back to the values specified in the input file instead of the checkpointed values.
+
   SKIP_RESTART
     On a restarted simulation, employs the initial condition for process 
     model instead of the restarted solution.
