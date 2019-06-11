@@ -92,7 +92,7 @@ UPDATE_MINERAL_SURFACE_AREA
  Update mineral surface area after every time step.
 
 MOLAL, MOLALITY
- Print concentrations as molalities.
+ Print concentrations as molalities instead of molarities.
 
 ACTIVITY_H2O, ACTIVITY_WATER
  Calculate activity of water.
