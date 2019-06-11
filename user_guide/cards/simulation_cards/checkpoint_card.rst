@@ -67,6 +67,9 @@ Examples
       FORMAT HDF5
       TIME_UNITS d
     /
-    RESTART restart.chk 0.
+    RESTART
+      FILENAME restart.chk
+      RESET_TO_TIME_ZERO
+    /
   END
 

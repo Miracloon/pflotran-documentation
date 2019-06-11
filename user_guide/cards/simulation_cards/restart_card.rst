@@ -29,8 +29,19 @@ Restart the program running from where it left off when the file
  
 ::
 
-  RESTART 
-    FILENAME pflotran.chk3000
+  SIMULATION
+    SIMULATION_TYPE SUBSURFACE
+    PROCESS_MODELS
+      SUBSURFACE_FLOW flow
+        ...
+      /
+      SUBSURFACE_TRANSPORT transport
+        ...
+      /
+    /
+    RESTART 
+      FILENAME pflotran.chk3000
+    /
   END
 
 Restart the simulation from the end of the previous simulation, but set the 
@@ -38,8 +49,19 @@ time back to the initial simulation time (time zero):
 
 ::
 
- RESTART 
-   FILENAME restart.h5
-   RESET_TO_TIME_ZERO
- END
+  SIMULATION
+    SIMULATION_TYPE SUBSURFACE
+    PROCESS_MODELS
+      SUBSURFACE_FLOW flow
+        ...
+      /
+      SUBSURFACE_TRANSPORT transport
+        ...
+      /
+    /
+    RESTART 
+      FILENAME restart.h5
+      RESET_TO_TIME_ZERO
+    /
+  END
     
