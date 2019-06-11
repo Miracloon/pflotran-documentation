@@ -26,7 +26,7 @@ TYPE <string>
 
   NEUMANN : Specified solute flux (**not currently implemented**)
 
-  ZERO_GRADIENT : Zero diffusive gradient for inflow and outflow. Do not use 
+  ZERO_GRADIENT : Zero diffusive gradient for outflow. Do not use 
   for inflow boundaries.
 
   EQUILIBRIUM : Only applicable to the :ref:`source-sink-card` card. 
