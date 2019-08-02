@@ -1,7 +1,9 @@
 .. PFLOTRAN documentation master file, created by
    sphinx-quickstart on Thu Jul 14 07:37:39 2016.
 
-
+.. raw:: html
+  :file: google_analytics.html
+  
 **********************
 PFLOTRAN Documentation
 **********************
