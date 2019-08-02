@@ -214,7 +214,7 @@ ENERGY_FLUX <float>
  connection.
 
 RELATIVE_HUMIDITY <float>
- The relative humidity [-] applied at the boundary.
+ The relative humidity in percent [-] applied at the boundary.
 
 RATE <float> [<float> [<float>]]
  Injection/extraction rate in kg/s (mass) or m\ :sup:`3`\/s (volumetric).  
