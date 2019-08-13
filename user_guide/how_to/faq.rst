@@ -7,6 +7,7 @@
 #. `Why does PFLOTRAN crash when printing provenance information to HDF5 formatted output?`_
 #. `Does PFLOTRAN run on a machine with GPUs?`_
 #. `What is the difference between MAPPED, GLOBAL, CELL_INDEXED, GRIDDED and ASCII datasets?`_
+#. `How can I troubleshoot multi-phase flow problems in GENERAL mode?`_
 
 --------------------
 
@@ -461,3 +462,211 @@ e.g. A simulation for a 3D domain (NX x NY x NZ) in which a vertical profile
 (NZ) of transpiration sink is applied homogeneously for each horizontal layer. 
 At a z-th level, all grid cells in x- and y-direction are prescribed z-th 
 transpiration dataset.
+
+.. _How can I troubleshoot multi-phase flow problems in GENERAL mode?:
+
+How can I troubleshoot multi-phase flow problems in GENERAL mode?
+========================================================================================
+
+**Example**: Simulation is failing to converge
+
+::
+
+  -> Cut time step: snes= -3 icut= 16[372] t=  6.88420E+00 dt=  6.64673E-06
+  Newton solver reason: SNES_DIVERGED_LINEAR_SOLVE
+  Linear solver reason: KSP_DIVERGED_PCSETUP_FAILED
+    0 2r: 3.15E-06 2x: 0.00E+00 2u: 0.00E+00 ir: 2.05E-06 iu: 0.00E+00 rsn:   0
+    Stopping: Time step cut criteria exceeded.
+       icut = 17, max_time_step_cuts= 16
+  --> write tecplot output file: flow_cut_to_failure.tec
+        0.02 Seconds to write to Tecplot file(s)
+
+  FLOW TS BE steps =   1601 newton =     5774 linear =       5774 cuts =    356
+  FLOW TS BE Wasted Linear Iterations = 2848
+  FLOW TS BE SNES time = 12.9 seconds
+
+   Wall Clock Time:  1.3692E+01 [sec]   2.2821E-01 [min]   3.8034E-03 [hr]
+
+
+**Try**: Adding USE_INFINITY_NORM_CONVERGENCE to the GENERAL mode OPTIONS block
+**This will**: Impose infinity norm convergence criteria to declare simulation convergence instead of the default Euclidean norm convergence criteria. 
+
+**Fixed Example**:
+
+::
+
+  == GENERAL MULTIPHASE FLOW =====================================================
+  0 2r: 8.16E-07 2x: 0.00E+00 2u: 0.00E+00 ir: 4.37E-07 iu: 0.00E+00 rsn:   0
+  1 2r: 1.75E-06 2x: 7.97E+06 2u: 5.65E+03 ir: 8.76E-07 iu: 1.05E+03 rsn:   0
+  2 2r: 2.35E-09 2x: 7.97E+06 2u: 4.02E+03 ir: 1.13E-09 iu: 1.68E+03 rsn:   0
+  3 2r: 3.24E-10 2x: 7.97E+06 2u: 2.52E+03 ir: 1.34E-10 iu: 1.68E+03 rsn:   0
+  4 2r: 7.96E-10 2x: 7.97E+06 2u: 1.30E+01 ir: 4.53E-10 iu: 3.36E+00 rsn:   0
+  5 2r: 1.35E-16 2x: 7.97E+06 2u: 3.92E-01 ir: 7.74E-17 iu: 2.70E-01 rsn: 999
+
+  Step    650 Time=  5.00000E+01 Dt=  2.33233E-01 [y] snes_conv_reason:  999
+  newton =   5 [    2637] linear =     5 [      2637] cuts =  0 [ 111]
+  --> SNES Linear/Non-Linear Iterations =            5  /            5
+  --> SNES Residual:   1.346474E-16  8.917046E-19  7.743109E-17
+  --> max chng: dpl=   1.0783E+03 dpg=   1.0564E+03 dpa=   3.7402E+01
+                dxa=   3.1919E-09  dt=   4.9887E-02 dsg=   2.1620E-02
+
+  Dt limited by Unknown: Val=-9.990E+02, Gov=-9.990E+02, Scale=0.33
+
+  --> write tecplot output file: gas_bubble-004.tec
+       0.00 Seconds to write to Tecplot file(s)
+  FLOW TS BE steps =    650 newton =     2637 linear =       2637 cuts =    111
+  FLOW TS BE Wasted Linear Iterations = 888
+  FLOW TS BE SNES time = 6.9 seconds
+
+   Wall Clock Time:  7.3313E+00 [sec]   1.2219E-01 [min]   2.0365E-03 [hr]
+
+
+**Example**: Simulation output indicates that the same grid cells are frequently changing state back and forth (e.g. from Liquid --> Two-Phase and then from Two-Phase --> Liquid) within Newton iterations
+
+::
+
+  == GENERAL MULTIPHASE FLOW =====================================================
+   0 2r: 2.45E-05 2x: 0.00E+00 2u: 0.00E+00 ir: 2.44E-05 iu: 0.00E+00 rsn:   0
+  (0): State Transition: Liquid -> 2 Phase at Cell       50
+  (0): State Transition: Liquid -> 2 Phase at Cell       52
+   1 2r: 1.53E-04 2x: 1.01E+07 2u: 2.22E+03 ir: 8.27E-05 iu: 3.80E+02 rsn:   0
+  (0): State Transition: 2 Phase -> Liquid at Cell       50
+  (0): State Transition: 2 Phase -> Liquid at Cell       52
+   2 2r: 1.47E-04 2x: 1.01E+07 2u: 3.08E+03 ir: 7.72E-05 iu: 9.78E+02 rsn:   0
+  (0): State Transition: Liquid -> 2 Phase at Cell       50
+  (0): State Transition: Liquid -> 2 Phase at Cell       52
+   3 2r: 1.53E-04 2x: 1.01E+07 2u: 3.02E+03 ir: 8.28E-05 iu: 9.92E+02 rsn:   0
+  (0): State Transition: 2 Phase -> Liquid at Cell       50
+  (0): State Transition: 2 Phase -> Liquid at Cell       52
+   4 2r: 1.47E-04 2x: 1.01E+07 2u: 3.02E+03 ir: 7.72E-05 iu: 9.92E+02 rsn:   0
+  (0): State Transition: Liquid -> 2 Phase at Cell       50
+  (0): State Transition: Liquid -> 2 Phase at Cell       52
+   5 2r: 1.53E-04 2x: 1.01E+07 2u: 3.02E+03 ir: 8.28E-05 iu: 9.92E+02 rsn:   0
+  (0): State Transition: 2 Phase -> Liquid at Cell       50
+  (0): State Transition: 2 Phase -> Liquid at Cell       52
+
+**Try**: Adding RESTRICT_STATE_CHANGE to the GENERAL mode OPTIONS block
+**This will**: Only allow grid cells to change state once during a Newton iteration. If convergence is not achieved, time step is cut.
+
+**Fixed Example**:
+
+::
+
+  == GENERAL MULTIPHASE FLOW =====================================================
+  0 2r: 3.56E-05 2x: 0.00E+00 2u: 0.00E+00 ir: 3.55E-05 iu: 0.00E+00 rsn:   0
+  1 2r: 7.62E-06 2x: 1.02E+07 2u: 7.08E+03 ir: 6.20E-06 iu: 1.21E+03 rsn:   0
+  (0): State Transition: Liquid -> 2 Phase at Cell       50
+  (0): State Transition: Liquid -> 2 Phase at Cell       52
+  2 2r: 1.55E-04 2x: 1.01E+07 2u: 2.34E+04 ir: 8.37E-05 iu: 4.22E+03 rsn:   0
+  3 2r: 1.24E-06 2x: 1.01E+07 2u: 5.40E+03 ir: 1.01E-06 iu: 2.23E+03 rsn:   0
+  4 2r: 1.63E-04 2x: 1.01E+07 2u: 1.39E+03 ir: 8.89E-05 iu: 2.39E+02 rsn:   0
+  5 2r: 1.02E-04 2x: 1.01E+07 2u: 9.52E+02 ir: 5.56E-05 iu: 4.34E+02 rsn:   0
+  6 2r: 1.15E-04 2x: 1.01E+07 2u: 1.09E+03 ir: 6.20E-05 iu: 1.89E+02 rsn:   0
+  7 2r: 1.21E-04 2x: 1.01E+07 2u: 5.93E+02 ir: 6.54E-05 iu: 1.54E+02 rsn:   0
+  8 2r: 1.22E-04 2x: 1.01E+07 2u: 5.88E+01 ir: 6.59E-05 iu: 1.92E+01 rsn:   0
+  9 2r: 1.22E-04 2x: 1.01E+07 2u: 8.76E-01 ir: 6.60E-05 iu: 5.17E-01 rsn:   0
+  10 2r: 1.22E-04 2x: 1.01E+07 2u: 2.50E-02 ir: 6.60E-05 iu: 8.71E-03 rsn: stol
+
+  Step     11 Time=  4.15114E-02 Dt=  1.92877E-02 [y] snes_conv_reason:    4
+  newton =  10 [      38] linear =    10 [        38] cuts =  0 [   0]
+  --> SNES Linear/Non-Linear Iterations =           10  /           10
+  --> SNES Residual:   1.218560E-04  1.206495E-06  6.595118E-05
+  --> max chng: dpl=   4.5172E+03 dpg=   4.1440E+03 dpa=   4.4460E+03
+                dxa=   1.3069E-05  dt=   3.7803E-02 dsg=   1.0277E-01
+
+**Example**: Simulation has trouble when grid cells dry out (cells transition from Two-Phase State --> Gas State), and Dt is limited by pressure
+
+::
+
+  == GENERAL MULTIPHASE FLOW =====================================================
+  0 2r: 2.25E-07 2x: 0.00E+00 2u: 0.00E+00 ir: 1.58E-07 iu: 0.00E+00 rsn:   0
+  1 2r: 9.16E-10 2x: 1.01E+07 2u: 6.27E-06 ir: 7.46E-10 iu: 5.08E-06 rsn: 999
+
+  Step   1103 Time=  2.21028E+00 Dt=  7.56911E-10 [y] snes_conv_reason:  999
+  newton =   1 [    1288] linear =     1 [      1288] cuts =  0 [  21]
+  --> SNES Linear/Non-Linear Iterations =            1  /            1
+  --> SNES Residual:   9.160734E-10  9.070034E-12  7.457545E-10
+  --> max chng: dpl=   4.3140E+05 dpg=   5.0805E-06 dpa=   8.0816E-06
+                dxa=   1.0919E-15  dt=   4.8880E-10 dsg=   2.3017E-11
+
+  Dt limited by Pressure: Val=4.314E+05, Gov=5.000E+05, Scale=1.08 
+
+**Try**: Adding CHECK_MAX_DPL_LIQ_STATE_ONLY to the GENERAL mode OPTIONS block.
+**This will**: Only impose limits on liquid pressure changes when capillary pressure gets high, since small saturation changes at high gas saturation are associated with large capillary pressure changes.
+
+**Fixed Example**:
+
+::
+
+  == GENERAL MULTIPHASE FLOW =====================================================
+  0 2r: 3.43E-07 2x: 0.00E+00 2u: 0.00E+00 ir: 3.40E-07 iu: 0.00E+00 rsn:   0
+  1 2r: 1.22E-10 2x: 1.01E+07 2u: 2.67E+00 ir: 1.00E-10 iu: 6.75E-01 rsn: 999
+
+  Step     95 Time=  2.21183E+00 Dt=  7.66981E-03 [y] snes_conv_reason:  999
+  newton =   1 [     377] linear =     1 [       377] cuts =  0 [  33]
+  --> SNES Linear/Non-Linear Iterations =            1  /            1
+  --> SNES Residual:   1.215836E-10  1.203798E-12  1.003631E-10
+  --> max chng: dpl=   0.0000E+00 dpg=   6.7487E-01 dpa=   8.2037E+01
+                dxa=   1.1083E-08  dt=   3.7412E-03 dsg=   4.7712E-04
+
+
+**Example**: Simulation shows spurious spikes in output variables.
+
+**Try**: With USE_INFINITY_NORM_CONVERGENCE in the GENERAL mode OPTIONS block, try tightening convergence tolerances by setting values for RESIDUAL_INF_TOL and REL_UPDATE_INF_TOL
+**This will**: Force stricter convergence criteria on the simulation and potentially prevent nonlinearities from causing spurious solution behavior.
+
+
+**Advanced**: 
+
+**Example**: Simulation is taking very small timesteps despite the fact that it is converging well.
+
+::
+
+  == GENERAL MULTIPHASE FLOW =====================================================
+  0 2r: 2.23E-07 2x: 0.00E+00 2u: 0.00E+00 ir: 1.56E-07 iu: 0.00E+00 rsn:   0
+  1 2r: 3.00E-11 2x: 1.01E+07 2u: 2.47E-03 ir: 2.44E-11 iu: 5.15E-04 rsn: 999
+
+  Step   5734 Time=  1.97179E+00 Dt=  1.01105E-05 [y] snes_conv_reason:  999
+  newton =   1 [   22032] linear =     1 [     22032] cuts =  0 [1936]
+  --> SNES Linear/Non-Linear Iterations =            1  /            1
+  --> SNES Residual:   2.995478E-11  2.965819E-13  2.439427E-11
+  --> max chng: dpl=   0.0000E+00 dpg=   5.1500E-04 dpa=   1.1667E-01
+                dxa=   1.5748E-11  dt=   5.3204E-06 dsg=   3.0582E-07
+
+
+	**Try**: Loosening individual tolerances. Tolerances can be set on: 
+	1) <primary variable here>_ABS_UPDATE_INF_TOL : Absolute solution update within a Newton-Raphson search loop: one for each primary variable from the set {Pl, Pg, Xag,Sg,T}
+	2) <primary variable here>_REL_UPDATE_INF_TOL : Relative solution update within a Newton-Raphson search loop: (xn-xn-1)/xn-1
+	3) <conservation equation here>_RESIDUAL_ABS_INF_TOL : Absolute value of residuals for water mass, air mass, and energy
+	4) <conservation equation here>_RESIDUAL_SCALED_INF_TOL : Scaled value of residuals (residual value divided by accumulation term) for water mass, air mass, and energy.
+
+	**This will**: Impose user-specified convergence criteria upon any of the metrics used to declare convergence. Any metrics that are not user-specified will revert to defaults.
+
+**Fixed Example**:
+
+::
+
+  == GENERAL MULTIPHASE FLOW =====================================================
+  0 2r: 4.29E-07 2x: 0.00E+00 2u: 0.00E+00 ir: 2.61E-07 iu: 0.00E+00 rsn:   0
+  1 2r: 1.60E-06 2x: 1.01E+07 2u: 5.00E+01 ir: 1.30E-06 iu: 1.06E+01 rsn:   0
+  2 2r: 5.10E-07 2x: 1.01E+07 2u: 5.11E+00 ir: 4.15E-07 iu: 8.40E-01 rsn:   0
+  3 2r: 1.42E-05 2x: 1.01E+07 2u: 4.78E+00 ir: 1.15E-05 iu: 2.29E+00 rsn:   0
+  4 2r: 4.31E-06 2x: 1.01E+07 2u: 2.88E+00 ir: 3.51E-06 iu: 1.67E+00 rsn:   0
+  5 2r: 4.34E-07 2x: 1.01E+07 2u: 1.71E+00 ir: 3.53E-07 iu: 7.78E-01 rsn:   0
+  6 2r: 1.42E-05 2x: 1.01E+07 2u: 4.06E+00 ir: 1.15E-05 iu: 1.91E+00 rsn:   0
+  7 2r: 4.32E-06 2x: 1.01E+07 2u: 2.85E+00 ir: 3.52E-06 iu: 1.63E+00 rsn:   0
+  8 2r: 4.34E-07 2x: 1.01E+07 2u: 1.71E+00 ir: 3.53E-07 iu: 7.79E-01 rsn: -88
+  -> Cut time step: snes=-88 icut=  1[  8] t=  1.92038E+00 dt=  1.22717E-01
+  Newton solver reason: Unknown(-88).
+  0 2r: 4.29E-07 2x: 0.00E+00 2u: 0.00E+00 ir: 2.61E-07 iu: 0.00E+00 rsn:   0
+  1 2r: 5.51E-06 2x: 1.01E+07 2u: 2.70E+01 ir: 4.48E-06 iu: 5.72E+00 rsn:   0
+  2 2r: 2.04E-07 2x: 1.01E+07 2u: 2.71E+00 ir: 1.66E-07 iu: 4.59E-01 rsn: 999
+
+  Step     35 Time=  2.04309E+00 Dt=  1.22717E-01 [y] snes_conv_reason:  999
+  newton =  10 [     117] linear =    10 [       117] cuts =  1 [   8]
+  --> SNES Linear/Non-Linear Iterations =            2  /            2
+  --> SNES Residual:   2.041778E-07  2.021562E-09  1.662622E-07
+  --> max chng: dpl=   0.0000E+00 dpg=   6.1632E+00 dpa=   1.3859E+03
+                dxa=   1.8704E-07  dt=   6.3217E-02 dsg=   3.7129E-03
+
+
