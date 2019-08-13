@@ -634,13 +634,13 @@ How can I troubleshoot multi-phase flow problems in GENERAL mode?
                 dxa=   1.5748E-11  dt=   5.3204E-06 dsg=   3.0582E-07
 
 
-	**Try**: Loosening individual tolerances. Tolerances can be set on: 
+**Try**: Loosening individual tolerances. Tolerances can be set on: 
 	1) <primary variable here>_ABS_UPDATE_INF_TOL : Absolute solution update within a Newton-Raphson search loop: one for each primary variable from the set {Pl, Pg, Xag,Sg,T}
 	2) <primary variable here>_REL_UPDATE_INF_TOL : Relative solution update within a Newton-Raphson search loop: (xn-xn-1)/xn-1
 	3) <conservation equation here>_RESIDUAL_ABS_INF_TOL : Absolute value of residuals for water mass, air mass, and energy
 	4) <conservation equation here>_RESIDUAL_SCALED_INF_TOL : Scaled value of residuals (residual value divided by accumulation term) for water mass, air mass, and energy.
 
-	**This will**: Impose user-specified convergence criteria upon any of the metrics used to declare convergence. Any metrics that are not user-specified will revert to defaults.
+**This will**: Impose user-specified convergence criteria upon any of the metrics used to declare convergence. Any metrics that are not user-specified will revert to defaults.
 
 **Fixed Example**:
 
