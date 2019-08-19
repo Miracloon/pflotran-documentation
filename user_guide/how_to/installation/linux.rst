@@ -10,7 +10,7 @@ Required software packages:
 * Message Passing Interface (MPI):  E.g.  `MPICH2 <http://www.mcs.anl.gov/research/projects/mpich2>`_, `Open MPI <http://www.open-mpi.org>`_, etc.
 * BLAS/LAPACK libraries 
 * Hierarchical Data Format HDF5_
-* `PETSc git repository <https://bitbucket.org/petsc/petsc>`_
+* `PETSc git repository <https://gitlab.com/petsc/petsc>`_
 * `METIS/ParMETIS <http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview>`_ (for unstructured grids)
 
 Installation Instructions
@@ -32,7 +32,7 @@ Installation Instructions
 
     .. code-block:: bash
 
-        git clone https://bitbucket.org/petsc/petsc petsc
+        git clone https://gitlab.com/petsc/petsc petsc
         cd petsc
         git checkout v3.10.2
 
@@ -113,7 +113,7 @@ Installation Instructions
   make pflotran
 
 .. _Git: http://git-scm.com/
-.. _PETSc: https://bitbucket.org/petsc/petsc
+.. _PETSc: https://gitlab.com/petsc/petsc
 .. _PETSc installation instructions: http://www.mcs.anl.gov/petsc/documentation/installation.html
 .. _PETSc environment variables: http://www.mcs.anl.gov/petsc/documentation/installation.html#vars
 .. _HDF5: http://www.hdfgroup.org/HDF5

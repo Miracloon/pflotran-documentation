@@ -144,7 +144,7 @@ Installation Instructions
 
    ::
 
-    git clone https://bitbucket.org/petsc/petsc petsc
+    git clone https://gitlab.com/petsc/petsc petsc
     cd petsc
     git checkout 8c7fbf4f8491a74970a1205819563feba7a8e746
 
@@ -157,7 +157,7 @@ Installation Instructions
   **supported version** of petsc is used on the buildbot automated testing 
   system.
 
-  * If this prompt times out, go to https://bitbucket.org/petsc/petsc online
+  * If this prompt times out, go to https://gitlab.com/petsc/petsc online
 
    * Make a bitbucket account
    * Follow instructions on how to setup SSH account public and private keys 

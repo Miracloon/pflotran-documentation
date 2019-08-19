@@ -57,5 +57,5 @@ Installation Instructions
 3. At this point, follow the :ref:`linux-install`, starting with step 4.
 
 .. _PETSc website: http://www.mcs.anl.gov/petsc/developers/index.html
-.. _PETSc: http://bitbucket.org/petsc/petsc
+.. _PETSc: http://gitlab.com/petsc/petsc
 .. _Cygwin: http://www.cygwin.com

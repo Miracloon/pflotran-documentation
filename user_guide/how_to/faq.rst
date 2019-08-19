@@ -121,7 +121,7 @@ changeset-id. Details are provided on the installation pages:
 
 .. code-block:: bash
 
-    git clone https://bitbucket.org/petsc/petsc petsc
+    git clone https://gitlab.com/petsc/petsc petsc
     cd petsc
     git checkout 987thisisnotthecorrectchangesetid1234567
 
