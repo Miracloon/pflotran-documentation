@@ -34,7 +34,7 @@ Installation Instructions
 
         git clone https://gitlab.com/petsc/petsc petsc
         cd petsc
-        git checkout v3.10.2
+        git checkout v3.11.3
 
 
     **NOTE:PFLOTRAN currently uses a snapshot of PETSc 'maint' (release)**
