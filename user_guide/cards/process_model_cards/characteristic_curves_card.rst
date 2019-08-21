@@ -5,7 +5,7 @@ Back to :ref:`card-index`
 CHARACTERISTIC_CURVES
 =====================
 Specifies the characteristic curves (e.g. relative permeability and saturation functions and associated parameters) to be associated with a material property. 
-**This card is currently only supported for the GENERAL, RICHARDS and WIPP_FLOW flow modes. The** :ref:`saturation-function-card` **card should be used in all other flow modes.**
+**This card is currently only supported for the GENERAL, RICHARDS, TH(non-ice) and WIPP_FLOW flow modes. The** :ref:`saturation-function-card` **card should be used in all other flow modes.**
 
 Required Blocks and Cards:
 **************************

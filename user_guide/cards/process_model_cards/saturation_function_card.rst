@@ -5,8 +5,8 @@ Back to :ref:`card-index`
 SATURATION_FUNCTION
 ===================
 Specifies the permeability function, saturation function, and parameters to be 
-associated with a material property. This card is only for TH or MPHASE/FLASH2 modes.
-In GENERAL and RICHARDS modes, use the :ref:`characteristic-curves-card` card.
+associated with a material property. This card is only for TH(ice) or MPHASE/FLASH2 modes.
+In GENERAL, RICHARDS TH, and WIPP_FLOW modes, use the :ref:`characteristic-curves-card` card.
 
 Required Cards:
 ---------------
