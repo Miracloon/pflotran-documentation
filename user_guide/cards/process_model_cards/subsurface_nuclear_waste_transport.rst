@@ -4,7 +4,9 @@ Back to :ref:`card-index`
 
 SUBSURFACE_NUCLEAR_WASTE_TRANSPORT
 ==================================
-Defines conditions for a transport simulation. 
+Defines conditions for a transport simulation using the 
+NUCLEAR_WASTE_TRANSPORT mode. Note: Do not also use the CHEMISTRY card, which
+is only used for SUBSURFACE_TRANSPORT (reactive transport) mode. 
 
 Required Cards:
 ---------------
