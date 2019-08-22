@@ -48,6 +48,8 @@ Examples
       /
     /
   END
+
+::
     
   SIMULATION
     SIMULATION_TYPE SUBSURFACE
@@ -57,6 +59,8 @@ Examples
       /
     /
   END
+
+::
   
   SIMULATION
     SIMULATION_TYPE SUBSURFACE
@@ -75,6 +79,8 @@ Examples
       PERIODIC TIMESTEP 10
     /
   END
+
+::
   
   SIMULATION
     SIMULATION_TYPE SUBSURFACE
@@ -89,6 +95,8 @@ Examples
     /
   END
 
+::
+
   SIMULATION
     SIMULATION_TYPE GEOMECHANICS_SUBSURFACE
     PROCESS_MODELS
@@ -96,5 +104,22 @@ Examples
         MODE RICHARDS
       /
       GEOMECHANICS_SUBSURFACE geomech
+    /
+  END
+
+::
+
+  SIMULATION
+    SIMULATION_TYPE SUBSURFACE
+    PROCESS_MODELS
+      SUBSURFACE_FLOW flow
+        MODE WIPP_FLOW
+        OPTIONS
+          EXTERNAL_FILE ../../block_options.txt
+        /
+      /
+      NUCLEAR_WASTE_TRANSPORT  nw_trans
+        GLOBAL_IMPLICIT
+      /
     /
   END
