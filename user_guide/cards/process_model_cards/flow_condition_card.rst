@@ -209,7 +209,7 @@ TEMPERATURE <float>
  The temperature [C] applied at the boundary.
 
 ENERGY_FLUX <float>
- The energy flux [MW/m\ :sup:`2`\/s] applied to the boundary. Positive flux is 
+ The energy flux [MW/m\ :sup:`2`\] applied to the boundary. Positive flux is 
  inward, negative outward, regardless of the direction of the boundary 
  connection.
 
