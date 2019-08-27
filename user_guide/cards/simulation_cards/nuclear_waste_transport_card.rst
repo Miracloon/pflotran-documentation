@@ -4,7 +4,9 @@ Back to :ref:`card-index`
 
 NUCLEAR_WASTE_TRANSPORT
 =======================
-
+ Indicates that the simulation will include the NUCLEAR_WASTE_TRANSPORT mode.
+ A corresponding :ref:`nuclear-waste-chemistry-card` card must be included 
+ in the SUBSURFACE block.
 
 Examples
 --------

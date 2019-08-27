@@ -119,7 +119,6 @@ Examples
         /
       /
       NUCLEAR_WASTE_TRANSPORT  nw_trans
-        GLOBAL_IMPLICIT
       /
     /
   END
