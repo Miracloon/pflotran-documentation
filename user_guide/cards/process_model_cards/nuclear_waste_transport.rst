@@ -1,8 +1,8 @@
 Back to :ref:`card-index`
 
-.. _subsurface-nuclear-waste-transport-card:
+.. _nuclear-waste-transport-card:
 
-SUBSURFACE_NUCLEAR_WASTE_TRANSPORT
+NUCLEAR_WASTE_TRANSPORT
 ==================================
 Defines conditions for a transport simulation using the 
 NUCLEAR_WASTE_TRANSPORT mode. Note: Do not also use the CHEMISTRY card, which
@@ -87,7 +87,7 @@ Optional Cards:
 RADIOACTIVE_DECAY
   Opens a RADIOACTIVE_DECAY block. Must have a matching ``END``. There should 
   only be one RADIOACTIVE_DECAY block. This block lists all radioactive species
-  and their daughter decay products. If there are no readioactive species,
+  and their daughter decay products. If there are no radioactive species,
   this block can be omitted.
 
  ::
@@ -135,7 +135,7 @@ RADIOACTIVE_DECAY
 
 
 OUTPUT
-  Opens a OUTPUT block. Must have a matching ``END``. This block indicates
+  Opens an OUTPUT block. Must have a matching ``END``. This block indicates
   what output is desired. One may specify the following options within the
   OUTPUT block: ALL_SPECIES, ALL_CONCENTRATIONS, TOTAL_BULK_CONCENTRATION,
   AQUEOUS_CONCENTRATION, MINERAL_CONCENTRATION, SORBED_CONCENTRATION, and
@@ -172,7 +172,7 @@ Examples
 --------
  ::
 
-  SUBSURFACE_NUCLEAR_WASTE_TRANSPORT
+  NUCLEAR_WASTE_TRANSPORT
 
     SPECIES
       NAME                 AM241L
