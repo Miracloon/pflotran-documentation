@@ -5,11 +5,6 @@ Back to :ref:`card-index`
 NUCLEAR_WASTE_TRANSPORT
 =======================
 
-Optional Cards
---------------
-
-GLOBAL_IMPLICIT
-  Specifies fully implicit coupling of transport and reaction.
 
 Examples
 --------
@@ -25,7 +20,6 @@ Examples
         /
       /
       NUCLEAR_WASTE_TRANSPORT  nw_trans
-        GLOBAL_IMPLICIT
       /
     /
   END
