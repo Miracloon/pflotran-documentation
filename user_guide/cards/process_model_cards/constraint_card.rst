@@ -22,7 +22,7 @@ CONCENTRATIONS
 
   species_name concentration constraint_type constraint_species
 
- Constraint type options:
+ Constraint type options (Reactive Transport Mode):
   * F = free ion concentration
   * T = total aqueous component concentration
   * P = pH
@@ -38,6 +38,13 @@ CONCENTRATIONS
     [mol/m\ :sup:`3`\ :sub:`bulk`\] 
     must be converted to molarity [mol/L\ :sub:`water`\] 
     by dividing by porosity * saturation * 1000 before being summed.
+
+ Constraint type options (Nuclear Waste Transport Mode):
+  * T = total bulk concentration [mol/m\ :sup:`3`\ :sub:`bulk`\]
+  * AQ = aqueous concentration [mol/m\ :sup:`3`\ :sub:`water`\]
+  * PPT = precipitated concentration [mol/m\ :sup:`3`\ :sub:`bulk`\]
+  * VF = precipitated volume fraction [m\ :sup:`3`\ /m\ :sup:`3`\ :sub:`void`\]
+  * SB = sorbed concentration [mol/m\ :sup:`3`\ :sub:`bulk`\]
 
 Optional Cards: 
 ---------------
