@@ -1,9 +1,9 @@
 Back to :ref:`card-index`
 
-.. _nuclear-waste-transport-card:
+.. _nuclear-waste-chemistry-card:
 
-NUCLEAR_WASTE_TRANSPORT
-==================================
+NUCLEAR_WASTE_CHEMISTRY
+=======================
 Defines conditions for a transport simulation using the 
 NUCLEAR_WASTE_TRANSPORT mode. Note: Do not also use the CHEMISTRY card, which
 is only used for SUBSURFACE_TRANSPORT (reactive transport) mode. 
@@ -172,7 +172,7 @@ Examples
 --------
  ::
 
-  NUCLEAR_WASTE_TRANSPORT
+  NUCLEAR_WASTE_CHEMISTRY
 
     SPECIES
       NAME                      AM241L
