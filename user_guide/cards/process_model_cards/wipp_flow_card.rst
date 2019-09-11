@@ -98,14 +98,26 @@ DIP_ROTATION_ANGLE <float>
 DIP_ROTATION_ORIGIN <float, float, float>
  Specifies the x,y,z origin for dip.
 
-DIP_ROTATION_CEILING
+DIP_ROTATION_CEILING <float>
  Specifies the ceiling for applying dip. Above this z coordinate (in the original grid), rotation will NOT be applied.
 
-DIP_ROTATION_BASEMENT
+DIP_ROTATION_BASEMENT <float>
  Specifies the basement for applying dip. Below this z coordinate (in the original grid), rotation will NOT be applied.
 
-DIP_ROTATION_REGIONS
+DIP_ROTATION_REGION <string>
  Specifies names of regions where dip rotation will be applied. This useful for cells above the ceiling or below the basement (e.g. a shaft).
+
+AUTO_PRESSURE_MATERIAL_IDS <int> ... <int>
+ Specifies material IDs for cells that will have their pressure automatically calculated internally within WIPP_FLOW based on Eqs. PA.53-57 of CRA_2014 Appendix PA.
+
+AUTO_PRESSURE_RHO_B0 <float>
+ Specifies brine reference density [kg/m\ :sup:`3` \].
+
+AUTO_PRESSURE_C_B <float>
+ Specifies brine compressibility [Pa\ :sup:`-1` \].
+
+AUTO_PRESSURE_PB_REF <float>
+ Specifies brine reference pressure [Pa]
 
 JACOBIAN_PRESSURE_DERIV_SCALE
  Scalign factor for the liquid pressure derivative. Default = 1.e7
