@@ -57,6 +57,12 @@ TYPE specification in RICHARDS and TH flow modes
     grid cell and its size (i.e. distance from cell center to boundary) no 
     longer matter. The conductance coefficient is a fit parameter.
 
+  * PRESSURE DIRICHLET_SEEPAGE: a dirichlet-seepage face condition is 
+    similar to seepage, except a specified dirichlet pressure is applied
+    at the boundary instead of sampling pressure from a hydrostatic profile.
+    Inflow only occurs when the specified pressure is higher than the
+    reference pressure.
+
   * FLUX NEUMANN: specifies a Darcy flux. 
 
   * RATE MASS_RATE: specifies a mass extraction/injection rate.
