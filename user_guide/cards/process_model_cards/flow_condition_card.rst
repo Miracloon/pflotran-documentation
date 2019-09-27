@@ -26,7 +26,8 @@ TYPE
 TYPE specification in RICHARDS and TH flow modes
 ++++++++++++++++++++++++++++++++++++++++++++++++
  TYPE 
-  [PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, CONDUCTANCE}, 
+  [PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, CONDUCTANCE, DIRICHLET_SEEPAGE,
+  DIRICHLET_CONDUCTANCE}, 
   RATE {MASS_RATE, VOLUMETRIC_RATE, SCALED_MASS_RATE, SCALED_VOLUMETRIC_RATE}, 
   FLUX {NEUMANN},
   TEMPERATURE {DIRICHLET},
@@ -57,8 +58,14 @@ TYPE specification in RICHARDS and TH flow modes
     grid cell and its size (i.e. distance from cell center to boundary) no 
     longer matter. The conductance coefficient is a fit parameter.
 
-  * PRESSURE DIRICHLET_SEEPAGE: a dirichlet-seepage face condition is 
+  * PRESSURE DIRICHLET_SEEPAGE: a dirichlet-seepage condition is 
     similar to seepage, except a specified dirichlet pressure is applied
+    at the boundary instead of sampling pressure from a hydrostatic profile.
+    Inflow only occurs when the specified pressure is higher than the
+    reference pressure.
+
+  * PRESSURE DIRICHLET_CONDUCTANCE: a dirichlet-conductance condition is 
+    similar to conductance, except a specified dirichlet pressure is applied
     at the boundary instead of sampling pressure from a hydrostatic profile.
     Inflow only occurs when the specified pressure is higher than the
     reference pressure.
