@@ -217,9 +217,9 @@ Arrhenius relation
    k_{ml} (T) = k_{ml}^0 \exp\left[\frac{E_{ml}}{R}\Big(\frac{1}{T_0}-\frac{1}{T}\Big)\right],
 
 where :math:`k_{ml}^0` refers to the rate constant at the reference
-temperature :math:`T_0` taken as 25\ :math:`^\circ`\ C, with :math:`T`
+temperature :math:`T_0` taken as 298.15\ :math:`^\circ`\ K, with :math:`T`
 in units of Kelvin, :math:`E_{ml}` denotes the activation energy
-(kJ/mol), and the quantity :math:`{{{\mathcal P}}}_{ml}` denotes the
+(J/mol), and the quantity :math:`{{{\mathcal P}}}_{ml}` denotes the
 prefactor for the :math:`l`\ th parallel reaction with the form
 
 .. math::

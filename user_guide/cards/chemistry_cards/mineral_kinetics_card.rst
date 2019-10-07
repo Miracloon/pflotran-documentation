@@ -52,7 +52,7 @@ RATE_CONSTANT <float>
  Kinetic rate constant [mol/m\ :sup:`2`\-sec]. If negative, then raised to power 10 (e.g. -12.d0 is converted to :math:`10^{-12}`)
 
 ACTIVATION_ENERGY <float>
- If specified, used in the prefactor calculations for temperature specific rates 
+ If specified [J/mol], used in the prefactor calculations for temperature specific rates 
  (Arrhenius)
 
 AFFINITY_THRESHOLD <float>
