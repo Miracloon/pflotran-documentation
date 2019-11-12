@@ -54,11 +54,11 @@ TIMESTEP_MAXIMUM_GROWTH_FACTOR <float>
 TIMESTEP_OVERSTEP_REL_TOLERANCE <float>
  If a waypoint lies just beyond the end of a time step, the time step size will be increased to meet that waypoint if (waypoint_time <= time + time_step_size * TIMESTEP_OVERSTEP_REL_TOLERANCE). This helps avoid small time steps to meet waypoint times.
 
-INITIALIZE_TO_STEADY_STATE
+.. INITIALIZE_TO_STEADY_STATE
  Flag requesting that a steady state solution be computed based on boundary and 
  initial conditions at the beginning of the simulation (**Warning: not robust**)
 
-RUN_AS_STEADY_STATE
+.. RUN_AS_STEADY_STATE
  Flag indicating that the simulation is to be run as steady state 
  (**Warning: not robust**)
 
