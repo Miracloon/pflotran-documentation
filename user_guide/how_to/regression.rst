@@ -219,8 +219,10 @@ Common test suites are ``standard`` and ``standard_parallel``, used by
 ``make test``, and domain specific test suites, ``geochemistry``,
 ``flow``, ``transport``, ``mesh``, et cetra.
 
-Creating New Tests
-------------------
+.. _regression-test-manager-new-tests:
+
+Creating New Regression Tests
+-----------------------------
 
 We want running tests to become a habit for developers so that
 ``make pflotran`` is always followed by ``make test.`` With that in

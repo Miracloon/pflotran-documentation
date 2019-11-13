@@ -157,6 +157,7 @@ Developer's Guide
    :maxdepth: 2
    
    /developer_guide/software_productivity_sustainability.rst
+   /developer_guide/contributing_to_pflotran.rst
    
 QA Test Suite
 =============
