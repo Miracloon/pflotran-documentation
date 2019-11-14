@@ -226,7 +226,8 @@ Creating New Regression Tests
 
 We want running tests to become a habit for developers so that
 ``make pflotran`` is always followed by ``make test.`` With that in
-mind, ideal test cases are small and fast, and operate on a small
+mind, ideal test cases are small and fast (< 0.1 seconds), 
+and operate on a small
 subsection of the code so it is easier to diagnose where a problem has
 occurred. While it may (will) be necessary to create some platform
 specific tests, we want as many tests as possible to be platform
