@@ -188,6 +188,14 @@ model used is obtained via coupling to the FMDM by calling a single external
 subroutine developed by Jerden et al. (2015). Details regarding the FMDM 
 conceptual model and algorithmic design are provided by Jerden et al. (2015).
 
+FMDM Surrogate Mechanism
+........................
+Surrogate model developed for the FMDM mechanism. It is a single layer
+feed-forward neural network model implemented in PFLOTRAN. Age of the fuel
+prior to the beginning of the simulation is specified through the DECAY_TIME
+sub-block card of MECHANISM FMDMSURROGATE. The construction of this surrogate
+model is documented in Appendix A of Mariner et al. (2019).
+
 WIPP Mechanism
 ..............
 The Waste Isolation Pilot Plant (WIPP) mechanism simulates a waste panel in
@@ -282,6 +290,14 @@ Application to Crystalline Rock, FCRD-UFD-2016-
 000440, SAND2016-9610R, Sandia National
 Laboratories, Albuquerque, NM.
 
+P.E. Mariner, L.A. Connolly, L.J. Cunningham, B.J. Debusschere,
+D.C. Dobson, J.M. Frederick, G.E. Hammond, S.H. Jordan, T.C. LaForce,
+M.A. Nole, H.D. Park, F.V. Perry, R.D. Rogers, D.T. Seidl,
+S.D. Sevougian, E.R. Stein, P.N. Swift, L.P. Swiler, J. Vo,
+and M.G. Wallace (2019).
+Progress in Deep Geologic Disposal Safety Assessment in the U.S.
+since 2010, M2SF-19SNO10304041, SAND2019-12001R, Sandia National
+Laboratories, Albuquerque, NM.
 
 
 
