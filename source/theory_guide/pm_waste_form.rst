@@ -193,7 +193,7 @@ FMDM Surrogate Mechanism
 Surrogate model developed for the FMDM mechanism. It is a single layer
 feed-forward neural network model implemented in PFLOTRAN. Age of the fuel
 prior to the beginning of the simulation is specified through the DECAY_TIME
-sub-block card of MECHANISM FMDMSURROGATE. The construction of this surrogate
+sub-block card of MECHANISM FMDM_SURROGATE. The construction of this surrogate
 model is documented in Appendix A of Mariner et al. (2019).
 
 WIPP Mechanism

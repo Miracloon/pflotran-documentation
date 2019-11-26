@@ -41,7 +41,7 @@ MECHANISM <type_string>
  species, the waste form bulk material details, and the canister that contains the waste form. Several 
  different custom mechanisms can be defined, or chosen from pre-defined options. Each mechanism is given a 
  unique name, and later associated with specific listed waste forms. The following types are currently 
- supported: GLASS, DSNF, FMDM, FMDMSURROGATE, :ref:`WIPP<wipp_waste_form>`, and CUSTOM.
+ supported: GLASS, DSNF, FMDM, FMDM_SURROGATE, :ref:`WIPP<wipp_waste_form>`, and CUSTOM.
 
  ::
 
@@ -92,7 +92,7 @@ MECHANISM <type_string>
  
 * **MECHANISM GLASS sub-block cards:**
   
-   SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDMSURROGATE; semi-optional for type 
+   SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDM_SURROGATE; semi-optional for type 
    CUSTOM; do not include for types DSNF and WIPP)
 
     Specifies the specific surface area of the waste form bulk (or matrix). 
@@ -198,7 +198,7 @@ MECHANISM <type_string>
    If the FMDM mechanism is used, follow these instructions on how to link the external FMDM: 
    :ref:`running-pflotran-fmdm`.
  
-   SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDMSURROGATE; semi-optional for type 
+   SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDM_SURROGATE; semi-optional for type 
    CUSTOM; do not include for types DSNF and WIPP)
 
     Specifies the specific surface area of the waste form bulk (or matrix). 
@@ -207,7 +207,7 @@ MECHANISM <type_string>
 
       SPECIFIC_SURFACE_AREA 2.78d-3 cm^2/g
 
-   BURNUP <double> (required for types FMDM, FMDMSURROGATE; semi-optional for type 
+   BURNUP <double> (required for types FMDM, FMDM_SURROGATE; semi-optional for type 
    CUSTOM; do not include for types DSNF and WIPP)
 
     Specifies the burnup of the waste form bulk (or matrix). 
@@ -218,7 +218,7 @@ MECHANISM <type_string>
 
 * **MECHANISM FMDMSURROGTE sub-block cards:**
  
-   SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDMSURROGATE; semi-optional for type 
+   SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDM_SURROGATE; semi-optional for type 
    CUSTOM; do not include for types DSNF and WIPP)
 
     Specifies the specific surface area of the waste form bulk (or matrix). 
@@ -227,7 +227,7 @@ MECHANISM <type_string>
 
       SPECIFIC_SURFACE_AREA 2.78d-3 cm^2/g
 
-   BURNUP <double> (required for types FMDM, FMDMSURROGATE; semi-optional for type 
+   BURNUP <double> (required for types FMDM, FMDM_SURROGATE; semi-optional for type 
    CUSTOM; do not include for types DSNF and WIPP)
 
     Specifies the burnup of the waste form bulk (or matrix). 
@@ -236,7 +236,7 @@ MECHANISM <type_string>
 
       BURNUP 6.0d1 ! GWd/MTHM
 
-   DECAY_TIME <double> <unit_string> (required for types FMDMSURROGATE; do not include for types CUSTOM, 
+   DECAY_TIME <double> <unit_string> (required for types FMDM_SURROGATE; do not include for types CUSTOM, 
    DSNF, FMDM, and WIPP)
 
     Specifies the offset for the age of the fuel relative to the beginning of simulation time.
@@ -254,7 +254,7 @@ MECHANISM <type_string>
 * **MECHANISM CUSTOM sub-block cards:**
 
    DISSOLUTION_RATE <double> <unit_string> (semi-optional for type CUSTOM; do not include for type GLASS, 
-   DSNF, FMDM, FMDMSURROGATE, or WIPP)
+   DSNF, FMDM, FMDM_SURROGATE, or WIPP)
 
     Specifies the dissolution rate for the waste form bulk (or matrix), in units of mass per surface area per 
     time. If dissolution rate is given for the CUSTOM mechanism type, the SPECIFIC_SURFACE_AREA must also be 
@@ -265,7 +265,7 @@ MECHANISM <type_string>
       DISSOLUTION_RATE 7.8d-8 kg/m^2-day
 
    FRACTIONAL_DISSOLUTION_RATE <double> <unit_string> (semi-optional for type CUSTOM; do not include for types 
-   GLASS, DSNF, FMDM, FMDMSURROGATE, or WIPP)
+   GLASS, DSNF, FMDM, FMDM_SURROGATE, or WIPP)
 
     Specifies the fractional dissolution rate for the waste form bulk (or matrix), in units of fractional 
     volume per time of the remaining volume. The unit string should resemble 1/time. 
@@ -275,7 +275,7 @@ MECHANISM <type_string>
       FRACTIONAL_DISSOLUTION_RATE 3.4d-8 1/day
       
    FRACTIONAL_DISSOLUTION_RATE_VI <double> <unit_string> (semi-optional for type CUSTOM; do not include for types 
-   GLASS, DSNF, FMDM, FMDMSURROGATE, or WIPP)
+   GLASS, DSNF, FMDM, FMDM_SURROGATE, or WIPP)
 
     Specifies the fractional dissolution rate for the waste form bulk (or matrix), in units of fraction of 
     the initial volume per time. The unit string should resemble 1/time. 
@@ -284,7 +284,7 @@ MECHANISM <type_string>
 
       FRACTIONAL_DISSOLUTION_RATE_VI 9.1d-5 1/day
     
-   SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDMSURROGATE; semi-optional for type 
+   SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDM_SURROGATE; semi-optional for type 
    CUSTOM; do not include for types DSNF and WIPP)
 
     Specifies the specific surface area of the waste form bulk (or matrix). If specific surface area is given 
@@ -476,7 +476,7 @@ for form, not parameter values):
         /
       /
 
-      MECHANISM FMDMSURROGATE
+      MECHANISM FMDM_SURROGATE
         NAME fmdm_surrogate01
         MATRIX_DENSITY 10.97d3 kg/m^3
         BURNUP 60 #GWd/MTHM
