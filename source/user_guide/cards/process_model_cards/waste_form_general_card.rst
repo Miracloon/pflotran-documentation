@@ -216,7 +216,7 @@ MECHANISM <type_string>
 
       BURNUP 6.0d1 ! GWd/MTHM
 
-* **MECHANISM FMDM_SURROGTE sub-block cards:**
+* **MECHANISM FMDM_SURROGATE sub-block cards:**
  
    SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDM_SURROGATE; semi-optional for type 
    CUSTOM; do not include for types DSNF and WIPP)
