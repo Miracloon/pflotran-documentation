@@ -411,7 +411,7 @@ PFLOTRAN_DIR/regression_tests/shortcourse/regional_doublet/regional_doublet_smal
 .. _DATASET: QuickGuide/DatasetNew
 .. _STRATA: QuickGuide/Strata
 
-.. _Why does PFLOBTRAN crash when printing provenance information to HDF5 formatted output?:
+.. _Why does PFLOTRAN crash when printing provenance information to HDF5 formatted output?:
 
 Why does PFLOTRAN crash when printing provenance information to HDF5 formatted output?
 ======================================================================================
