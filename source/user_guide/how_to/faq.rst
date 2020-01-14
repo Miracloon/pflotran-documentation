@@ -12,6 +12,64 @@
 
 --------------------
 
+.. _How do I get help?:
+
+How do I get help?
+==================
+
+The PFLOTRAN developers and community can provide limited volunteer support for 
+PFLOTRAN. Please send an email to the appropriate PFLOTRAN mailing lists.
+
+Questions regarding PFLOTRAN installation (i.e. not answered by documentation 
+below), bug reports: **pflotran-dev at googlegroups dot com**
+
+Questions regarding running PFLOTRAN: **pflotran-users at googlegroups dot com**
+
+Just saying "PFLOTRAN doesn't work" doesn't give us enough information to 
+actually help you and often requires a lot of additional back and forth that 
+delays the process. 
+
+**Please provide the following information**:
+
+#. Which Git revision of PFLOTRAN you are using:
+
+    .. sourcecode:: bash
+
+        git log -1
+
+#. Whether you have modified PFLOTRAN:
+
+    .. sourcecode:: bash
+
+        git status
+
+
+#. If you have modified PFLOTRAN? How? Is your version public for us to see?
+
+#. Which version of PETSc you are using:
+
+    .. sourcecode:: bash
+
+        cd ${PETSC_DIR}
+        git log -1 HEAD
+
+#. Do the regression tests pass? If not, attach the test log.
+
+    .. sourcecode:: bash
+
+        cd ${PFLOTRAN_DIR}/src/pflotran
+        make test
+
+#. Attach the input file you are trying to run.
+
+#. Attach the screen output or output files showing the error message and context:
+
+    .. sourcecode:: bash
+
+        ./pflotran -input_prefix my-problem &> my-problem.stdout.txt
+        
+--------------------
+
 .. _How can I contribute to or update the online documentation?:
 
 How can I contribute to or update the online documentation?
@@ -92,62 +150,6 @@ How to submit a pull request?
 
   `Google "How do I submit a pull request on Bitbucket? <https://lmgtfy.com/?q=How+do+I+submit+a+pull+request+on+Bitbucket%3F>`_
 
-.. _How do I get help?:
-
-How do I get help?
-==================
-
-The PFLOTRAN developers and community can provide limited volunteer support for 
-PFLOTRAN. Please send an email to the appropriate PFLOTRAN mailing lists.
-
-Questions regarding PFLOTRAN installation (i.e. not answered by documentation 
-below), bug reports: **pflotran-dev at googlegroups dot com**
-
-Questions regarding running PFLOTRAN: **pflotran-users at googlegroups dot com**
-
-Just saying "PFLOTRAN doesn't work" doesn't give us enough information to 
-actually help you and often requires a lot of additional back and forth that 
-delays the process. 
-
-**Please provide the following information**:
-
-#. Which Git revision of PFLOTRAN you are using:
-
-    .. sourcecode:: bash
-
-        git log -1
-
-#. Whether you have modified PFLOTRAN:
-
-    .. sourcecode:: bash
-
-        git status
-
-
-#. If you have modified PFLOTRAN? How? Is your version public for us to see?
-
-#. Which version of PETSc you are using:
-
-    .. sourcecode:: bash
-
-        cd ${PETSC_DIR}
-        git log -1 HEAD
-
-#. Do the regression tests pass? If not, attach the test log.
-
-    .. sourcecode:: bash
-
-        cd ${PFLOTRAN_DIR}/src/pflotran
-        make test
-
-#. Attach the input file you are trying to run.
-
-#. Attach the screen output or output files showing the error message and context:
-
-    .. sourcecode:: bash
-
-        ./pflotran -input_prefix my-problem &> my-problem.stdout.txt
-        
 --------------------
 
 .. _How do I resolve installation issues?:
