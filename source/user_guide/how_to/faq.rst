@@ -1,6 +1,7 @@
 .. _faq:
 
 #. `How do I get help?`_
+#. `How can I contribute to or update the online documentation?`_
 #. `How do I resolve installation issues?`_
 #. `How do I make any sense of the screen output, in particular Newton iteration convergence?`_
 #. `How do I create datasets and are there examples?`_
@@ -67,6 +68,88 @@ delays the process.
 
         ./pflotran -input_prefix my-problem &> my-problem.stdout.txt
         
+--------------------
+
+.. _How can I contribute to or update the online documentation?:
+
+How can I contribute to or update the online documentation?
+===========================================================
+
+Fork Option (Beginner)
+----------------------
+
+#. Create a fork of the documentation repository on Bitbucket.
+
+#. Clone the forked repository to your local machine.
+
+#. Make additions and changes in existing or new .rst files. (*Note that Google is your best friend for learning reStructuredText.*)
+
+#. Commit the changes.
+
+#. Push the changes to the forked repository.
+
+#. Submit a pull request to the main PFLOTRAN repository.
+
+Branch Option (Advanced)
+------------------------
+
+*Note: This option requires push privileges for the main PFLOTRAN repository on Bitbucket. If you do not know what that means, use the Fork Option.*
+
+#. Clone the documentation repository.
+
+
+#. Create a development branch in which the changes will be made. (*Please follow the instuctions below.*)
+
+#. Make additions and changes in existing or new .rst files. Google is your best friend for learning reStructuredText.
+
+#. Test the changes using Sphinx on your local machine.
+
+#. Commit the changes to the development branch.
+
+#. Push the changes to the main PFLOTRAN repository.
+
+#. Submit a pull request.
+
+Common Bitbucket and Git Questions
+----------------------------------
+
+How to fork a repository?
+
+  `Google "How do I fork a repository on Bitbucket? <https://lmgtfy.com/?q=How+do+I+fork+a+repository+on+Bitbucket%3F>`_
+
+How to clone a repository?
+
+  ``git clone git@bitbucket.org:pflotran/pflotran-documentation.git``
+
+How to create a development branch?
+
+  ``git checkout -b username/brief-description``
+
+  e.g. ``git checkout -b glenn/added-faq-on-contributing-documentation``
+
+How to test using Sphinx?
+
+  a. Navigate to the repository.
+  b. Compile the documentation.
+
+    ``make html``
+
+  c. Open *_build/html/index.html* and inspect the changes.
+
+How to commit changes?
+
+  ``git commit -i <filename> -m 'a short message describing the changes'``
+
+  e.g. ``git commit -i faq.rst -m 'added an FAQ on adding/modifying PFLOTRAN documentation'``
+
+How to push the modified branch back to the original repository?
+
+  ``git push``
+
+How to submit a pull request?
+
+  `Google "How do I submit a pull request on Bitbucket? <https://lmgtfy.com/?q=How+do+I+submit+a+pull+request+on+Bitbucket%3F>`_
+
 --------------------
 
 .. _How do I resolve installation issues?:
@@ -411,7 +494,7 @@ PFLOTRAN_DIR/regression_tests/shortcourse/regional_doublet/regional_doublet_smal
 .. _DATASET: QuickGuide/DatasetNew
 .. _STRATA: QuickGuide/Strata
 
-.. _Why does PFLOBTRAN crash when printing provenance information to HDF5 formatted output?:
+.. _Why does PFLOTRAN crash when printing provenance information to HDF5 formatted output?:
 
 Why does PFLOTRAN crash when printing provenance information to HDF5 formatted output?
 ======================================================================================
