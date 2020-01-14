@@ -91,7 +91,7 @@ Fork Option (Beginner)
 #. Submit a pull request to the main PFLOTRAN repository.
 
 Branch Option (Advanced)
-........................
+------------------------
 
 *Note: This option requires push privileges for the main PFLOTRAN repository on Bitbucket. If you do not know what that means, use the Fork Option.*
 
@@ -111,7 +111,7 @@ Branch Option (Advanced)
 #. Submit a pull request.
 
 Common Bitbucket and Git Questions
-..................................
+----------------------------------
 
 How to fork a repository?
 
