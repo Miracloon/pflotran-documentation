@@ -3,7 +3,8 @@
 Multiple Continuum Model
 ------------------------
 
-Two forms of multiple continuum models are available in PFLOTRAN, one based on thermal conduction and the other incorporating multicomponent reactive transport. Both models only account for diffusion in the secondary continua (matrix) modeled as a  disconnected one-dimensional domains referred to as the DCDM (Dual Continuum Disconnected Matrix) model (Lichtner, 2000), but include advection in the primary continuum.
+Two forms of multiple continuum models are available in PFLOTRAN, one based on thermal conduction and the other incorporating multicomponent reactive transport. Both models only account for diffusion in the secondary continua (matrix) modeled as a  disconnected one-dimensional domains referred to as the DCDM (Dual Continuum Disconnected Matrix) model (Lichtner, 2000), but include advection in the primary continuum. Details of the implementation of the DCDM model in
+PFLOTRAN and its scalability on multiple processor cores are presented in Lichtner and Karra (2014).
 
 Thermal Conduction 
 ~~~~~~~~~~~~~~~~~~
@@ -26,7 +27,7 @@ equations may be written as
    
    \frac{{{\partial}}}{{{\partial}}t} \epsilon_{{\alpha}}\Big[\varphi_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}+ (1-\varphi_{{\alpha}}) \rho_r C_r T_{{\alpha}}\Big] &+ {\boldsymbol{\nabla}}\cdot \Big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}-
    \kappa_a{\boldsymbol{\nabla}}T_{{\alpha}}\Big) \nonumber\\
-   &= -A_{{{\alpha}}{{\beta}}} \kappa_{{{\alpha}}{{\beta}}}\frac{{{\partial}}T_{{\beta}}}{{{\partial}}n},
+   &= -\sum_\beta A_{{{\alpha}}{{\beta}}} \kappa_{{{\alpha}}{{\beta}}}\frac{{{\partial}}T_{{\beta}}}{{{\partial}}n},
 
 and
 

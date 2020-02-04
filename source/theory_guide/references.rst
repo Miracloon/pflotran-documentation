@@ -15,7 +15,7 @@ presented at the 57th Annual Fall Technical Conference and Exhibition of
 the Society of Petroleum Engineers, New Orleans, LA, September 1982.
 
 Ebigbo, A., Holger Class, H., Helmig, R. (2007) :math:`\mathrm{CO_2}`
-leakage through an abandoned well: problem-oriented benchmarks, Comput
+leakage through an abandoned well: problem-oriented benchmarks, Computers in
 Geosciences 11:103?115 DOI 10.1007/s10596-006-9033-7.
 
 Fenghour, A., W.A. Wakeham, and V. Vesovic (1998) The viscosity of
@@ -59,8 +59,10 @@ Multicomponent Reactive Transport in Fractured Porous Media, Ed. Boris
 Faybishenko, *Dynamics of Fluids in Fractured Rock*, Geophysical
 Monograph **122**, 281–298.
 
+Lichtner, P.C. and Karra, S. (2014) Modeling multiscale-multiphase-multicomponent reactive flows in porous media: Application to :math:`\mathrm{CO_2}` sequestration and enhanced geothermal energy using PFLOTRAN, In: *Computational Models for* :math:`\mathrm{CO_2}` *Geo-Sequestration \& Compressed Air Energy Storage*, Editors: Rafid Al-Khoury, Jochen Bundschuh, CRC Press, p. 81–136.
+
 Lichtner, P.C. (2016) Kinetic rate laws invariant to scaling the mineral formula unit,
-American Journal of Science, **316**, 437-469.
+American Journal of Science, **316**, 437–469.
 
 Painter, S.L. (2011) Three-phase numerical model of water migration in
 partially frozen geological media: model formulation, validation, and
@@ -75,7 +77,7 @@ New Orleans, LA, January 1982.
 Pruess, K., S. Yabusaki, C. Steefel, and P. Lichtner (2002) Fluid flow,
 heat transfer, and solute transport at nuclear waste storage tanks in
 the Hanford vadose zone. Available at www.vadosezonejournal.org. Vadose
-Zone J. 1:68–88.
+Zone J. **1**, 68–88.
 
 Pruess, K., and Narasimhan (1985) A practical method for modeling fluid
 and heat flow in fractured porous media, SPE 10509, 14–26.
@@ -88,4 +90,4 @@ Society of Petroleum Engineers.
 
 Andreas Voegelin, Vijay M. Vulava, Florian Kuhnen, Ruben Kretzschmar
 (2000) Multicomponent transport of major cations predicted from binary
-adsorption experiments, Journal of Contaminant Hydrology, 46, 319–338.
+adsorption experiments, Journal of Contaminant Hydrology, **46**, 319–338.

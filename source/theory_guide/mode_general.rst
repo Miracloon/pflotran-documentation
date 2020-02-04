@@ -21,7 +21,7 @@ the form
 .. math::
    :label: energy-conservation-general
    
-   \sum_{{{\alpha}}=l,\,g}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\varphi s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t} \Big((1-\varphi)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T)\Big) = Q,
+   \sum_{{{\alpha}}=l,\,g}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\varphi s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\varphi)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
 
 as the sum of contributions from liquid and gas fluid phases and rock,
 with internal energy :math:`U_{{\alpha}}` and enthalpy
@@ -49,7 +49,7 @@ The Darcy velocity of the :math:`\alpha^{th}` phase is equal to
 .. math::
    :label: darcy_velocity_general
 
-   \boldsymbol{q}_\alpha = -\frac{k k^{r}_{\alpha}}{\mu_\alpha} (\boldsymbol{\nabla} p_\alpha - \gamma_\alpha \boldsymbol{g}), \ \ \ (\alpha=l,g),
+   \boldsymbol{q}_\alpha = -\frac{k k^{r}_{\alpha}}{\mu_\alpha} \boldsymbol{\nabla} (p_\alpha - \gamma_\alpha \boldsymbol{g} z), \ \ \ (\alpha=l,g),
    
 where :math:`\boldsymbol{g}` denotes the acceleration of gravity, :math:`k` denotes the saturated 
 permeability, :math:`k^{r}_{\alpha}` the relative permeability, 
