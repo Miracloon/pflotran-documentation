@@ -31,7 +31,7 @@ The Darcy flow velocity :math:`{\boldsymbol{q}}` is given by
 .. math::
    :label: darcy-th
 
-   {\boldsymbol{q}}= -\frac{kk_r}{\mu} \left({\boldsymbol{\nabla}}P-\rho \boldsymbol{g}\right).
+   {\boldsymbol{q}}= -\frac{kk_r}{\mu} {\boldsymbol{\nabla}}\left(P-\rho gz\right).
 
 Here, :math:`\varphi` denotes porosity, :math:`s` saturation,
 :math:`\rho`, :math:`\eta` mixture mass and molar density, respectively, of the brine, :math:`{\boldsymbol{q}}`
