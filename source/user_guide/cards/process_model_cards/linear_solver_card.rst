@@ -63,29 +63,30 @@ STOP_ON_FAILURE
  Forces the simulation to stop when the linear solver fails to converge.
 
 CPR_OPTIONS
- When using Constrained Pressure Residual Preconditioner (PRECONDITIONER CPR),
- multiple options can be set. (SOLVER FGMRES is strongly recommended, and
- MAXIT 1000, see example)
+ When using the Constrained Pressure Residual Preconditioner 
+ (PRECONDITIONER CPR), multiple options can be set. SOLVER FGMRES and MAXIT 
+ 1000 are highly recommended.
 
-  CPR_TYPE <string> (default: COMBINATIVE)
-   CPR_TYPE COMBINATIVE is a two-stage preconditioner where Algebraic Multigrid
+  CPR_TYPE <string> 
+   COMBINATIVE is a two-stage preconditioner where Algebraic Multigrid
    (AMG) is applied to decoupled pressure block of the Jacobian matrix, and
    Block-Jacobi ILU(0) is applied globally as the second stage.
-   CPR_TYPE ADDITIVE is a three-stage preconditioner where it also applies AMG
-   to decoupled saturation block of the Jacobian matrix in addition to
-   COMBINATIVE method.
+   ADDITIVE is a three-stage preconditioner where AMG is applied to the
+   saturation block of the Jacobian matrix in addition to
+   COMBINATIVE method. Default = COMBINATIVE.
 
-  CPR_EXTRACTION_TYPE <string> (default: QIMPES)
-   CPR_EXTRACTION_TYPE defines a decoupling method of the block matrix.
-   Mainly there are two different methods, alternate-block-factorization(ABF)
-   and quasi-implicit-pressure-explicit-saturation (QIMPES) methods.
+  CPR_EXTRACTION_TYPE <string>
+   Defines the approach to decoupling the block matrix.
+   There are two main methods: alternate-block-factorization(ABF)
+   and quasi-implicit-pressure-explicit-saturation (QIMPES).
    Available cards are ABF, QIMPES_IMMISCIBLE, QIMPES_TWO_UNKNOWNS,
    QIMPES_VARIABLE, QIMPES_THREE_UNKNOWNS, QIMPES, QIMPES_ANY_UNKONWN,
-   QIMPES_VARIABLE_FORCE.
+   QIMPES_VARIABLE_FORCE. Default = QIMPES.
 
-  T1_SCALE (default)
+  T1_SCALE
    This options scales the decoupled pressure block to keep the shape of long
-   waves of diffusion characteristics for AMG to be effective. (recommended)
+   waves of diffusion characteristics for AMG. This scaling is recommended and
+   used by default.
   
   T1_NO_SCALE
    Turns off T1_SCALE
@@ -93,10 +94,8 @@ CPR_OPTIONS
   T3_SCALE
    This option scales the decoupled saturation block as described in T1_SCALE.
   
-  T3_NO_SCALE (default)
-   Turns off T3_SCALE (recommended)
-  
- 
+  T3_NO_SCALE
+   Turns off T3_SCALE. Recommended and default = True.
  
 Examples
 --------
@@ -135,9 +134,7 @@ Examples
  ::
 
   LINEAR_SOLVER FLOW
-    MAXIT 1000        ! depends on the domain size
-                      ! CPR preconditioner is computationally expensive
-                      ! but very effective
+    MAXIT 1000        
     SOLVER FGMRES
     PRECONDITIONER CPR
   END
