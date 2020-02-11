@@ -95,7 +95,7 @@ CPR_OPTIONS
    This option scales the decoupled saturation block as described in T1_SCALE.
   
   T3_NO_SCALE
-   Turns off T3_SCALE. Recommended and default = True.
+   Turns off T3_SCALE. Recommended and used by default.
  
 Examples
 --------
