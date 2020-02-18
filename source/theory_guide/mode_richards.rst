@@ -16,7 +16,7 @@ with Darcy flux :math:`{\boldsymbol{q}}` defined as
 .. math::
    :label: darcy-richards
 
-   {\boldsymbol{q}}= -\frac{kk_r(s)}{\mu}\left({\boldsymbol{\nabla}}P-\rho {\boldsymbol{g}}\right).
+   {\boldsymbol{q}} = -\frac{kk_r(s)}{\mu} {\boldsymbol{\nabla}}\left(P-\rho gz\right).
 
 Here, 
 :math:`\varphi` denotes porosity [-], 

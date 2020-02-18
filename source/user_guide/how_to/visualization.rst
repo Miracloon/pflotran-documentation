@@ -133,3 +133,15 @@ Gnuplot, MatPlotLib
    columns with ``PRINT_COLUMN_IDS`` added to the ``OUTPUT`` keyword.
    This is only useful, however, with ``FORMAT TECPLOT POINT`` output
    option.
+
+- **Gnuplot** also provides for real-time plots by simply adding the following
+  lines after the usual plot directives
+
+  ::
+
+        ...
+        plot ...
+        pause n
+        reread
+
+  where n denotes the pause time between plot points in seconds.
