@@ -18,7 +18,7 @@ COMPLEX_KINETICS
  Opens the block.
 
 <string>
- Names the surface complex to which the kinetics are assigned.
+ Name of a surface complex to which the kinetics are assigned. This name opens a new block where kinetics are set using the cards below.
 
 Optional Cards: 
 ---------------
@@ -41,8 +41,10 @@ Examples
         >AlOUO2+
       /
       COMPLEX_KINETICS
-        FORWARD_RATE_CONSTANT 1.d-6
-        BACKWARD_RATE_CONSTANT 1.d-5
+        >AlOUO2+
+          FORWARD_RATE_CONSTANT 1.d-6
+          BACKWARD_RATE_CONSTANT 1.d-5
+        /
       /
     /
   END
