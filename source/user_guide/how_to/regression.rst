@@ -58,7 +58,7 @@ To call the test manager manually:
 ::
 
     $ cd ${PFLOTRAN_DEV}/regression_tests
-    $ python regression-tests.py \
+    $ python regression_tests.py \
         --executable ../src/pflotran/pflotran \
         --config-file shortcourse/copper_leaching/cu_leaching.cfg \
         --tests cu_leaching
@@ -94,7 +94,7 @@ found by running with the ``--help`` flag:
 
 ::
 
-    $ python regression-tests.py --help
+    $ python regression_tests.py --help
 
 Test output
 -----------
@@ -284,7 +284,7 @@ Or using the regression test manager:
 
 ::
 
-    $ python regression-tests.py --executable ../src/pflotran/pflotran \
+    $ python regression_tests.py --executable ../src/pflotran/pflotran \
         --config-file my_test.cfg --tests test_1 --update
 
 Updating through the regression test manager ensures that the output is
