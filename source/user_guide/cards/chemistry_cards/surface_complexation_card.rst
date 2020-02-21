@@ -25,11 +25,12 @@ EQUILIBRIUM
 MULTIRATE_KINETIC
  Specifies multirate kinetic sorption.  Requires RATES and SITE_FRACTION cards.
 
-KINETIC
- Specifies kinetic sorption.
+.. geh: commenting out for now since not functional
+.. KINETIC
+..  Specifies kinetic sorption.
 
-:ref:`complex-kinetics-card`
- Opens a block specifying forward and backward rate constants.
+.. :ref:`complex-kinetics-card`
+..  Opens a block specifying forward and backward rate constants.
 
 RATES <float ... float>
  Toggles on multirate kinetic sorption.  Specifies kinetic rates associated 
