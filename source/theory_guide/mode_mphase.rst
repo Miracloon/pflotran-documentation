@@ -23,7 +23,7 @@ mass and energy conservation solved by PFLOTRAN have the general form:
    :label: mass_conservation_equation
    
    \frac{{{\partial}}}{{{\partial}}t} \bigg(\varphi \sum_{{\alpha}}s_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}}\bigg)
-   + {\boldsymbol{\nabla}}\cdot\sum_{{\alpha}}{\boldsymbol{F}}_i^{{\alpha}}= Q_{i},
+   + {\boldsymbol{\nabla}}\cdot\sum_{{\alpha}} {\boldsymbol{F}}_i^{{\alpha}}= Q_{i},
 
 for the :math:`i`\ th component where the flux
 :math:`{\boldsymbol{F}}_i^{{\alpha}}` is given by
@@ -31,7 +31,7 @@ for the :math:`i`\ th component where the flux
 .. math::
    :label: flux-mphase
 
-   {\boldsymbol{F}}_i^{{\alpha}}= {\boldsymbol{q}}_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}}- \varphi s_{{\alpha}}^{} D_{{\alpha}}^{} \eta_{{\alpha}}^{} {\boldsymbol{\nabla}}x_i^{{\alpha}},
+   {\boldsymbol{F}}_i^{{\alpha}}= {\boldsymbol{q}}_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}} - \varphi s_{{\alpha}}^{} D_{{\alpha}}^{} \eta_{{\alpha}}^{} {\boldsymbol{\nabla}}x_i^{{\alpha}},
 
 and
 
@@ -39,7 +39,7 @@ and
    :label: energy_equation
    
    \frac{{{\partial}}}{{{\partial}}t} \bigg(\varphi \sum_{{\alpha}}s_{{\alpha}}\eta_{{\alpha}}U_{{\alpha}}+ (1-\varphi) \rho_r c_r T\bigg)
-   + {\boldsymbol{\nabla}}\cdot\sum_{{\alpha}}\bigg[{\boldsymbol{q}}_{{\alpha}}\eta_{{\alpha}}H_{{\alpha}}- \kappa{\boldsymbol{\nabla}}T\bigg] = Q_{e},
+   + {\boldsymbol{\nabla}}\cdot\bigg[\sum_{{\alpha}}{\boldsymbol{q}}_{{\alpha}}\eta_{{\alpha}}H_{{\alpha}}- \kappa{\boldsymbol{\nabla}}T\bigg] = Q_{e},
 
 for energy. In these equations :math:`{{\alpha}}` designates a fluid
 phase (:math:`{{\alpha}}=l`, sc) at temperature :math:`T` and pressure
@@ -56,7 +56,14 @@ fraction of species :math:`i` satisfying
 
    \sum_i x_i^\alpha=1,
 
-the quantities :math:`\eta_{{\alpha}}`, :math:`H_{{\alpha}}`,
+which implies
+
+.. math::
+   :label: sumxi
+
+   \sum_i {\boldsymbol{F}}_i^\alpha = {\boldsymbol{q}}_\alpha \eta_\alpha.
+
+The quantities :math:`\eta_{{\alpha}}`, :math:`H_{{\alpha}}`,
 :math:`U_{{\alpha}}` refer to the molar density, enthalpy, and internal
 energy of each fluid phase, respectively; and
 :math:`{\boldsymbol{q}}_{{\alpha}}` denotes the Darcy flow rate for
