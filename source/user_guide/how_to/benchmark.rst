@@ -59,7 +59,7 @@ PFLOTRAN Input File
       SIMULATION_TYPE SUBSURFACE
       PROCESS_MODELS
         SUBSURFACE_TRANSPORT transport
-          GLOBAL_IMPLICIT
+          MODE GIRT
         /
       /
     END
@@ -503,7 +503,7 @@ PFLOTRAN Input File
       SIMULATION_TYPE SUBSURFACE
       PROCESS_MODELS
         SUBSURFACE_TRANSPORT transport
-          GLOBAL_IMPLICIT
+          MODE GIRT
         /
       /
     END
@@ -929,7 +929,7 @@ PFLOTRAN input file ``sx115.in``:
           MODE RICHARDS
         /
         SUBSURFACE_TRANSPORT transport
-          GLOBAL_IMPLICIT
+          MODE GIRT
         /
       /
     END

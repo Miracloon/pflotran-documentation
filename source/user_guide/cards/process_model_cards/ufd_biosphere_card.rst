@@ -22,7 +22,7 @@ the ``UFD_BIOSPHERE`` block:
          MODE GENERAL
        /
        SUBSURFACE_TRANSPORT transport
-         GLOBAL_IMPLICIT
+         MODE GIRT
        /
      /
    END

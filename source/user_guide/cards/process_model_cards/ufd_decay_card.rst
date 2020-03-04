@@ -187,7 +187,7 @@ How to set up an input file:
        /
      /
      SUBSURFACE_TRANSPORT transport
-       GLOBAL_IMPLICIT
+       MODE GIRT
      /
      UFD_DECAY ufd_decay
      /

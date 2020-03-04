@@ -22,7 +22,7 @@ the ``WASTE_FORM`` block:
          MODE GENERAL
        /
        SUBSURFACE_TRANSPORT transport
-         GLOBAL_IMPLICIT
+         MODE GIRT
        /
      /
    END

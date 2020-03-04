@@ -72,7 +72,18 @@ Simulation Cards
    :maxdepth: 1
    :glob:
 
-   /user_guide/cards/simulation_cards/*
+   /user_guide/cards/simulation_cards/simulation_card.rst
+   /user_guide/cards/simulation_cards/subsurface_flow_card.rst
+   /user_guide/cards/simulation_cards/subsurface_transport_card.rst
+   /user_guide/cards/simulation_cards/checkpoint_card.rst
+   /user_guide/cards/simulation_cards/restart_card.rst
+
+.. toctree::
+   :hidden:
+
+   /user_guide/cards/simulation_cards/input_record_file_card.rst
+   /user_guide/cards/simulation_cards/mode_card.rst
+   /user_guide/cards/simulation_cards/nuclear_waste_transport_card.rst
    
 Process Model Cards
 -------------------
