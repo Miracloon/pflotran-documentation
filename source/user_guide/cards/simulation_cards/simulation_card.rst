@@ -55,7 +55,7 @@ Examples
     SIMULATION_TYPE SUBSURFACE
     PROCESS_MODELS
       SUBSURFACE_TRANSPORT transport
-	GLOBAL_IMPLICIT
+        MODE GIRT
       /
     /
   END
@@ -69,7 +69,7 @@ Examples
 	MODE GENERAL
       /
       SUBSURFACE_TRANSPORT transport
-	GLOBAL_IMPLICIT
+        MODE GIRT
       /
       AUXILIARY SALINITY
 	SPECIES Tracer 58.442469d0
@@ -118,7 +118,8 @@ Examples
           EXTERNAL_FILE ../../block_options.txt
         /
       /
-      NUCLEAR_WASTE_TRANSPORT  nw_trans
+      SUBSURFACE_TRANSPORT transport
+        MODE NWT
       /
     /
   END
