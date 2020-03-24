@@ -11,7 +11,7 @@ exit_status=$?
 if [ $exit_status -eq 0 ]; then
   echo 'transfer successful'
   echo 'extracting tarball'
-  ssh -p 2222 -oStrictHostKeyChecking=no pflotran@108.167.189.107 "/bin/rm -Rf public_html/documentation-dev/* && tar -xzvf codeship.tar.gz -C public_html/documentation-dev/. && /bin/rm codeship.tar.gz"
+  ssh -p 2222 -oStrictHostKeyChecking=no pflotran@108.167.189.107 "/bin/rm -Rf public_html/documentation/* && tar -xzvf codeship.tar.gz -C public_html/documentation/. && /bin/rm codeship.tar.gz"
   exit_status=$?
   if [ $exit_status -eq 0 ]; then
     echo 'extraction successful'
