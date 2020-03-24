@@ -10,7 +10,7 @@ scp -P 2222 -oStrictHostKeyChecking=no /tmp/codeship.tar.gz pflotran@108.167.189
 exit_status=$?
 if [ $exit_status -eq 0 ]; then
   echo 'transfer successful'
-  echo 'extracting tarball'
+  echo 'extracting tarball to public_html/documentation/.'
   ssh -p 2222 -oStrictHostKeyChecking=no pflotran@108.167.189.107 "/bin/rm -Rf public_html/documentation/* && tar -xzvf codeship.tar.gz -C public_html/documentation/. && /bin/rm codeship.tar.gz"
   exit_status=$?
   if [ $exit_status -eq 0 ]; then
