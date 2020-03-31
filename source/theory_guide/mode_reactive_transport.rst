@@ -75,7 +75,7 @@ and ionic radius :math:`\stackrel{\circ}{a}_k`, and ionic strength
 .. math::
    :label: dummy5
    
-   I = \frac{1}{2}\sum_{j=1}^{N_c} m_j^2 + \frac{1}{2}\sum_{i=1}^{N_{\rm sec}} m_i^2,
+   I = \frac{1}{2}\sum_{j=1}^{N_c} m_j z_j^2 + \frac{1}{2}\sum_{i=1}^{N_{\rm sec}} m_i z_i^2,
 
 for molality :math:`m_j` and :math:`m_i` of primary and secondary
 species, respectively (note:
