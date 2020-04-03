@@ -50,14 +50,14 @@ the command line by specifying python:
 
 ::
 
-    $ cd ${PFLOTRAN_DEV}/src/pflotran
+    $ cd ${PFLOTRAN_DIR}/src/pflotran
     $ make PYTHON=/opt/local/bin/python3.3 check
 
 To call the test manager manually:
 
 ::
 
-    $ cd ${PFLOTRAN_DEV}/regression_tests
+    $ cd ${PFLOTRAN_DIR}/regression_tests
     $ python regression_tests.py \
         --executable ../src/pflotran/pflotran \
         --config-file shortcourse/copper_leaching/cu_leaching.cfg \
