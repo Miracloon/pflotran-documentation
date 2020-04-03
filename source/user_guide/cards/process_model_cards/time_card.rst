@@ -22,14 +22,13 @@ STEADY_STATE
 INITIAL_TIMESTEP_SIZE <float> <string>
  Specifies the initial time step size
 
-MINIMUM_TIMESTEP_SIZE <float> <string>
- Specifies the minimum time step size. This minimum step size is used to softly exit the simulation when time step sizes are cut below this threshold. If TS_ACCELERATION from the TIMESTEPPER card is used, the step size will not drop below this threshold.
-
 MAXIMUM_TIMESTEP_SIZE <float> <string> <optional string> <optional float> <optional string>
  Specifies the maximum time step size.  This maximum time step size can change during the simulation by adding the optional float/strings as follows:
  ::
 
   MAXIMUM_TIMESTEP_SIZE <float> at <float> <string>  (See examples below)
+
+ *MAXIMUM_TIMESTEP_SIZE may be specified within either the TIME or TIMESTEPPER block, but not both.*
 
 Examples
 --------

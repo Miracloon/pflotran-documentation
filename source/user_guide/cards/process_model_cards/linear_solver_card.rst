@@ -8,60 +8,49 @@ Specifies linear solver type and parameters associated with convergence.
 
 Required Cards:
 ---------------
-LINEAR_SOLVER <string>
- Specifies the linear solver for flow or transport, where <string> is either 
- FLOW or TRANSPORT.
+LINEAR_SOLVER
+ Opens the linear solver block.
 
  *Default solver is Bi-CGStab with block Jacobi preconditioning and ILU[0] in* 
  *each block*.
 
 Optional Cards:
 ---------------
+**Note: See the** PETSc_ **users manual for a more definitive explanation of** 
+**the ATOL, RTOL, and DTOL solver tolerances below.**
 
-SOLVER <string>
- Specifies solver type, where options include: DIRECT, ITERATIVE, GMRES, BCGS, 
- IBCGS. Interchangeable with KSP_TYPE (from PETSc).  DIRECT uses LU and 
- ITERATIVE employs Bi-CGStab (BCGS) and block Jacobi preconditioning with ILU[0] 
- in each block.
+.. _PETSc: http://www.mcs.anl.gov/petsc/documentation/index.html
 
+ATOL <float>
+ Declare convergence when the 2-norm of residual is less than ATOL :math:`\left(\|b-A x_n)\|<\text{ATOL}\right)`. (default: :math:`10^{-50}`).
+
+DTOL <float>
+ Declare divergence when the 2-norm of the residual is greater than DTOL times the 2-norm of the initial residual :math:`\left(\frac{\|b-A x_n\|}{\|b-A x_0\|}>\text{DTOL}\right)`. (default: :math:`10^{4}`).
+
+LU_ZERO_PIVOT_TOL <float>
+ Specifies zero pivot tolerance for ILU/LU preconditioners.
+
+MAXIT <int>
+ Maximum number of linear solver iterations.
 
 PRECONDITIONER <string>
  Specifies preconditioner type, where options include: NONE, ILU, LU, BJACOBI, 
  ADDITIVE_SCHWARZ or ASM, HYPRE, CPR. Interchangeable with PC_TYPE (from PETSc).
 
-
-**Note: See the** PETSc_ **users manual for a more definitive explanation of** 
-**the solver tolerances below.**
-
-.. _PETSc: http://www.mcs.anl.gov/petsc/documentation/index.html
-
-ATOL <float>
- Absolute tolerance.  Absolute size of residual norm, i.e. 
-
- |  ||b-A*x_n|| < ATOL
- |
-
 RTOL <float>
- Relative tolerance.  Relative decrease size of residual norm, i.e. 
+ Declare convergence when the 2-norm of the residual is less than RTOL times the 2-norm of the initial residual :math:`\left(\frac{\|b-A x_n\|}{\|b-A x_0\|}<\text{RTOL}\right)`. (default: :math:`10^{-5}`).
 
- |  ||b-A*x_n||/||b-A*x_0|| < RTOL
- |
-
-DTOL <float>
- Divergence tolerance.  Relative increase in residual norm, i.e. 
-
- |  ||b-A*x_n||/||b-A*x_0|| > DTOL
- |
-
-MAXIT <int>
- Maximum number of linear solver iterations.
-
-LU_ZERO_PIVOT_TOL <float>
- Specifies zero pivot tolerance for ILU/LU preconditioners.
+SOLVER <string>
+ Specifies solver type, where options include: DIRECT, ITERATIVE, GMRES, BCGS, 
+ IBCGS. Interchangeable with KSP_TYPE (from PETSc).  DIRECT uses LU and 
+ ITERATIVE employs Bi-CGStab (BCGS) and block Jacobi preconditioning with 
+ ILU[0] in each block.
 
 STOP_ON_FAILURE
  Forces the simulation to stop when the linear solver fails to converge.
 
+Expert Level
+++++++++++++
 CPR_OPTIONS
  When using the Constrained Pressure Residual Preconditioner 
  (PRECONDITIONER CPR), multiple options can be set. SOLVER FGMRES and MAXIT 
@@ -101,15 +90,15 @@ Examples
 --------
  ::
 
-  LINEAR_SOLVER FLOW
+  LINEAR_SOLVER
     SOLVER DIRECT
   /
 
-  LINEAR_SOLVER TRANSPORT
+  LINEAR_SOLVER
     SOLVER ITERATIVE
   /
 
-  LINEAR_SOLVER FLOW
+  LINEAR_SOLVER
     SOLVER GMRES
     PRECONDITIONER ILU
   /
@@ -118,12 +107,12 @@ Examples
 
  ::
 
-  LINEAR_SOLVER FLOW
+  LINEAR_SOLVER
     KSP_TYPE IBCGS
     PC_TYPE ASM
   /
 
-  LINEAR_SOLVER TRANSPORT
+  LINEAR_SOLVER
     KSP_TYPE PCNONE
     PC_TYPE LU
     LU_ZERO_PIVOT_TOL 1d-15
@@ -133,7 +122,7 @@ Examples
 
  ::
 
-  LINEAR_SOLVER FLOW
+  LINEAR_SOLVER
     MAXIT 1000        
     SOLVER FGMRES
     PRECONDITIONER CPR
@@ -143,7 +132,7 @@ Examples
 
  ::
 
-  LINEAR_SOLVER FLOW
+  LINEAR_SOLVER
     MAXIT 1000
     SOLVER FGMRES
     PRECONDITIONER CPR
