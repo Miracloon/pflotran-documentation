@@ -31,7 +31,7 @@ VERTICES
  Opens a block listing vertices for each face to be summed into the integral flux. Use right hand rule for positive direction. Only applicable for implicit unstructured (finite element-style) meshes.
 
 CELL_IDS
- Opens a block listing the each face the two cell ids sharing the face to be summed into the integra flux. Positive direction is assumed to be from the first to the second cell.
+ Opens a block listing the two cell ids sharing each face to be summed into the integral flux. Positive direction is oriented from the first to the second cell id.
 
 Optional Cards:
 --------------------
@@ -55,7 +55,7 @@ FLUXES_OPTION <option>
    
  * ABSOLUTE_FLUXES
  
-   Sum every absolute value of fluxes though each cell, i.e. ignore the orientation. Useful for closed surface.
+   Sum every absolute value of fluxes though each face, i.e. ignore the orientation. Useful for closed surface.
 
 
 Examples
