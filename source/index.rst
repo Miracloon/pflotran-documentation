@@ -17,6 +17,14 @@ The choice of Fortran over C/C++ was based primarily on the need to enlist and
 preserve tight collaboration with experienced domain scientists, without which 
 PFLOTRAN's sophisticated process models would not exist. PFLOTRAN's source code repository is on Bitbucket_.
 
+Announcments
+============
+
+.. toctree::
+   :maxdepth: 1
+
+   announcements/numerical_methods_refactor.rst
+
 Documentation
 =============
 
