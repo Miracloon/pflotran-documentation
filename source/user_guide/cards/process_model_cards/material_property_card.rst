@@ -95,6 +95,14 @@ CHARACTERISTIC_CURVES <string>
 LONGITUDINAL_DISPERSIVITY <float>
 
  Longitudinal dispersivity for transport within material [m]
+ 
+TRANSVERSE_DISPERSIVITY_H <float>
+
+ Horizontal transverse dispersivity for transport within material [m]
+ 
+TRANSVERSE_DISPERSIVITY_V <float>
+
+ Vertical transverse dispersivity for transport within material [m]
 
 PERMEABILITY_CRITICAL_POROSITY <float>
 

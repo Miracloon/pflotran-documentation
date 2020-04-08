@@ -30,6 +30,9 @@ PLANE
 VERTICES
  Opens a block listing vertices for each face to be summed into the integral flux. Use right hand rule for positive direction. Only applicable for implicit unstructured (finite element-style) meshes.
 
+CELL_IDS
+ Opens a block listing the two cell ids sharing each face to be summed into the integral flux. Positive direction is oriented from the first to the second cell id.
+
 Optional Cards:
 --------------------
 INVERT_DIRECTION
@@ -38,6 +41,21 @@ INVERT_DIRECTION
 NAME <string>
  Specifies a name that is associated with the integral fluxes in the "?-int.dat" file.  This name will overwrite any name specified with the INTEGRAL_FLUX card 
  that opens the block.
+ 
+FLUXES_OPTION <option>
+ Select different way to sum the fluxes.  Options: SIGNED_FLUXES (Default), POSITIVE_FLUXES_ONLY, ABSOLUTE_FLUXES
+ 
+ * SIGNED_FLUXES
+   
+   Sum every signed fluxes with respect to their orientation (Default).
+   
+ * POSITIVE_FLUXES_ONLY
+   
+   Sum only the positive fluxes for each cell according to their orientation. Negative fluxes can be assessed with POSITIVE_FLUXES_ONLY option along with the INVERT_DIRECTION card.
+   
+ * ABSOLUTE_FLUXES
+ 
+   Sum every absolute value of fluxes though each face, i.e. ignore the orientation. Useful for closed surface.
 
 
 Examples
@@ -83,3 +101,13 @@ Examples
       8 9 6 5
     /
   END
+  
+  INTEGRAL_FLUX
+    NAME by_cell_id
+    FLUXES_OPTION ABSOLUTE_FLUXES
+    CELL_IDS
+      1 2
+      3 4
+    /
+  END
+      
