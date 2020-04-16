@@ -1216,6 +1216,81 @@ The total sorbed concentrations are obtained from the equations
    
    \frac{{{\partial}}S_{j{{\alpha}}}}{{{\partial}}t} = k_{{\alpha}}^{} \big(S_{j{{\alpha}}}^{\rm eq}-S_{j{{\alpha}}}\big).
 
+Aqueous Complexing Reaction Kinetics
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+PFLOTRAN allows the user to input kinetic reactions of homogeneous aqueous complexing reactions
+through the GENERAL_REACTION keyword. 
+The reactions are treated as being elementary reactions with reaction rate expressions
+derived from the law of mass action. Future development will also include specification of
+reaction rates corresponding to overall reactions and not limited to elementary reactions.
+
+To develop the governing equations for this system, reactions are written for intrinsically
+fast and slow reactions corresponding to local equilibrium and kinetic
+rates of reaction according to
+
+.. math::
+   :label: eqlib
+
+   \sum_j \nu_{ji}^{leq} {\mathcal A}_j &\rightleftharpoons {\mathcal A}_i, \ \ \ (\text{fast}),\\
+   \emptyset &\rightleftharpoons \sum_j \nu_{jr}^{kin} {\mathcal A}_j, \ \ \ (\text{slow}).
+
+The sums are over a set of independent primary species. 
+In the expression for kinetic reactions all species are brought to the right-hand side with reactants
+having negative stoichiometric coefficients and products positive coefficients. The reaction rates 
+corresponding to fast reactions are eliminated from the transport equations
+and replaced by algebraic mass action relations.
+
+The kinetic rate expression is assumed to have the form of the difference 
+between forward and backward reactions proportional to the product of concentrations of
+reactants and products, respectively, raised to the power of their stochiometric coefficients
+
+.. math::
+   :label: kinrxn
+
+   \Gamma_r = k_r^+ \prod_{\nu_{jr}^{kin}<0} (a_j)^{-\nu_{jr}^{kin}} - k_r^- \prod_{\nu_{jr}^{kin}>0} (a_j)^{\nu_{jr}^{kin}}.
+
+At equilibrium :math:`\Gamma_r=0` and the equilibrium mass action equation is retrieved
+
+.. math::
+   :label:
+
+   K_r = \frac{k_r^+}{k_r^-} = \prod_j a_j^{\nu_{jr}^{kin}},
+
+with the equilibrium constant :math:`K_r` equal to the ratio of the forward to backward rate constants.
+
+With the above reactions the transport equations for primary species have the form (including precipitation/disollution reactions with rates :math:`\Gamma_m`)
+
+.. math::
+   :label: genrxn
+
+   \frac{\partial}{\partial t} \varphi \Psi_j + \vec\nabla\cdot\vec\Omega_j = \sum_r \nu_{jr}^{kin} \Gamma_r
+   -\sum_m \nu_{jm} \Gamma_m,
+
+where :math:`\Psi_j` and :math:`\vec\Omega_j` are the total concentration and flux, 
+respectively, defined as
+
+.. math::
+   :label: totc
+
+   \Psi_j = c_j + \sum_i \nu_{ji}^{leq} c_i,\\
+   \vec\Omega_j = \vec F_j + \sum_i \nu_{ji}^{leq} \vec F_i,
+
+where :math:`\vec F_k` is the usual so-called free ion flux consisting of contributions from
+advection, diffusion and dispersion, and the secondary species concentrations :math:`c_i` are given by
+the mass action law
+
+.. math::
+   :label: csec
+
+   c_i = \frac{K_i}{\gamma_i} \prod_j \big(\gamma_j c_j\big)^{\nu_{ji}^{leq}},
+
+relating secondary species concentrations to primary species. Thus in this 
+formulation the reaction rates for intrinsically fast reactions are replaced by 
+mass action equations thereby reducing the number of partial differential equations that are
+necessary to solve.
+
+
 Colloid-Facilitated Transport
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
