@@ -2,7 +2,7 @@ Back to :ref:`card-index`
 
 Back to :ref:`subsurface-flow-card`
 
-Back to :ref:`mode-card`
+Back to :ref:`subsurface-flow-mode-card`
 
 .. _hydrate-card:
 
@@ -10,16 +10,20 @@ HYDRATE
 =======
 Defines options for the Hydrate subsurface flow mode.
 
-Options
+OPTIONS 
 -------
+*(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
-CENTRAL_DIFFERENCE_JACOBIAN
- Uses a central difference formulation when calculating the entries in the Jacobian. Default is a forward difference.
+.. include:: sim_hydrate.tmp
 
-See :ref:`general-card`  mode Options documentation for other options.
+NEWTON_SOLVER Options
+---------------------
 
-Optional Cards
---------------
+.. include:: newton_hydrate.tmp
+
+HYDRATE
+-------
+*(within SUBSURFACE block)*
 
 METHANOGENESIS
  Invokes a methanogenesis source term. Current source implementation (following Malinverno, 2010) requires:

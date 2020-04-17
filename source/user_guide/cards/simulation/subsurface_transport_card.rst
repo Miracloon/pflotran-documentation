@@ -8,21 +8,25 @@ SUBSURFACE_TRANSPORT
 Required Cards
 --------------
 
-MODE <string>
-  Specifies the transport modes. Options include: GIRT, OSRT, NWRT.
-   * GIRT - global implicit reactive transport
-   * OSRT - operator split reactive transport (experimental)
-   * NWT - nuclear waste transport (experimental)
+:ref:`subsurface-transport-mode-card` <string>
+ Specifies the transport mode to be employed.  Follow the links below for a
+ description of each transport mode's options.
+
+Transport Modes
++++++++++++++++
+
+ :ref:`global-implicit-reactive-transport-card`: Global implicit reactive transport
+
+ :ref:`operator-split-reactive-transport-card`: Operator-split reactive transport
+
+ :ref:`nuclear-waste-transport-card`: Nuclear waste transport (expert-only)
 
 Optional Cards
 --------------
 
 OPTIONS
- MODE-dependent block for defining options for each transport process model. 
-
-  MAX_VOLUME_FRACTION_CHANGE <float>    (default = 1.d0)
-    Limits the time step based on the maximum desired change in mineral volume 
-    fraction.
+ MODE-dependent block for defining options for each flow process model. Click
+ on the MODEs above to see MODE-dependent options.
 
 Examples
 --------
@@ -34,7 +38,7 @@ Examples
      SUBSURFACE_TRANSPORT transport
        MODE GIRT
        OPTIONS
-         MAX_VOLUME_FRACTION_CHANGE 1.d-4
+         TEMPERATURE_DEPENDENT_DIFFUSION
        /
      /
    /

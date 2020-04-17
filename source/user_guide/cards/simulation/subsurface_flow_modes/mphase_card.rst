@@ -2,7 +2,7 @@ Back to :ref:`card-index`
 
 Back to :ref:`subsurface-flow-card`
 
-Back to :ref:`mode-card`
+Back to :ref:`subsurface-flow-mode-card`
 
 .. _mphase-card:
 
@@ -11,8 +11,9 @@ MPHASE
 
 Defines options for the MPHASE supercritical CO\ :sub:`2`\ subsurface flow mode.
 
-Options
+OPTIONS 
 -------
+*(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
   MAX_PRESSURE_CHANGE <float>
    Controls time step to not exceed maximum pressure change

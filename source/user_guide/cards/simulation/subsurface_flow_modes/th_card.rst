@@ -2,7 +2,7 @@ Back to :ref:`card-index`
 
 Back to :ref:`subsurface-flow-card`
 
-Back to :ref:`mode-card`
+Back to :ref:`subsurface-flow-mode-card`
 
 .. _th-card:
 
@@ -11,8 +11,9 @@ TH
 
 Defines options for the TH subsurface flow mode.
 
-Options
+OPTIONS 
 -------
+*(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
 FREEZING
  Enables freezing.

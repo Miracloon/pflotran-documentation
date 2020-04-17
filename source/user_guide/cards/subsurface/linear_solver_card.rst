@@ -30,7 +30,7 @@ DTOL <float>
 LU_ZERO_PIVOT_TOL <float>
  Specifies zero pivot tolerance for ILU/LU preconditioners.
 
-MAXIT <int>
+MAXIMUM_NUMBER_OF_ITERATIONS <int>
  Maximum number of linear solver iterations.
 
 PRECONDITIONER <string>
@@ -53,8 +53,8 @@ Expert Level
 ++++++++++++
 CPR_OPTIONS
  When using the Constrained Pressure Residual Preconditioner 
- (PRECONDITIONER CPR), multiple options can be set. SOLVER FGMRES and MAXIT 
- 1000 are highly recommended.
+ (PRECONDITIONER CPR), multiple options can be set. SOLVER FGMRES and 
+ MAXIMUM_NUMBER_OF_ITERATION 1000 are highly recommended.
 
   CPR_TYPE <string> 
    COMBINATIVE is a two-stage preconditioner where Algebraic Multigrid
@@ -123,7 +123,7 @@ Examples
  ::
 
   LINEAR_SOLVER
-    MAXIT 1000        
+    MAXIMUM_NUMBER_OF_ITERATIONS 1000        
     SOLVER FGMRES
     PRECONDITIONER CPR
   END
@@ -133,7 +133,7 @@ Examples
  ::
 
   LINEAR_SOLVER
-    MAXIT 1000
+    MAXIMUM_NUMBER_OF_ITERATIONS 1000
     SOLVER FGMRES
     PRECONDITIONER CPR
     CPR_OPTIONS

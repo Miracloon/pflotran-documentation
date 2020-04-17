@@ -1,0 +1,13 @@
+GAS_STATE_AIR_MASS_DOF <string>
+ Sets the primary dependent variable for the air mass conservation equation for cells in a single-phase gas state (2nd dof) [AIR_PRESSURE, WATER_MOL_FRAC]. (default = AIR_PRESSURE, whihc is the most tested)
+
+ISOTHERMAL
+ Disables the energy calculation forcing constant temperature.
+
+NO_AIR
+ Disables the gas component mass conservation equation.
+
+WINDOW_EPSILON <float>
+ Specifies the tolerance or window that must be exceeded before state change
+ will occur.
+

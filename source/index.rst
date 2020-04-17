@@ -31,9 +31,9 @@ Documentation
 .. toctree::
    :maxdepth: 1
 
-   developer_guide.rst
-   theory_guide.rst
-   user_guide.rst
+   developer_guide/developer_guide.rst
+   theory_guide/theory_guide.rst
+   user_guide/user_guide.rst
 
 --------------------------------
 

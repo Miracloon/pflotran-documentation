@@ -32,43 +32,59 @@ User's Guide
 Input Deck Cards
 ^^^^^^^^^^^^^^^^
    
-Simulation Cards
-----------------
+SIMULATION Block Cards
+----------------------
 
 .. toctree::
    :maxdepth: 1
    :glob:
 
-   /user_guide/cards/simulation_cards/simulation_card.rst
-   /user_guide/cards/simulation_cards/subsurface_flow_card.rst
-   /user_guide/cards/simulation_cards/subsurface_transport_card.rst
-   /user_guide/cards/simulation_cards/checkpoint_card.rst
-   /user_guide/cards/simulation_cards/restart_card.rst
+   /user_guide/cards/simulation/simulation_card.rst
+   /user_guide/cards/simulation/subsurface_flow_card.rst
+   /user_guide/cards/simulation/subsurface_transport_card.rst
+   /user_guide/cards/simulation/checkpoint_card.rst
+   /user_guide/cards/simulation/restart_card.rst
 
 .. toctree::
    :hidden:
 
-   /user_guide/cards/simulation_cards/input_record_file_card.rst
-   /user_guide/cards/simulation_cards/mode_card.rst
-   /user_guide/cards/simulation_cards/nuclear_waste_transport_card.rst
-   
-Process Model Cards
--------------------
+   /user_guide/cards/simulation/input_record_file_card.rst
+   /user_guide/cards/simulation/subsurface_flow_mode_card.rst
+   /user_guide/cards/simulation/subsurface_transport_mode_card.rst
+
+*SUBSURFACE_FLOW Mode Cards*
 
 .. toctree::
    :maxdepth: 1
    :glob:
 
-   /user_guide/cards/process_model_cards/*
-   
-Chemistry Cards
----------------
+   /user_guide/cards/simulation/subsurface_flow_modes/*
+
+*SUBSURFACE_TRANSPORT Mode Cards*
 
 .. toctree::
    :maxdepth: 1
    :glob:
 
-   /user_guide/cards/chemistry_cards/*
+   /user_guide/cards/simulation/subsurface_transport_modes/*
+
+SUBSURFACE Block Cards
+----------------------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   /user_guide/cards/subsurface/*
+
+CHEMISTRY Block Cards
++++++++++++++++++++++
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   /user_guide/cards/subsurface/chemistry/*
  
 Geomechanics Cards
 ------------------
@@ -77,7 +93,7 @@ Geomechanics Cards
    :maxdepth: 1
    :glob:
 
-   /user_guide/cards/geomechanics_cards/*
+   /user_guide/cards/geomechanics/*
    
 Utility Cards
 -------------
@@ -94,5 +110,8 @@ Utility Cards
    :glob:
    
    /user_guide/cards/pages/*
-   /user_guide/cards/process_model_cards/grids/*
+   /user_guide/cards/simulation/subsurface_flow_modes/*
+   /user_guide/cards/subsurface/grids/*
+   /user_guide/cards/gdsa/*
+   /user_guide/cards/wipp/*
 

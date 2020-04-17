@@ -1,0 +1,6 @@
+INLINE_SURFACE_MANNINGS_COEFF <float>
+ Specifies the Mannings coefficient for inline flow. (expert-only)
+ 
+INLINE_SURFACE_REGION
+ Enables inline surface flow. (expert-only)
+

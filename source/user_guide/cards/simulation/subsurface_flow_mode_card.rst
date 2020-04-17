@@ -2,7 +2,7 @@ Back to :ref:`card-index`
 
 Back to :ref:`subsurface-flow-card`
 
-.. _mode-card:
+.. _subsurface-flow-mode-card:
 
 MODE
 ====

@@ -1,0 +1,11 @@
+ANALYTICAL_JACOBIAN
+ Calculate derivatives in Jacobian analytically.
+
+NUMERICAL_JACOBIAN
+ Calculate derivatives in Jacobian numerically.
+
+USE_INFINITY_NORM_CONVERGENCE
+ Newton iteration will converge on infinity norm convergence criteria for both the solution update and the residual.
+
+PRESSURE_DAMPENING_FACTOR <float>
+ Factor by which the pressure solution update is dampened.

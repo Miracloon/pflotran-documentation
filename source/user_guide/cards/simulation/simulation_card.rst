@@ -21,10 +21,6 @@ PROCESS_MODELS <string>
  the simulation. Options for <string> include: :ref:`subsurface-flow-card`,
  :ref:`subsurface-transport-card`, SURFACE_FLOW. If 
 
- :ref:`mode-card` <string>
-  Specifies the flow mode if SUBSURFACE_FLOW is chosen under PROCESS_MODELS. 
-  Options for <string> are detailed in :ref:`mode-card`.
-  
 Optional Cards:
 ---------------
 

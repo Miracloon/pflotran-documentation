@@ -2,7 +2,7 @@ Back to :ref:`card-index`
 
 Back to :ref:`subsurface-flow-card`
 
-Back to :ref:`mode-card`
+Back to :ref:`subsurface-flow-mode-card`
 
 .. _wipp-flow-card:
 
@@ -10,8 +10,10 @@ WIPP_FLOW
 =========
 Defines options for the WIPP_FLOW subsurface flow mode.
 
-Options
+OPTIONS 
 -------
+*(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
+
 LIQUID_RESIDUAL_INFINITY_TOL <float>
  Infinity norm tolerance for liquid residual equation. Units depend on the units of the residual: [kg/m\ :sup:`3` \] with BRAGFLO_RESIDUAL_UNITS and [kmol/sec] without. Default = 1.e-2
 
