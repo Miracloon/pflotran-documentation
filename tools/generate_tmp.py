@@ -22,17 +22,14 @@ basic_dictionary = {}
 expert_dictionary = {}
 for filename in filenames:
     try: 
-        f = open(filename,'r')
+        f = open(filename,encoding='utf-8','r')
     except IOError:
         sys.exit('Unable to open file {}.'.format(filename))
     list_ = []
     strings = []
     expert = False
     skip_card = False
-    while True:
-        line = f.readline()
-        if not line:
-            break
+    for line in f:
         if line.startswith('#'):
             continue
         if len(line.rstrip()) > 0 and not line.startswith(' '):
