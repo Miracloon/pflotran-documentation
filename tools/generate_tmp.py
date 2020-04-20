@@ -24,13 +24,12 @@ for filename in filenames:
     f = open(filename,'r')
     list_ = []
     strings = []
-    skip = False
     expert = False
     for line in f:
         if line.startswith('#'):
             continue
         if len(line.rstrip()) > 0 and not line.startswith(' '):
-            if list_ and not skip:
+            if list_:
                 keyword = list_[0]
                 list_.append(strings)
                 if keyword in dictionary or keyword in expert_dictionary:
@@ -43,14 +42,12 @@ for filename in filenames:
                     dictionary[keyword] = list_
             list_ = []
             strings = []
-            skip = False
             expert = False
         if not list_ and len(line.strip()) > 0:
             w = line.split()
             list_.append(w[0].upper())
             list_.append(line.strip())
         elif line.strip().startswith('@'):
-            skip = True
             w = line.strip().lstrip('@').split()
             keyword = w[0].strip()
             w = w[1:]
@@ -61,14 +58,15 @@ for filename in filenames:
                         sys.exit('Local mode {} is '.format(local_mode)+
                                  'not a supportd mode in generate_tmp.py.')
                     if local_mode == mode:
-                        skip = False
                         break
             elif keyword.startswith('EXPERT'):
                 expert = True
+            else:
+                sys.exit('Unrecognized tag: {} in {}'.format(keyword,filename))
         else:
             strings.append(line.strip())
     if len(strings) > 0:
-        if list_ and not skip:
+        if list_:
             list_.append(strings)
             keyword = list_[0]
             if keyword in dictionary or keyword in expert_dictionary:
@@ -88,7 +86,7 @@ for entry in sorted(dictionary):
     for string in strings:
       f.write(' {}\n'.format(string.strip()))
 if len(expert_dictionary) > 0:
-    f.write('\n**Expert Settings**\n')
+    f.write('\n**Expert Settings**\n\n')
 for entry in sorted(expert_dictionary):
     f.write('{}\n'.format(expert_dictionary[entry][1].strip()))
     strings = expert_dictionary[entry][2]

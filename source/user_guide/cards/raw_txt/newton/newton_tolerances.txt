@@ -1,5 +1,5 @@
 RESIDUAL_INF_TOL
- @RICHARDS TH GENERAL HYDRATE
+ @MODES RICHARDS TH GENERAL HYDRATE
  Specify a single infinity norm convergence tolerance on all absolute and scaled residuals. (default = 1e-5, abs; 1e-6, scaled)
 
 RESIDUAL_ABS_INF_TOL
@@ -27,7 +27,7 @@ ENERGY_RESIDUAL_SCALED_INF_TOL <float>
  Specify the infinity norm convergence tolerance on the scaled residual of energy.
 
 UPDATE_INF_TOL <float>
- @TH GENERAL HYDRATE
+ @MODES TH GENERAL HYDRATE
  Specify a single infinity norm convergence tolerance on the absolute and relative updates of all solution updates.
 
 ABS_UPDATE_INF_TOL <float>
