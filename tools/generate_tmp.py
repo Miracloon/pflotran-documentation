@@ -38,7 +38,7 @@ for filename in filenames:
                              format(keyword)+
                              'Currently constructing {}.'.format(outfilename))
                 if expert:
-                    exert_dictionary[keyword] = list_
+                    expert_dictionary[keyword] = list_
                 else:
                     dictionary[keyword] = list_
             list_ = []
@@ -51,7 +51,7 @@ for filename in filenames:
             list_.append(line.strip())
         elif line.strip().startswith('@'):
             skip = True
-            w = line.strip().strip('@').split()
+            w = line.strip().lstrip('@').split()
             keyword = w[0].strip()
             w = w[1:]
             if keyword.strip().startswith('MODES'):
@@ -76,7 +76,7 @@ for filename in filenames:
                          format(keyword)+
                          'Currently constructing {}.'.format(outfilename))
             if expert:
-                exert_dictionary[keyword] = list_
+                expert_dictionary[keyword] = list_
             else:
                 dictionary[keyword] = list_
     f.close()
@@ -87,7 +87,8 @@ for entry in sorted(dictionary):
     strings = dictionary[entry][2]
     for string in strings:
       f.write(' {}\n'.format(string.strip()))
-f.write('\n**Expert Settings**\n'.format(dictionary[entry][1].strip()))
+if len(expert_dictionary) > 0:
+    f.write('\n**Expert Settings**\n')
 for entry in sorted(expert_dictionary):
     f.write('{}\n'.format(expert_dictionary[entry][1].strip()))
     strings = expert_dictionary[entry][2]

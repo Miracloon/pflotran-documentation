@@ -87,6 +87,7 @@ python3 ./tools/generate_tmp.py GENERAL \
 $CARDS_DIR/simulation/subsurface_flow_modes/newton_general.tmp \
 $CARDS_DIR/raw_txt/newton/newton_general.txt \
 $CARDS_DIR/raw_txt/newton/newton_gen_hyd.txt \
+$CARDS_DIR/raw_txt/newton/newton_tolerances.txt \
 $CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
 $CARDS_DIR/raw_txt/newton/newton.txt
 num_errors=$((num_errors + $?))
@@ -96,6 +97,7 @@ python3 ./tools/generate_tmp.py HYDRATE \
 $CARDS_DIR/simulation/subsurface_flow_modes/newton_hydrate.tmp \
 $CARDS_DIR/raw_txt/newton/newton_hydrate.txt \
 $CARDS_DIR/raw_txt/newton/newton_gen_hyd.txt \
+$CARDS_DIR/raw_txt/newton/newton_tolerances.txt \
 $CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
 $CARDS_DIR/raw_txt/newton/newton.txt
 num_errors=$((num_errors + $?))
