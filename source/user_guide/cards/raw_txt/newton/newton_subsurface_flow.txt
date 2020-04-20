@@ -5,7 +5,22 @@ NUMERICAL_JACOBIAN
  Calculate derivatives in Jacobian numerically.
 
 USE_INFINITY_NORM_CONVERGENCE
+ @RICHARDS TH 
  Newton iteration will converge on infinity norm convergence criteria for both the solution update and the residual.
 
 PRESSURE_DAMPENING_FACTOR <float>
+ @TH RICHARDS
  Factor by which the pressure solution update is dampened.
+
+PRESSURE_CHANGE_LIMIT <float>
+ @TH
+ The change in pressure is truncated to within this limit.
+
+SATURATION_CHANGE_LIMIT <float>
+ @RICHARDS TH 
+ The change in saturation is truncated to within this limit.
+
+TEMPERATURE_CHANGE_LIMIT <float>
+ @TH 
+ The change in temperature is truncated to within this limit.
+

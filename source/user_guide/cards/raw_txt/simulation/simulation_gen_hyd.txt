@@ -34,3 +34,6 @@ RESTRICT_STATE_CHANGE
 TWO_PHASE_STATE_ENERGY_DOF <string>
  Sets the primary dependent variable for the energy conservation equation for cells in a two-phsae state (3rd dof) [TEMPERATURE, AIR_PRESSURE]. (default = TEMPERATURE, which is most tested)
 
+WINDOW_EPSILON <float>
+ Specifies the tolerance or window that must be exceeded before state change
+ will occur.

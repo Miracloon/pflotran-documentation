@@ -1,0 +1,86 @@
+RESIDUAL_INF_TOL
+ Specify a single infinity norm convergence tolerance on all absolute and scaled residuals. (default = 1e-5, abs; 1e-6, scaled)
+
+RESIDUAL_ABS_INF_TOL
+ Specify a single infinity norm convergence tolerance on all absolute residuals. (default = 1e-5)
+
+LIQUID_RESIDUAL_ABS_INF_TOL
+ Specify the infinity norm convergence tolerance on the absolute residual of water mass (liquid phase). (default = 1e-5)
+
+GAS_RESIDUAL_ABS_INF_TOL
+ Specify the infinity norm convergence tolerance on the absolute residual of gas mass (gas phase). (default = 1e-5)
+
+ENERGY_RESIDUAL_ABS_INF_TOL
+ Specify the infinity norm convergence tolerance on the absolute residual of energy. (default = 1e-5)
+
+RESIDUAL_SCALED_INF_TOL <float>
+ Specify a single infinity norm convergence tolerance on all scaled residuals. (default = 1e-6)
+
+LIQUID_RESIDUAL_SCALED_INF_TOL <float>
+ Specify the infinity norm convergence tolerance on the scaled residual of water mass (liquid phase).
+
+GAS_RESIDUAL_SCALED_INF_TOL <float>
+ Specify the infinity norm convergence tolerance on the scaled residual of gas mass (gas phase primary component).
+
+ENERGY_RESIDUAL_SCALED_INF_TOL <float>
+ Specify the infinity norm convergence tolerance on the scaled residual of energy.
+
+UPDATE_INF_TOL <float>
+ Specify a single infinity norm convergence tolerance on the absolute value and relative updates of all solution updates.
+
+ABS_UPDATE_INF_TOL <float>
+ Specify a single infinity norm convergence tolerance on the absolute value of all solution updates.
+
+REL_UPDATE_INF_TOL <float>
+ Specify a single infinity norm convergence tolerance on the relative solution update.
+
+PRES_ABS_UPDATE_INF_TOL <float>
+ Specify a single maximum absolute change in liquid phase, gas phase, and air partial pressure. (default = 1)
+
+LIQUID_PRES_ABS_UPDATE_INF_TOL <float>
+ Specify a maximum absolute change in liquid phase pressure.
+
+GAS_PRES_ABS_UPDATE_INF_TOL <float>
+ Specify a maximum absolute change in gas phase pressure.
+
+AIR_PRES_ABS_UPDATE_INF_TOL <float>
+ Specify a maximum absolute change in air partial pressure in the gas phase.
+
+TEMP_ABS_UPDATE_INF_TOL <float>
+ Specify a maximum absolute change in temperature. (default = 1e-5)
+
+SAT_ABS_UPDATE_INF_TOL <float>
+ Specify a maximum absolute change in phase saturation. (default = 1e-5)
+
+XMOL_ABS_UPDATE_INF_TOL <float>
+ Specity a maximum absolute change in mass fraction of dissolved gas in the aqueous phase. (default = 1e-9)
+
+PRES_REL_UPDATE_INF_TOL <float>
+ Specify a single maximum relative change in liquid phase, gas phase, and air partial pressure. (default = 1e-3)
+
+LIQUID_PRES_REL_UPDATE_INF_TOL <float>
+ Specify a maximum relative change in liquid phase pressure.
+
+GAS_PRES_REL_UPDATE_INF_TOL <float>
+ Specify a maximum relative change in gas phase pressure.
+
+AIR_PRES_REL_UPDATE_INF_TOL <float>
+ Specify a maximum relative change in air pressure.
+
+TEMP_REL_UPDATE_INF_TOL <float>
+ Specify a maximum relative change in temperature. (default = 1e-3)
+
+SAT_REL_UPDATE_INF_TOL <float>
+ Specify a maximum relative change in phase saturation. (default = 1e-3)
+
+XMOL_REL_UPDATE_INF_TOL <float>
+ Specify a maximum relative change in mass fraction of dissolved gas in the aqueous phase over a given timestep. (default = 1e-3)
+
+MAX_ITERATION_BEFORE_DAMPING <integer>
+ Specifies the threshold number of Newton iterations before damping is imposed.
+
+DAMPING_FACTOR <float>
+ The scalar value by which the solution is damped between each Newton-Raphson iteration. Acceptable values on (0,1].
+
+MAXIMUM_PRESSURE_CHANGE <float>
+ The change in pressure is truncated to within this limit.

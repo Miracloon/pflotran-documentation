@@ -7,7 +7,3 @@ ISOTHERMAL
 NO_AIR
  Disables the gas component mass conservation equation.
 
-WINDOW_EPSILON <float>
- Specifies the tolerance or window that must be exceeded before state change
- will occur.
-
