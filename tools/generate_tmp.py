@@ -22,7 +22,7 @@ basic_dictionary = {}
 expert_dictionary = {}
 for filename in filenames:
     try: 
-        f = open(filename,encoding='utf-8','r')
+        f = open(filename,'rt')
     except IOError:
         sys.exit('Unable to open file {}.'.format(filename))
     list_ = []
