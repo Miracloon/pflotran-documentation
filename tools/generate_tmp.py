@@ -29,7 +29,10 @@ for filename in filenames:
     strings = []
     expert = False
     skip_card = False
-    for line in f:
+    while True:
+        line = f.readline()
+        if not line:
+            break
         if line.startswith('#'):
             continue
         if len(line.rstrip()) > 0 and not line.startswith(' '):
