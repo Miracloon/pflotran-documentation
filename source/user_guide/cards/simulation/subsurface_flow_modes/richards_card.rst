@@ -11,12 +11,25 @@ RICHARDS
 
 Defines options for the Richards subsurface flow mode.
 
-OPTIONS 
--------
+:ref:`richards-simulation-options`
+
+:ref:`richards-newton-options`
+
+.. _richards-simulation-options:
+
+SIMULATION Options 
+------------------
 *(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
-There are currently no options.
+.. include:: sim_richards.tmp
+
+.. _richards-newton-options:
  
+NEWTON Options 
+--------------
+
+.. include:: newton_richards.tmp
+
 Examples
 --------
 ::

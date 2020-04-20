@@ -10,11 +10,19 @@ HYDRATE
 =======
 Defines options for the Hydrate subsurface flow mode.
 
-OPTIONS 
--------
+:ref:`hydrate-simulation-options`
+
+:ref:`hydrate-newton-options`
+
+.. _hydrate-simulation-options:
+
+SIMULATION Options 
+------------------
 *(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
 .. include:: sim_hydrate.tmp
+
+.. _hydrate-newton-options:
 
 NEWTON_SOLVER Options
 ---------------------

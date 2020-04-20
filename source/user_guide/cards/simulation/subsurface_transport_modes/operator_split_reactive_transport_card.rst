@@ -13,6 +13,13 @@ OSRT
  A corresponding :ref:`chemistry-card` card must be included 
  in the SUBSURFACE block.
 
+:ref:`osrt-simulation-options`
+
+.. _osrt-simulation-options:
+
+SIMULATION Options 
+------------------
+
 OPTIONS 
 -------
 *(under SUBSURFACE_TRANSPORT in SIMULATION PROCESS_MODELS block)*

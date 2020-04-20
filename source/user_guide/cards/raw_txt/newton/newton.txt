@@ -14,39 +14,49 @@ DTOL <float>
  Declare divergence (cut the time step) when the 2-norm of the residual is greater than DTOL times the 2-norm of the initial residual :math:`\left(\frac{\|f(x_n)\|}{\|f(x_0)\|}>\text{DTOL}\right)`. (default: :math:`10^{4}`).
 
 ITOL <float>
+ @SUPPORTED_MODES RICHARDS TH MPHASE
  Delare convergence when the infinity norm of residual is less than ITOL :math:`\left(\|f(x_n)\|_{inf}<\text{ITOL}\right)`. (default: not used).
 
 ITOL_UPDATE <float>
+ @SUPPORTED_MODES RICHARDS TH
  Declare convergence when the infinity norm of update is less than ITOL_UPDATE :math:`\left(\|x_n-x_{n-1}\|_{inf}<\text{ITOL_UPDATE}\right)`. (default: not used).
 
 MATRIX_TYPE <string>
+ @EXPERT
  Format of main solver matrix. PETSc Mat (i.e. AIJ, BAIJ, or HYPRESTRUCT).
 
 MAXF <int>
+ @EXPERT
  Maximum number of function evaluations before reporting failed convergence.
 
 MAXIMUM_NUMBER_OF_ITERATIONS <int>
  Maximum number of Newton iterations before reporting failed convergence.
 
 MAX_NORM <float>
+ @EXPERT
  Declare divergence (cut the time step) when the infinity norm of the residual is greater than MAX_NORM :math:`\left(\|f(x_n)\|_{inf}>\text{MAX_NORM}\right)`. (default: :math:`10^{20}`).
 
 MINIMUM_NUMBER_OF_ITERATIONS <int>
+ @EXPERT
  Newton solver convergence requires at least MINIMUM_NUMBER_OF_ITERATIONS.
 
 NO_FORCE_ITERATION
+ @EXPERT
  Toggle off the forcing of at least 1 linear iteration.  The default is to force at least 1 linear iteration.  In a quasi-stationary state, the initial residual may be sufficiently small for convergence, but often it is better to force at least one iteration.
 
 NO_INFINITY_NORM
+ @EXPERT
  Toggle off calculation of infinity norm on residual and update vectors.  The default is to calculate the infinity norm.
 
 NO_PRINT_CONVERGENCE
  Toggle off printing of convergence information.
 
 PRECONDITIONER_MATRIX_TYPE <string >
+ @EXPERT
  Format of preconditioning matrix. PETSc Mat (i.e. AIJ, BAIJ, or HYPRESTRUCT).  Default is same as solver.
 
 PRINT_DETAILED_CONVERGENCE
+ @EXPERT
  Toggle on printing of detailed convergence information.
 
 PRINT_LINEAR_ITERATIONS

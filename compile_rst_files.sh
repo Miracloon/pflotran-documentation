@@ -78,6 +78,22 @@ num_errors=$((num_errors + $?))
 
 # ---------------------------------------------------------------------------- #
 # ---------------------------------------------------------------------------- #
+# TIMESTEPPER options
+
+# ---------------------------------------------------------------------------- #
+# FLOW
+
+# WIPP_FLOW 
+python3 ./tools/generate_tmp.py WIPP_FLOW \
+$CARDS_DIR/simulation/subsurface_flow_modes/timestepper_wipp_flow.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_wipp_flow.txt
+num_errors=$((num_errors + $?))
+
+# ---------------------------------------------------------------------------- #
+# TRANSPORT
+
+# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
 # NEWTON options
 # ---------------------------------------------------------------------------- #
 # FLOW
@@ -111,28 +127,26 @@ num_errors=$((num_errors + $?))
 #num_errors=$((num_errors + $?))
 #
 ## RICHARDS
-#python3 ./tools/generate_tmp.py RICHARDS \
-#$CARDS_DIR/simulation/subsurface_flow_modes/newton_richards.tmp \
-#$CARDS_DIR/raw_txt/newton/newton_richards.txt \
-#$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
-#$CARDS_DIR/raw_txt/newton/newton.txt
+python3 ./tools/generate_tmp.py RICHARDS \
+$CARDS_DIR/simulation/subsurface_flow_modes/newton_richards.tmp \
+$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
+$CARDS_DIR/raw_txt/newton/newton.txt
 #num_errors=$((num_errors + $?))
 #
 ## TH
-#python3 ./tools/generate_tmp.py TH \
-#$CARDS_DIR/simulation/subsurface_flow_modes/newton_th.tmp \
-#$CARDS_DIR/raw_txt/newton/newton_th.txt \
-#$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
-#$CARDS_DIR/raw_txt/newton/newton.txt
-#num_errors=$((num_errors + $?))
-#
-## WIPP_FLOW 
-#python3 ./tools/generate_tmp.py WIPP_FLOW \
-#$CARDS_DIR/simulation/subsurface_flow_modes/newton_wipp_flow.tmp \
-#$CARDS_DIR/raw_txt/newton/newton_wipp_flow.txt \
-#$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
-#$CARDS_DIR/raw_txt/newton/newton.txt
-#num_errors=$((num_errors + $?))
+python3 ./tools/generate_tmp.py TH \
+$CARDS_DIR/simulation/subsurface_flow_modes/newton_th.tmp \
+$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
+$CARDS_DIR/raw_txt/newton/newton.txt
+num_errors=$((num_errors + $?))
+
+# WIPP_FLOW 
+python3 ./tools/generate_tmp.py WIPP_FLOW \
+$CARDS_DIR/simulation/subsurface_flow_modes/newton_wipp_flow.tmp \
+$CARDS_DIR/raw_txt/newton/newton_wipp_flow.txt \
+$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
+$CARDS_DIR/raw_txt/newton/newton.txt
+num_errors=$((num_errors + $?))
 
 # ---------------------------------------------------------------------------- #
 # TRANSPORT

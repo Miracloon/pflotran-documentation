@@ -10,11 +10,19 @@ GENERAL
 =======
 Defines options for the General subsurface flow mode.
 
-OPTIONS 
--------
+:ref:`general-simulation-options`
+
+:ref:`general-newton-options`
+
+.. _general-simulation-options:
+
+SIMULATION Options 
+------------------
 *(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
 .. include:: sim_general.tmp
+
+.. _general-newton-options:
 
 NEWTON_SOLVER Options
 ---------------------

@@ -11,8 +11,14 @@ MPHASE
 
 Defines options for the MPHASE supercritical CO\ :sub:`2`\ subsurface flow mode.
 
-OPTIONS 
--------
+:ref:`mphase-simulation-options`
+
+:ref:`mphase-newton-options`
+
+.. _mphase-simulation-options:
+
+SIMULATION Options 
+------------------
 *(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
   MAX_PRESSURE_CHANGE <float>
@@ -27,6 +33,10 @@ OPTIONS
   MAX_SATURATION_CHANGE <float>
    Controls time step to not exceed maximum saturation change
 
+.. _mphase-newton-options:
+
+NEWTON Options
+--------------
  
 Examples
 --------

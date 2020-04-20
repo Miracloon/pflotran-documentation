@@ -13,11 +13,19 @@ NWT
  A corresponding :ref:`nuclear-waste-chemistry-card` card must be included 
  in the SUBSURFACE block.
 
-OPTIONS 
--------
+:ref:`nuclear-waste-transport-simulation-options`
+
+:ref:`nuclear-waste-transport-newton-options`
+
+.. _nuclear-waste-transport-simulation-options:
+
+SIMULATION Options 
+------------------
 *(under SUBSURFACE_TRANSPORT in SIMULATION PROCESS_MODELS block)*
 
 .. include:: sim_nwt.tmp
+
+.. _nuclear-waste-transport-newton-options:
 
 NEWTON_SOLVER Options
 ---------------------

@@ -11,18 +11,25 @@ TH
 
 Defines options for the TH subsurface flow mode.
 
-OPTIONS 
--------
+:ref:`th-simulation-options`
+
+:ref:`th-newton-options`
+
+.. _th-simulation-options:
+
+SIMULATION Options 
+------------------
 *(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
-FREEZING
- Enables freezing.
+.. include:: sim_th.tmp
 
-ICE_MODEL <string>
- Specifies the ice model.  Options include: PAINTER_EXPLICIT, 
- PAINTER_KARRA_IMPLICIT, PAINTER_KARRA_EXPLICIT, PAINTER_KARRA_EXPLICIT_NOCRYO,
- CALL_AMICO.
+.. _th-newton-options:
+
+NEWTON Options
+--------------
  
+.. include:: newton_th.tmp
+
 Examples
 --------
 ::
