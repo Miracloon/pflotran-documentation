@@ -53,8 +53,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'PFLOTRAN Documentation'
-copyright = u'2016, PFLOTRAN'
-author = u'Jennifer M Frederick'
+copyright = u'2020, PFLOTRAN'
+author = u'Glenn E Hammond'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -269,7 +269,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'PFLOTRANdocumentation.tex', u'PFLOTRAN Documentation',
-     u'Peter C. Lichtner, \\and Glenn E. Hammond, \\and Chuan Lu, \\and Satish Karra, \\and Guatam Bisht, \\and Benjamin Andre, \\and Richard Mills, \\and Jitu Kumar, \\and Jennifer M Frederick', 
+     u'Peter C. Lichtner, \\and Glenn E. Hammond, \\and Chuan Lu, \\and Satish Karra, \\and Guatam Bisht, \\and Benjamin Andre, \\and Richard Mills, \\and Jitu Kumar, \\and Jennifer M. Frederick', 
      'manual'),
 ]
 

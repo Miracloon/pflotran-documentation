@@ -246,7 +246,7 @@ The steps for creating new regression tests are:
    ::
 
        REGRESSION
-         CELLS
+         CELL_IDS
            1
            3978
          /
