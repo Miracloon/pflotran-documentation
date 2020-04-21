@@ -96,14 +96,14 @@ for filename in filenames:
                 basic_dictionary[keyword] = list_
     f.close()
     
-f = open(outfilename,'w')
+f = open(outfilename,encoding='utf-8',mode='w')
 if len(basic_dictionary) > 0:
     f.write('\n**Basic Settings**\n\n')
 for entry in sorted(basic_dictionary):
     f.write('{}\n'.format(basic_dictionary[entry][1].strip()))
     strings = basic_dictionary[entry][2]
     for string in strings:
-      f.write(' {}\n'.format(string.strip()))
+        f.write(' {}\n'.format(string.strip()))
 if len(expert_dictionary) > 0:
     if len(basic_dictionary) > 0:
         f.write('\n--------------------\n')
