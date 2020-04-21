@@ -110,6 +110,7 @@ Installation Instructions
  ::
 
   cd pflotran/src/pflotran
+  git checkout v3.0-beta
   make pflotran
 
 .. _Git: http://git-scm.com/
