@@ -34,9 +34,11 @@ TIMESTEPPER Options
 
 .. _mphase-newton-options:
 
-NEWTON Options
---------------
+NEWTON_SOLVER Options
+---------------------
  
+.. include:: newton_mphase.tmp
+
 .. _mphase-examples:
 
 Examples
@@ -71,4 +73,4 @@ Examples
        MAXF 100
      /
    /
- END
+   ...

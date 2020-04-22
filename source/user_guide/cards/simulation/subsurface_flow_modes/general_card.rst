@@ -79,5 +79,5 @@ Examples
        SOLVER DIRECT
      /
    /
- END
+   ...
 

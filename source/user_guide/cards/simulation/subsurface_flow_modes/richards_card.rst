@@ -36,8 +36,8 @@ TIMESTEPPER Options
 
 .. _richards-newton-options:
  
-NEWTON Options 
---------------
+NEWTON_SOLVER Options 
+---------------------
 
 .. include:: newton_richards.tmp
 
@@ -64,4 +64,3 @@ Examples
      /
    /
    ...
- END

@@ -47,8 +47,6 @@ Examples
 --------
 ::
 
- ...
-
   SIMULATION
     SIMULATION_TYPE SUBSURFACE
     PROCESS_MODELS
@@ -80,5 +78,4 @@ Examples
         MAXF 1000
       /
     /
-  END
-
+    ...

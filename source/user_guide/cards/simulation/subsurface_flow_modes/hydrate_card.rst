@@ -99,10 +99,6 @@ Examples
 --------
 ::
 
- SUBSURFACE
-
- ...
-
  SIMULATION
    SIMULATION_TYPE SUBSURFACE
    PROCESS_MODELS
@@ -141,4 +137,4 @@ Examples
       SMT_DEPTH 10.d0
      /
    /
- END
+   ...

@@ -110,7 +110,6 @@ Examples
 --------
 ::
 
- ...
  SIMULATION
    ...
    PROCESS_MODELS
@@ -156,5 +155,5 @@ Examples
        MINIMUM_TIMESTEP_SIZE 8.64d-4          ! DELTMIN
      /
    /
- END
+   ...
 
