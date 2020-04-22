@@ -12,6 +12,8 @@ Defines options for the Hydrate subsurface flow mode.
 
 :ref:`hydrate-simulation-options`
 
+:ref:`hydrate-timestepper-options`
+
 :ref:`hydrate-newton-options`
 
 :ref:`hydrate-block-options`

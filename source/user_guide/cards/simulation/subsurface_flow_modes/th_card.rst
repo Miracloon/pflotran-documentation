@@ -13,6 +13,8 @@ Defines options for the TH subsurface flow mode.
 
 :ref:`th-simulation-options`
 
+:ref:`th-timestepper-options`
+
 :ref:`th-newton-options`
 
 :ref:`th-examples`

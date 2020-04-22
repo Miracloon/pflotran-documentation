@@ -13,6 +13,8 @@ Defines options for the MPHASE supercritical CO\ :sub:`2`\ subsurface flow mode.
 
 :ref:`mphase-simulation-options`
 
+:ref:`mphase-timestepper-options`
+
 :ref:`mphase-newton-options`
 
 :ref:`mphase-examples`

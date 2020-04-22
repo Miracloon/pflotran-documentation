@@ -12,6 +12,8 @@ Defines options for the General subsurface flow mode.
 
 :ref:`general-simulation-options`
 
+:ref:`general-timestepper-options`
+
 :ref:`general-newton-options`
 
 :ref:`general-examples`

@@ -13,6 +13,8 @@ Defines options for the Richards subsurface flow mode.
 
 :ref:`richards-simulation-options`
 
+:ref:`richards-timestepper-options`
+
 :ref:`richards-newton-options`
 
 :ref:`richards-examples`
