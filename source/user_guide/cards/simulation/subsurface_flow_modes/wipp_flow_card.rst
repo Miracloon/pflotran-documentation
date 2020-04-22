@@ -16,6 +16,8 @@ Defines options for the WIPP_FLOW subsurface flow mode.
 
 :ref:`wipp-flow-newton-options`
 
+:ref:`wipp-flow-examples`
+
 .. _wipp-flow-simulation-options:
 
 SIMULATION Options 
@@ -102,44 +104,57 @@ NEWTON Options
 
 .. include:: newton_wipp_flow.tmp
 
+.. _wipp-flow-examples:
+
 Examples
 --------
 ::
 
  ...
- PROCESS_MODELS
-   SUBSURFACE_FLOW flow
-     MODE WIPP_FLOW
-     OPTIONS
-       GAS_COMPONENT_FORMULA_WEIGHT 2.01588d0 #hardwired
-       2D_FLARED_DIRICHLET_BCS
-         EXTERNAL_FILE ../dirichlet_bcs.txt
+ SIMULATION
+   ...
+   PROCESS_MODELS
+     SUBSURFACE_FLOW flow
+       MODE WIPP_FLOW
+       OPTIONS
+         GAS_COMPONENT_FORMULA_WEIGHT 2.01588d0 #hardwired
+         2D_FLARED_DIRICHLET_BCS
+           EXTERNAL_FILE ../dirichlet_bcs.txt
+         /
+         ALLOW_NEGATIVE_GAS_PRESSURE
+         ALPHA_DATASET alpha
+         BRAGFLO_RESIDUAL_UNITS
+         DIP_ROTATION_ANGLE 1.d0
+         DIP_ROTATION_ORIGIN 23495.7d0 0.d0 378.685d0
+         DIP_ROTATION_CEILING 779.69d0
+         DIP_ROTATION_BASEMENT 178.07d0
+         DIP_ROTATION_REGIONS rSHFTU
        /
-       ALLOW_NEGATIVE_GAS_PRESSURE
-       ALPHA_DATASET alpha
-       BRAGFLO_RESIDUAL_UNITS
-       CONVERGENCE_TEST BOTH                  ! ICONVTEST 1
-       DIP_ROTATION_ANGLE 1.d0
-       DIP_ROTATION_ORIGIN 23495.7d0 0.d0 378.685d0
-       DIP_ROTATION_CEILING 779.69d0
-       DIP_ROTATION_BASEMENT 178.07d0
-       DIP_ROTATION_REGIONS rSHFTU
-       GAS_RESIDUAL_INFINITY_TOL 1.d-2        ! FTOL_PRES
+     /
+   /
+ END
+ ...
+ SUBSURFACE
+   NUMERICAL_METHODS FLOW
+     TIMESTEPPER
+       LIQ_PRES_CHANGE_TS_GOVERNOR 5.d5       ! PRESNORM
        GAS_SAT_CHANGE_TS_GOVERNOR 0.3d0       ! SATNORM
        GAS_SAT_GOV_SWITCH_ABS_TO_REL 1.d0     ! TSWITCH
+     /
+     NEWTON_SOLVER
+       CONVERGENCE_TEST BOTH                  ! ICONVTEST 1
+       SCALE_JACOBIAN                         ! LSCALE
+       GAS_RESIDUAL_INFINITY_TOL 1.d-2        ! FTOL_PRES
        GAS_SAT_THRESH_FORCE_EXTRA_NI 1.d-3    ! SATLIMIT
        GAS_SAT_THRESH_FORCE_TS_CUT 0.2d0      ! DSATLIM
        LIQUID_RESIDUAL_INFINITY_TOL 1.d-2     ! FTOL_SAT
-       LIQ_PRES_CHANGE_TS_GOVERNOR 5.d5       ! PRESNORM
        MAX_ALLOW_GAS_SAT_CHANGE_TS 1.d0       ! DSAT_MAX
        MAX_ALLOW_LIQ_PRES_CHANGE_TS 1.d7      ! DPRES_MAX
        MAX_ALLOW_REL_GAS_SAT_CHANGE_NI 1.d-3  ! EPS_SAT
        MAX_ALLOW_REL_LIQ_PRES_CHANG_NI 1.d-2  ! EPS_PRES
-       MINIMUM_TIMESTEP_SIZE 8.64d-4          ! DELTMIN
        MIN_LIQ_PRES_FORCE_TS_CUT -1.d8        ! DPRELIM
-       SCALE_JACOBIAN                         ! LSCALE
+       MINIMUM_TIMESTEP_SIZE 8.64d-4          ! DELTMIN
      /
    /
- /
- ...
+ END
 

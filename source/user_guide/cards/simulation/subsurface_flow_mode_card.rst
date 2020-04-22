@@ -20,14 +20,22 @@ Options:
 :ref:`richards-card`
  Single-phase variable saturated groundwater flow using Richards Equation.
 
-:ref:`th-card`
- Coupled groundwater flow and energy/thermal; TH = "Thermo-Hydro".
-
 :ref:`general-card`
  Multiphase air-water-energy.
 
+:ref:`hydrate-card`
+ Multiphase hydrate-water-energy.
+
+:ref:`wipp-flow-card`
+ Immiscible two-phase air-water
+
 :ref:`mphase-card`
  Supercritical CO\ :sub:`2`\-water-energy.
+
+:ref:`th-card`
+ Coupled groundwater flow and energy/thermal; TH = "Thermo-Hydro".
+
+**Experimental Flow Modes**
 
 IMS, IMMIS, THS
  Immissible two-phase CO\ :sub:`2`\-water-energy.
@@ -40,14 +48,6 @@ FLASH2
 
 Examples:
 ---------
-
-::
-
-  MODE TH
-
-::
-  
-  MODE GENERAL
 
 ::
 

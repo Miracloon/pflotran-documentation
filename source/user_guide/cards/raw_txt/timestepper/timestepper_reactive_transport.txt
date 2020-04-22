@@ -1,3 +1,0 @@
-MAX_VOLUME_FRACTION_CHANGE <float>    (default = 1.d0)
- Limits the time step based on the maximum desired change in mineral volume 
- fraction.

@@ -15,43 +15,58 @@ Defines options for the MPHASE supercritical CO\ :sub:`2`\ subsurface flow mode.
 
 :ref:`mphase-newton-options`
 
+:ref:`mphase-examples`
+
 .. _mphase-simulation-options:
 
 SIMULATION Options 
 ------------------
 *(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
-  MAX_PRESSURE_CHANGE <float>
-   Controls time step to not exceed maximum pressure change
+.. _mphase-timestepper-options:
 
-  MAX_TEMPERATURE_CHANGE <float>
-   Controls time step to not exceed maximum temperature change
+TIMESTEPPER Options
+-------------------
 
-  MAX_CONCENTRATION_CHANGE <float>
-   Controls time step to not exceed maximum concentration change
-
-  MAX_SATURATION_CHANGE <float>
-   Controls time step to not exceed maximum saturation change
+.. include:: timestepper_mphase.tmp
 
 .. _mphase-newton-options:
 
 NEWTON Options
 --------------
  
+.. _mphase-examples:
+
 Examples
 --------
 ::
 
- ...
- PROCESS_MODELS
-   SUBSURFACE_FLOW flow
-     MODE MPHASE
-     OPTIONS
-       MAX_PRESSURE_CHANGE 5.e4
-       MAX_TEMPERATURE_CHANGE 5.d0
-       MAX_CONCENTRATION_CHANGE 1.e-2
-       MAX_SATURATION_CHANGE 0.025
+ SIMULATION
+   SIMULATION_TYPE SUBSURFACE
+   PROCESS_MODELS
+     SUBSURFACE_FLOW flow
+       MODE MPHASE
      /
    /
- /
- ...
+ END
+ ... 
+ SUBSURFACE
+   NUMERICAL_METHODS FLOW
+     TIMESTEPPER
+       TS_ACCELERATION 8
+       PRESSURE_CHANGE_GOVERNOR 5.e4
+       TEMPERATURE_CHANGE_GOVERNOR 5.d0
+       CONCENTRATION_CHANGE_GOVERNOR 1.e-2
+       SATURATION_CHANGE_GOVERNOR 0.025
+     /
+     NEWTON_SOLVER
+       ATOL 1.d-12
+       RTOL 1.d-12
+       STOL 1.d-30
+       DTOL 1.d15
+       ITOL 1.d-8
+       MAXIMUM_NUMBER_OF_ITERATIONS 25
+       MAXF 100
+     /
+   /
+ END

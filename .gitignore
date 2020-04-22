@@ -3,3 +3,6 @@ codeship_deploy_key
 codeship_deploy_key.pub
 codeship.env
 .ssh
+*.tmp
+_build
+_build/*

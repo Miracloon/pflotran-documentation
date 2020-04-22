@@ -1,7 +1,9 @@
 ANALYTICAL_JACOBIAN
+ @UNSUPPORTED_MODES WIPP_FLOW
  Calculate derivatives in Jacobian analytically.
 
 NUMERICAL_JACOBIAN
+ @UNSUPPORTED_MODES WIPP_FLOW
  Calculate derivatives in Jacobian numerically.
 
 USE_INFINITY_NORM_CONVERGENCE

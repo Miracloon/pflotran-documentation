@@ -83,6 +83,36 @@ num_errors=$((num_errors + $?))
 # ---------------------------------------------------------------------------- #
 # FLOW
 
+# GENERAL 
+python3 ./tools/generate_tmp.py GENERAL \
+$CARDS_DIR/simulation/subsurface_flow_modes/timestepper_general.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_subsurface_flow.txt
+num_errors=$((num_errors + $?))
+
+# HYDRATE 
+python3 ./tools/generate_tmp.py HYDRATE \
+$CARDS_DIR/simulation/subsurface_flow_modes/timestepper_hydrate.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_subsurface_flow.txt
+num_errors=$((num_errors + $?))
+
+# MPHASE 
+python3 ./tools/generate_tmp.py MPHASE \
+$CARDS_DIR/simulation/subsurface_flow_modes/timestepper_mphase.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_subsurface_flow.txt
+num_errors=$((num_errors + $?))
+
+# RICHARDS
+python3 ./tools/generate_tmp.py RICHARDS \
+$CARDS_DIR/simulation/subsurface_flow_modes/timestepper_richards.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_subsurface_flow.txt
+num_errors=$((num_errors + $?))
+
+# TH
+python3 ./tools/generate_tmp.py TH \
+$CARDS_DIR/simulation/subsurface_flow_modes/timestepper_th.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_subsurface_flow.txt
+num_errors=$((num_errors + $?))
+
 # WIPP_FLOW 
 python3 ./tools/generate_tmp.py WIPP_FLOW \
 $CARDS_DIR/simulation/subsurface_flow_modes/timestepper_wipp_flow.tmp \
@@ -91,6 +121,18 @@ num_errors=$((num_errors + $?))
 
 # ---------------------------------------------------------------------------- #
 # TRANSPORT
+
+# RT
+python3 ./tools/generate_tmp.py RT \
+$CARDS_DIR/simulation/subsurface_transport_modes/timestepper_rt.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_rt_nwt.txt
+num_errors=$((num_errors + $?))
+
+# NWT
+python3 ./tools/generate_tmp.py NWT \
+$CARDS_DIR/simulation/subsurface_transport_modes/timestepper_nwt.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_rt_nwt.txt
+num_errors=$((num_errors + $?))
 
 # ---------------------------------------------------------------------------- #
 # ---------------------------------------------------------------------------- #
@@ -119,11 +161,11 @@ $CARDS_DIR/raw_txt/newton/newton.txt
 num_errors=$((num_errors + $?))
 
 ## MPHASE 
-#python3 ./tools/generate_tmp.py MPHASE \
-#$CARDS_DIR/simulation/subsurface_flow_modes/newton_mphase.tmp \
-#$CARDS_DIR/raw_txt/newton/newton_mphase.txt \
-#$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
-#$CARDS_DIR/raw_txt/newton/newton.txt
+python3 ./tools/generate_tmp.py MPHASE \
+$CARDS_DIR/simulation/subsurface_flow_modes/newton_mphase.tmp \
+$CARDS_DIR/raw_txt/newton/newton_mphase.txt \
+$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
+$CARDS_DIR/raw_txt/newton/newton.txt
 #num_errors=$((num_errors + $?))
 #
 ## RICHARDS
@@ -143,9 +185,7 @@ num_errors=$((num_errors + $?))
 # WIPP_FLOW 
 python3 ./tools/generate_tmp.py WIPP_FLOW \
 $CARDS_DIR/simulation/subsurface_flow_modes/newton_wipp_flow.tmp \
-$CARDS_DIR/raw_txt/newton/newton_wipp_flow.txt \
-$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
-$CARDS_DIR/raw_txt/newton/newton.txt
+$CARDS_DIR/raw_txt/newton/newton_wipp_flow.txt 
 num_errors=$((num_errors + $?))
 
 # ---------------------------------------------------------------------------- #

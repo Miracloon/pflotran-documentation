@@ -15,6 +15,8 @@ Defines options for the TH subsurface flow mode.
 
 :ref:`th-newton-options`
 
+:ref:`th-examples`
+
 .. _th-simulation-options:
 
 SIMULATION Options 
@@ -23,6 +25,13 @@ SIMULATION Options
 
 .. include:: sim_th.tmp
 
+.. _th-timestepper-options:
+
+TIMESTEPPER Options
+-------------------
+
+.. include:: timestepper_th.tmp
+
 .. _th-newton-options:
 
 NEWTON Options
@@ -30,18 +39,44 @@ NEWTON Options
  
 .. include:: newton_th.tmp
 
+.. _th-examples:
+
 Examples
 --------
 ::
 
  ...
- PROCESS_MODELS
-   SUBSURFACE_FLOW flow
-     MODE TH
-     OPTIONS
-       FREEZING
-       ICE_MODEL PAINTER_EXPLICIT    
-     /
-   /
- /
- ...
+
+  SIMULATION
+    SIMULATION_TYPE SUBSURFACE
+    PROCESS_MODELS
+      SUBSURFACE_FLOW flow
+        MODE TH
+        OPTIONS
+          FREEZING
+          ICE_MODEL PAINTER_EXPLICIT
+        /
+      /
+    /
+  END
+  ...
+  SUBSURFACE
+    NUMERICAL_METHODS FLOW
+      TIMESTEPPER
+        TS_ACCELERATION 25
+        PRESSURE_CHANGE_GOVERNOR 1.d5
+        TEMPERATURE_CHANGE_GOVERNOR 0.1d0
+        CONCENTRATION_CHANGE_GOVERNOR 1.d-1
+      /
+      NEWTON_SOLVER
+        ATOL 1.d-12
+        RTOL 1.d-8
+        STOL 1.d-12
+        ITOL 1.d-8
+        MAX_NORM 1.d6
+        MAXIMUM_NUMBER_OF_ITERATIONS 100
+        MAXF 1000
+      /
+    /
+  END
+

@@ -15,6 +15,8 @@ Defines options for the Richards subsurface flow mode.
 
 :ref:`richards-newton-options`
 
+:ref:`richards-examples`
+
 .. _richards-simulation-options:
 
 SIMULATION Options 
@@ -23,6 +25,13 @@ SIMULATION Options
 
 .. include:: sim_richards.tmp
 
+.. _richards-timestepper-options:
+
+TIMESTEPPER Options
+-------------------
+
+.. include:: timestepper_richards.tmp
+
 .. _richards-newton-options:
  
 NEWTON Options 
@@ -30,14 +39,27 @@ NEWTON Options
 
 .. include:: newton_richards.tmp
 
+.. _richards-examples:
+
 Examples
 --------
 ::
 
- ...
- PROCESS_MODELS
-   SUBSURFACE_FLOW flow
-     MODE RICHARDS
+ SIMULATION
+   SIMULATION_TYPE SUBSURFACE
+   PROCESS_MODELS
+     SUBSURFACE_FLOW flow
+       MODE RICHARDS
+     /
    /
- /
+   ...
+ END
  ...
+ SUBSURFACE
+   NUMERICAL_METHODS FLOW
+     NEWTON_SOLVER
+       ITOL_UPDATE 1.d0 ! Convergences with max change in pressure is 1 Pa.
+     /
+   /
+   ...
+ END

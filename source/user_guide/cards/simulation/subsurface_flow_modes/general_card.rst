@@ -14,6 +14,8 @@ Defines options for the General subsurface flow mode.
 
 :ref:`general-newton-options`
 
+:ref:`general-examples`
+
 .. _general-simulation-options:
 
 SIMULATION Options 
@@ -22,6 +24,13 @@ SIMULATION Options
 
 .. include:: sim_general.tmp
 
+.. _general-timestepper-options:
+
+TIMESTEPPER Options
+-------------------
+
+.. include:: timestepper_general.tmp
+
 .. _general-newton-options:
 
 NEWTON_SOLVER Options
@@ -29,43 +38,44 @@ NEWTON_SOLVER Options
 
 .. include:: newton_general.tmp
 
+.. _general-examples:
+
 Examples
 --------
 ::
 
- ...
- PROCESS_MODELS
-   SUBSURFACE_FLOW flow
-     MODE GENERAL
-     OPTIONS
-       !WINDOW_EPSILON 1.d-4
-       ISOTHERMAL
-       TWO_PHASE_ENERGY_DOF TEMPERATURE
-       GAS_COMPONENT_FORMULA_WEIGHT 2.01588D0 ! kg/kmol
-       MAXIMUM_PRESSURE_CHANGE 1.0D6 ! truncates pressure change
+ SIMULATION
+   SIMULATION_TYPE SUBSURFACE
+   PROCESS_MODELS
+     SUBSURFACE_FLOW flow
+       MODE GENERAL
+       OPTIONS
+         #  WINDOW_EPSILON 1.d-4
+         ISOTHERMAL
+         TWO_PHASE_STATE_ENERGY_DOF TEMPERATURE
+         ARITHMETIC_GAS_DIFFUSIVE_DENSITY
+       /
      /
    /
- /
+ END
  ...
-
- ...
- PROCESS_MODELS
-    SUBSURFACE_FLOW flow
-      MODE GENERAL
-      OPTIONS
-        LOGGING_VERBOSITY 1
-        ANALYTICAL_JACOBIAN
-        RESTRICT_STATE_CHANGE
-        USE_INFINITY_NORM_CONVERGENCE
-        DAMPING_FACTOR 0.8
-        PHASE_CHANGE_EPSILON 1.d-6
-        REL_UPDATE_INF_TOL 1.d-4
-        RESIDUAL_INF_TOL 1.d-6
-        IMMISCIBLE
-        MAX_NEWTON_ITERATIONS 8
-      /
-    /
-  /
-
- ...
+ SUBSURFACE
+   NUMERICAL_METHODS FLOW
+     TIMESTEPPER
+       TS_ACCELERATION 8
+       MAX_TS_CUTS 10
+     /
+     NEWTON_SOLVER
+       ATOL 1.d-8
+       RTOL 1.d-8
+       STOL 1.d-30
+       NO_INFINITY_NORM
+       MAXIMUM_NUMBER_OF_ITERATIONS 15
+       RESIDUAL_SCALED_INF_TOL 1.d-5
+     /
+     LINEAR_SOLVER
+       SOLVER DIRECT
+     /
+   /
+ END
 

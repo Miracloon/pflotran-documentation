@@ -14,6 +14,10 @@ Defines options for the Hydrate subsurface flow mode.
 
 :ref:`hydrate-newton-options`
 
+:ref:`hydrate-block-options`
+
+:ref:`hydrate-examples`
+
 .. _hydrate-simulation-options:
 
 SIMULATION Options 
@@ -22,6 +26,13 @@ SIMULATION Options
 
 .. include:: sim_hydrate.tmp
 
+.. _hydrate-timestepper-options:
+
+TIMESTEPPER Options
+-------------------
+
+.. include:: timestepper_hydrate.tmp
+
 .. _hydrate-newton-options:
 
 NEWTON_SOLVER Options
@@ -29,8 +40,10 @@ NEWTON_SOLVER Options
 
 .. include:: newton_hydrate.tmp
 
-HYDRATE
--------
+.. _hydrate-block-options:
+
+HYDRATE Block
+-------------
 *(within SUBSURFACE block)*
 
 METHANOGENESIS
@@ -78,44 +91,52 @@ PERM_SCALING_FUNCTION <string>
 HENRYS_CONSTANT <string>
  Set function for Henry's constant for methane. Current default: Carroll and Mather, 1997. Current options: CRAMER
 
+.. _hydrate-examples:
+
 Examples
 --------
 ::
 
- ...
- PROCESS_MODELS
-   SUBSURFACE_FLOW flow
-     MODE HYDRATE
-     OPTIONS
-       CENTRAL_DIFFERENCE_JACOBIAN
-       USE_INFINITY_NORM_CONVERGENCE
-       RESTRICT_STATE_CHANGE
-       MAXIMUM_PRESSURE_CHANGE 1.0D6 ! truncates pressure change
-     /
-   /
- /
-
  SUBSURFACE
 
- HYDRATE
-   SCALE_PERM_BY_HYD_SAT
-   PERM_SCALING_FUNCTION DAI_AND_SEOL
-   HYDRATE_PHASE_BOUNDARY MORIDIS
-   EFFECTIVE_SAT_SCALING
-   WITH_GIBBS_THOMSON
-   GT_3PHASE
-   ADJUST_SOLUBILITY_WITHIN_GHSZ
-   NO_PC
-   WITH_SEDIMENTATION
-
-   METHANOGENESIS
-    NAME ss_methanogenesis
-    ALPHA 0.005
-    K_ALPHA 2241
-    LAMBDA 1.d-14
-    V_SED 3.17d-11
-    SMT_DEPTH 10.d0
-   /
-
- /
  ...
+
+ SIMULATION
+   SIMULATION_TYPE SUBSURFACE
+   PROCESS_MODELS
+     SUBSURFACE_FLOW flow
+       MODE HYDRATE
+       OPTIONS
+         RESTRICT_STATE_CHANGE
+       /
+     /
+   /
+ END
+ ...
+ SUBSURFACE
+   NUMERICAL_METHODS FLOW
+     NEWTON_SOLVER
+       USE_INFINITY_NORM_CONVERGENCE
+     /
+   /
+   ...
+   HYDRATE
+     SCALE_PERM_BY_HYD_SAT
+     PERM_SCALING_FUNCTION DAI_AND_SEOL
+     HYDRATE_PHASE_BOUNDARY MORIDIS
+     EFFECTIVE_SAT_SCALING
+     WITH_GIBBS_THOMSON
+     GT_3PHASE
+     ADJUST_SOLUBILITY_WITHIN_GHSZ
+     NO_PC
+     WITH_SEDIMENTATION
+     METHANOGENESIS
+      NAME ss_methanogenesis
+      ALPHA 0.005
+      K_ALPHA 2241
+      LAMBDA 1.d-14
+      V_SED 3.17d-11
+      SMT_DEPTH 10.d0
+     /
+   /
+ END
