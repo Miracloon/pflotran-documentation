@@ -99,8 +99,8 @@ TIMESTEPPER Options
 
 .. _wipp-flow-newton-options:
 
-NEWTON Options
---------------
+NEWTON_SOLVER Options
+---------------------
 
 .. include:: newton_wipp_flow.tmp
 
