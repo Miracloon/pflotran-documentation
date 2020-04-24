@@ -6,6 +6,7 @@ Developer's Guide
    
    /developer_guide/software_productivity_sustainability.rst
    /developer_guide/contributing_to_pflotran.rst
+   /developer_guide/training/fortran_coding_standard.rst
    
 QA Test Suite
 -------------

@@ -16,21 +16,37 @@ SIMULATION_TYPE <string>
  Specifies the type of simulation. Options for <string> include: SUBSURFACE,
  SURFACE_SUBSURFACE, HYDROGEOPHYSICS.
 
-PROCESS_MODELS <string>
+PROCESS_MODELS
  Opens the PROCESS_MODELS block and lists the process models that are used in
- the simulation. Options for <string> include: :ref:`subsurface-flow-card`,
- :ref:`subsurface-transport-card`, SURFACE_FLOW. If 
+ the simulation. PROCESS_MODEL options include:
+
+ :ref:`subsurface-flow-card`
+
+ :ref:`subsurface-transport-card`
+
+ AUXILIARY
+
+ GEOMECHANICS_SUBSURFACE
+
+ SURFACE_SUBSURFACE
+
+ UFD_BIOSPHERE
+
+ UFD_DECAY
+
+ WASTE_FORM
+
+ WIPP_SOURCE_SINK
 
 Optional Cards:
 ---------------
 
 :ref:`checkpoint-card`
- Opens a block for specifying checkpointing parameters. Details can be found
- in :ref:`checkpoint-card`.
+ Opens a block for specifying checkpointing options.
  
-AUXILIARY <string>
- To be documented.
-  
+:ref:`restart-card`
+ Opens a block for specifying restart options.
+ 
 Examples
 --------
 
