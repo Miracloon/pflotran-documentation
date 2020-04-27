@@ -14,7 +14,7 @@ SIMULATION
 
 SIMULATION_TYPE <string>
  Specifies the type of simulation. Options for <string> include: SUBSURFACE,
- SURFACE_SUBSURFACE, HYDROGEOPHYSICS.
+ SURFACE_SUBSURFACE, GEOMECHANICS_SUBSURFACE.
 
 PROCESS_MODELS
  Opens the PROCESS_MODELS block and lists the process models that are used in

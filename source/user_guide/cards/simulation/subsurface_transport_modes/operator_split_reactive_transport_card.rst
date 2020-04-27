@@ -15,16 +15,26 @@ OSRT
 
 :ref:`osrt-simulation-options`
 
+:ref:`osrt-timestepper-options`
+
+:ref:`osrt-examples`
+
 .. _osrt-simulation-options:
 
 SIMULATION Options 
 ------------------
-
-OPTIONS 
--------
 *(under SUBSURFACE_TRANSPORT in SIMULATION PROCESS_MODELS block)*
 
 .. include:: sim_rt.tmp
+
+.. _osrt-timestepper-options:
+
+TIMESTEPPER Options
+-------------------
+
+.. include:: timestepper_rt.tmp
+
+.. _osrt-examples:
 
 Examples
 --------
