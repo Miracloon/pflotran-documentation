@@ -194,7 +194,10 @@ MECHANISM <type_string>
    No additional sub-block cards are required. 
  
 * **MECHANISM FMDM sub-block cards:**
- 
+
+   For additional inputs required for this mechanism see
+   :ref:`FMDM Mechanism`.
+
    If the FMDM mechanism is used, follow these instructions on how to link the external FMDM: 
    :ref:`running-pflotran-fmdm`.
  
@@ -217,7 +220,11 @@ MECHANISM <type_string>
       BURNUP 6.0d1 ! GWd/MTHM
 
 * **MECHANISM FMDM_SURROGATE sub-block cards:**
- 
+
+   For additional inputs required for this mechanism see
+   :ref:`FMDM Surrogate Mechanism`.
+   
+	 
    SPECIFIC_SURFACE_AREA <double> <unit_string> (required for types GLASS, FMDM, FMDM_SURROGATE; semi-optional for type 
    CUSTOM; do not include for types DSNF and WIPP)
 
