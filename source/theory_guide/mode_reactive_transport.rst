@@ -516,32 +516,33 @@ Affinity Threshold
 An affinity threshold :math:`f` for precipitation may be introduced
 which only allows precipitation to occur if :math:`K_m Q_m > f > 1`.
 
-Surface Armoring
-^^^^^^^^^^^^^^^^
+.. 
+ Surface Armoring
+ ^^^^^^^^^^^^^^^^
 
-Surface armoring occurs when one mineral precipitates on top of another
-mineral, blocking that mineral from reacting. Thus suppose mineral
-:math:`{{\mathcal M}}_m` is being replaced by the secondary mineral
-:math:`{{\mathcal M}}_{m'}`. Blocking may be described
-phenomenologically by the surface area relation
+ Surface armoring occurs when one mineral precipitates on top of another
+ mineral, blocking that mineral from reacting. Thus suppose mineral
+ :math:`{{\mathcal M}}_m` is being replaced by the secondary mineral
+ :math:`{{\mathcal M}}_{m'}`. Blocking may be described
+ phenomenologically by the surface area relation
 
-.. math::
-   :label: surface_armoring
+ .. math::
+    :label: surface_armoring
    
-   a_m(t) = a_m^0 \left(\frac{\varphi_m}{\varphi_m^0}\right)^n  \left(\frac{1-\varphi}{1-\varphi_0}\right)^{n'} \left(\frac{\varphi_{m'}^c - \varphi_{m'}}{\varphi_{m'}^c}\right)^{n''},
+    a_m(t) = a_m^0 \left(\frac{\varphi_m}{\varphi_m^0}\right)^n  \left(\frac{1-\varphi}{1-\varphi_0}\right)^{n'} \left(\frac{\varphi_{m'}^c - \varphi_{m'}}{\varphi_{m'}^c}\right)^{n''},
+ 
+ for :math:`\varphi_{m'} < \varphi_{m'}^c`, and
 
-for :math:`\varphi_{m'} < \varphi_{m'}^c`, and
-
-.. math::
-   :label: dummy27
+ .. math::
+    :label: dummy27
+    
+    a_m = 0,
    
-   a_m = 0,
-   
 
-if :math:`\varphi_{m'}(t) \geq \varphi_{m'}^c`, where
-:math:`\varphi_{m'}^c` represents the critical volume fraction necessary
-for complete blocking of the reaction of mineral
-:math:`{{\mathcal M}}_m`.
+ if :math:`\varphi_{m'}(t) \geq \varphi_{m'}^c`, where
+ :math:`\varphi_{m'}^c` represents the critical volume fraction necessary
+  for complete blocking of the reaction of mineral
+ :math:`{{\mathcal M}}_m`.
 
 Sorption
 ~~~~~~~~

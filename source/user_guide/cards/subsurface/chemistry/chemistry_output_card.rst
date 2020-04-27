@@ -73,13 +73,18 @@ MOLARITY
 MOLALITY
  Printed concentration units are in molality (m).
 
+MINERAL_VOLUME_FRACTION
+ Outputs volume fractions for all minerals specified in the OUTPUT block.
+
+MINERAL_RATE
+ Outputs rates for all minerals specified in the OUTPUT block.
+
 MINERAL_SATURATION_INDEX
  Outputs saturation indices for all minerals specified in the OUTPUT block 
- (including any equilibrium minerals).  If one lists 'ALL', saturation indices 
- for all minerals (including those under the MINERAL block) will be printed.
+ (including any equilibrium minerals).
 
 MINERAL_SURFACE_AREA
- Outputs mineral specific surface areas for all minerals specified in OUTPUT block. If one lists 'ALL', surface areas for all minerals will be printed.
+ Outputs mineral specific surface areas for all minerals specified in OUTPUT block.
 
 AGE
  Groundwater age is printed.

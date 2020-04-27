@@ -207,6 +207,13 @@ num_errors=$((num_errors + $?))
 
 # ---------------------------------------------------------------------------- #
 # ---------------------------------------------------------------------------- #
+# CHEMISTRY options
+# ---------------------------------------------------------------------------- #
+# RT
+python3 ./tools/generate_tmp.py RT \
+$CARDS_DIR/subsurface/chemistry/chemistry_options.tmp \
+$CARDS_DIR/raw_txt/chemistry/chemistry_options.txt
+num_errors=$((num_errors + $?))
 
 if [ $num_errors -ne 0 ]; then
   exit 1

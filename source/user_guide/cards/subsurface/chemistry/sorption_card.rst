@@ -17,6 +17,10 @@ SORPTION
 Optional Cards:
 ---------------
 
+..
+ DYNAMIC_KD_REACTIONS
+  To be documented.
+
 :ref:`ion-exchange-rxn-card`
  Sorption defined through ion exchange reactions.
 
@@ -25,6 +29,12 @@ Optional Cards:
 
 :ref:`surface-complexation-rxn-card`
  Opens surface complexation reaction block.
+
+.. 
+ Cards to remain undocumented at this point.
+ JUMPSTART_KINETIC_SORPTION
+ NO_CHECKPOINT_KINETIC_SORPTION
+ NO_RESTART_KINETIC_SORPTION
 
 
 Examples

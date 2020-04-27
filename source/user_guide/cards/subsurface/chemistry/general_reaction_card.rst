@@ -18,12 +18,12 @@ REACTION <string>
 Optional Cards:
 ---------------
 FORWARD_RATE <float>
- Rate constant for n\ :sup:`th`\ -order forward reaction [kg-water\ :sup:`(n-1)`\ 
- /mol\ :sup:`(n-1)` \-sec]
+ Rate constant for n\ :sup:`th`\ -order forward reaction 
+ [kg-water\ :sup:`(n-1)`\ /mol\ :sup:`(n-1)` \-sec]
 
 BACKWARD_RATE <float>
- Rate constant for n\ :sup:`th`\ -order reverse reaction [kg-water\ :sup:`(n-1)`\ 
- /mol\ :sup:`(n-1)` \-sec]
+ Rate constant for n\ :sup:`th`\ -order reverse reaction 
+ [kg-water\ :sup:`(n-1)`\ /mol\ :sup:`(n-1)` \-sec]
 
 Examples:
 ---------

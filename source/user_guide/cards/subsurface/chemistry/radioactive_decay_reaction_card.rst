@@ -17,21 +17,19 @@ REACTION <string>
  Reaction equation.  Only one reactant species may be listed on the left side of 
  the equation (i.e. or on the right side with a negative stoichiometry). The 
  reactant's stoichiometry is fixed at 1.0. The forward rate is applied to that 
- one species as a first order rate constant [1/sec].  Multiple species are 
+ one species as a first order rate constant.  Multiple species are 
  supported as daughter products on the right hand side and stoichiometries 
  can be specified.
 
 RATE_CONSTANT or HALF_LIFE (but not both):
 
-  RATE_CONSTANT <float> <unit_string>
+  RATE_CONSTANT <float> <optional units_string>
     Rate constant for 1st-order decay reaction [1/sec, default units].  
-    The rate constant may be calculated from -ln(0.5) / half-life.
+    The rate constant may be calculated from -ln(0.5) / half-life. 
+    (default units [1/sec])
 
-  HALF_LIFE <float> <unit_string>
-    Half life of species [sec, default units].
-
-  *Note that rate constant or half life units other than sec or 1/sec may be* 
-  *specified.*
+  HALF_LIFE <float> <optional units_string>
+    Half life of species. (default units [sec])
 
 Examples:
 ---------

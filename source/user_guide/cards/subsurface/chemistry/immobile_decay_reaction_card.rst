@@ -16,13 +16,11 @@ SPECIES_NAME <string>
 
 RATE_CONSTANT or HALF_LIFE (but not both)
 
-  RATE_CONSTANT <float>
-   First-order rate constant [1/sec].
+  RATE_CONSTANT <float> <optional units_string>
+   First-order rate constant. (default units [1/sec])
   
-  HALF_LIFE <float>
-   Half life of species [sec].
-
-*Note that rate constant or half life units other than sec or 1/sec may be specified.*
+  HALF_LIFE <float> <optional units_string>
+   Half life of species. (default units [sec])
 
 Examples:
 ---------

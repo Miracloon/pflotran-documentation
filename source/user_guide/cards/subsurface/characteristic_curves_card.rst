@@ -5,7 +5,7 @@ Back to :ref:`card-index`
 CHARACTERISTIC_CURVES
 =====================
 Specifies the characteristic curves (e.g. relative permeability and saturation functions and associated parameters) to be associated with a material property. 
-**This card is currently only supported for the GENERAL, RICHARDS, TH(non-ice) and WIPP_FLOW flow modes. The** :ref:`saturation-function-card` **card should be used in all other flow modes.**
+**This card is currently only supported for the GENERAL, HYDRATE, RICHARDS, TH (non-ice) and WIPP_FLOW flow modes. The** :ref:`saturation-function-card` **card should be used in all other flow modes.**
 
 Required Blocks and Cards:
 **************************
@@ -167,8 +167,8 @@ PERMEABILITY_FUNCTION <string>
   :ref:`relative-permeability-functions-general`.
   (Note: BC = Brooks Corey; VG = van Genuchten)
 
-  One of the following cards are required within the liquid phase
-  PERMEABILITY_FUNCTION block:
+  Supported liquid phase PERMEABILITY_FUNCTIONs (along with their 
+  required cards):
   
   * MUALEM_BC_LIQ (:ref:`see QA plot <bcm-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
@@ -191,6 +191,42 @@ PERMEABILITY_FUNCTION <string>
   * MODIFIED_KOSUGI_LIQ (:ref:`see QA plot <mk-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
      + SIGMAZ
+
+
+  Supported gas phase PERMEABILITY_FUNCTIONs (along with their 
+  required cards):
+  
+  * MUALEM_BC_GAS (:ref:`see QA plot <bcm-rel-perm>`)
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+     + LAMBDA
+  * BURDINE_BC_GAS (:ref:`see QA plot <bcb-rel-perm>`)
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+     + LAMBDA
+  * MUALEM_LINEAR_GAS (:ref:`see QA plot <lm-rel-perm>`)
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+     + MAX_CAPILLARY_PRESSURE
+     + ALPHA
+  * BURDINE_LINEAR_LIQ (:ref:`see QA plot <lb-rel-perm>`)
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+  * MUALEM_VG_GAS (:ref:`see QA plot <vgm-rel-perm>`)
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+     + M
+  * BURDINE_VG_GAS (:ref:`see QA plot <vgb-rel-perm>`)
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+     + M
+  * MODIFIED_KOSUGI_GAS (:ref:`see QA plot <mk-rel-perm>`)
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+     + SIGMAZ
+
+  WIPP-specific liquid and gas phase PERMEABILITY_FUNCTIONs:
+
   * BRAGFLO_KRP1_LIQ (:ref:`see QA plot <krp1-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
      + GAS_RESIDUAL_SATURATION
@@ -223,38 +259,6 @@ PERMEABILITY_FUNCTION <string>
      + GAS_RESIDUAL_SATURATION
      + LAMBDA
 
-
-  One of the following cards are required within the gas phase
-  PERMEABILITY_FUNCTION block:
-  
-  * MUALEM_BC_GAS (:ref:`see QA plot <bcm-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
-     + GAS_RESIDUAL_SATURATION
-     + LAMBDA
-  * BURDINE_BC_GAS (:ref:`see QA plot <bcb-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
-     + GAS_RESIDUAL_SATURATION
-     + LAMBDA
-  * MUALEM_LINEAR_GAS (:ref:`see QA plot <lm-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
-     + GAS_RESIDUAL_SATURATION
-     + MAX_CAPILLARY_PRESSURE
-     + ALPHA
-  * BURDINE_LINEAR_LIQ (:ref:`see QA plot <lb-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
-     + GAS_RESIDUAL_SATURATION
-  * MUALEM_VG_GAS (:ref:`see QA plot <vgm-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
-     + GAS_RESIDUAL_SATURATION
-     + M
-  * BURDINE_VG_GAS (:ref:`see QA plot <vgb-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
-     + GAS_RESIDUAL_SATURATION
-     + M
-  * MODIFIED_KOSUGI_GAS (:ref:`see QA plot <mk-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
-     + GAS_RESIDUAL_SATURATION
-     + SIGMAZ
   * BRAGFLO_KRP1_GAS (:ref:`see QA plot <krp1-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
      + GAS_RESIDUAL_SATURATION
@@ -287,11 +291,9 @@ PERMEABILITY_FUNCTION <string>
      + GAS_RESIDUAL_SATURATION
      + LAMBDA
 
-
   The parameters LAMBDA, M, MAX_CAPILLARY_PRESSURE, LIQUID_RESIDUAL_SATURATION,
   GAS_RESIDUAL_SATURATION, TOLC, SIGMAZ, and SMOOTH are defined below under
   :ref:`parameter-definitions`.
-
 
 .. _parameter-definitions:
 

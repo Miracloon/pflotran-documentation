@@ -11,33 +11,34 @@ PREFACTOR
 Specifies coefficients for defining prefactors in mineral 
 precipitation-dissolution reactions.
 
-.. image:: images/prefactor.jpg
-   :height: 100
+.. math::
+   {{{\mathcal P}}}_{ml} = \prod_i\dfrac{\big(\gamma_i m_i\big)^{{{\alpha}}_{il}^m}}{1+K_{il}^m\big(\gamma_i m_i\big)^{{{\beta}}_{il}^m} }
 
 Required Cards:
 ---------------
 
-RATE_CONSTANT <float>
- Kinetic rate constant [mol/m\ :sup:`2`\/sec].  (See 
- :ref:`mineral-kinetics-card`)
-
 PREFACTOR_SPECIES <string>
  Name of prefactor species. Appears as subscripts *j* and *i* in above equation corresponding to primary and secondary species.
+
+RATE_CONSTANT <float> <optional units_string>
+ Kinetic rate constant associated with prefactor species
+ (see :ref:`mineral-kinetics-card`).
+ (default units [mol/m\ :sup:`2`\/sec])
 
 Optional Cards:
 ---------------
 
 ACTIVATION_ENERGY <float>
- Activation energy for rate constant :math:`k_{ml}`.
+ Activation energy associated with rate constant :math:`k_{ml}`.
 
 ALPHA <float>
- :math:`\alpha_{jl}^m` parameter in above equation.
+ :math:`\alpha_{il}^m` parameter in above equation.
 
 BETA <float>
- :math:`\beta_{jl}^m` parameter in above equation.
+ :math:`\beta_{il}^m` parameter in above equation.
 
 ATTENUATION_COEF <float>
- :math:`K_{jl}` \ in above equation.
+ :math:`K_{il}^m` \ in above equation.
 
 Examples (data from Palandri and Kharaka (2004))
 ------------------------------------------------
@@ -68,5 +69,5 @@ Examples (data from Palandri and Kharaka (2004))
         /
       /
     /
-  ...
+    ...
   END

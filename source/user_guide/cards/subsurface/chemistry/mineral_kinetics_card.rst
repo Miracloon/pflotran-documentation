@@ -13,7 +13,7 @@ The rate law is defined through transition state theory, as detailed in section
 
 .. math::
    
-   I_m = -a_m\Big(\sum_l k_{ml}(T) {\mathcal P}_{ml}\Big) \Big|1-\big(K_m Q_m\big)^{1/\sigma_m}\Big|^{\beta_m} {\rm sign}(1-K_mQ_m),
+   I_m = -a_m\Big(\sum_l k_{ml}(T) {\mathcal P}_{ml}\Big) \Big|1-\big(K_m Q_m\big)^{\left(\frac{1}{\lambda_m\sigma_m}\right)}\Big|^{\beta_m} {\rm sign}(1-K_mQ_m),
 
 
 where a positive value corresponds to precipitation and a negative value to dissolution, and where
@@ -30,6 +30,8 @@ where a positive value corresponds to precipitation and a negative value to diss
 
  :math:`\sigma_m` = Temkin number (default is 1)
 
+ :math:`\lambda_m` = mineral scaling factor (default is 1)
+
  :math:`\beta_m` = affinity power (default is 1)
  
  :math:`k_{ml}` = rate constant 
@@ -42,39 +44,56 @@ Required Cards:
 MINERAL_KINETICS
  Opens the block.
 
-Optional Cards:
----------------
-
 <string>
   Specifies mineral name.
 
-RATE_CONSTANT <float>
- Kinetic rate constant [mol/m\ :sup:`2`\-sec]. If negative, then raised to power 10 (e.g. -12.d0 is converted to :math:`10^{-12}`)
+RATE_CONSTANT <float> <optional units_string>
+ Kinetic rate constant. 
+ If negative, then raised to power 10 (e.g. -12.d0 is converted to :math:`10^{-12}`) 
+ (default units [mol/m\ :sup:`2`\-sec])
+
+Optional Cards:
+---------------
 
 ACTIVATION_ENERGY <float>
- If specified [J/mol], used in the prefactor calculations for temperature specific rates 
+ If specified, used in the prefactor calculations for temperature specific rates.
  (Arrhenius)
+ [J/mol]
 
 AFFINITY_THRESHOLD <float>
  If specified, rate is only calculated if :math:`K_m Q_m \geq` threshold and sign < 0 corresponding to dissolution.
 
-RATE_LIMITER <float>
- Limiting reaction rate factor (see Eqn. :eq:`dummy19` in Theory Guide, Mode: Reactive Transport for details).
+AFFINITY_POWER
+ :math:`\beta_m` in equation above.
+
+..
+ ARMOR_MINERAL
+ ARMOR_PWR
+ ARMOR_CRIT_VOL_FRAC
 
 IRREVERSIBLE
  Flag indicating the reaction is irreversible
 
-SURFACE_AREA_POROSITY_POWER <float>
- Exponent in equation for transient mineral surface area calculated as a 
- function of porosity, :math:`\phi`:
- :math:`A_m = A_m^0 (\phi/\phi_0)^n`, :math:`n` = SURFACE_AREA_POROSITY_POWER.
-
-SURFACE_AREA_VOL_FRAC_POWER <float>
- Exponent in equation for transient mineral surface area calculated as a function of the mineral volume fraction :math:`\phi_m`:  
- :math:`A_m = A_m^0 (\phi_m/\phi_m^0)^n`, :math:`n` = SURFACE_AREA_VOL_FRAC_POWER. Note that the volume fraction power can be applied only if :math:`\phi_m^0 > 0` corresponding to primary minerals.
+MINERAL_SCALE_FACTOR
+ :math:`\lambda_m` in equation above.
 
 :ref:`prefactor-card`
  Parameters for reaction rate prefactors
+
+RATE_LIMITER <float>
+ Limiting reaction rate factor (see Eqn. :eq:`dummy19` in Theory Guide, Mode: Reactive Transport for details).
+
+SURFACE_AREA_POROSITY_POWER <float>
+ Exponent in equation for transient mineral surface area calculated as a 
+ function of porosity, :math:`\phi`:
+ :math:`a_m = a_m^0 (\phi/\phi_0)^n`, :math:`n` = SURFACE_AREA_POROSITY_POWER.
+
+SURFACE_AREA_VOL_FRAC_POWER <float>
+ Exponent in equation for transient mineral surface area calculated as a function of the mineral volume fraction :math:`\phi_m`:  
+ :math:`a_m = a_m^0 (\phi_m/\phi_m^0)^n`, :math:`n` = SURFACE_AREA_VOL_FRAC_POWER. Note that the volume fraction power can be applied only if :math:`\phi_m^0 > 0` corresponding to primary minerals.
+
+TEMKIN_CONSTANT
+ Sigma in equation above.
 
 Examples
 --------

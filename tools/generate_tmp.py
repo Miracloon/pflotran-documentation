@@ -35,6 +35,8 @@ for filename in filenames:
         if len(line.rstrip()) > 0 and not line.startswith(' '):
             if list_ and not skip_card:
                 keyword = list_[0]
+                if keyword.startswith(':REF:`'):
+                    keyword = keyword[6:]
                 list_.append(strings)
                 if keyword in basic_dictionary or keyword in expert_dictionary:
                     sys.exit('Key {} already exists in Python dictionary. '.
@@ -81,7 +83,7 @@ for filename in filenames:
             else:
                 sys.exit('Unrecognized tag: {} in {}'.format(keyword,filename))
         else:
-            strings.append(line.strip())
+            strings.append(line.rstrip())
     if len(strings) > 0:
         if list_ and not skip_card:
             list_.append(strings)
@@ -103,7 +105,7 @@ for entry in sorted(basic_dictionary):
     f.write('{}\n'.format(basic_dictionary[entry][1].strip()))
     strings = basic_dictionary[entry][2]
     for string in strings:
-        f.write(' {}\n'.format(string.strip()))
+        f.write('{}\n'.format(string))
 if len(expert_dictionary) > 0:
     if len(basic_dictionary) > 0:
         f.write('\n--------------------\n')
