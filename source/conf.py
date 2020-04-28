@@ -37,7 +37,7 @@ extensions = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -53,8 +53,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'PFLOTRAN Documentation'
-copyright = u'2016, PFLOTRAN'
-author = u'Jennifer M Frederick'
+copyright = u'2020, PFLOTRAN'
+author = u'Glenn E Hammond'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -183,7 +183,7 @@ html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
 #
-html_sidebars = {'**': ['localtoc.html','relations.html','searchbox.html']}
+html_sidebars = {'**': ['globaltoc.html','localtoc.html','relations.html','searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
@@ -196,7 +196,7 @@ html_sidebars = {'**': ['localtoc.html','relations.html','searchbox.html']}
 
 # If false, no index is generated.
 
-html_use_index = False
+html_use_index = True
 
 # If true, the index is split into individual pages for each letter.
 #
@@ -204,7 +204,7 @@ html_split_index = False
 
 # If true, links to the reST sources are added to the pages.
 #
-html_show_sourcelink = False
+html_show_sourcelink = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 #
@@ -269,7 +269,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'PFLOTRANdocumentation.tex', u'PFLOTRAN Documentation',
-     u'Peter C. Lichtner, \\and Glenn E. Hammond, \\and Chuan Lu, \\and Satish Karra, \\and Guatam Bisht, \\and Benjamin Andre, \\and Richard Mills, \\and Jitu Kumar, \\and Jennifer M Frederick', 
+     u'Peter C. Lichtner, \\and Glenn E. Hammond, \\and Chuan Lu, \\and Satish Karra, \\and Guatam Bisht, \\and Benjamin Andre, \\and Richard Mills, \\and Jitu Kumar, \\and Jennifer M. Frederick', 
      'manual'),
 ]
 

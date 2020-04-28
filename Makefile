@@ -49,7 +49,7 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 .PHONY: html
-html:
+html: run_rst_compiling_scripts
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
@@ -135,7 +135,7 @@ latex:
 	      "(use \`make latexpdf' here tosudo do that automatically)."
 
 .PHONY: latexpdf
-latexpdf:
+latexpdf: run_rst_compiling_scripts
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Running LaTeX files through pdflatex..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
@@ -223,3 +223,13 @@ dummy:
 	$(SPHINXBUILD) -b dummy $(ALLSPHINXOPTS) $(BUILDDIR)/dummy
 	@echo
 	@echo "Build finished. Dummy builder generates no files."
+
+.PHONY: run_rst_compiling_scripts
+run_rst_compiling_scripts: clean-tmps
+	@echo "Building automatically-generated .rst files."
+	@./compile_rst_files.sh || (echo "\n ERROR $$? python scripts that build .rst files failed.\n"; exit 1)
+	@echo ".rst file generation successful.\n"
+
+clean-tmps :
+	@-find . -type f -name '*.tmp' -print0 | xargs -0 -r rm
+

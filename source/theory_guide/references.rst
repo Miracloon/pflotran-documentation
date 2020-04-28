@@ -21,6 +21,9 @@ Geosciences 11:103?115 DOI 10.1007/s10596-006-9033-7.
 Fenghour, A., W.A. Wakeham, and V. Vesovic (1998) The viscosity of
 carbon dioxide, J. Phys. Chem. Ref. Data, 27(1), 31–44.
 
+Gaines, G.L. and Thomas, H.C. (1953) Adsorption studies on clay minerals. II. 
+A formulation of the thermodynamics of exchange adsoprtion, J. Chemical Physics 21, 714--718.
+
 Goode, D.J. (1996) Direct simulation of groundwater age, Water Resources
 Research, 32, 289–296.
 

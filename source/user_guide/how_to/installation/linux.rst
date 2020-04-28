@@ -34,7 +34,7 @@ Installation Instructions
 
         git clone https://gitlab.com/petsc/petsc petsc
         cd petsc
-        git checkout v3.11.3
+        git checkout v3.13
 
 
     **NOTE:PFLOTRAN currently uses a snapshot of PETSc 'maint' (release)**
@@ -110,6 +110,7 @@ Installation Instructions
  ::
 
   cd pflotran/src/pflotran
+  git checkout v3.0-beta
   make pflotran
 
 .. _Git: http://git-scm.com/

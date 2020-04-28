@@ -4,7 +4,7 @@ Mode: ``REACTIVE TRANSPORT`` (Keyword ``CHEMISTRY``)
 ----------------------------------------------------
 
 The governing mass conservation equations for the geochemical transport
-mode for a multiphase system written in terms of a set of independent
+mode for a multiphase system is written in terms of a set of independent
 aqueous primary or basis species with the form
 
 .. math::
@@ -22,7 +22,10 @@ and
 
 for minerals with molar volume :math:`\overline{V}_m`, mineral reaction
 rate :math:`I_m` and mineral volume fraction :math:`\varphi_m`
-referenced to an REV. Sums over :math:`{{\alpha}}` in
+referenced to an REV. 
+The term involving  :math:`S_j` describes sorptive processes considered in more
+detail below.
+Sums over :math:`{{\alpha}}` in
 Eqn. :eq:`rteqn` are over all fluid phases in the system.
 The quantity :math:`\Psi_j^{{\alpha}}` denotes the total concentration
 of the :math:`j`\ th primary species :math:`{{\mathcal A}}_j^{\rm pri}`
@@ -33,7 +36,7 @@ in the :math:`{{\alpha}}`\ th fluid phase defined by
    
    \Psi_j^{{\alpha}}= \delta_{l{{\alpha}}}^{} C_j^l + \sum_{i=1}^{N_{\rm sec}}\nu_{ji}^{{{\alpha}}} C_i^{{\alpha}},
 
-In this equation the subscript :math:`l` represents the aqueous
+In this equation the index :math:`l` represents the aqueous
 electrolyte phase from which the primary species are chosen. The
 secondary species concentrations :math:`C_i^{{\alpha}}` are obtained
 from mass action equations corresponding to equilibrium conditions of
@@ -75,7 +78,7 @@ and ionic radius :math:`\stackrel{\circ}{a}_k`, and ionic strength
 .. math::
    :label: dummy5
    
-   I = \frac{1}{2}\sum_{j=1}^{N_c} m_j^2 + \frac{1}{2}\sum_{i=1}^{N_{\rm sec}} m_i^2,
+   I = \frac{1}{2}\sum_{j=1}^{N_c} m_j z_j^2 + \frac{1}{2}\sum_{i=1}^{N_{\rm sec}} m_i z_i^2,
 
 for molality :math:`m_j` and :math:`m_i` of primary and secondary
 species, respectively (note:
@@ -318,7 +321,7 @@ and
 where the super/subscript 0 denotes initial values, with a typical value
 for :math:`n` of :math:`2/3` reflecting the surface to volume ratio.
 Note that this relation only applies to primary minerals
-:math:`(\varphi_m^0\ne 0)`. The quantity :math:`\varphi_c` refers to a
+:math:`(\varphi_m^0 > 0)`. The quantity :math:`\varphi_c` refers to a
 critical porosity below which the permeability is assumed to be constant
 with scale factor :math:`f_{\rm min}`.
 
@@ -386,7 +389,7 @@ using the same grain density :math:`\eta_m` by assumption. Taking their ratio th
 
    A_m = A_m^0 \left(\frac{\phi_m}{\phi_m^0}\right)^{2/3}.
 
-It should be noted, however, that this result only applies to primary minerals because of the restriction :math:`\phi_m^0 \ne 0`.
+It should be noted, however, that this result only applies to primary minerals because of the restriction :math:`\phi_m^0 > 0`.
 
 In PFLOTRAN the solid is represented as an aggregate of minerals
 described quantitatively by specifying its porosity :math:`\varphi` and
@@ -513,51 +516,312 @@ Affinity Threshold
 An affinity threshold :math:`f` for precipitation may be introduced
 which only allows precipitation to occur if :math:`K_m Q_m > f > 1`.
 
-Surface Armoring
-^^^^^^^^^^^^^^^^
+.. 
+ Surface Armoring
+ ^^^^^^^^^^^^^^^^
 
-Surface armoring occurs when one mineral precipitates on top of another
-mineral, blocking that mineral from reacting. Thus suppose mineral
-:math:`{{\mathcal M}}_m` is being replaced by the secondary mineral
-:math:`{{\mathcal M}}_{m'}`. Blocking may be described
-phenomenologically by the surface area relation
+ Surface armoring occurs when one mineral precipitates on top of another
+ mineral, blocking that mineral from reacting. Thus suppose mineral
+ :math:`{{\mathcal M}}_m` is being replaced by the secondary mineral
+ :math:`{{\mathcal M}}_{m'}`. Blocking may be described
+ phenomenologically by the surface area relation
 
-.. math::
-   :label: surface_armoring
+ .. math::
+    :label: surface_armoring
    
-   a_m(t) = a_m^0 \left(\frac{\varphi_m}{\varphi_m^0}\right)^n  \left(\frac{1-\varphi}{1-\varphi_0}\right)^{n'} \left(\frac{\varphi_{m'}^c - \varphi_{m'}}{\varphi_{m'}^c}\right)^{n''},
+    a_m(t) = a_m^0 \left(\frac{\varphi_m}{\varphi_m^0}\right)^n  \left(\frac{1-\varphi}{1-\varphi_0}\right)^{n'} \left(\frac{\varphi_{m'}^c - \varphi_{m'}}{\varphi_{m'}^c}\right)^{n''},
+ 
+ for :math:`\varphi_{m'} < \varphi_{m'}^c`, and
 
-for :math:`\varphi_{m'} < \varphi_{m'}^c`, and
-
-.. math::
-   :label: dummy27
+ .. math::
+    :label: dummy27
+    
+    a_m = 0,
    
-   a_m = 0,
-   
 
-if :math:`\varphi_{m'}(t) \geq \varphi_{m'}^c`, where
-:math:`\varphi_{m'}^c` represents the critical volume fraction necessary
-for complete blocking of the reaction of mineral
-:math:`{{\mathcal M}}_m`.
+ if :math:`\varphi_{m'}(t) \geq \varphi_{m'}^c`, where
+ :math:`\varphi_{m'}^c` represents the critical volume fraction necessary
+  for complete blocking of the reaction of mineral
+ :math:`{{\mathcal M}}_m`.
 
 Sorption
 ~~~~~~~~
 
-Sorption reactions incorporated into PFLOTRAN consist of ion exchange
-and surface complexation reactions for both equilibrium and multirate
-formulations.
+Sorption reactions incorporated into PFLOTRAN consist of specifying a sorption
+isotherm, ion exchange reactions, and equilibrium and multirate formulations of surface 
+complexation reactions.
+
+Sorption Isotherm
+~~~~~~~~~~~~~~~~~
+
+The distribution coefficient :math:`\tilde K_j^D` [m\ :math:`^3`
+kg\ :math:`^{-1}`] is customarily defined as the ratio of sorbed to
+aqueous concentrations with the sorbed concentration referenced to the
+mass of solid as given by
+
+.. math::
+   :label: dummy71
+   
+   \tilde K_j^D &= \frac{M_j^s/M_s}{M_j^{\rm aq}/V_l},\\
+   &= \frac{N_j^s/M_s}{N_j^{\rm aq}/V_l},\\
+   &= \frac{\tilde S_j}{C_j} = \frac{1}{\rho_w}\frac{\tilde S_j}{m_j},
+
+where :math:`M_j^s = W_j N_j^s`, :math:`M_j^{\rm aq}=W_j N_j^{\rm aq}`,
+refers to the mass and number of moles of sorbed and aqueous solute
+related by the formula weight :math:`W_j` of the :math:`j`\ th species,
+:math:`M_s` refers to the mass of the solid, :math:`V_l` denotes the
+aqueous volume, :math:`\tilde S_j=N_j^s/M_s` [mol kg\ :math:`^{-1}`]
+represents the sorbed concentration referenced to the mass of solid,
+:math:`C_j=N_j^{\rm aq}/V_l` denotes molarity, and
+:math:`m_j=C_j/\rho_w` represents molality, where :math:`\rho_w` is the
+density of pure water.
+
+The distribution coefficient :math:`\tilde K_j^D` may be related to
+its dimensionless counterpart :math:`K_j^D` [—] defined by
+
+.. math::
+   :label: kdj
+   
+   K_j^D = \frac{N_j^s}{N_j^{\rm aq}} = \frac{N_j^s/V}{N_j^{\rm aq}/V}= \frac{1}{\varphi s_l}\frac{S_j}{C_j},
+   
+by writing
+
+.. math::
+   :label: dummy72
+   
+   K_j^D &= \frac{N_j^s}{M_s} \frac{M_s}{V_s} \frac{V_s}{V_p} \frac{V_p}{V_l} \frac{V_l}{N_j^{\rm aq}},\\
+   &= \rho_s \frac{1-\varphi}{\varphi s_l} \tilde K_j^D = \frac{\rho_b}{\varphi s_l} \tilde K_j^D,
+
+with grain density :math:`\rho_s=M_s/V_s`, bulk density
+:math:`\rho_b=(1-\varphi)\rho_s`, porosity :math:`\varphi=V_p/V`, and
+saturation :math:`s_l=V_l/V_p`.
+
+An alternative definition of the distribution coefficient denoted by
+:math:`\hat K_j^D` [kg m\ :math:`^{-3}`] is obtained by using
+molality to define the solute concentration and referencing the sorbed
+concentration to the bulk volume :math:`V`
+
+.. math::
+   :label: dummy73
+
+   \hat K_j^D = \frac{N_j^s/V}{N_j^{\rm aq}/M_w} = \frac{S_j}{m_j}.
+
+A sorption isotherm :math:`S_j` may be specified for any primary species
+:math:`{{\mathcal A}}_j` resulting in the transport equation
+
+.. math::
+   :label: dummy74
+   
+   \frac{\partial}{\partial t} \varphi s_l C_j + {\boldsymbol{\nabla}}\cdot{\boldsymbol{F}}_j = -\frac{\partial S_j}{\partial t},
+
+for a partially saturated medium. Substituting
+:math:`S_j=\varphi s_l K_j^D C_j` from Eqn. :eq:`kdj` and
+introducing the retardation :math:`{{{\mathcal R}}}_j` gives
+
+.. math::
+   :label: dummy75
+   
+   \frac{{{\partial}}}{{{\partial}}t} R_j \varphi s_l C_j + {\boldsymbol{\nabla}}\cdot{\boldsymbol{F}}_j = 0,
+
+with the retardation given by the alternative forms
+
+.. math::
+   :label: dummy76
+   
+   R_j &= 1 + K_j^D, \ \ \ \ \ \ (\text{dimensionless)},\\
+   &= 1+ \frac{\rho_b}{\varphi s_l} \tilde K_j^D, \ \ \ \ \ \ (\text{conventional}),\\
+   &= 1+ \frac{1}{\varphi s_l \rho_w} \hat K_j^D, \ \ \ \ \ \ (\text{molality-based}).
+
+Three distinct models are available for the sorption isotherm
+:math:`S_j` in PFLOTRAN:
+
+-  linear :math:`K_D` model:
+
+   .. math::
+      :label: linkd
+      
+      S_j = \varphi s_l K_j^D C_j = \hat K_j^D m_j,
+
+   with distribution coefficient :math:`\hat K_j^D`,
+
+-  Langmuir isotherm:
+
+   .. math::
+      :label: Langmuir
+      
+      S_j= \frac{K_j^L b_j^L C_j/ \rho_w}{1+K_j^L C_j/ \rho_w} = \frac{K_j^L b_j^L m_j}{1+K_j^L m_j},
+
+   with Langmuir coefficients :math:`K_j^L` and :math:`b_j^L`, and
+
+-  Freundlich isotherm:
+
+   .. math::
+      :label: Freundlich
+      
+      S_j = K_j^F \left(\frac{C_j}{\rho_w}\right)^{(1/n_j^F)}  = K_j^F \big(m_j\big)^{(1/n_j^F)},
+
+   with coefficients :math:`K_j^F` and :math:`n_j^F`.
 
 Ion Exchange
 ^^^^^^^^^^^^
+
+In PFLOTRAN ion exchange reactions are written in terms of a
+reference cation denoted by :math:`{\mathcal A}_j^{z_j+}` which appears on the
+right-hand side of the reaction
+
+.. math::
+   :label: ex1
+   
+   z_j^{} {\mathcal A}_i^{z_i+} + z_i^{} (\chi_{\alpha})_{z_j} {\mathcal A}_j {~\rightleftharpoons~} z_i^{} {\mathcal A}_j^{z_j+} + z_j^{} (\chi_{\alpha})_{z_i} {\mathcal A}_i,
+   
+
+with valencies :math:`z_j`, :math:`z_i` of cations
+:math:`{\mathcal A}_j^{z_j+}` and :math:`{\mathcal A}_i^{z_i+}`,
+respectively, and exchange site :math:`\chi_{{\alpha}}^-` on the solid
+surface. The cations :math:`{{\mathcal A}}_i^{z_i+}, \,i\ne j`
+represents all other cations besides the reference cation. The
+corresponding mass action equation is given by
+
+.. math::
+   :label: ionexmassact
+   
+   K_{ij}^{\alpha}= \left(\frac{\lambda_i^{{\alpha}}X_i^{{\alpha}}}{a_i}\right)^{z_j}
+   \left(\frac{a_j}{\lambda_j^{{\alpha}}X_j^{{\alpha}}}\right)^{z_i},
+
+with selectivity coefficient :math:`K_{ij}^{{\alpha}}`, solid phase
+activity coefficients :math:`\lambda_l^{{\alpha}}` (taken as unity in
+what follows), and mole fraction :math:`X_l^{{\alpha}}` of the
+:math:`l`\ th cation on site :math:`{{\alpha}}`. For :math:`N_c` cations
+participating in exchange reactions, there are :math:`N_c-1` independent
+reactions and thus :math:`N_c-1` independent selectivity coefficients.
+
+The exchange reactions may also be expressed as half reactions in the
+form
+
+.. math::
+   :label: dummy31
+   
+   z_j^{} \chi_{\alpha}^- + {\mathcal A}_j^{z_j+} {~\rightleftharpoons~}(\chi_{\alpha})_{z_j} {\mathcal A}_j^{},
+
+with corresponding selectivity coefficient :math:`k_j^{{\alpha}}`. The
+half-reaction selectivity coefficients are related to the
+:math:`K_{ij}^{{\alpha}}` by
+
+.. math::
+   :label: dummy32
+   
+   \log K_{ij}^{{\alpha}}= z_j^{} \log k_i^{{\alpha}}- z_i^{} \log k_j^{{\alpha}},
+
+or
+
+.. math::
+   :label: eqkij
+      
+   K_{ij}^{\alpha}= \frac{(k_i^{{\alpha}})^{z_j}}{(k_j^{\alpha})^{z_i}}.
+
+This relation is obtained by multiplying the half reaction for cation
+:math:`{\mathcal A}_j^{z_j+}` by the valence :math:`z_i` and subtracting from
+the half reaction for :math:`{\mathcal A}_i^{z_i+}` multiplied by
+:math:`z_j`, resulting in cancelation of the empty site
+:math:`X^{\alpha}`, to obtain the complete exchange reaction
+:eq:`ex1`. It should be noted that the coefficients
+:math:`k_l^{\alpha}` are not unique since, although there are
+:math:`N_c` coefficients in number, only :math:`N_c-1` are independent
+and one may be chosen arbitrarily, usually taken as unity. Thus for
+:math:`k_j^{\alpha}=1`, Eqn. :eq:`eqkij` yields
+
+.. math::
+   :label: dummy33
+   
+   k_i^{\alpha} = \big(K_{ij}^{\alpha}\big)^{1/z_j}.
+   
+
+An alternative form of reactions :eq:`ex1` often found in
+the literature is
+
+.. math::
+   :label: rxn2
+   
+   \frac{1}{z_i} \,{\mathcal A}_i^{z_i+} + \frac{1}{z_j}\, (\chi_{\alpha})_{z_j} {\mathcal A}_j {~\rightleftharpoons~}\frac{1}{z_j} \,{\mathcal A}_j^{z_j+} + \frac{1}{z_i}\, (\chi_{\alpha})_{z_i} {\mathcal A}_i,
+   
+
+obtained by dividing reaction :eq:`ex1` through by the
+product :math:`z_i z_j`. The mass action equations corresponding to
+reactions :eq:`rxn2` have the form
+
+.. math::
+   :label: dummy34
+   
+   {\tilde K}_{ij}^{\alpha}= \frac{({\tilde k}_i^{{\alpha}})^{1/z_i}}{({\tilde k}_j^{{\alpha}})^{1/z_j}} = \left(\frac{a_j}{X_j^{\alpha}}\right)^{1/z_j} \left(\frac{X_i^{\alpha}}{a_i}\right)^{1/z_i}.
+
+The selectivity coefficients corresponding to the two forms are related
+by the expression
+
+.. math::
+   :label: dummy35
+   
+   {\tilde K}_{ij}^{{\alpha}}= \left(K_{ij}^{{\alpha}}\right)^{1/(z_i z_j)},
+
+and similarly for :math:`k_i^{{\alpha}}`, :math:`k_j^{{\alpha}}`. When
+comparing with other formulations it is important that the user
+determine which form of the ion exchange reactions are being used and
+make the appropriate transformations.
+
+The governing equations incorporating homogeneous aqueous complexing reactions 
+combined with ion exchange reactions with reaction rates
+:math:`\Gamma_{ji}` and with reference cation :math:`{\mathcal A}_j` have the form
+
+.. math::
+   :label: refcat
+
+   \frac{\partial}{\partial t } \varphi \Psi_j + \vec\nabla\cdot\vec\Omega_j &= \sum_{i\ne j} z_i \Gamma_{ji},\\
+   \frac{\partial}{\partial t } \varphi \Psi_i + \vec\nabla\cdot\vec\Omega_i &= -z_j \Gamma_{ji},\\
+   \frac{\partial S_j}{\partial t} &= -\sum_{i\ne j} z_i \Gamma_{ji},\\
+   \frac{\partial S_i}{\partial t} &= z_j \Gamma_{ji}.
+
+The ion exchange reaction rates may be eliminated from the aqueous transport equations to yield
+
+.. math::
+   :label: refcateq
+
+   \frac{\partial}{\partial t } \varphi \Psi_j + \vec\nabla\cdot\vec\Omega_j &= -\frac{\partial S_j}{\partial t},\\
+   \frac{\partial}{\partial t } \varphi \Psi_i + \vec\nabla\cdot\vec\Omega_i &= -\frac{\partial S_i}{\partial t}.
+
+Assuming conditions of local equilibrium the ion exchange reaction rates may be eliminated and replaced by
+isotherms.
+
+It can be easily demonstrated that the governing equations conserve the exchange site density :math:`\omega` given by
+
+.. math::
+   :label: siteden
+
+   \omega = z_j S_j + \sum_{i\ne j} z_i S_i,
+
+assuming material properties are not altered by mineral precipitation/dissolution reactions. 
+It follows that
+
+.. math::
+   :label: sitecon
+
+   \frac{\partial\omega(\vec r, \, t)}{\partial t} &= z_j \sum_{i\ne j} z_i \Gamma_{ji} -
+   z_j \sum_{i \ne j} z_i \Gamma_{ji},\\
+   &=0.
+
+Since charge
+is conserved by the ion exchange reactions, the transport equations coupled to ion exchange must also
+conserve charge.
+
+Exchange Capacity
+^^^^^^^^^^^^^^^^^
 
 Ion exchange reactions may be represented either in terms of bulk- or
 mineral-specific rock properties. Changes in bulk sorption properties
 can be expected as a result of mineral reactions. However, only the
 mineral-based formulation enables these effects to be captured in the
 model. The bulk rock sorption site concentration
-:math:`\omega_{{\alpha}}`, in units of moles of sites per bulk sediment
-volume (mol/dm:math:`^3`), is related to the bulk cation exchange
-capacity :math:`Q_{{\alpha}}` (mol/kg) by the expression
+:math:`\omega_{{\alpha}}`, in units of moles of sites per bulk rock
+volume (mol/dm\ :math:`^3`), is related to the bulk cation exchange
+capacity :math:`Q_{\alpha}` (mol/kg) by the expression
 
 .. math::
    :label: dummy28
@@ -582,107 +846,8 @@ sorbed concentrations :math:`S_k^{{\alpha}}` by the expression
    \omega_{{\alpha}}^{} = \sum_k z_k^{} S_k^{{\alpha}}.
    
 
-In PFLOTRAN ion exchange reactions are expressed in the form with the
-reference cation denoted by :math:`{{\mathcal A}}_j^{z_j+}` on the
-right-hand side of the reaction
-
-.. math::
-   :label: ex1
-   
-   z_j^{} {{\mathcal A}}_i^{z_i+} + z_i^{} (\chi_{{\alpha}})_{z_j} {{\mathcal A}}_j {~\rightleftharpoons~}z_i^{} {{\mathcal A}}_j^{z_j+} + z_j^{} (\chi_{{\alpha}})_{z_i} {{\mathcal A}}_i,
-   
-
-with valencies :math:`z_j`, :math:`z_i` of cations
-:math:`{\mathcal A}_j^{z_j+}` and :math:`{\mathcal A}_i^{z_i+}`,
-respectively, and exchange site :math:`\chi_{{\alpha}}^-` on the solid
-surface. The cations :math:`{{\mathcal A}}_i^{z_i+}, \,i\ne j`
-represents all other cations besides the reference cation. The
-corresponding mass action equation is given by
-
-.. math::
-   :label: ionexmassact
-   
-   K_{ij}^{{\alpha}}= \left(\frac{\lambda_i^{{\alpha}}X_i^{{\alpha}}}{a_i}\right)^{z_j}
-   \left(\frac{a_j}{\lambda_j^{{\alpha}}X_j^{{\alpha}}}\right)^{z_i},
-
-with selectivity coefficient :math:`K_{ij}^{{\alpha}}`, solid phase
-activity coefficients :math:`\lambda_l^{{\alpha}}` (taken as unity in
-what follows), and mole fraction :math:`X_l^{{\alpha}}` of the
-:math:`l`\ th cation of site :math:`{{\alpha}}`. For :math:`N_c` cations
-participating in exchange reactions, there are :math:`N_c-1` independent
-reactions and thus :math:`N_c-1` independent selectivity coefficients.
-
-The exchange reactions may also be expressed as half reactions in the
-form
-
-.. math::
-   :label: dummy31
-   
-   z_j^{} \chi_{{\alpha}}^- + {{\mathcal A}}_j^{z_j+} {~\rightleftharpoons~}(\chi_{{\alpha}})_{z_j} {{\mathcal A}}_j^{},
-
-with corresponding selectivity coefficient :math:`k_j^{{\alpha}}`. The
-half-reaction selectivity coefficients are related to the
-:math:`K_{ij}^{{\alpha}}` by
-
-.. math::
-   :label: dummy32
-   
-   \log K_{ij}^{{\alpha}}= z_j^{} \log k_i^{{\alpha}}- z_i^{} \log k_j^{{\alpha}},
-
-or
-
-.. math::
-   :label: eqkij
-      
-   K_{ij}^{{\alpha}}= \frac{(k_i^{{\alpha}})^{z_j}}{(k_j^{{\alpha}})^{z_i}}.
-
-This relation is obtained by multiplying the half reaction for cation
-:math:`{{\mathcal A}}_j` by the valence :math:`z_i` and subtracting from
-the half reaction for :math:`{{\mathcal A}}_i` multiplied by
-:math:`z_j`, resulting in cancelation of the empty site
-:math:`X^{{\alpha}}`, to obtain the complete exchange reaction
-:eq:`ex1`. It should be noted that the coefficients
-:math:`k_l^{{\alpha}}` are not unique since, although there are
-:math:`N_c` coefficients in number, only :math:`N_c-1` are independent
-and one may be chosen arbitrarily, usually taken as unity. Thus for
-:math:`k_j^{{\alpha}}=1`, Eqn. :eq:`eqkij` yields
-
-.. math::
-   :label: dummy33
-   
-   k_i^{{\alpha}}= \big(K_{ij}^{{\alpha}}\big)^{1/z_j}.
-   
-
-An alternative form of reactions :eq:`ex1` often found in
-the literature is
-
-.. math::
-   :label: rxn2
-   
-   \frac{1}{z_i} \,{{\mathcal A}}_i + \frac{1}{z_j}\, (\chi_{{\alpha}})_{z_j} {{\mathcal A}}_j {~\rightleftharpoons~}\frac{1}{z_j} \,{{\mathcal A}}_j + \frac{1}{z_i}\, (\chi_{{\alpha}})_{z_i} {{\mathcal A}}_i,
-   
-
-obtained by dividing reaction :eq:`ex1` through by the
-product :math:`z_i z_j`. The mass action equations corresponding to
-reactions :eq:`rxn2` have the form
-
-.. math::
-   :label: dummy34
-   
-   {\widetilde K}_{ij}^{{\alpha}}= \frac{({\widetilde k}_i^{{\alpha}})^{1/z_i}}{({\widetilde k}_j^{{\alpha}})^{1/z_j}} = \left(\frac{a_j}{X_j^{{\alpha}}}\right)^{1/z_j} \left(\frac{X_i^{{\alpha}}}{a_i}\right)^{1/z_i}.
-
-The selectivity coefficients corresponding to the two forms are related
-by the expression
-
-.. math::
-   :label: dummy35
-   
-   {\widetilde K}_{ij}^{{\alpha}}= \left(K_{ij}^{{\alpha}}\right)^{1/(z_i z_j)},
-
-and similarly for :math:`k_i^{{\alpha}}`, :math:`k_j^{{\alpha}}`. When
-comparing with other formulations it is important that the user
-determine which form of the ion exchange reactions are being used and
-make the appropriate transformations.
+Selectivity Coefficient Relations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The selectivity coefficients satisfy the relations
 
@@ -718,14 +883,14 @@ reference cation from :math:`{{\mathcal A}}_j^{z_j+}` to
 .. math::
    :label: dummy39
    
-   \widetilde K_{jk}^{{\alpha}}= \big(\widetilde K_{kj}^{{\alpha}}\big)^{-1},
+   \tilde K_{jk}^{\alpha} = \big(\tilde K_{kj}^{\alpha}\big)^{-1},
 
 and
 
 .. math::
    :label: dummy40
    
-   \widetilde K_{ik}^{{\alpha}}= \widetilde K_{ij}^{{\alpha}}\, \widetilde K_{jk}^{{\alpha}}.
+   \tilde K_{ik}^{{\alpha}}= \tilde K_{ij}^{{\alpha}}\, \tilde K_{jk}^{{\alpha}}.
 
 This latter relation follows from adding the two reactions
 
@@ -742,7 +907,7 @@ to give
    
    \frac{1}{z_i} \,{{\mathcal A}}_i + \frac{1}{z_k}\, (\chi_{{\alpha}})_{z_k} {{\mathcal A}}_k {~\rightleftharpoons~}\frac{1}{z_k} \,{{\mathcal A}}_k + \frac{1}{z_i}\, (\chi_{{\alpha}})_{z_i} {{\mathcal A}}_i,
 
-with :math:`{{\mathcal A}}_k^{z_k+}` as reference species.
+with :math:`{{\mathcal A}}_k^{z_k+}` as reference cation.
 
 In terms of the selectivity coefficients :math:`K_{ij}^{{\alpha}}` it
 follows that
@@ -759,15 +924,15 @@ or
    
    K_{ik}^{{\alpha}}= \big(K_{ij}^{{\alpha}}\big)^{z_k /z_j} \big(K_{jk}^{{\alpha}}\big)^{z_i/ z_j}.
 
-In terms of the coefficients :math:`k_i^{{\alpha}}` and
+In terms of the coefficients :math:`k_i^{\alpha}` and
 :math:`\overline k_i^{{\alpha}}` corresponding to reference cation
-:math:`{{\mathcal A}}_k` the transformation becomes
+:math:`{\mathcal A}_k` the transformation becomes
 
 .. math::
    :label: dummy45
    
-   \frac{\big(\overline k_i^{{\alpha}}\big)^{z_k}}{\big(\overline k_i^{{\alpha}}\big)^{z_i}} = \left(\frac{\big(k_i^{{\alpha}}\big)^{z_j}}{\big(k_i^{{\alpha}}\big)^{z_j}}\right)^{z_k/z_j}
-   \left(\frac{\big(k_j^{{\alpha}}\big)^{z_k}}{\big(k_k^{{\alpha}}\big)^{z_j}}\right)^{z_i/z_j}.
+   \frac{\big(\overline k_i^{{\alpha}}\big)^{z_k}}{\big(\overline k_i^{{\alpha}}\big)^{z_i}} = \left[\frac{\big(k_i^{{\alpha}}\big)^{z_j}}{\big(k_i^{{\alpha}}\big)^{z_j}}\right]^{z_k/z_j}
+   \left[\frac{\big(k_j^{{\alpha}}\big)^{z_k}}{\big(k_k^{{\alpha}}\big)^{z_j}}\right]^{z_i/z_j}.
 
 In terms of the coefficients :math:`k_l^{{\alpha}}` the sorbed
 concentration for the :math:`i`\ th cation can be expressed as a
@@ -779,9 +944,9 @@ according to
    
    X_i^{{\alpha}}= k_i^{{\alpha}}a_i^{} \left(\frac{X_j^{{\alpha}}}{k_j^{{\alpha}}a_j^{}}\right)^{z_i/z_j}.
 
-For a given reference species :math:`{{\mathcal A}}_{J_0}` the
+For a given reference cation :math:`{\mathcal A}_{J_0}` the
 coefficients :math:`K_{iJ_0}` are uniquely determined. For some other
-choice of reference species, say :math:`{{\mathcal A}}_{I_0}`, the
+choice of reference cation, say :math:`{\mathcal A}_{I_0}`, the
 coefficients :math:`K_{iI_0}` are related to the original coefficients
 by the expressions
 
@@ -790,7 +955,7 @@ by the expressions
    
    \log K_{J_0I_0} &= -\log K_{I_0J_0},\\
 
-Taking the reference cation as :math:`{{\mathcal A}}_j` then
+Taking the reference cation as :math:`{\mathcal A}_j` then
 :math:`k_i^{{\alpha}}` is given by
 
 .. math::
@@ -801,7 +966,7 @@ Taking the reference cation as :math:`{{\mathcal A}}_j` then
    &= K_{ij}^{{\alpha}}, \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (z_j=1).
 
 As an example consider the ion-exchange reactions with Ca\ :math:`^{2+}`
-as reference species
+as reference cation
 
 .. math::
    :label: dummy49
@@ -829,8 +994,12 @@ equations
    \log K_{\rm CaNa} & = -\log K_{\rm NaCa},\\
    \log K_{\rm MgNa} &= \frac{1}{2} \, \log K_{\rm MgCa} - \log K_{\rm NaCa}.
 
-Using the Gaines-Thomas convention, the equivalent fractions
-:math:`X_k^{{\alpha}}` are defined by
+
+Gaines-Thomas Exchange
+^^^^^^^^^^^^^^^^^^^^^^
+
+The Gaines-Thomas convention (Gaines and Thomas, 1953), is based on the equi-valent fractions
+:math:`X_k^{{\alpha}}` defined by
 
 .. math::
    :label: dummy52
@@ -844,7 +1013,9 @@ with
    
    \sum_k X_k^{{\alpha}}= 1.
 
-For equivalent exchange :math:`(z_j=z_i=z)`, an explicit expression
+The index :math:`\alpha` refers to distinct exchange sites.
+
+For equi-valent exchange :math:`(z_j=z_i=z)`, an explicit expression
 exists for the sorbed concentrations given by
 
 .. math::
@@ -1046,117 +1217,80 @@ The total sorbed concentrations are obtained from the equations
    
    \frac{{{\partial}}S_{j{{\alpha}}}}{{{\partial}}t} = k_{{\alpha}}^{} \big(S_{j{{\alpha}}}^{\rm eq}-S_{j{{\alpha}}}\big).
 
-Sorption Isotherm <Under Revision>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Aqueous Complexing Reaction Kinetics
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The distribution coefficient :math:`\widetilde K_j^D` [m:math:`^3`
-kg\ :math:`^{-1}`] is customarily defined as the ratio of sorbed to
-aqueous concentrations with the sorbed concentration referenced to the
-mass of solid as given by
+PFLOTRAN allows the user to input kinetic reactions of homogeneous aqueous complexing reactions
+through the GENERAL_REACTION keyword. 
+The reactions are treated as being elementary reactions with reaction rate expressions
+derived from the law of mass action. Future development will also include specification of
+reaction rates corresponding to overall reactions and not limited to elementary reactions.
 
-.. math::
-   :label: dummy71
-   
-   \widetilde K_j^D &= \frac{M_j^s/M_s}{M_j^{\rm aq}/V_l},\\
-   &= \frac{N_j^s/M_s}{N_j^{\rm aq}/V_l},\\
-   &= \frac{\widetilde S_j}{C_j} = \frac{1}{\rho_w}\frac{\widetilde S_j}{m_j},
-
-where :math:`M_j^s = W_j N_j^s`, :math:`M_j^{\rm aq}=W_j N_j^{\rm aq}`,
-refers to the mass and number of moles of sorbed and aqueous solute
-related by the formula weight :math:`W_j` of the :math:`j`\ th species,
-:math:`M_s` refers to the mass of the solid, :math:`V_l` denotes the
-aqueous volume, :math:`\widetilde S_j=N_j^s/M_s` [mol kg\ :math:`^{-1}`]
-represents the sorbed concentration referenced to the mass of solid,
-:math:`C_j=N_j^{\rm aq}/V_l` denotes molarity, and
-:math:`m_j=C_j/\rho_w` represents molality, where :math:`\rho_w` is the
-density of pure water.
-
-The distribution coefficient :math:`\widetilde K_j^D` may be related to
-its dimensionless counterpart :math:`K_j^D` [—] defined by
+To develop the governing equations for this system, reactions are written for intrinsically
+fast and slow reactions corresponding to local equilibrium and kinetic
+rates of reaction according to
 
 .. math::
-   :label: kdj
-   
-   K_j^D = \frac{N_i^s}{N_i^{\rm aq}} = \frac{N_i^s/V}{N_i^{\rm aq}/V}= \frac{1}{\varphi s_l}\frac{S_j}{C_j},
-   
+   :label: eqlib
 
-by writing
+   \sum_j \nu_{ji}^{leq} {\mathcal A}_j &\rightleftharpoons {\mathcal A}_i, \ \ \ (\text{fast}),\\
+   \emptyset &\rightleftharpoons \sum_j \nu_{jr}^{kin} {\mathcal A}_j, \ \ \ (\text{slow}).
 
-.. math::
-   :label: dummy72
-   
-   K_j^D &= \frac{N_i^s}{M_s} \frac{M_s}{V_s} \frac{V_s}{V_p} \frac{V_p}{V_l} \frac{V_l}{N_i^{\rm aq}},\\
-   &= \rho_s \frac{1-\varphi}{\varphi s_l} \widetilde K_j^D = \frac{\rho_b}{\varphi s_l} \widetilde K_j^D,
+The sums are over a set of independent primary species. 
+In the expression for kinetic reactions all species are brought to the right-hand side with reactants
+having negative stoichiometric coefficients and products positive coefficients. The reaction rates 
+corresponding to fast reactions are eliminated from the transport equations
+and replaced by algebraic mass action relations.
 
-with grain density :math:`\rho_s=M_s/V_s`, bulk density
-:math:`\rho_b=(1-\varphi)\rho_s`, porosity :math:`\varphi=V_p/V`, and
-saturation :math:`s_l=V_l/V_p`.
-
-An alternative definition of the distribution coefficient denoted by
-:math:`\widehat K_j^D` [kg m\ :math:`^{-3}`] is obtained by using
-molality to define the solute concentration and referencing the sorbed
-concentration to the bulk volume :math:`V`
+The kinetic rate expression is assumed to have the form of the difference 
+between forward and backward reactions proportional to the product of concentrations of
+reactants and products, respectively, raised to the power of their stochiometric coefficients
 
 .. math::
-   :label: dummy73
+   :label: kinrxn
 
-   \widehat K_j^D = \frac{N_j^s/V}{N_j^{\rm aq}/M_w} = \frac{S_j}{m_j}.
+   \Gamma_r = k_r^+ \prod_{\nu_{jr}^{kin}<0} (a_j)^{-\nu_{jr}^{kin}} - k_r^- \prod_{\nu_{jr}^{kin}>0} (a_j)^{\nu_{jr}^{kin}}.
 
-A sorption isotherm :math:`S_j` may be specified for any primary species
-:math:`{{\mathcal A}}_j` resulting in the transport equation
-
-.. math::
-   :label: dummy74
-   
-   \frac{{{\partial}}}{{{\partial}}t} \varphi s_l C_j + {\boldsymbol{\nabla}}\cdot{\boldsymbol{F}}_j = -\frac{{{\partial}}S_j}{{{\partial}}t},
-
-for a partially saturated medium. Substituting
-:math:`S_j=\varphi s_l K_j^D C_j` from Eqn. :eq:`kdj` and
-introducing the retardation :math:`{{{\mathcal R}}}_j` gives
+At equilibrium :math:`\Gamma_r=0` and the equilibrium mass action equation is retrieved
 
 .. math::
-   :label: dummy75
-   
-   \frac{{{\partial}}}{{{\partial}}t} R_j \varphi s_l C_j + {\boldsymbol{\nabla}}\cdot{\boldsymbol{F}}_j = 0,
+   :label:
 
-with the retardation given by the alternative forms
+   K_r = \frac{k_r^+}{k_r^-} = \prod_j a_j^{\nu_{jr}^{kin}},
+
+with the equilibrium constant :math:`K_r` equal to the ratio of the forward to backward rate constants.
+
+With the above reactions the transport equations for primary species have the form (including precipitation/disollution reactions with rates :math:`\Gamma_m`)
 
 .. math::
-   :label: dummy76
-   
-   R_j &= 1 + K_j^D, \ \ \ \ \ \ (\text{dimensionless)},\\
-   &= 1+ \frac{\rho_b}{\varphi s_l} \widetilde K_j^D, \ \ \ \ \ \ (\text{conventional}),\\
-   &= 1+ \frac{1}{\varphi s_l \rho_w} \widehat K_j^D, \ \ \ \ \ \ (\text{molality-based}).
+   :label: genrxn
 
-Three distinct models are available for the sorption isotherm
-:math:`S_j` in PFLOTRAN:
+   \frac{\partial}{\partial t} \varphi \Psi_j + \vec\nabla\cdot\vec\Omega_j = \sum_r \nu_{jr}^{kin} \Gamma_r
+   -\sum_m \nu_{jm} \Gamma_m,
 
--  linear :math:`K_D` model:
+where :math:`\Psi_j` and :math:`\vec\Omega_j` are the total concentration and flux, 
+respectively, defined as
 
-   .. math::
-      :label: linkd
-      
-      S_j = \varphi s_l K_j^D C_j = \widehat K_j^D m_j,
+.. math::
+   :label: totc
 
-   with distribution coefficient :math:`\widehat K_j^D`,
+   \Psi_j = c_j + \sum_i \nu_{ji}^{leq} c_i,\\
+   \vec\Omega_j = \vec F_j + \sum_i \nu_{ji}^{leq} \vec F_i,
 
--  Langmuir isotherm:
+where :math:`\vec F_k` is the usual so-called free ion flux consisting of contributions from
+advection, diffusion and dispersion, and the secondary species concentrations :math:`c_i` are given by
+the mass action law
 
-   .. math::
-      :label: Langmuir
-      
-      S_j= \frac{K_j^L b_j^L C_j/ \rho_w}{1+K_j^L C_j/ \rho_w} = \frac{K_j^L b_j^L m_j}{1+K_j^L m_j},
+.. math::
+   :label: csec
 
-   with Langmuir coefficients :math:`K_j^L` and :math:`b_j^L`, and
+   c_i = \frac{K_i}{\gamma_i} \prod_j \big(\gamma_j c_j\big)^{\nu_{ji}^{leq}},
 
--  Freundlich isotherm:
+relating secondary species concentrations to primary species. Thus in this 
+formulation the reaction rates for intrinsically fast reactions are replaced by 
+mass action equations thereby reducing the number of partial differential equations that are
+necessary to solve.
 
-   .. math::
-      :label: Freundlich
-      
-      S_j = K_j^F \left(\frac{C_j}{\rho_w}\right)^{(1/n_j^F)}  = K_j^F \big(m_j\big)^{(1/n_j^F)},
-
-   with coefficients :math:`K_j^F` and :math:`n_j^F`.
 
 Colloid-Facilitated Transport
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
