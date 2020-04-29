@@ -1446,12 +1446,12 @@ MPHASE
 :math:`\mathrm{CO_2}` Sequestration: 1D Example Problem and Comparison with TOUGHREACT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this example problem involves sequentially coupling of
-``MPHASE``\ and ``CHEMISTRY``. The chemical system consists of four
+This example problem involves sequentially coupling of
+``MPHASE`` and ``CHEMISTRY``. The chemical system consists of four
 primary species and 5 secondary species. Supercritical
 :math:`\mathrm{CO_2}` is injected into a well located at the west
-boundary. Dirichlet pressure boundary conditions are imposed at the east
-boundary. The problem definition with associated parameters is given in
+boundary. A Dirichlet pressure boundary condition is imposed at the east boundary
+and no flow at the west boundary. The problem definition with associated parameters is given in
 Table [tco2].
 
 +-----------------------------+----------------------------------+----------------------------------------------------------+

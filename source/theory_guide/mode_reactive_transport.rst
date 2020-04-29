@@ -548,10 +548,69 @@ Sorption
 
 Sorption reactions incorporated into PFLOTRAN consist of specifying a sorption
 isotherm, ion exchange reactions, and equilibrium and multirate formulations of surface 
-complexation reactions.
+complexation reactions. Each of these is dealt with in more detail below.
 
 Sorption Isotherm
 ~~~~~~~~~~~~~~~~~
+
+The sorption isotherm relates the sorbed concentration at the solid surface to the
+aqueous concentration in contact with the solid at constant temperature. 
+It is a function of the free ion primary species
+concentrations :math:`S_j(c_1,\,\ldots, \,c_{N_c})` (not total conentrations). 
+It is a phenomenological formulation as opposed to a mechanisitc one and is
+typically not associated with an explicit chemical reaction.
+Finally, note that a sorption isotherm
+may represent equilibrium or kinetic processes depending on the data used to fit the 
+isotherm.
+
+The sorption isotherm appears as a 
+source/sink term in the transport equations as given by
+
+.. math::
+   :label: isothrm
+
+   \frac{\partial}{\partial t} \varphi s_l \Psi_j + \vec\nabla\cdot\vec\Omega_j = 
+   -\frac{\partial S_j}{\partial t},
+
+with saturation :math:`s_l`. Combining time derivative terms the transport equations become
+
+.. math::
+   :label: transport_eqn
+
+   \frac{\partial}{\partial t} \big(\varphi s_l\Psi_j + S_j \big) 
+   + \vec\nabla\cdot\vec\Omega_j = 0,
+
+This equation can be rewritten as
+
+.. math::
+   :label: retardeqn
+
+   \frac{\partial}{\partial t} \Big[\varphi s_l\Psi_j R_j \Big] 
+   + \vec\nabla\cdot\vec\Omega_j = 0,
+ 
+where the local retardation factor :math:`R_j` is defined in terms of the distribution coefficient
+:math:`K_j^D` as
+
+.. math::
+   :label: retard
+
+   R_j &= 1 + K_j^D,\\
+   K_j^D &= \frac{S_j}{\varphi s_l\Psi_j}.
+
+For the case when :math:`R_j` = constant, the transport equation 
+can be written in the form
+
+.. math::
+   :label: reteqn
+
+   \frac{\partial}{\partial t} \Big[\varphi s_l\Psi_j\Big] 
+   + \vec\nabla\cdot\frac{1}{R_j}\vec\Omega_j = 0,
+
+resulting in retarded advective and diffusive/dispersive transport. Note that the retardation
+varies inversely with the total concentration, not the free ion concentration, and
+thus aqueous complexing reactions lead to a reduction in the retardation.
+As a consequence strong complexing can reduce significantly the retardation coefficient compared to
+the value obtained using the free ion concentration.
 
 The distribution coefficient :math:`\tilde K_j^D` [m\ :math:`^3`
 kg\ :math:`^{-1}`] is customarily defined as the ratio of sorbed to
@@ -561,11 +620,11 @@ mass of solid as given by
 .. math::
    :label: dummy71
    
-   \tilde K_j^D &= \frac{M_j^s/M_s}{M_j^{\rm aq}/V_l},\\
+   \tilde K_j^D &= \frac{S_j^M/M_s}{M_j^{\rm aq}/V_l},\\
    &= \frac{N_j^s/M_s}{N_j^{\rm aq}/V_l},\\
    &= \frac{\tilde S_j}{C_j} = \frac{1}{\rho_w}\frac{\tilde S_j}{m_j},
 
-where :math:`M_j^s = W_j N_j^s`, :math:`M_j^{\rm aq}=W_j N_j^{\rm aq}`,
+where :math:`S_j^M = W_j N_j^s`, :math:`M_j^{\rm aq} = W_j N_j^{\rm aq}`,
 refers to the mass and number of moles of sorbed and aqueous solute
 related by the formula weight :math:`W_j` of the :math:`j`\ th species,
 :math:`M_s` refers to the mass of the solid, :math:`V_l` denotes the
@@ -605,24 +664,7 @@ concentration to the bulk volume :math:`V`
 
    \hat K_j^D = \frac{N_j^s/V}{N_j^{\rm aq}/M_w} = \frac{S_j}{m_j}.
 
-A sorption isotherm :math:`S_j` may be specified for any primary species
-:math:`{{\mathcal A}}_j` resulting in the transport equation
-
-.. math::
-   :label: dummy74
-   
-   \frac{\partial}{\partial t} \varphi s_l C_j + {\boldsymbol{\nabla}}\cdot{\boldsymbol{F}}_j = -\frac{\partial S_j}{\partial t},
-
-for a partially saturated medium. Substituting
-:math:`S_j=\varphi s_l K_j^D C_j` from Eqn. :eq:`kdj` and
-introducing the retardation :math:`{{{\mathcal R}}}_j` gives
-
-.. math::
-   :label: dummy75
-   
-   \frac{{{\partial}}}{{{\partial}}t} R_j \varphi s_l C_j + {\boldsymbol{\nabla}}\cdot{\boldsymbol{F}}_j = 0,
-
-with the retardation given by the alternative forms
+The local retardation coefficient :math:`R_j` can be expressed in the alternative forms
 
 .. math::
    :label: dummy76
@@ -722,7 +764,7 @@ This relation is obtained by multiplying the half reaction for cation
 :math:`{\mathcal A}_j^{z_j+}` by the valence :math:`z_i` and subtracting from
 the half reaction for :math:`{\mathcal A}_i^{z_i+}` multiplied by
 :math:`z_j`, resulting in cancelation of the empty site
-:math:`X^{\alpha}`, to obtain the complete exchange reaction
+:math:`\chi_{\alpha}^-`, to obtain the complete exchange reaction
 :eq:`ex1`. It should be noted that the coefficients
 :math:`k_l^{\alpha}` are not unique since, although there are
 :math:`N_c` coefficients in number, only :math:`N_c-1` are independent
@@ -746,7 +788,7 @@ the literature is
 
 obtained by dividing reaction :eq:`ex1` through by the
 product :math:`z_i z_j`. The mass action equations corresponding to
-reactions :eq:`rxn2` have the form
+reactions :eq:`rxn2` are assumed to have the form
 
 .. math::
    :label: dummy34
@@ -896,8 +938,8 @@ This latter relation follows from adding the two reactions
 .. math::
    :label: dummy41
    
-   \frac{1}{z_i} \,{{\mathcal A}}_i + \frac{1}{z_j}\, (\chi_{{\alpha}})_{z_j} {{\mathcal A}}_j &{~\rightleftharpoons~}\frac{1}{z_j} \,{{\mathcal A}}_j + \frac{1}{z_i}\, (\chi_{{\alpha}})_{z_i} {{\mathcal A}}_i,\\
-   \frac{1}{z_j} \,{{\mathcal A}}_j + \frac{1}{z_k}\, (\chi_{{\alpha}})_{z_k} {{\mathcal A}}_k &{~\rightleftharpoons~}\frac{1}{z_k} \,{{\mathcal A}}_k + \frac{1}{z_j}\, (\chi_{{\alpha}})_{z_j} {{\mathcal A}}_j,
+   \frac{1}{z_i} \,{\mathcal A}_i + \frac{1}{z_j}\, (\chi_{\alpha})_{z_j} {\mathcal A}_j &{~\rightleftharpoons~}\frac{1}{z_j} \,{\mathcal A}_j + \frac{1}{z_i}\, (\chi_{\alpha})_{z_i} {\mathcal A}_i,\\
+   \frac{1}{z_j} \,{\mathcal A}_j + \frac{1}{z_k}\, (\chi_{\alpha})_{z_k} {\mathcal A}_k &{~\rightleftharpoons~}\frac{1}{z_k} \,{\mathcal A}_k + \frac{1}{z_j}\, (\chi_{\alpha})_{z_j} {\mathcal A}_j,
 
 to give
 
@@ -1242,7 +1284,7 @@ corresponding to fast reactions are eliminated from the transport equations
 and replaced by algebraic mass action relations.
 
 The kinetic rate expression is assumed to have the form of the difference 
-between forward and backward reactions proportional to the product of concentrations of
+between forward and backward reaction rates proportional to the product of concentrations of
 reactants and products, respectively, raised to the power of their stochiometric coefficients
 
 .. math::
@@ -1489,31 +1531,36 @@ temperatures: 0, 25, 60, 100, 150, 200, 250, and 300\ :math:`^\circ`\ C.
 The pressure is assumed to lie along the saturation curve of pure water
 for temperatures above 25\ :math:`^\circ`\ C and is equal to 1 bar at
 lower temperatures. Reactions in the database are assumed to be written
-in the canonical form
+in the form
 
 .. math::
    :label: dummy81
    
-   {{\mathcal A}}_r {~\rightleftharpoons~}\sum_{i=1}^{\rm nspec} \nu_{ir}{{\mathcal A}}_i,
+   {\mathcal A}_r \rightleftharpoons \sum_{i=1}^{\rm nspec} \nu_{ir}{\mathcal A}_i,
 
-for species :math:`{{\mathcal A}}_r`, where ``nspec`` refers to the
-number of aqueous or gaseous species :math:`{{\mathcal A}}_i` on the
+as a dissasociation reaction for species :math:`{\mathcal A}_r`, where ``nspec`` refers to the
+number of aqueous or gaseous species :math:`{\mathcal A}_i` on the
 right-hand side of the reaction. Redox reactions in the standard
 database ``hanford.dat`` are usually written in terms of
 O\ :math:`_{2(g)}`. Complexation reactions involving redox sensitive
 species are written in such a manner as to preserve the redox state.
 
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Primary Species:   | name, :math:`a_0`, :math:`z`, :math:`w`                                                                                                                                             |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Secondary Species: | name, nspec, (:math:`\nu`\ (n), name(\ :math:`n`), :math:`n`\ =1, nspec), log\ :math:`K`\ (1::math:`N_{\rm temp}`), :math:`a_0`, :math:`z`, :math:`w`                               |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Gaseous Species:   | name, :math:`\overline V`, nspec, (:math:`\nu`\ (n), name(\ :math:`n`), :math:`n`\ =1, nspec), log\ :math:`K`\ (1::math:`N_{\rm temp}`), :math:`w`                                  |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Minerals:          | name, :math:`\overline V`, nspec, (:math:`\nu`\ (n), name(\ :math:`n`), :math:`n`\ =1, nspec), log\ :math:`K`\ (1::math:`N_{\rm temp}`), :math:`w`                                  |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Surface Complexes: | :math:`>`\ name, nspec, :math:`\nu`, :math:`>`\ site, (:math:`\nu`\ (n), name(\ :math:`n`), :math:`n`\ =1, nspec-1), log\ :math:`K`\ (1::math:`N_{\rm temp}`), :math:`z`, :math:`w` |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Primary Species:   | name, :math:`a_0`, :math:`z`, :math:`w`                                                                                                                                               |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Secondary Species: | name, nspec, (\ :math:`\nu`\ (n), name(\ :math:`n`), :math:`n`\ =1, nspec), log\ :math:`K`\ (1: :math:`N_{\rm temp}`), :math:`a_0`, :math:`z`, :math:`w`                              |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Gaseous Species:   | name, :math:`v`, nspec, (\ :math:`\nu`\ (n), name(\ :math:`n`), :math:`n`\ =1, nspec), log\ :math:`K`\ (1: :math:`N_{\rm temp}`), :math:`w`                                           |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Minerals:          | name, :math:`v`, nspec, (\ :math:`\nu`\ (n), name(\ :math:`n`), :math:`n`\ =1, nspec), log\ :math:`K`\ (1: :math:`N_{\rm temp}`), :math:`w`                                           |
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Surface Complexes: | :math:`>`\ name, nspec, :math:`\nu`, :math:`>`\ site, (\ :math:`\nu`\ (n), name(\ :math:`n`), :math:`n`\ =1, nspec-1), log\ :math:`K`\ (1: :math:`N_{\rm temp}`), :math:`z`, :math:`w`|
++--------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The quantities: name, :math:`>`\ name, :math:`a_0`, :math:`z`, :math:`w`, :math:`\nu`, :math:`\log K`, and :math:`v` refer, respectively,
+to the aqueous or gas species, mineral or surface complex, Debye-Hueckel radius parameter, charge, formula weight [g/mol], stoichiometric coefficient, 
+logarithm of the equilibrium constant to base 10,
+and molar volume [cm\ :math:`^3`/mol].
 
 Note that chemical reactions are not unique. For example, given a
 particular mineral reaction
@@ -1523,7 +1570,7 @@ particular mineral reaction
    
    \sum_j \nu_{jm} {{\mathcal A}}_j {~\rightleftharpoons~}{{\mathcal M}}_m,
 
-and equally acceptable reaction is the scaled reaction
+an equally acceptable reaction is the scaled reaction
 
 .. math::
    :label: dummy83
@@ -1636,3 +1683,405 @@ Table below.
 +------------------+-------------------+
 
 Table: Fit coefficients for log :math:`K` of reaction :eq:`redox`.
+
+
+Method of Solution
+~~~~~~~~~~~~~~~~~~
+
+The flow, reactive transport and heat equations (Modes: GENERAL, RICHARDS, MPHASE, FLASH2, TH, 
+CHEMISTRY, :math:`\ldots`) are solved using a fully implicit backward Euler approach based on 
+Newton-Krylov iteration.
+Both fully implicit backward Euler and operator splitting solution methods are supported for reactive transport.
+
+Integrated Finite Volume Discretization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The governing partial differential equations for conservation of mass can be written in the general form
+
+.. math::
+   :label: fv1
+
+   \frac{\partial}{\partial t} A_j + \vec\nabla\cdot\vec F_j = Q_j,
+
+with accumulation :math:`A_j`, flux :math:`\vec F_j` and source/sink :math:`Q_j`. Integrating over a REV corresponding to the :math:`n`\ th grid cell with volume :math:`V_n` yields
+
+.. math::
+   :label: fv2
+
+   \frac{d}{dt}\int_{V_n} A_j \, dV + \int_{V_n} \vec\nabla\cdot\vec F_j = \int_{V_n}Q_j\, dV.
+
+The accumulation term has the finite volume form
+
+.. math::
+   :label: fv3
+
+   \frac{d}{dt}\int_{V_n} A_j \, dV = \frac{A_{jn}^{t+\Delta t} - A_{jn}^t}{\Delta t} \, V_n,
+
+with time step :math:`\Delta t`.
+The flux term can be expanded as a surface integral using Gauss' theorem
+
+.. math::
+   :label: fv4
+
+   \int_{V_n} \vec\nabla\cdot\vec F_j &= \int_{\partial V_n} \vec F_j \cdot d\vec S,\\
+   &= \sum_{n'} F_{j,nn'} A_{nn'},
+
+where the latter finite volume form is based on the two-point flux approximation, where the sum over :math:`n'` involves nearest neighbor grid cells connected to the :math:`n`\ th node with interfacial area :math:`A_{nn'}`. The discretized flux has the form for fluid phase :math:`\alpha`
+
+.. math::
+   :label: fv5
+
+   F_{j,nn'}^\alpha = \big(q_\alpha X_\alpha\big)_{nn'} - \big(\varphi s_\alpha \tau_\alpha D_\alpha\big)_{nn'}
+   \frac{X_{n'}^\alpha - X_n^\alpha}{d_{n'}+d_n},
+
+with perpendicular distances to interface :math:`nn'` from nodes :math:`n` and :math:`n'` denoted by :math:`d_{n'}`
+and :math:`d_n`, respectively.
+Upstream weighting is used for the advective term
+
+.. math::
+   :label: fv6
+
+   (q_\alpha X_\alpha)_{nn'} =
+   \left\{
+   \begin{array}{ll}
+   q_{nn'}^\alpha X_{n'}, & q_{nn'} > 0\\
+   q_{nn'}^\alpha X_{n}, &  q_{nn'} < 0
+   \end{array}
+   \right..
+
+Depending on the type of source/sink term, the finite volume discretization has the form
+
+.. math::
+   :label: fv7
+
+   \int_{V_n}Q_j\, dV = Q_{jn} V_n,
+
+for reaction rates that are distributed continuously over a control volume, or for a well with point source 
+:math:`Q_j = \hat Q_j \delta(\vec r-\vec r_0)`\ :
+
+.. math::
+   :label: fv8
+
+   \int_{V_n}Q_j\, dV = \hat Q_{jn}.
+
+
+Fully Implicit Newton-Raphson Iteration with Linear and Logarithm Update
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In a fully implicit formulation the nonlinear equations for the residual function :math:`\vec R` given by
+
+.. math::
+   :label: fv9
+
+   \vec R(\vec x) = \vec 0,
+
+are solved using an iterative solver based on the Newton-Raphson equations
+
+.. math::
+   :label: fv10
+
+   \vec J^{(i)} \delta\vec x^{(i+1)} = -\vec R^{(i)},
+
+at the :math:`i`\ th iteration. Iteration stops when
+
+.. math::
+   :label: fv11
+
+   \left|\vec R^{(i+1)}\right| < \epsilon,
+
+or if
+
+.. math::
+   :label: fv12
+
+   \big|\delta\vec x^{(i+1)}\big| < \delta.
+
+However, the latter criteria does not necessarily guarantee that the residual equations are satisfied.
+The solution is updated from the relation
+
+.. math::
+   :label: fv13
+
+   \vec x^{(i+1)} = \vec x^{(i)} + \delta\vec x^{(i+1)}.
+
+For the logarithm of the concentration with :math:`\vec x=\ln\vec y`,
+the solution is updated according to
+
+.. math::
+   :label: fv14
+
+   \ln\vec y^{(i+1)} = \ln\vec y^{(i)} + \delta\ln\vec y^{(i+1)},
+
+or
+
+.. math::
+   :label: fv15
+
+   \vec y^{(i+1)} = \vec y^{(i)} {\rm e}^{\delta\ln\vec y^{(i+1)}}.
+
+
+Example
+^^^^^^^
+
+To illustrate the logarithmic update formulation the simple linear equation
+
+.. math::
+   :label: fv16
+
+   x = x_0,
+
+is considered.
+The residual function is given by
+
+.. math::
+   :label: fv17
+
+   R = x - x_0,
+
+with Jacobian
+
+.. math::
+   :label: fv18
+
+   J = \frac{\partial R}{\partial x} = I.
+
+In the linear formulation the Newton-Raphson equations are given by
+
+.. math::
+   :label: fv 19
+
+   J\delta x &= -R,\\
+   \delta x &= -(x-x_0)\\
+   x{'} &= x + \delta x = x_0.
+
+In the logarithmic formulation the Jacobian is given by
+
+.. math::
+   :label: fv20
+
+   J=\frac{\partial R}{\partial\ln x} = x,
+
+and the Newton-Raphson equations are now nonlinear becoming
+
+.. math::
+   :label: fv21
+
+   J^i\delta \ln x^{i+1} = -R^i,
+
+with the solution update
+
+.. math::
+   :label: fv22
+
+   \ln x^{i+1} = \ln x^i + \delta \ln x^{i+1},
+
+or
+
+.. math::
+   :label: fv23
+
+   x^{i+1} = x^i {\rm e}^{\delta \ln x^{i+1}}.
+
+It follow that
+
+.. math::
+   :label: fv24
+
+   x^i \delta \ln x^{i+1} = -(x^i-x_0),
+
+with the solution
+
+.. math::
+   :label: fv25
+
+   \delta \ln x^{i+1} = \frac{x_0-x^i}{x^i},
+
+and thus
+
+.. math::
+   :label: fv26
+
+   x^{i+1} = x^i \exp \left(\frac{x_0- x^{i}}{x^i}\right).
+
+Given that a solution :math:`x` exists it follows that
+
+.. math::
+   :label: fv27
+
+   \lim_{i\rightarrow\infty} x^{i} &\rightarrow x,\\
+   \lim_{i\rightarrow\infty} \frac{x^{i+1}}{x^{i}} &\rightarrow 1,\\
+   \lim_{i\rightarrow\infty} \exp \left(\frac{x_0- x^{i}}{x^i}\right) &\rightarrow 1,\\
+   \lim_{i\rightarrow\infty} x^{i} &\rightarrow x_0.
+
+
+Multirate Sorption
+^^^^^^^^^^^^^^^^^^
+
+The residual function incorporating the multirate sorption model can be further simplified by solving analytically the finite difference form of kinetic sorption equations. This is possible when these equations are linear in the sorbed concentration :math:`S_{j\alpha}` and because they do not contain a flux term. Thus discretizing Eqn.\eqref{sja} in time using the fully implicit backward Euler method gives
+
+.. math::
+   :label: fv28
+
+   \frac{S_{j\alpha}^{t+\Delta t}-S_{j\alpha}^t}{\Delta t} = k_\alpha^{} \big(f_\alpha^{} 
+   S_{j\alpha}^{\rm eq} - S_{j\alpha}^{t+\Delta t}\big).
+
+Solving for :math:`S_{j\alpha}^{t+\Delta t}` yields
+
+.. math::
+   :label: fv29
+
+   S_{j\alpha}^{t+\Delta t} = \frac{S_{j\alpha}^t + k_\alpha^{} \Delta t f_\alpha^{} S_j^{\rm eq}}{1+k_\alpha\Delta t}.
+
+From this expression the reaction rate can be calculated as
+
+.. math::
+   :label: fv30
+
+   \frac{S_{j\alpha}^{t+\Delta t}-S_{j\alpha}^t}{\Delta t} = \frac{k_\alpha}{1+k_\alpha\Delta t} 
+   \big(f_\alpha^{} S_{j\alpha}^{\rm eq} - S_{j\alpha}^t\big).
+
+The right-hand side of this equation is a known function of the solute concentration and thus by substituting into Eqn.\eqref{totj} eliminates the appearance of the unknown sorbed concentration. Once the transport equations are solved over a time step, the sorbed concentrations can be computed from Eqn.\eqref{sjadt}.
+
+Operator Splitting
+^^^^^^^^^^^^^^^^^^
+
+Operator splitting involves splitting the reactive transport equations into a nonreactive part and a part incorporating reactions. This is accomplished by writing Eqns.\eqref{rteqn} as the two coupled equations
+
+.. math::
+   :label: os1
+
+   \frac{\partial}{\partial t}\big(\varphi \sum_\alpha s_\alpha \Psi_j^\alpha\big) +
+   \vec\nabla\cdot\sum_\alpha\big(\vec q_\alpha - \varphi s_\alpha D_\alpha\vec\nabla\big)\Psi_j^\alpha = Q_j,
+
+and
+
+.. math::
+   :label: os2
+
+   \frac{d}{d t}\big(\varphi \sum_\alpha s_\alpha \Psi_j^\alpha\big) = 
+   - \sum_m\nu_{jm} I_m -\frac{\partial S_j}{\partial t},
+
+The first set of equations are linear in :math:`\Psi_j` (for species-independent diffusion coeffients) and solved over over a time step :math:`\Delta t` resulting in :math:`\Psi_j^*`. The result for :math:`\Psi_j^*` is inverted to give the concentrations :math:`C_j^*` by solving the equations
+
+.. math::
+   :label: os3
+
+   \Psi_j^* = C_j^* + \sum_i \nu_{ji} C_i^*,
+
+where the secondary species concentrations :math:`C_i^*` are nonlinear functions of the primary species concentrations :math:`C_j^*`. With this result the second set of equations are solved implicitly for :math:`C_j` at :math:`t+\Delta t` using :math:`\Psi_j^*` for the starting value at time :math:`t`.
+
+Constant :math:`K_d`
+^^^^^^^^^^^^^^^^^^^^
+
+As a simple example of operator splitting consider a single component system with retardation described by a constant :math:`K_d`. According to this model the sorbed concentration :math:`S` is related to the aqueous concentration by the linear equation
+
+.. math::
+   :label: os4
+
+   S = K_d C.
+
+The fully coupled governing equation is given by
+
+.. math::
+   :label: os5
+
+   \frac{\partial}{\partial t} \varphi C + \vec\nabla\cdot\big(\vec q C -\varphi D \vec\nabla C\big) 
+   = -\frac{\partial S}{\partial t}.
+
+If :math:`C(x,\,t;\, \vec q,\,D)` is the solution to the case with no retardation (i.e. :math:`K_d=0`), 
+then math:`C(x,\,t;\, \vec q/R,\,D/R)` is the solution with retardation math:`(K_d>0)`,
+with
+
+.. math::
+   :label: os6
+
+   R = 1+\frac{1}{\varphi}K_d.
+
+Thus propagation of a front is retarded by the retardation factor :math:`R`.
+
+In operator splitting form the operator-split reactive transport equations become
+
+.. math::
+   :label: os7
+
+   \frac{\partial}{\partial t} \varphi C + \vec\nabla\cdot\big(\vec q C -\varphi D \vec\nabla C\big) = 0,
+
+describing non-reactive transport, and the chemistry equation correcting the solution to the 
+non-reactive transport equation
+
+.. math::
+   :label: os8
+
+   \frac{d}{d t} \varphi C = -\frac{d S}{d t}.
+
+First, the solution to the non-reactive transport equation denoted by :math:`C^*` is obtained. 
+This solution is then used as the initial condition in solving the chemistry equation.
+Integrating the solution to the second equation over a time step :math:`\Delta t` gives
+
+.. math::
+   :label: os9
+
+   \varphi C^{t+\Delta t} - \varphi C^* = -\big(S^{t+\Delta t} - S^t\big),
+
+where :math:`C^*` is the solution to the nonreactive transport equation. 
+Using Eqn.\eqref{skd}, this result can be written as
+
+.. math::
+   :label: os10
+
+   C^{t+\Delta t} = \frac{1}{R} C^* + \left(1-\frac{1}{R}\right) C^t.
+
+Thus for :math:`R=1`, :math:`C^{t+\Delta t}=C^*` and the solution advances unretarded. 
+As :math:`R\rightarrow\infty`, :math:`C^{t+\Delta t} \rightarrow C^t` and the front is fully retarded.
+
+
+
+Geomechanics
+^^^^^^^^^^^^
+
+In PFLOTRAN, a linear elasticity model is assumed as the constitutive model for deformation of the rock.
+Biot's model is used to incorporate the effect of flow on the geomechanics. In addition, 
+the effect of temperature on geomechanics is considered via the coefficient of thermal expansion. 
+The following governing equations are used:
+
+.. math::
+   :label: mech1
+
+   & \nabla \cdot [\bar{\sigma}] + \rho \vec{b} = 0, \quad \mathrm{in} \; \Omega, \label{Eq:mom}\\ 
+   & \bar{\sigma} = \lambda \rm{tr}\left(\vec{\varepsilon}\right) + 2\mu \vec{\varepsilon} - \beta (p - p_0) \bar{I} - \alpha (T - T_0) \bar{I}, \\
+   & \vec{\varepsilon} = \frac{1}{2} \left(\nabla\vec{u}(\vec{x}) + [\nabla \vec{u}(\vec{x})]^{T}  \right), \\ 
+   & \vec{u}(\vec{x}) = \vec{u}^p(\vec{x}), \quad \mathrm{on} \; \Gamma^D,\label{eqn:diri}\\
+   & \bar{\sigma}\vec{n}(\vec{x}) = t^p(\vec{x}), \quad \mathrm{on} \; \Gamma^N, \label{eqn:neu}
+
+where :math:`\vec{u}` is the unknown displacement field, :math:`\bar{\sigma}` is the Cauchy stress tensor,   
+:math:`\lambda`, :math:`\mu` are Lam\'{e} parameters (Young's modulus and Poisson's ratio can be related to 
+these two parameters), :math:`\vec{b}` is the specific body force (which is gravity in most cases), 
+:math:`\vec{n}` is the outward normal to the boundary :math:`\Gamma^N`. 
+Also, :math:`\vec{u}^p` is the prescribed 
+values of :math:`\vec{u}` on the Dirichlet part of the boundary :math:`\Gamma^D`, and :math:`\vec{t}^p` is the 
+prescribed traction on :math:`\Gamma^N`. 
+Additionally, :math:`\beta` is the Biot's coefficient, 
+:math:`\alpha` is the coefficient of thermal expansion, :math:`p`, :math:`T` are the fluid pressure and temperature, 
+obtained by solving subsurface flow problem. 
+Also, :math:`p_0` and :math:`T_0` are set to initial  
+pressure and temperature in the domain, :math:`\vec{\varepsilon}` is the strain tensor and 
+:math:`\rm tr` is the trace of a second order tensor, :math:`\Omega` is the domain, and 
+:math:`\bar{I}` is the identity tensor. 
+Note that stress is assumed *positive under tension*.
+The effect of deformation on the pore structure is accounted for via 
+
+.. math::
+   :label: mech2
+
+   \phi = \frac{\phi_0}{1 + (1-\phi_0) \text{tr}(\vec{\varepsilon})}.
+
+
+Note that the above equations are solved using the finite element method (Galerkin finite element) 
+with the displacements solved for at the vertices. Since, the flow equations are solved via the 
+finite volume method with unknowns such as pressure and temperature solved for at the cell centers, 
+in order to transfer data from the subsurface to geomechanics grid without interpolation, 
+the geomechanics grid is constructed such that the vertices of the geomechanics grid coincide 
+with the cell centers of the subsurface mesh. That is, the dual mesh of the subsurface mesh is used for the geomechanics solve.
+
+Finally, the geomechanics grid must be read in as an unstructured grid. 
+Even if one needs to work with a structured grid, the grid must be set up in the unstructured grid format. 
