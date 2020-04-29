@@ -1,11 +1,10 @@
 # Dockerfile
 FROM ubuntu:latest
-RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get update -q
 
 RUN apt-get install -y ssh
 RUN apt-get install -y python3
-RUN apt-get install -y python-pip
+RUN apt-get install -y python3-pip
 RUN apt-get install -y git
 RUN apt-get install -y make
 RUN pip install -U sphinx
