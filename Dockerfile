@@ -1,5 +1,6 @@
 # Dockerfile
 FROM ubuntu:latest
+RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get update -q
 
 RUN apt-get install -y ssh
