@@ -250,7 +250,7 @@ MECHANISM <type_string>
 
     ::
 
-      DECAY_TIME 1.0d2 day
+      DECAY_TIME 1.0d2 year
  
 * **MECHANISM WIPP sub-block cards:**
  
@@ -488,7 +488,7 @@ for form, not parameter values):
         MATRIX_DENSITY 10.97d3 kg/m^3
         BURNUP 60 #GWd/MTHM
         SPECIFIC_SURFACE_AREA 0.001 m^2/g
-        DECAY_TIME 100 day
+        DECAY_TIME 100 year
         SPECIES 
          #name,   MW[g/mol],dcy[1/s], initMF, inst_rel_frac,daughter
           Uranium 238.02d0  1.00d-90  0.50d0  0.0d0 
