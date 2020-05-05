@@ -1,7 +1,7 @@
 .. _mode-geomechanics:
 
-Mode: ``GEOMECHANICS``
-----------------------
+``GEOMECHANICS``
+----------------
 
 In PFLOTRAN, linear elasticity model is assumed as the constitutive
 model for deformation of the rock. Biot’s model is used to incorporate

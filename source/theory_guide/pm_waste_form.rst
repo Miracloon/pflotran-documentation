@@ -1,7 +1,7 @@
 .. _pm_waste_form:
 
-The Waste Form Process Model
-============================
+Waste Form
+==========
 
 The Waste Form Process Model represents waste package degradation and waste form
 dissolution for the simulation of a nuclear waste repository. It has been 

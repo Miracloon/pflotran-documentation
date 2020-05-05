@@ -1,7 +1,7 @@
 .. _mode-richards:
 
-Mode: ``RICHARDS``
-------------------
+``RICHARDS``
+------------
 
 The ``RICHARDS`` mode applies to single phase, variably saturated, isothermal
 systems. The governing mass conservation equation is given by
