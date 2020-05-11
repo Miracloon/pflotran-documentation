@@ -1,7 +1,10 @@
 .. _mode-general:
 
-Mode: ``GENERAL``
--------------------
+``GENERAL`` Mode
+----------------
+
+Governing Equations
+~~~~~~~~~~~~~~~~~~~
 
 The ``GENERAL`` mode involves two phase liquid water-gas flow coupled
 to the reactive transport mode. Mass conservation equations have the

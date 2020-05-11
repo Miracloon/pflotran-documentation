@@ -1,5 +1,5 @@
-Method of Solution
-==================
+``Method of Solution``
+======================
 
 The flow and heat equations (Modes: RICHARDS, MPHASE, FLASH2, TH, …) are
 solved using a fully implicit backward Euler approach based on

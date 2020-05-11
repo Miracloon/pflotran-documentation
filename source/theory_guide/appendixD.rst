@@ -1,5 +1,5 @@
-Python Tools
-============
+Python Script to Select Species from Thermodynamic Database
+===========================================================
 
 Extracting Aqueous Secondary Species, Minerals and Gases from a Thermodynamic Database
 --------------------------------------------------------------------------------------

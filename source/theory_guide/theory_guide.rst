@@ -2,7 +2,7 @@ Theory Guide
 ============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    /theory_guide/symbol_glossary.rst
 
@@ -19,11 +19,9 @@ Flow Modes
    /theory_guide/mode_th.rst
    /theory_guide/mode_general.rst
    /theory_guide/mode_mphase.rst
-   /theory_guide/mode_immis.rst
-   /theory_guide/mode_miscible.rst
 
-Reactive Transport Modes
-++++++++++++++++++++++++
+Reactive Transport Mode
++++++++++++++++++++++++
 
 .. toctree::
    :maxdepth: 2
@@ -36,10 +34,16 @@ Other Process Models
 .. toctree::
    :maxdepth: 2
 
-   /theory_guide/mode_geomechanics.rst
-   /theory_guide/pm_waste_form.rst
    /theory_guide/multiple_continuum.rst
-   /theory_guide/pm_ufd_decay.rst
+   /theory_guide/mode_geomechanics.rst
+
+Constitutive Relations
+++++++++++++++++++++++
+
+.. toctree::
+   :maxdepth: 2
+
+   /theory_guide/constitutive_relations.rst
 
 Numerical Implementation
 ------------------------
@@ -48,11 +52,29 @@ Numerical Implementation
    :maxdepth: 2
 
    /theory_guide/appendixB.rst
-   /theory_guide/reaction_sandbox.rst
-   /theory_guide/appendixD.rst
-   
+
+Reaction Sandbox
+----------------
+
 .. toctree::
    :maxdepth: 2
+
+   /theory_guide/reaction_sandbox.rst
+
+Python Tools
+------------
+
+.. toctree::
+   :maxdepth: 1
+
+   /theory_guide/appendixD.rst
+   
+
+References
+----------
+
+.. toctree::
+   :maxdepth: 1
 
    /theory_guide/references.rst
 
@@ -61,7 +83,11 @@ Numerical Implementation
    :hidden:
    
    /theory_guide/tg_intro.rst
+   /theory_guide/mode_immis.rst
+   /theory_guide/mode_miscible.rst
    /theory_guide/wipp_source_sink.rst
    /theory_guide/wipp_waste_form.rst
    /theory_guide/wipp_soln_controls.rst
+   /theory_guide/pm_waste_form.rst
+   /theory_guide/pm_ufd_decay.rst
 

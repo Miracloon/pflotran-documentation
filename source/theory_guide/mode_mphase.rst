@@ -1,7 +1,10 @@
 .. _mode-mphase:
 
-Mode: ``MPHASE``
-----------------
+``MPHASE`` Mode
+---------------
+
+Governing Equations
+~~~~~~~~~~~~~~~~~~~
 
 The mode ``MPHASE`` solves the two-phase system of water and
 supercritical :math:`\mathrm{CO_2}`. It may also be coupled to chemistry

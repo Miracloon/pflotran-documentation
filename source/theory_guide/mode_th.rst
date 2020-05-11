@@ -1,16 +1,18 @@
 .. _mode-th:
 
-Mode: ``TH`` (Thermal-Hydrologic)
----------------------------------
+``TH`` Mode (Thermal-Hydrologic)
+--------------------------------
+
+Governing Equations
+~~~~~~~~~~~~~~~~~~~
 
 The current implementation of the ``TH`` mode applies to mass and energy
 conservation equations which are solved fully coupled. The fluid density
 only a function of :math:`T` and :math:`P`. Future generalizations of
 the ``TH`` mode will include multicomponent variable density fluids. The
-TH equations may be coupled to the reactive transport mode (see Section
-[sec:chem]).
+TH mode may be coupled to the reactive transport mode.
 
-``TH`` mode applies to single phase, variably saturated, nonisothermal
+The ``TH`` mode applies to single phase, variably saturated, nonisothermal
 systems with incorporation of density variations coupled to fluid flow.
 The governing equations for mass and energy are given by
 

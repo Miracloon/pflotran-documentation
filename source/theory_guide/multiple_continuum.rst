@@ -1,7 +1,7 @@
 .. _multiple_continuum:
 
-Multiple Continuum Model
-------------------------
+``Multiple Continuum Model``
+----------------------------
 
 Two forms of multiple continuum models are available in PFLOTRAN, one based on thermal conduction and the other incorporating multicomponent reactive transport. Both models only account for diffusion in the secondary continua (matrix) modeled as a  disconnected one-dimensional domains referred to as the DCDM (Dual Continuum Disconnected Matrix) model (Lichtner, 2000), but include advection in the primary continuum. 
 
