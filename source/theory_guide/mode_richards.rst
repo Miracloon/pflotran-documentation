@@ -1,7 +1,7 @@
 .. _mode-richards:
 
-``RICHARDS`` Mode
------------------
+RICHARDS Mode
+-------------
 
 Governing Equations
 ~~~~~~~~~~~~~~~~~~~

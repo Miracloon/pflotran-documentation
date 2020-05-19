@@ -1,7 +1,7 @@
 .. _mode-th:
 
-``TH`` Mode (Thermal-Hydrologic)
---------------------------------
+TH Mode (Thermal-Hydrologic)
+----------------------------
 
 Governing Equations
 ~~~~~~~~~~~~~~~~~~~

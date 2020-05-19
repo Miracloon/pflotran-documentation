@@ -1,6 +1,11 @@
 
-``Capillary Pressure - Saturation Functions``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+..`_constitutive_relations:
+
+Constitutive Relations
+----------------------
+
+Capillary Pressure - Saturation Functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. _VG-saturation-function-richards:
 
@@ -57,8 +62,8 @@ with :math:`\lambda=mn` and inverse relation
    
 .. _relative-permeability-functions-richards:
    
-``Relative Permeability Functions``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Relative Permeability Functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Two forms of the relative permeability function are implemented based on
 the Mualem and Burdine formulations. The quantity :math:`n` is related
@@ -120,8 +125,8 @@ saturation function has the form
 
 .. _smoothing-operation:       
        
-``Smoothing``
-~~~~~~~~~~~~~
+Smoothing
+~~~~~~~~~
 
 At the end points of the saturation and relative permeability functions
 it is sometimes necessary to smooth the functions in order for the

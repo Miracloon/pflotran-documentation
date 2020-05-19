@@ -1,5 +1,5 @@
-``Customizing Reactions using the Reaction Sandbox``
-====================================================
+Reaction Sandbox
+================
 
 Background
 ----------

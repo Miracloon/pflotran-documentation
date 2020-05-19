@@ -1,7 +1,7 @@
 .. _mode-mphase:
 
-``MPHASE`` Mode
----------------
+MPHASE Mode
+-----------
 
 Governing Equations
 ~~~~~~~~~~~~~~~~~~~
@@ -25,11 +25,11 @@ mass and energy conservation solved by PFLOTRAN have the general form:
 .. math::
    :label: mass_conservation_equation
    
-   \frac{{{\partial}}}{{{\partial}}t} \bigg(\varphi \sum_{{\alpha}}s_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}}\bigg)
-   + {\boldsymbol{\nabla}}\cdot\sum_{{\alpha}} {\boldsymbol{F}}_i^{{\alpha}}= Q_{i},
+   \frac{\partial}{\partial t} \bigg(\varphi \sum_{\alpha}s_{\alpha}^{}\eta_{\alpha}^{} x_i^{\alpha}\bigg)
+   + {\boldsymbol{\nabla}}\cdot\sum_{\alpha} {\boldsymbol{F}}_i^{\alpha}= Q_{i},
 
 for the :math:`i`\ th component where the flux
-:math:`{\boldsymbol{F}}_i^{{\alpha}}` is given by
+:math:`{\boldsymbol{F}}_i^{\alpha}` is given by
 
 .. math::
    :label: flux-mphase
@@ -229,7 +229,7 @@ where it is assumed that
 Two-Phase: :math:`(p_g,\,T,\,s_g)` :math:`\rightarrow` Liquid :math:`(p_l,\,T,\,x_{{\rm CO_2}}^l)` or Gas :math:`(p_g,\,T,\,x_{{\rm CO_2}}^g)`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Equilibrium in a two-phase :math:`{{\rm H_2O}}`–:math:`{{\rm CO_2}}`
+Equilibrium in a two-phase :math:`{\rm H_2O}`–:math:`{\rm CO_2}`
 system is defined as the equality of chemical potentials between the two
 phases as expressed by the relation
 
@@ -310,8 +310,8 @@ Mass fraction–mole fraction:
    
    w_i = \frac{M_i}{M} = \frac{W_i n_i}{\sum W_l n_l} = \frac{W_i x_i}{\sum W_l x_l}
 
-Sequentially Coupling ``MPHASE`` and ``CHEMISTRY``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Sequentially Coupling the MPHASE Mode with CHEMISTRY
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MPHASE and CHEMISTRY may be sequentially coupled to one another by
 including the CHEMISTRY keyword in the MPHASE input file and adding the

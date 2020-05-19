@@ -19,12 +19,13 @@ Flow Modes
    /theory_guide/mode_th.rst
    /theory_guide/mode_general.rst
    /theory_guide/mode_mphase.rst
+   /theory_guide/constitutive_relations.rst
 
-Reactive Transport Mode
-+++++++++++++++++++++++
+Reactive Transport Mode (Keyword CHEMISTRY)
++++++++++++++++++++++++++++++++++++++++++++
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    /theory_guide/mode_reactive_transport.rst
 
@@ -36,14 +37,6 @@ Other Process Models
 
    /theory_guide/multiple_continuum.rst
    /theory_guide/mode_geomechanics.rst
-
-Constitutive Relations
-++++++++++++++++++++++
-
-.. toctree::
-   :maxdepth: 2
-
-   /theory_guide/constitutive_relations.rst
 
 Numerical Implementation
 ------------------------

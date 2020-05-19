@@ -1,7 +1,7 @@
 .. _mode-general:
 
-``GENERAL`` Mode
-----------------
+GENERAL Mode
+------------
 
 Governing Equations
 ~~~~~~~~~~~~~~~~~~~

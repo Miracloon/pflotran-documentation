@@ -1,4 +1,4 @@
-Literature Cited
+References
 ++++++++++++++++
 
 Balay, S., V. Eijkhout V, W.D. Gropp, L.C. McInnes and B.F. Smith (1997)

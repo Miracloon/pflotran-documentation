@@ -1,10 +1,24 @@
 .. _mode-reactive-transport:
 
-``REACTIVE TRANSPORT`` Mode (Keyword ``CHEMISTRY``)
-----------------------------------------------------
+Introduction 
+++++++++++++
+
+The chemistry algorithm implemented in PFLOTRAN emplooys a multicomponent formulation of aqueous species, gases and minerals. The traansport equations are formulated in terms
+of the total concentration of a chosen set of primary or basis species. 
+A feature of the code is that primary species which form the independent variables can be chosen arbitrarily (so long as they form an independent set), and need not reflect the form of the reactions as wwritten in the thermodynamic database. For example, the sets of 
+primary species :math:`\{\rm K^+, Al^{3+},SiO_2,H^+\}` and 
+:math:`\{\rm K^+, AlOH_4^-,SiO_2,OH^-\}` can be used interchangeably 
+giving identical results.
+
+Chemical reactions included in the code are aqueous complexing for both local equilibrium and kintic formulations (however the rate law is restricted to elementary reactions), kinetic reaction of minerals using the usual transition state rate law, gaseous reactions and various formulations of sorption. The Debye-Hueckel activity coefficient algorithm is implemented and can be invoked during various stages of stepping forward in time. 
+
+The reactive transport mode may be used either as a standalone application or sequentially
+coupled to a flow mode which can include both mass and heat flow. This latter capability provides feedback between flow, heat
+and transport allowing chemical reactions to alter material properties
+such as porosity, permeability, and tortuosity thereby altering the flow field. To include temperature effects on chemistry the database must provide log Ks relevant to the system at hand.
 
 Governing Equations
-~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++
 
 The governing mass conservation equations for the geochemical transport
 mode for a multiphase system is written in terms of a set of independent
@@ -13,8 +27,9 @@ aqueous primary or basis species with the form
 .. math::
    :label: rteqn
    
-   \frac{{{\partial}}}{{{\partial}}t}\big(\varphi \sum_{{\alpha}}s_{{\alpha}}\Psi_j^{{\alpha}}\big) +
-   \nabla\cdot\sum_{{\alpha}}{\boldsymbol{\Omega}}_j^{{\alpha}}= Q_j - \sum_m\nu_{jm} I_m -\frac{{{\partial}}S_j}{{{\partial}}t},
+   \frac{\partial}{\partial t}\big(\varphi 
+   \sum_{\alpha} s_{\alpha}\Psi_j^{\alpha}\big) +
+   \nabla\cdot\sum_{\alpha}{\boldsymbol\Omega}_j^{\alpha}= Q_j - \sum_m\nu_{jm} I_m -\frac{\partial S_j}{\partial t},
 
 and
 
@@ -188,7 +203,7 @@ The activity of water is calculated from the approximate relation
 .. _transition-state-theory:   
 
 Mineral Precipitation and Dissolution
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++++++++++++++++++++
 
 The reaction rate :math:`I_m` is based on transition state theory taken
 as positive for precipitation and negative for dissolution, with the
@@ -548,14 +563,14 @@ which only allows precipitation to occur if :math:`K_m Q_m > f > 1`.
  :math:`{{\mathcal M}}_m`.
 
 Sorption
-~~~~~~~~
+++++++++
 
 Sorption reactions incorporated into PFLOTRAN consist of specifying a sorption
 isotherm, ion exchange reactions, and equilibrium and multirate formulations of surface 
 complexation reactions. Each of these is dealt with in more detail below.
 
 Sorption Isotherm
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 The sorption isotherm relates the sorbed concentration at the solid surface to the
 aqueous concentration in contact with the solid at constant temperature. 
@@ -687,7 +702,7 @@ Three distinct models are available for the sorption isotherm
       
       S_j = \varphi s_l K_j^D C_j = \hat K_j^D m_j,
 
-   with distribution coefficient :math:`\hat K_j^D`,
+   with distribution coefficient :math:`\hat K_j^D`.
 
 -  Langmuir isotherm:
 
@@ -696,7 +711,7 @@ Three distinct models are available for the sorption isotherm
       
       S_j= \frac{K_j^L b_j^L C_j/ \rho_w}{1+K_j^L C_j/ \rho_w} = \frac{K_j^L b_j^L m_j}{1+K_j^L m_j},
 
-   with Langmuir coefficients :math:`K_j^L` and :math:`b_j^L`, and
+   with Langmuir coefficients :math:`K_j^L` and :math:`b_j^L`.
 
 -  Freundlich isotherm:
 
@@ -705,7 +720,7 @@ Three distinct models are available for the sorption isotherm
       
       S_j = K_j^F \left(\frac{C_j}{\rho_w}\right)^{(1/n_j^F)}  = K_j^F \big(m_j\big)^{(1/n_j^F)},
 
-   with coefficients :math:`K_j^F` and :math:`n_j^F`.
+   with coefficient :math:`K_j^F` and inverse power :math:`n_j^F`.
 
 Ion Exchange
 ^^^^^^^^^^^^
@@ -1263,7 +1278,7 @@ The total sorbed concentrations are obtained from the equations
    \frac{{{\partial}}S_{j{{\alpha}}}}{{{\partial}}t} = k_{{\alpha}}^{} \big(S_{j{{\alpha}}}^{\rm eq}-S_{j{{\alpha}}}\big).
 
 Aqueous Complexing Reaction Kinetics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++++++++++++++++
 
 PFLOTRAN allows the user to input kinetic reactions of homogeneous aqueous complexing reactions
 through the GENERAL_REACTION keyword. 
@@ -1338,7 +1353,7 @@ necessary to solve.
 
 
 Colloid-Facilitated Transport
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++++++++++++
 
 Colloid-facilitated transport is implemented into PFLOTRAN based on
 surface complexation reactions. Competition between mobile and immobile
@@ -1424,7 +1439,7 @@ the case where a flux term is present in the kinetic equation is not
 possible in general for complex flux terms.
 
 Tracer Mean Age
-~~~~~~~~~~~~~~~
++++++++++++++++
 
 PFLOTRAN implements the Eulerian formulation of solute age for a
 nonreactive tracer following Goode (1996). PFLOTRAN solves the
@@ -1489,9 +1504,12 @@ mean age :math:`A` can be obtained as :math:`A= \alpha/C`.
 .. _thermodynamic-database:
 
 Thermodynamic Database
-~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++
 
-PFLOTRAN reads thermodynamic data from a database that may be customized
+Database Structure
+^^^^^^^^^^^^^^^^^^
+
+PFLOTRAN reads thermodynamic data from a database file that may be customized
 by the user. Reactions included in the database consist of aqueous
 complexation, mineral precipitation and dissolution, gaseous reactions,
 and surface complexation. Ion exchange reactions and their selectivity
@@ -1659,14 +1677,14 @@ density :math:`(\eta_m=\overline V_m^{-1})`. The scaling factor :math:`\lambda_m
 can be found under MINERAL\_KINETICS with the option MINERAL\_SCALE\_FACTOR.
 
 Eh, pe
-~~~~~~
+^^^^^^
 
 Output for Eh and pe is calculated from the half-cell reaction
 
 .. math::
    :label: redox
    
-   \rm 2 \, H_2O - 4 \, H^+ - 4\,e^- {~\rightleftharpoons~}\rm O_2,
+   \rm 2 \, H_2O - 4 \, H^+ - 4\,e^- \rightleftharpoons \rm O_2,
 
 with the corresponding equilibrium constant fit to the Maier-Kelly
 expansion Eqn. :eq:`mk`. The fit coefficients are listed in

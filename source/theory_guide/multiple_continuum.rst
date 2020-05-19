@@ -1,7 +1,7 @@
 .. _multiple_continuum:
 
-``Multiple Continuum Model``
-----------------------------
+Multiple Continuum Model
+------------------------
 
 Two forms of multiple continuum models are available in PFLOTRAN, one based on thermal conduction and the other incorporating multicomponent reactive transport. Both models only account for diffusion in the secondary continua (matrix) modeled as a  disconnected one-dimensional domains referred to as the DCDM (Dual Continuum Disconnected Matrix) model (Lichtner, 2000), but include advection in the primary continuum. 
 
@@ -140,6 +140,8 @@ with the inner and outer grid spacing related by
 .. figure:: ./figs/mincl.png
    :alt: Control volumes in DCDM multiple continuum model with fracture aperture :math:`2\delta` and matrix block size :math:`d`.
    :name: fig:fminc
+   :scale: 50
+   :align: center
 
    Control volumes in DCDM multiple continuum model with fracture
    aperture :math:`2\delta` and matrix block size :math:`d`.
@@ -164,7 +166,7 @@ giving
 .. math::
    :label: epsilon-th
    
-   \epsilon_{{\alpha}}&= 1-\frac{d^3}{(d+2\delta)^3} = 1-\left(\dfrac{1}{1+\dfrac{2\delta}{d}}\right)^3,\\
+   \epsilon_{\alpha} &= 1-\frac{d^3}{(d+2\delta)^3} = 1-\Bigg(\dfrac{1}{1+\dfrac{2\delta}{d}}\Bigg)^3,\\
    & ~\simeq~ \frac{6\delta}{d}.
 
 The fracture aperture :math:`2\delta` is found to be in terms of
@@ -173,7 +175,7 @@ The fracture aperture :math:`2\delta` is found to be in terms of
 .. math::
    :label: 2delta-th
    
-   2\delta = d \left(\frac{1}{(1-\epsilon_{{\alpha}})^{1/3}} -1\right).
+   2\delta = d \Big(\frac{1}{(1-\epsilon_{{\alpha}})^{1/3}} -1\Big).
 
 A list of different sub-continua geometries and parameters implemented
 in PFLOTRAN is given in Table [tdcdmgeom]. Different independent and
