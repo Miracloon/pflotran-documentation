@@ -15,7 +15,7 @@ Guidelines
        Level 3
          Level 4
            Level 5
-           ...
+             ...
 
 * Maximum source width is 80 characters.  Use a continuation line beyond
 
@@ -32,7 +32,7 @@ Guidelines
 
  * All fortran syntax should be lower case, e.g. 
 
-   | subroutine, module, contains, use, .and., etc.
+   | subroutine, module, contains, use, .and., else, etc.
 
  * All variable names should be lower case.
  * Fortran parameters are all caps, e.g. 
@@ -51,6 +51,7 @@ Guidelines
         Grid_setvel -> GridSetVel or GridSetVelocity
         Grid_update_dt -> GridUpdateDt or GridUpdateTimestep
 
+* All fortran syntax with multiple words should have a space between words (e.g. end type, end subroutine), except for conditionals and loops:  elseif, endif, enddo.
 * Pin all module, subroutine, function, and contains declarations up against the left side.  This leaves more room for indentation later on and is not confusing.
 * The default private/public attribute for modules is 'private'
 * 'implicit none' at top of every file, subroutine, function, interface
@@ -194,8 +195,10 @@ An example source would be (!comment denotes all commentary on example)
     if (grid%ndof >= 2 .and. (.not.logical_whatever .or. &
         integer1 /= integer2)) then
       do i=1,2
-        call Whatever
+        call Whatever()
       enddo
+    elseif (grid%ndof == 1) then
+      call SomethingElse()
     endif
 
     ! fortran switch
