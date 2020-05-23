@@ -9,7 +9,7 @@ Back to :ref:`subsurface-flow-mode-card`
 TH
 ==
 
-Defines options for the TH subsurface flow mode.
+Defines options for the TH subsurface flow mode. For more details and governing equations see the Theory Guide.
 
 :ref:`th-simulation-options`
 

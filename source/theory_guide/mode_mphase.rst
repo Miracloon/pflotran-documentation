@@ -310,8 +310,8 @@ Mass fraction–mole fraction:
    
    w_i = \frac{M_i}{M} = \frac{W_i n_i}{\sum W_l n_l} = \frac{W_i x_i}{\sum W_l x_l}
 
-Sequentially Coupling the MPHASE Mode with CHEMISTRY
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Sequentially Coupling MPHASE with CHEMISTRY
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MPHASE and CHEMISTRY may be sequentially coupled to one another by
 including the CHEMISTRY keyword in the MPHASE input file and adding the

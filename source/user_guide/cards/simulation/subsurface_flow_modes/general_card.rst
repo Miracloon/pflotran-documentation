@@ -8,7 +8,7 @@ Back to :ref:`subsurface-flow-mode-card`
 
 GENERAL
 =======
-Defines options for the General subsurface flow mode.
+Defines options for the General subsurface flow mode. For more details and governing equations see the Theory Guide.
 
 :ref:`general-simulation-options`
 

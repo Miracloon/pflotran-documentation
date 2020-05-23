@@ -56,6 +56,6 @@ Greek Symbols
 
 :math:`\mu` -viscosity [Pa s]
 
-:math:`\Psi_j` -total concentration of :math:`j` th primary species [mol m\ :math:`^{-3}`]
+:math:`\Psi_j` -total concentration of :math:`j`\ th primary species [mol m\ :math:`^{-3}`]
 
-:math:`\boldsymbol{\Omega}_j` -total flux of :math:`j` th primary species [mol m\ :math:`^{-2}` s\ :math:`^{-1}`]
+:math:`\boldsymbol{\Omega}_j` -total flux of :math:`j`\ th primary species [mol m\ :math:`^{-2}` s\ :math:`^{-1}`]

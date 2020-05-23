@@ -6,8 +6,6 @@ Theory Guide
 
    /theory_guide/symbol_glossary.rst
 
-Process Models
---------------
 
 Flow Modes
 ++++++++++
@@ -29,8 +27,8 @@ Reactive Transport Mode (Keyword CHEMISTRY)
 
    /theory_guide/mode_reactive_transport.rst
 
-Other Process Models
-++++++++++++++++++++
+Process Models Under Development
+++++++++++++++++++++++++++++++++
 
 .. toctree::
    :maxdepth: 2
@@ -38,33 +36,17 @@ Other Process Models
    /theory_guide/multiple_continuum.rst
    /theory_guide/mode_geomechanics.rst
 
-Numerical Implementation
-------------------------
+Numerical Methods
++++++++++++++++++
 
 .. toctree::
    :maxdepth: 2
 
    /theory_guide/appendixB.rst
-
-Reaction Sandbox
-----------------
-
-.. toctree::
-   :maxdepth: 2
-
    /theory_guide/reaction_sandbox.rst
 
-Python Tools
-------------
-
-.. toctree::
-   :maxdepth: 1
-
-   /theory_guide/appendixD.rst
-   
-
 References
-----------
+++++++++++
 
 .. toctree::
    :maxdepth: 1

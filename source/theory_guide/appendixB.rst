@@ -78,15 +78,15 @@ discretization has the form
 
 for reaction rates that are distributed continuously over a control
 volume, or for a well with point source
-:math:`Q_j = \widehat Q_j \delta({\boldsymbol{r}}-{\boldsymbol{r}}_0)`:
+:math:`Q_j = \hat Q_j \delta({\boldsymbol{r}}-{\boldsymbol{r}}_0)`:
 
 .. math::
    :label: CV-soln
    
-   \int_{V_n}Q_j\, dV = \widehat Q_{jn}.
+   \int_{V_n}Q_j\, dV = \hat Q_{jn}.
 
-Fully Implicit Newton-Raphson Iteration with Linear and Logarithm Update
-------------------------------------------------------------------------
+Global Implicit Newton-Raphson Linear and Logarithmic Update
+------------------------------------------------------------
 
 In a fully implicit formulation the nonlinear equations for the residual
 function :math:`{\boldsymbol{R}}` given by
