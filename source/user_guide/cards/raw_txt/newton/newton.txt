@@ -15,7 +15,7 @@ DTOL <float>
 
 ITOL <float>
  @SUPPORTED_MODES RICHARDS TH MPHASE
- Delare convergence when the infinity norm of residual is less than ITOL :math:`\left(\|f(x_n)\|_{inf}<\text{ITOL}\right)`. (default: not used).
+ Declare convergence when the infinity norm of residual is less than ITOL :math:`\left(\|f(x_n)\|_{inf}<\text{ITOL}\right)`. (default: not used).
 
 ITOL_UPDATE <float>
  @SUPPORTED_MODES RICHARDS TH
@@ -34,7 +34,10 @@ MAXIMUM_NUMBER_OF_ITERATIONS <int>
 
 MAX_NORM <float>
  @EXPERT
- Declare divergence (cut the time step) when the infinity norm of the residual is greater than MAX_NORM :math:`\left(\|f(x_n)\|_{inf}>\text{MAX_NORM}\right)`. (default: :math:`10^{20}`).
+ Declare divergence (cut the time step) when the infinity norm of the residual is greater than MAX\_NORM 
+ :math:`\left(
+ \| f(x_n) \|_{inf} > \text{MAX_NORM}
+ \right)`. (default: :math:`10^{20}`).
 
 MINIMUM_NUMBER_OF_ITERATIONS <int>
  @EXPERT

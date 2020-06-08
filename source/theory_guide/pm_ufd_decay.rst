@@ -1,7 +1,7 @@
 .. _pm_ufd_decay:
 
-The UFD Decay Process Model
-============================
+UFD Decay
+=========
 
 The Used Fuel Disposition Decay Process Model performs radionuclide isotope 
 decay, ingrowth, and phase partitioning, for the simulation of a nuclear

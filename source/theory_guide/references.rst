@@ -1,5 +1,5 @@
-References
-==========
+Theory Guide Citations
+++++++++++++++++++++++
 
 Balay, S., V. Eijkhout V, W.D. Gropp, L.C. McInnes and B.F. Smith (1997)
 Modern Software Tools in Scientific Computing, Eds. Arge E, Bruaset AM

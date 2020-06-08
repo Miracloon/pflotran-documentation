@@ -1,12 +1,12 @@
 .. _mode-geomechanics:
 
-Mode: ``GEOMECHANICS``
-----------------------
+Geomechanics
+------------
 
-In PFLOTRAN, linear elasticity model is assumed as the constitutive
+In PFLOTRAN, a linear elasticity model is assumed as the constitutive
 model for deformation of the rock. Biot’s model is used to incorporate
-the effect of flow on the geomechanics. In addition, the effect of
-temperature on geomechanics is considered via coefficient of thermal
+the effect of flow on geomechanics. In addition, the effect of
+temperature on geomechanics is considered via the coefficient of thermal
 expansion. The following governing equations are used:
 
 .. math::

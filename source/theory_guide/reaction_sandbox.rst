@@ -1,5 +1,5 @@
-The Reaction Sandbox
-====================
+Reaction Sandbox
+================
 
 Background
 ----------
@@ -18,8 +18,8 @@ reaction through the Newton-Raphson method. For instance, one must
 understand the purpose and function of the rt\_auxvar and global\_auxvar
 objects.
 
-Implementation
---------------
+Implementing the Reaction Sandbox
+---------------------------------
 
 The core framework of reaction sandbox leverages Fortran 2003
 object–oriented extendable derived types and methods and consists of two

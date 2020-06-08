@@ -9,7 +9,7 @@ Back to :ref:`subsurface-flow-mode-card`
 MPHASE
 ======
 
-Defines options for the MPHASE supercritical CO\ :sub:`2`\ subsurface flow mode.
+The MPHASE keyword defines options for the MPHASE supercritical CO\ :math:`_2`\ subsurface flow mode. For more details and governing equations see the Theory Guide.
 
 :ref:`mphase-simulation-options`
 
