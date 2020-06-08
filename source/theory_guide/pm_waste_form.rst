@@ -189,7 +189,7 @@ how external dissolution models can be coupled to PFLOTRAN. The dissolution
 model used is obtained via coupling to the FMDM by calling a single external
 subroutine developed by Jerden et al. (2015). Details regarding the FMDM 
 conceptual model and algorithmic design are provided by Jerden et al. (2015).
-This mechanism requires the free ion concentrations of O2(aq), CO3-, H2(aq), 
+This mechanism requires the free ion concentrations of O2(aq), CO3--, H2(aq), 
 and Fe++ to be specified in mol/L in the CONCENTRATIONS sub-block card 
 of the CONSTRAINT card.
 
@@ -205,7 +205,7 @@ model is documented in Appendix A of Mariner et al. (2019). The coefficients
 for the model can be found in PFLOTRAN_SRC/regression_tests/ufd/ann_surrogate.
 They are read in by PFLOTRAN and therefore this folder must be in the 
 directory it is executed in. This mechanism requires the free ion concentrations
-of O2(aq), CO3-, H2(aq), and Fe++ to be specified in mol/L in the
+of O2(aq), CO3--, H2(aq), and Fe++ to be specified in mol/L in the
 CONCENTRATIONS sub-block card of the CONSTRAINT card. 
 
 WIPP Mechanism
