@@ -74,37 +74,70 @@ yielding the mass action equations
 
 with equilibrium constant :math:`K_i^{{\alpha}}`, and activity
 coefficients :math:`\gamma_k^{{\alpha}}`. For the molality of the
-:math:`k`\ th aqueous species, the Debye-Hückel activity coefficient
-algorithm is given by
+:math:`k`\ th aqueous species, the extended Debye-Hückel activity coefficient
+for an aqueous electrolyte solution with ionic strength :math:`I` is 
+given by (Debye and Hückel, 1923)
 
 .. math::
    :label: dummy3
    
-   \log\,\gamma_k = -\frac{z_k^2 A \sqrt{I}}{1+B \stackrel{\circ}{a}_k \sqrt{I}}+\dot b I,
+   \log_{10} \,\gamma_k = -\frac{z_k^2 A \sqrt{I}}{1 + \stackrel{\circ}{a}_k 
+   B \sqrt{I}} + \dot b I,
 
-and the Davies algorithm by the expression
+with valence :math:`z_k`,
+ionic radius :math:`\stackrel{\circ}{a}_k` in angstroms,
+and where the Debye-Hückel parameters :math:`A`, :math:`B` are 
+defined by (Helgeson and Kirkham, 1974)
 
 .. math::
-   :label: dummy4
-   
-   \log\,\gamma_k = -\frac{z_k^2}{2}\left[\frac{\sqrt{I}}{1+ \sqrt{I}}-0.3 I\right].
+   :label: AB
 
-with valence :math:`z_k`, Debye-Hückel parameters :math:`A`, :math:`B`,
-and ionic radius :math:`\stackrel{\circ}{a}_k`, and ionic strength
-:math:`I` defined as
+   A &= \frac{N_A^2 e^3\sqrt{2\pi}}{\ln 10 \sqrt{1000}\big(\epsilon(T,p)RT\big)^{3/2}},\\
+   B &= N_A e\sqrt{\frac{8\pi}{1000 \, \epsilon(T,p) RT}} \times 10^{-8}.
+
+The :math:`\dot b` term is from Helgeson (1969) given by
+
+.. math::
+   :label: bdot
+
+   \dot b = 15698.4\, T^{-1} + 41.8088 \,\ln(T) - 0.0367626 \,T - 974169.0\, T^{-2} - 268.902,
+
+The quantity :math:`\epsilon(T,p)` is the dielectric constant of pure water which can be found in e.g. Johnson and Norton (1991). 
+Ionic strength :math:`I` is defined as
 
 .. math::
    :label: dummy5
    
    I = \frac{1}{2}\sum_{j=1}^{N_c} m_j z_j^2 + \frac{1}{2}\sum_{i=1}^{N_{\rm sec}} m_i z_i^2,
 
-for molality :math:`m_j` and :math:`m_i` of primary and secondary
+with molality :math:`m_j` and :math:`m_i` of primary and secondary
 species, respectively (note:
 :math:`C_i^l = \rho_l y_w^l m_i \simeq \rho_l m_i`, :math:`\rho_l` =
 fluid density, :math:`y_w^l` = mass fraction of :math:`\mathrm{H_2O}`).
+
+Values in CGS units used for the various constants appearing in the expressions 
+for A and B are 
+based on the most recent values (2020) for 
+Avogrado's number (\ :math:`N_A = 6.0221409 \times 10^{23}` 1/mole),
+charge (\ :math:`e = 4.80320425 \times 10^{-10}` esu),
+Boltzmann's constant (\ :math:`k_B=1.38064852\times 10^{-16}` erg/K), 
+gas constant (\ :math:`R=8.31446261815324 \times 10^7` erg/K/mole = :math:`N_A k_B`) and :math:`\pi=3.14159265359`. Density of pure water is based on the IFC97 EoS.
+Debye-Huckel coefficients are calculated at selected temperatures along the saturation curve of pure water and linearly interpolated at intermediate temperatures. 
+
 For high-ionic strength solutions (approximately above 0.1 M) the Pitzer
 model should be used. Currently, however, only the Debye-Hückel
 algorithm is implemented in PFLOTRAN.
+
+
+Other forms for activity coefficients exist although not currently implemented. A simplified form is given by the Davies equation
+
+.. math::
+   :label: dummy4
+   
+   \log\,\gamma_k = -\frac{z_k^2}{2}\left[\frac{\sqrt{I}}{1+ \sqrt{I}}-0.3 I\right],
+
+taking :math:`A = 1/2` and :math:`\stackrel{\circ}{a}_k B = 1`, 
+and :math:`\dot b = 0.15` in the extended Debye-Hückel equation.
 
 The total flux :math:`{\boldsymbol{\Omega}}_j^{{\alpha}}` for
 species-independent diffusion is given by

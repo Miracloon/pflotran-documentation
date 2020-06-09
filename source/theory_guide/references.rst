@@ -14,6 +14,8 @@ Scheme on Pattern Steamflood Simulation Results, paper SPE-11079,
 presented at the 57th Annual Fall Technical Conference and Exhibition of
 the Society of Petroleum Engineers, New Orleans, LA, September 1982.
 
+Debye, P. and E. Hückel (1923). The theory of electrolytes. I. Freezing point depres- sion and related phenomena [Zur Theorie der Elektrolyte. I. Gefrierpunktserniedrigung und verwandte Erscheinungen]. Physikalische Zeitschrift, 24, 185--206. Translated and typeset by Michael J. Braus (2020).
+
 Ebigbo, A., Holger Class, H., Helmig, R. (2007) :math:`\mathrm{CO_2}`
 leakage through an abandoned well: problem-oriented benchmarks, Computers in
 Geosciences 11:103?115 DOI 10.1007/s10596-006-9033-7.
@@ -33,6 +35,15 @@ Supercomputers, Editors: Zhang, F., G. T. Yeh, and J. C. Parker, *Ground
 Water Reactive Transport Models*, Bentham Science Publishers. ISBN
 978-1-60805-029-1.
 
+Helgeson, H.C. (1969) Thermodynamics of hydrothermal systems at 
+elevated temperatures and pressures, Am. J. Sci., 267, 729--804.
+
+Helgeson, H.C. and D.H. Kirkham (1974) Theoretical prediction of the
+thermodynamic behavior of aqueous electrolytes at high pressures and
+temperatures: II Debye-Hückel parameters for activity coefficients
+and relative partial molal properties,
+Am. J. Sci., 274, 1199--1261.
+
 Khaleel, R., E.J. Freeman (1995) Variability and scaling of hydraulic
 properties for 200 area soils, Hanford Site. Report WHC-EP-0883.
 Westinghouse Hanford Company, Richland, WA.
@@ -41,6 +52,10 @@ Khaleel, R., T.E. Jones, A.J. Knepp, F.M. Mann, D.A. Myers, P.M. Rogers,
 R.J. Serne, and M.I. Wood (2000) Modeling data package for S-SX Field
 Investigation Report (FIR). Report RPP-6296, Rev. 0. CH2M Hill Hanford
 Group, Richland, WA.
+
+Johnson, J.W., and Norton, D. (1991) Critical phenomena in hydrothermal systems:
+State, thermodynamic, electrostatic and transport properties 
+of :math:`\mathrm{H_2O}` in the critical region, Am. J. Sci., 291, 541--648.
 
 Lichtner, P.C., Yabusaki, S.B., Pruess K., and Steefel, C.I. (2004) Role
 of Competitive Cation Exchange on Chromatographic Displacement of Cesium
