@@ -198,15 +198,20 @@ of the CONSTRAINT card.
 FMDM Surrogate Mechanism
 ........................
 Surrogate model developed for the FMDM mechanism. It is a single layer
-feed-forward neural network model implemented in PFLOTRAN. Age of the fuel
-prior to the beginning of the simulation is specified through the DECAY_TIME
-sub-block card of MECHANISM FMDM_SURROGATE. The construction of this surrogate
-model is documented in Appendix A of Mariner et al. (2019). The coefficients
-for the model can be found in PFLOTRAN_SRC/regression_tests/ufd/ann_surrogate.
-They are read in by PFLOTRAN and therefore this folder must be in the 
-directory it is executed in. This mechanism requires the free ion concentrations
-of O2(aq), CO3--, H2(aq), and Fe++ to be specified in mol/L in the
-CONCENTRATIONS sub-block card of the CONSTRAINT card. 
+feed-forward neural network model or a k-Nearest Neighbors regressor (kNNr)
+implemented in PFLOTRAN. Age of the fuel prior to the beginning of the simulation
+is specified through the DECAY_TIME sub-block card of MECHANISM FMDM_SURROGATE or
+FMDM_SURROGATE_KNNR for kNNr. The number of nearest neighbors for the kNNr can be
+specified through the NEAREST_NEIGHBOR sub-block card and the epsilon value for
+considering a zero distance to the nearest neighbor can be specified through the
+KNNR_EPS sub-block card. The construction of this surrogate model is documented in
+Appendix A of Mariner et al. (2019). The coefficients for the neural network model
+can be found in PFLOTRAN_SRC/regression_tests/ufd/ann_surrogate and the FMD generated
+table for the kNNr can be found in PFLOTRAN_SRC/regression_tests/ufd/. They are read
+in by PFLOTRAN and therefore this folder must be in the directory it is executed in.
+This mechanism requires the free ion concentrations of O2(aq),
+CO3--, H2(aq), and Fe++ to be specified in mol/L in the CONCENTRATIONS sub-block
+card of the CONSTRAINT card. 
 
 WIPP Mechanism
 ..............
