@@ -42,13 +42,6 @@ following cards can be specified:
   Generates output at every <int or float> units of time, where <string> defines 
   the units of time.
 
- PERIODIC_OBSERVATION TIMESTEP <int>
-  Generates output for observation points and mass balance at every <int> number of timesteps.
-
- PERIODIC_OBSERVATION TIME <float> <string>
-  Generates output for observation points and mass balance at every <float> units of time, 
-  where <string> defines the units of time.
-
  NO_PRINT_INITIAL
   If included, the initial state of the system will not be printed to the output 
   file.
@@ -84,6 +77,12 @@ Optional Cards
 --------------
 The following cards are placed within the OUTPUT block, but outside of the
 SNAPSHOT_FILE, OBSERVATION_FILE, or MASS_BALANCE_FILE blocks. 
+
+PERIODIC_OBSERVATION TIME <float> <string>
+  Generates output for observation points and mass balance at every <float> units of time, where <string> defines the units of time.
+
+PERIODIC_OBSERVATION TIMESTEP <int>
+  Generates output for observation points and mass balance at every <int> number of timesteps.
 
 TIME_UNITS <string>
  Specifies the time units printed in screen and file output (e.g. s, day, yr)
@@ -128,7 +127,7 @@ Examples
     /
     MASS_BALANCE_FILE
       PERIODIC TIME 1 w between 1 y and 2 y
-      PERIODIC_OBSERVATION TIMESTEP 5
+      PERIODIC TIMESTEP 5
       TOTAL_MASS_REGIONS
         all
         top
