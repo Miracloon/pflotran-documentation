@@ -172,7 +172,7 @@ fractional dissolution rate in units of T\ :sup:`-1`.
 DSNF Mechanism (instantaneous)
 ..............................
 For the Instantaneous mechanism (currently called DSNF mechanism in PFLOTRAN), 
-at the time step when canister breach occurs the fraction of the radionuclide,
+at the time step when canister breach occurs the fraction of the radionuclide
 entered by the user in the SPECIES sub-block under instantaneous release fraction,
 is released over the length of the time step and in the next time step the
 rest of the radionuclides are released. This is accomplished by internally
