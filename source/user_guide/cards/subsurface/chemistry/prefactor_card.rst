@@ -29,7 +29,7 @@ Optional Cards:
 ---------------
 
 ACTIVATION_ENERGY <float>
- Activation energy associated with rate constant :math:`k_{ml}`.
+ Activation energy associated with rate constant :math:`k_{ml}`. [J/mol]
 
 ALPHA <float>
  :math:`\alpha_{il}^m` parameter in above equation.
