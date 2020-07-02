@@ -59,6 +59,19 @@ Guidelines
 * 'PetscInt' instead of 'integer'
 * 'PetscBool' instead of 'logical'
 * 'PETSC_TRUE/PETSC_FALSE' instead of .true./.false.
+* For array declarations, use the most concise and flexible format without the *dimension* statement.  E.g. Use
+  ::
+
+     PetscReal :: array(6)
+     PetscInt :: array_1D(6), array_2D(3,100)
+
+  instead of 
+  ::
+
+     PetscReal, dimension(6) :: array
+     PetscInt, dimension(6) :: array_1D
+     PetscInt, dimension(3,100) :: array_2D
+
 * All variables in the function/subroutine argument list should be at the top of the routine with a blank line separating them from the 'implicit none'.  The local variables should come below with a blank line separating them from the variables in the subroutine argument list.
 
  ::
@@ -79,7 +92,7 @@ Guidelines
 
 * All pointers to PETSc data structures have '_p' appended (i.e. 'array_p')
 
- * NEVER use PETSc's F77 approach to pointers: a PetscInt/PetscReal array sized to 1 combined with a PetscOffset.  If you are not sure, ask Glenn.
+ * NEVER use PETSc's F77 approach to pointers: a PetscInt/PetscReal array sized to 1 combined with a PetscOffset.
 
 * No goto's (this may not be possible with legacy portions)
 * User appropriate spacing to improve readability:
