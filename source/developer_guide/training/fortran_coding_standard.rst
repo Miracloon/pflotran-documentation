@@ -72,6 +72,8 @@ Guidelines
      PetscInt, dimension(6) :: array_1D
      PetscInt, dimension(3,100) :: array_2D
 
+  Note that arrays of the same data type may be declared on separate lines for clarity.
+
 * All variables in the function/subroutine argument list should be at the top of the routine with a blank line separating them from the 'implicit none'.  The local variables should come below with a blank line separating them from the variables in the subroutine argument list.
 
  ::
