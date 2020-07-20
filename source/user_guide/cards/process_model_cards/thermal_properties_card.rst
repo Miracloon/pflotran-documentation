@@ -4,8 +4,9 @@ Back to :ref:`card-index`
 
 THERMAL_CHARACTERISTIC_CURVES
 =============================
-Specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) to be associated with a material property. 
-**This card is currently only supported for the GENERAL flow mode.** Thermal conductivity (only a function of liquid saturation, not of temperature) and specific heat should specified in the material property card for other flow modes.
+This option specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) associated with a material property. This expands thermal conductivity as a function of both temperature and saturation. 
+
+The legacy input method of specifying thermal conductivity (wet and dry) by MATERIAL_PROPERTY is backwards-compatible, such that options are adapted to the DEFAULT thermal characteristic curve. However, THERMAL_CHARACTERISTIC_CURVES **cannot** be combined with the legacy input format.
 
 Required Blocks and Cards:
 **************************
@@ -69,7 +70,7 @@ CONSTANT_THERMAL_CONDUCTIVITY <float>
  Thermal conductivity of porous medium that does not depend on temperature or saturation [W/m-K].
 
 REFERENCE_TEMPERATURE <float>
- This temperature is subtracted from the actual temperature before the calcuation (useful for conversion from Cesius to Kelvin, or to shift the zero a polynomial) [C]
+ This temperature is subtracted from the actual temperature before the calculation (useful for conversion from Celsius to Kelvin, or to shift the zero a polynomial) [C]
 
 EXPONENT <float>
  In the POWER model, this is the exponent of temperature, called :math:`\gamma` [-].
@@ -100,7 +101,7 @@ TEST
 Examples
 ********
 
-GENERAL mode
+Material with power-law thermal conductivity function "cct_power"
 ------------
  ::
 
