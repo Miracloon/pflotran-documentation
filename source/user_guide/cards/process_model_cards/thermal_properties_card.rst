@@ -4,9 +4,9 @@ Back to :ref:`card-index`
 
 THERMAL_CHARACTERISTIC_CURVES
 =============================
-This option specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) associated with a material property. This expands thermal conductivity as a function of both temperature and saturation. 
+This option specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) associated with a material property. This expands thermal conductivity as a function of both temperature and saturation (with the exception of the CONSTANT thermal conductivity function). 
 
-The legacy input method of specifying thermal conductivity (wet and dry) by MATERIAL_PROPERTY is backwards-compatible, such that options are adapted to the DEFAULT thermal characteristic curve. However, THERMAL_CHARACTERISTIC_CURVES **cannot** be combined with the legacy input format.
+The legacy input method of specifying thermal conductivity by MATERIAL_PROPERTY (i.e. THERMAL_CONDUCTIVITY_DRY and THERMAL_CONDUCTIVTY_WET) is backwards-compatible, where options are adapted to the DEFAULT thermal characteristic curve and functions are numbered by material. However, THERMAL_CHARACTERISTIC_CURVES **cannot** be combined with the legacy convention in the same input file.
 
 Required Blocks and Cards:
 **************************
@@ -64,39 +64,46 @@ THERMAL_CONDUCTIVTY_WET <float>
 THERMAL_CONDUCTIVITY_DRY <float>
  Thermal conductivity of the dry porous medium (:math:`s_l=0`) [W/m-K].
 
- Effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation (Somerton et al., 1974) is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \sqrt{s_l}(\kappa_T^{wet} - \kappa_T^{dry})`
+ Effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation (Somerton et al., 1974) is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \sqrt{s_l}(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K]
  
 CONSTANT_THERMAL_CONDUCTIVITY <float>
  Thermal conductivity of porous medium that does not depend on temperature or saturation [W/m-K].
 
 REFERENCE_TEMPERATURE <float>
- This temperature is subtracted from the actual temperature before the calculation (useful for conversion from Celsius to Kelvin, or to shift the zero a polynomial) [C]
+ This temperature is subtracted from the actual temperature before the calculation (useful for conversion from Celsius to Kelvin, or to shift the zero a polynomial) [°C]
 
 EXPONENT <float>
  In the POWER model, this is the exponent of temperature, called :math:`\gamma` [-].
 
- Thermal conductivity for the POWER model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)[(T-T_{ref})/300]^\gamma`.
+ Thermal conductivity for the POWER model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)[(T-T_{ref})/300]^\gamma` [W/m-K].
 
- The saturation dependence of the POWER model comes from the DEFAULT model, and when using the default :math:`T_{ref}=-273.15`, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 26.85 Celsius.
+ The saturation dependence of the POWER model comes from the DEFAULT model, and when using the default :math:`T_{ref}=-273.15` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 26.85 °C.
 
 CUBIC_POLYNOMIAL_COEFFICIENTS <float> <float> <float>
  Coefficients of a cubic polynomial expression for the temperature-dependence, called :math:`\beta_i`.
 
- Thermal conductivity for the CUBIC_POLYNOMIAL model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)[1 + \beta_1 (T-T_{ref}) + \beta_2 (T-T_{ref})^2 + \beta_3 (T-T_{ref})^3]`.
+ Thermal conductivity for the CUBIC_POLYNOMIAL model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)[1 + \beta_1 (T-T_{ref}) + \beta_2 (T-T_{ref})^2 + \beta_3 (T-T_{ref})^3]` [W/m-K].
 
- The saturation dependence of the CUBIC_POLYNOMIAL model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0`, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 Celsius. 
+ The saturation dependence of the CUBIC_POLYNOMIAL model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. 
   
 LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
  Coefficients of a linear inverse conductivity (i.e., resistivity), called :math:`a_i`
 
- Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]`, with the default :math:`T_{ref}=0`
+ Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0` °C
 
- The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0`, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 Celsius. Typically :math:`a_1=1`. 
+ The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
   
 Optional Card under the THERMAL_CHARACTERISTIC_CURVES block:
 ************************************************************
 TEST
- Including this keyword will produce output (.dat file) which provides (a) temperature [:math:`T`], (b) liquid saturation [:math:`s_l`], (c) thermal conductivity [:math:`\kappa_T`], (d) :math:`\frac{\partial \kappa_T}{\partial s_l}`, (e) :math:`\frac{\partial \kappa_T}{\partial T}`, (f) numerical approximation to d, and (g) numerical approximation to e. 
+ Including this keyword will produce output (.dat file) which provides 
+  (a) temperature [:math:`T`],
+  (b) liquid saturation [:math:`s_l`],
+  (c) thermal conductivity [:math:`\kappa_T`],
+  (d) :math:`\frac{\partial \kappa_T}{\partial s_l}`,
+  (e) :math:`\frac{\partial \kappa_T}{\partial T}`,
+  (f) numerical approximation to (d.), and
+  (g) numerical approximation to (e.). 
 
 Examples
 ********
