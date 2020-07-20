@@ -36,8 +36,8 @@ capacity :math:`C_p` and thermal conductivity :math:`\kappa`. Note that
    
    U_{{\alpha}}= H_{{\alpha}}-\frac{P_{{\alpha}}}{\rho_{{\alpha}}}.
 
-Thermal conductivity :math:`\kappa` is determined from the equation
-(Somerton et al., 1974)
+Thermal conductivity :math:`\kappa` is determined from :ref:`thermal-characteristic-curves-card`, where the ``DEFAULT`` option uses the equation
+from Somerton et al., 1974:
 
 .. math::
    :label: cond
@@ -45,7 +45,7 @@ Thermal conductivity :math:`\kappa` is determined from the equation
    \kappa = \kappa_{\rm dry} + \sqrt{s_l^{}} (\kappa_{\rm sat} - \kappa_{\rm dry}),
 
 where :math:`\kappa_{\rm dry}` and :math:`\kappa_{\rm sat}` are dry and
-fully saturated rock thermal conductivities.
+fully saturated rock thermal conductivities, respectively.
 
 The Darcy velocity of the :math:`\alpha^{th}` phase is equal to
 

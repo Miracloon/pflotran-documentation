@@ -76,6 +76,7 @@ SUBSURFACE Block Cards
    :glob:
 
    /user_guide/cards/subsurface/*
+   /user_guide/cards/process_model_cards/*
 
 CHEMISTRY Block Cards
 +++++++++++++++++++++
