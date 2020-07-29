@@ -4,12 +4,12 @@ from h5py import *
 import numpy
 import random
 
-filename = 'hdvz_material_ids.h5'
+filename = '543_material_ids.h5'
 h5file = File(filename,mode='w')
 
-nx = 432
-ny = 1
-nz = 256
+nx = 5
+ny = 4
+nz = 3
 nxXny = nx*ny
 n = nx*ny*nz
 
@@ -22,7 +22,7 @@ dataset_name = 'Materials/Cell Ids'
 h5dset = h5file.create_dataset(dataset_name, data=iarray)
 print 'done with ', dataset_name
 
-filename = 'geology_resamp.dat'
+filename = '543_material_ids.txt'
 fin = open(filename,'r')
 for i in range(n):
   s = fin.readline()
