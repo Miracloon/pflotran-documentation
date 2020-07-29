@@ -35,6 +35,20 @@ AT_COORDINATE
  coordinate. **CAUTION: Interpolation of concentrations when nonlinear** 
  **geochemistry is modeled can result in erroneous results.**
 
+AGGREGATE_METRIC
+ Opens the AGGREGATE_METRIC block, which produces a separate aggregate metric (
+ -agg) output file that:
+
+  -searches the REGION associated with a given OBSERVATION, and computes the 
+  aggregate metric (e.g. max value of temperature)
+
+  -reports the location at which that max value occurs as well as all other
+  OUTPUT variables of interest, at all observation times
+
+ Currently supported AGGREGATE_METRICs:
+
+  * MAX <string> , where <string> corresponds to the output variable of interest
+
 Examples
 --------
  ::
@@ -51,4 +65,13 @@ Examples
 
   REGION observation_point3
     COORDINATE 6335.2 3992.5 107.3 
+  /
+
+  OBSERVATION
+    REGION observation_region
+    AGGREGATE_METRIC
+      MAX TOTAL Tracer
+      MAX LIQUID_SATURATION
+      MAX TEMPERATURE
+    /
   /
