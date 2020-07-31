@@ -151,7 +151,7 @@ SPECIFIC_HEAT <float> or HEAT_CAPACITY <float>
  
 THERMAL_CHARACTERISTIC_CURVES <string>
 
-  Name of thermal characteristic curve to be associated with material. There cannot be multiple curves with the same name. 
+  Name of thermal characteristic curve to be associated with material. This replaces THERMAL_CONDUCTIVITY_DRY and THERMAL_CONDUCTIVITY_WET.
 
 THERMAL_CONDUCTIVITY_DRY <float>
 

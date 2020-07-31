@@ -53,10 +53,10 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + REFERENCE_TEMPERATURE
     + LINEAR_RESISTIVITY_COEFFICIENTS
 
-.. _parameter-definitions:
+.. _tcc-parameter-definitions:
 
-Parameter Definitions
----------------------
+Thermal Characteristic Curves Parameter Definitions
+---------------------------------------------------
 
 THERMAL_CONDUCTIVTY_WET <float>
  Thermal conductivity of the wet porous medium (:math:`s_l=1`) [W/m-K].
@@ -109,7 +109,7 @@ Examples
 ********
 
 Material with thermal characteristic curve named "cct_power"
-------------
+------------------------------------------------------------
  ::
 
   MATERIAL_PROPERTY soil
