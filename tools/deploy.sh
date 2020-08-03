@@ -2,7 +2,10 @@
 
 echo 'beginning deployment'
 
-env
+if [[ $CI_BUILD_APPROVED = false ]]; then
+  echo 'Deployment skipped since PR has not been approved.'
+  exit 0
+fi
 
 echo 'setting up ssh'
 echo -e $PRIVATE_SSH_KEY >> /root/.ssh/id_rsa
