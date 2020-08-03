@@ -1,7 +1,6 @@
 # codeship-steps.yml
 
 - name: build documentation
-#  tag: ^(master|maint)
   service: app
   command: ./tools/build.sh
 
