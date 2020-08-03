@@ -35,6 +35,10 @@ PERMEABILITY <float>
  ANISOTROPIC
  
   Toggles on anisotropy.  (This card is required for anisotropic permeability specified through DATASETs too.  In that case, dataset_nameX, dataset_nameY and dataset_nameZ must be defined within the input file where "dataset_name" is the defined through the DATASET keyword.)
+  
+ FULL_TENSOR
+   
+   Toggles on full tensor anisotropy. Must be used along with the card ANISOTROPIC. (This card is required for off diagonal permeability component specified through PERMEABILITY_XY, PERMEABILITY_XZ, PERMEABILITY_YZ and DATASETs. In the latter case, dataset_nameXY, dataset_nameXZ and dataset_nameYZ must be defined within the input file where "dataset_name" is the defined through the DATASET keyword)
 
  ISOTROPIC
  
@@ -55,6 +59,18 @@ PERMEABILITY <float>
  PERM_Z <float>
  
   Permeability in z-direction [m\ :sup:`2`\].
+  
+ PERM_XY <float>
+ 
+  Off-diagonal permeability tensor component in the xy-direction [m\ :sup:`2`\].
+  
+ PERM_XZ <float>
+ 
+  Off-diagonal permeability tensor component in the xz-direction [m\ :sup:`2`\].
+  
+ PERM_YZ <float>
+ 
+  Off-diagonal permeability tensor component in the yz-direction [m\ :sup:`2`\].
 
  PERM_ISO_LOG10 <float>
  
@@ -71,6 +87,18 @@ PERMEABILITY <float>
  PERM_Z_LOG10 <float>
  
   Log10 of the permeability ([m\ :sup:`2`\]) in z-direction.
+  
+ PERM_XY_LOG10 <float>
+ 
+  Log10 of the  off-diagonal permeability tensor component in the xy-direction [m\ :sup:`2`\].
+  
+ PERM_XZ_LOG10 <float>
+ 
+  Log10 of the off-diagonal permeability tensor component in the xz-direction [m\ :sup:`2`\].
+  
+ PERM_YZ_LOG10 <float>
+ 
+  Log10 of the off-diagonal permeability tensor component in the yz-direction [m\ :sup:`2`\].
 
  PERMEABILITY_SCALING_FACTOR <float>
  

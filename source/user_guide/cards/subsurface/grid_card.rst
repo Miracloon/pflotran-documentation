@@ -75,8 +75,9 @@ INVERT_Z
 PERM_TENSOR_TO_SCALAR_MODEL <string>
  Specifies the algorithm for converting the diagonal permeability tensor
  to a scalar at a face for a flux calculation. Options include [LINEAR,
- FLOW, POTENTIAL]. Defaults: LINEAR for structured grids, and POTENTIAL for
- unstructured grids. 
+ FLOW, POTENTIAL, FLOW_FULL_TENSOR]. _FULL_TENSOR option enable flow simulation 
+ considering off-diagonal permeability components which occur when permeability principal directions are not aligned with the grid xyz axis. Defaults: LINEAR for structured grids, 
+ and POTENTIAL for unstructured grids. 
 
 MAX_CELLS_SHARING_A_VERTEX <int>
  Specifies the maximum number of cells sharing a single vertex. Necessary for expansing arrays used to read in complex grids where a vertex is shared by a large number of cells. Default = 24
