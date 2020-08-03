@@ -148,6 +148,10 @@ SOIL_REFERENCE_PRESSURE [<float> or INITIAL_PRESSURE]
 SPECIFIC_HEAT <float> or HEAT_CAPACITY <float>
 
  Specific heat capacity of material [J/(kg-K)]
+ 
+THERMAL_CHARACTERISTIC_CURVES <string>
+
+  Name of thermal characteristic curve to be associated with material. This replaces THERMAL_CONDUCTIVITY_DRY and THERMAL_CONDUCTIVITY_WET.
 
 THERMAL_CONDUCTIVITY_DRY <float>
 
