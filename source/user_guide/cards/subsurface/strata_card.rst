@@ -58,7 +58,7 @@ Assign material properties through material ids read from an HDF5 formatted file
  ::
 
   STRATA
-    FILE ../../field_material_ids.h5
+    FILE ./543_material_ids.h5
   /
 
 Evolving strata:
@@ -102,8 +102,8 @@ Example HDF5 file with material ids
 The HDF5 file must have two datasets named **Cell Ids** and **Material Ids** 
 within a group named **Materials**.  Use this 
 :download:`python script <files/material_id_loader.py>` and associated 
-:download:`data file <files/geology_resamp.dat>` as an example of how to load 
-material ids into an example :download:`input file <files/hdvz_3mat_het.in>`. 
+:download:`data file <files/543_material_ids.txt>` as an example of how to load 
+material ids into 543_material_ids.h5 (above).
 To use this script, you must install compatible versions of the **h5py** and 
 **numpy** python libraries.
 
