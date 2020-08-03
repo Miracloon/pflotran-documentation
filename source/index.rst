@@ -39,7 +39,7 @@ Documentation
 
 --------------------------------
 
-Need help beyond the documentation above? 
+Need help beyond the documentation above?
  | Search topics at or submit a question to the `pflotran-users`_ Google Group.
  | Email user questions to pflotran-users at googlegroups dot com
  | Email bug reports to pflotran-dev at googlegroups dot com
