@@ -172,12 +172,16 @@ fractional dissolution rate in units of T\ :sup:`-1`.
 DSNF Mechanism (instantaneous)
 ..............................
 For the Instantaneous mechanism (currently called DSNF mechanism in PFLOTRAN), 
-at the time step when canister breach occurs the entire radionuclide inventory 
-of the waste form is released over the length of the time step. This is 
-accomplished by internally setting the fractional dissolution rate to the value 
-of ``1/dt``, where ``dt`` is the length of the current time step at breach.
-Concurrently, the volume of the waste form is reduced to zero. Metallic 
-defense-related spent nuclear fuel (DSNF) is simulated using this mechanism.
+at the time step when canister breach occurs the fraction of the radionuclide
+entered by the user in the SPECIES sub-block under instantaneous release fraction,
+is released over the length of the time step and in the next time step the
+rest of the radionuclides are released. This is accomplished by internally
+setting the fractional dissolution rate to the value of ``1/dt``, where ``dt``
+is the length of the current time step at breach. Concurrently, the volume of
+the waste form is reduced to zero. The user must enter 1.0 for all instaneous
+release fractions, for all the radionuclides to be released in the time step
+that the canister vitality reaches zero. Metallic defense-related spent nuclear
+fuel (DSNF) is simulated using this mechanism.
 
 .. _FMDM Mechanism:
 
