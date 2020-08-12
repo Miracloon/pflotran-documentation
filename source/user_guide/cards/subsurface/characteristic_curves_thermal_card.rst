@@ -61,7 +61,7 @@ Thermal Characteristic Curves Parameter Definitions
 ---------------------------------------------------
 
 CONSTANT_THERMAL_CONDUCTIVITY <float>
-Thermal conductivity of porous medium that does not depend on temperature or saturation [W/m-K].
+ Thermal conductivity of porous medium that does not depend on temperature or saturation [W/m-K].
 
 THERMAL_CONDUCTIVTY_WET <float>
  Thermal conductivity of the wet porous medium (:math:`s_l=1`) [W/m-K].
