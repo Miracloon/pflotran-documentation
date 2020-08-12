@@ -98,16 +98,16 @@ LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
 Thermal Conductivity Anisotropy Parameter Definitions
 -----------------------------------------------------
 
-The following parameters are used to impart a direction-dependent treatment of thermal conductivity for thermal characteristic curves that employ :math:`\kappa_T(s_l)` from the DEFAULT function. The following inputs are ratios that determine what fraction of user-input values (THERMAL_CONDUCTIVITY_DRY or THERMAL_CONDUCTIVITY_WET) comprise particular components of the thermal conductivity tensor. 
+The following parameters are used to impart a direction-dependent treatment of thermal conductivity for thermal characteristic curves that employ :math:`\kappa_T(s_l)` from the DEFAULT function. The following inputs are ratios that determine what fraction of the user-input values (THERMAL_CONDUCTIVITY_DRY or THERMAL_CONDUCTIVITY_WET) comprise particular components of the thermal conductivity tensor. 
 
 THERMAL_CONDUCTIVITY_X <float>
- The ratio applied to dry or wet thermal conductivity to derive the :math:`\kappa_{xx}` component of the thermal conductivity tensor. Requires input of Y and Z components for an anisotropic calculation. 
+ The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{xx}` component of the thermal conductivity tensor. Requires additional input of Y and Z ratios. 
  
 THERMAL_CONDUCTIVITY_Y <float>
- The ratio applied to dry or wet thermal conductivity to derive the :math:`\kappa_{yy}` component of the thermal conductivity tensor. Requires input of X and Z components for an anisotropic calculation. 
+ The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{yy}` component of the thermal conductivity tensor. Requires additional input of X and Z ratios. 
   
 THERMAL_CONDUCTIVITY_Z <float>
- The ratio applied to dry or wet thermal conductivity to derive the :math:`\kappa_{zz}` component of the thermal conductivity tensor. Requires input of X and Y components for an anisotropic calculation. 
+ The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{zz}` component of the thermal conductivity tensor. Requires additional input of X and Y ratios. 
   
 Optional Card under the THERMAL_CHARACTERISTIC_CURVES block:
 ************************************************************
