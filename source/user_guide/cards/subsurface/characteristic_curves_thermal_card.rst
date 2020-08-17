@@ -4,9 +4,9 @@ Back to :ref:`card-index`
 
 THERMAL_CHARACTERISTIC_CURVES
 =============================
-This option specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) associated with a material property. This expands thermal conductivity as a function of both temperature and saturation (with the exception of the ``CONSTANT`` and ``DEFAULT`` thermal conductivity functions). 
+This option specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) associated with a material property. This expands thermal conductivity as a function of both temperature and saturation (with the exception of the CONSTANT and DEFAULT thermal conductivity functions). 
 
-The legacy input method of specifying thermal conductivity by :ref:`material-property-card` (i.e. with ``THERMAL_CONDUCTIVITY_DRY`` and ``THERMAL_CONDUCTIVTY_WET``) is backwards-compatible, where parameters are adapted to the ``DEFAULT`` thermal characteristic curve and functions are numbered in material sequence. However, ``THERMAL_CHARACTERISTIC_CURVES`` **cannot** be combined with the legacy convention in the same input file.
+The legacy input method of specifying thermal conductivity by :ref:`material-property-card` (i.e. with THERMAL_CONDUCTIVITY_DRY and THERMAL_CONDUCTIVTY_WET) is backwards-compatible, where parameters are adapted to the DEFAULT thermal characteristic curve and functions are numbered in material sequence. However, THERMAL_CHARACTERISTIC_CURVES **cannot** be combined with the legacy convention in the same input file.
 
 Required Blocks and Cards:
 **************************
