@@ -105,13 +105,13 @@ Thermal Conductivity Anisotropy Parameter Definitions
 
 The following parameters are used to impart a direction-dependent treatment of thermal conductivity for thermal characteristic curves that employ :math:`\kappa_T(s_l)` from the DEFAULT function. The following inputs are ratios that determine what fraction of the user-input values (THERMAL_CONDUCTIVITY_DRY or THERMAL_CONDUCTIVITY_WET) comprise particular components of the thermal conductivity tensor. 
 
-THERMAL_CONDUCTIVITY_X <float>
+ANISOTROPY_RATIO_X <float>
  The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{xx}` component of the thermal conductivity tensor. Requires additional input of Y and Z ratios. 
  
-THERMAL_CONDUCTIVITY_Y <float>
+ANISOTROPY_RATIO_Y <float>
  The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{yy}` component of the thermal conductivity tensor. Requires additional input of X and Z ratios. 
   
-THERMAL_CONDUCTIVITY_Z <float>
+ANISOTROPY_RATIO_Z <float>
  The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{zz}` component of the thermal conductivity tensor. Requires additional input of X and Y ratios. 
 
 .. _tcc-test:
@@ -216,9 +216,9 @@ Material with anisotropic thermal conductivity
       THERMAL_CONDUCTIVITY_WET 7.0000D+0 W/m-C
       #REFERENCE_TEMPERATURE 0.d0 ! default value
       LINEAR_RESISTIVITY_COEFFICIENTS 1.0d0 5.038D-3
-      THERMAL_CONDUCTIVITY_X  1.0000D+0
-      THERMAL_CONDUCTIVITY_Y  0.8000D+0
-      THERMAL_CONDUCTIVITY_Z  0.5000D+0
+      ANISOTROPY_RATIO_X  1.0000D+0
+      ANISOTROPY_RATIO_Y  0.8000D+0
+      ANISOTROPY_RATIO_Z  0.5000D+0
     END
     TEST
   END
