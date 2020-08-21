@@ -1,7 +1,7 @@
 .. _contributing-to-pflotran:
 
 Contributing to the PFLOTRAN Project
-------------------------------------
+====================================
 
 *I have modified PFLOTRAN source code (e.g. added capability, fixed a bug, etc.). How do I contribute new code to the PFLOTRAN source code repository?*
 

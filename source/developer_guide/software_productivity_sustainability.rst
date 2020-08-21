@@ -1,10 +1,10 @@
 .. _software-productivity-and-sustainability-plan:
 
-Software Productivity and Sustainability Plan
----------------------------------------------
+Software Productivity and Sustainability Plan - Required by DOE Office of Science
+=================================================================================
 
 Overall Software Development Process
-====================================
+------------------------------------
 
 *How are software requirements determined and transformed into implemented code, tested and deployed (the software lifecycle)?*
 
@@ -23,7 +23,7 @@ Overall Software Development Process
   A user manual and theory guide are publicly available online at `documentation.pflotran.org <http://documentation.pflotran.org>`_.  Workshops are offered periodically and upon request.  Users may contact pflotran-users@googlegroups.com with user questions and pflotran-dev@googlegroups.com to report bugs or request functionality.
 
 Tools and Processes
-===================
+-------------------
 
 *How will source code be developed and managed (source management tools and processes)?*
 
@@ -42,7 +42,7 @@ Tools and Processes
   All software distribution is handled through Bitbucket where the user may clone the default repository or download a snapshot of the repository (e.g. in .tar.gz or .zip form).
   
 Training
-========
+--------
 
 *How will new software developers be trained?*
 
@@ -53,7 +53,7 @@ Training
   Developer contributions are automatically documented in all commit messages for the entirety of the project.  In addition, each subroutine has a comment section at the top which includes the author name and date of the contribution.  Any developer may add their name to the list of authors.  Metrics on developer contribution to the code base are available through `www.openhub.net/p/pflotran <https://www.openhub.net/p/pflotran>`_.
 
 Improvement Strategies
-======================
+----------------------
 
 *How will software productivity and sustainability be improved over the life of the project?*
 
