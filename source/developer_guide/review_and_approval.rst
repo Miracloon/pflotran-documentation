@@ -13,6 +13,7 @@ Review and approval for all modifications to the PFLOTRAN documentation, source 
  + Reviewed and approved by at least one Senior Developer.
 
 - All pull requests submitted to the maintenance branches shall be:
+
  + Documented through a change request in Jira,
  + Reviewed by peers for consistency and conformance to coding and/or documentation standards,
  + Reviewed and approved by at least one Senior Developer.
