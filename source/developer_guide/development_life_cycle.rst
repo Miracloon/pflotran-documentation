@@ -19,7 +19,7 @@ being peer reviewed, tested and documented:
 - **Coding:** programming the feature in the source code and provisioning regression and unit tests.
 - **Peer Review:** responding to feedback from the developer and user community.
 - **Testing:** ensuring feature accuracy through validation and verification.
-- **Documentation:** describing the feature’s implementation and instructing on its use.
+- **Documentation:** describing the feature's implementation and instructing on its use.
 - **Release:** distributing the feature to the community.
 
 Linkage to Quality Assurance and Configuration Management
@@ -61,8 +61,8 @@ infrastructure.
 
 Release
 +++++++
-Peer Review, Testing, and Documentation are confirmed by lead 
-developers, and the new capability is released to the user community.
+Peer Review, Testing, and Documentation are confirmed by Senior 
+Developers, and the new capability is released to the user community.
 
 Retirement
 ----------

@@ -27,7 +27,7 @@ adherence to the configuration management plan and consistency
 among the three (documentation, source, tests).  Users are notified 
 of the release through the user mailing list and an updated version 
 number in the online documentation.  Users obtain the latest 
-released software by clone the main online repository and checking 
+released software by cloning the main online repository and checking 
 out the maintenance branch aligned with the release version number 
 (provided in the installation instructions within the PFLOTRAN User 
 Guide).

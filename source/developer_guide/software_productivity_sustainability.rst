@@ -10,9 +10,9 @@ Overall Software Development Process
 
   New capability is implemented in PFLOTRAN based on the following categorization:
     
-  New **scientific process models** are documented with governing equations, associated constitutive relations, and underlying assumptions clearly defined.  A prototype of the process model is coded in a development branch (or fork) of the repository, where new development is isolated from the repository's default branch.  All development (prototype to full implementation) will continue in this branch until the implementation is deemed successful.  At that point, the new capability enters an alpha stage where testing is performed to verify the correctness of the implementation (e.g. verification or validation).  Once tested, unit and/or regression tests are implemented.  A pull request is then submitted to the default branch where lead developers review the proposed changes and unit/regression tests, ensure that the tests pass.  Once accepted, the changes are merged with the default branch, and the code is deployed to the public in beta form through the developer version of the code.
+  New **scientific process models** are documented with governing equations, associated constitutive relations, and underlying assumptions clearly defined.  A prototype of the process model is coded in a feature branch (or fork) of the repository, where new development is isolated from the repository's master branch.  All development (prototype to full implementation) will continue in this branch until the implementation is deemed successful.  At that point, the new capability enters an alpha stage where testing is performed to verify the correctness of the implementation (e.g. verification or validation).  Once tested, unit and/or regression tests are implemented.  A pull request is then submitted to the master branch where Senior Developers review the proposed changes and unit/regression tests, ensure that the tests pass.  Once accepted, the changes are merged with the master branch, and the code is deployed to the public in beta form through the development version of the code.
     
-  New **code infrastructure** (e.g. code refactoring to improve performance and/or usability, update updating third-party library interfaces, adding error messaging, etc.) does not require the level of detailed documentation associated with process models.  However, the stages of implementation and acceptance remain the same.  All unit and regression tests must pass before changes may be merged with the default branch.
+  New **code infrastructure** (e.g. code refactoring to improve performance and/or usability, update updating third-party library interfaces, adding error messaging, etc.) does not require the level of detailed documentation associated with process models.  However, the stages of implementation and acceptance remain the same.  All unit and regression tests must pass before changes may be merged with the master branch.
 
 *How are new and revised capabilities integrated into the existing software while preserving existing capabilities (regression testing)?*
 
@@ -27,11 +27,11 @@ Tools and Processes
 
 *How will source code be developed and managed (source management tools and processes)?*
 
-  The default code repository is hosted at `bitbucket.org/pflotran/pflotran <https://bitbucket.org/pflotran/pflotran>`_.  This repository is open to the public with push privileges limited to a group of experienced developers.  Anyone may submit proposed modifications to the code by forking the default repository on Bitbucket, pushing proposed modifications to the fork, and submitting a pull request after all unit and regression tests pass.  These proposed changes are reviewed by developers with push privileges.  The person submitting the pull request iterates with the developers until code modifications are suitable for acceptance, and an automated message is sent upon the successful merge.  Version control is maintained through the Git software configuration management system. 
+  The main code repository is hosted at `bitbucket.org/pflotran/pflotran <https://bitbucket.org/pflotran/pflotran>`_.  This repository is open to the public with push privileges limited to a group of experienced developers.  Anyone may submit proposed modifications to the code by forking the main repository on Bitbucket, pushing proposed modifications to the fork, and submitting a pull request after all unit and regression tests pass.  These proposed changes are reviewed by Senior Developers with push privileges.  The person submitting the pull request iterates with the Senior Developers until code modifications are suitable for acceptance, and an automated message is sent upon the successful merge.  Version control is maintained through the Git software configuration management system. 
 
 *How will feature requests and software faults or "bugs" be recorded and managed (issue tracking tools and processes)?*
 
-  Users may report bugs and request functionality through a public issue tracker or an email submission to pflotran-dev@googlegroups.com.  Issue tracking is managed within the default repository through Bitbucket.
+  Users may report bugs and request functionality through a public issue tracker or an email submission to pflotran-dev@googlegroups.com.  Issue tracking is managed within the main repository through Bitbucket.
 
 *How are unit and regression tests invoked (unit and regression testing tools and processes)?*
 
@@ -39,14 +39,14 @@ Tools and Processes
 
 *How will users and collaborators access software products (software distribution tools and processes)?*
 
-  All software distribution is handled through Bitbucket where the user may clone the default repository or download a snapshot of the repository (e.g. in .tar.gz or .zip form).
+  All software distribution is handled through Bitbucket where the user may clone the main repository or download a snapshot of the repository (e.g. in .tar.gz or .zip form).
   
 Training
 --------
 
 *How will new software developers be trained?*
 
-  A Code Development wiki is provided on Bitbucket where new developers may learn about many topics (e.g. Fortran coding standards, unit testing, major refactors, etc.).  
+  A Developer Guide is publicly available online at `documentation.pflotran.org <http://documentation.pflotran.org>`_ where new developers may learn about many topics (e.g. Fortran coding standards, unit testing, major refactors, etc.).  
 
 *How will credit for the work of departing developers be retained?*
 

@@ -99,7 +99,7 @@ All source code is stored electronically under Git version control in an online 
 
 Third-Party Libraries
 +++++++++++++++++++++
-The versions third-party libraries utilized in the compilation of 
+The versions of third-party libraries utilized in the compilation of 
 PFLOTRAN are identified by version number or commit number (when 
 version controlled).  Consistent and compatible version numbers are 
 defined by documented installation instructions for all frozen 
