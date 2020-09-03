@@ -193,7 +193,7 @@ how external dissolution models can be coupled to PFLOTRAN. The dissolution
 model used is obtained via coupling to the FMDM by calling a single external
 subroutine developed by Jerden et al. (2015). Details regarding the FMDM 
 conceptual model and algorithmic design are provided by Jerden et al. (2015).
-This mechanism requires the free ion concentrations of O2(aq), CO3--, H2(aq), 
+This mechanism requires the free ion concentrations of O2(aq), HCO3-, H2(aq), 
 and Fe++ to be specified in mol/L in the CONCENTRATIONS sub-block card 
 of the CONSTRAINT card.
 
@@ -201,21 +201,19 @@ of the CONSTRAINT card.
 
 FMDM Surrogate Mechanism
 ........................
-Surrogate model developed for the FMDM mechanism. It is a single layer
-feed-forward neural network model or a k-Nearest Neighbors regressor (kNNr)
+Surrogate model developed for the FMDM mechanism. It is a feed-forward neural 
+network with two hidden layers or a k-Nearest Neighbors regressor (kNNr)
 implemented in PFLOTRAN. Age of the fuel prior to the beginning of the simulation
 is specified through the DECAY_TIME sub-block card of MECHANISM FMDM_SURROGATE or
-FMDM_SURROGATE_KNNR for kNNr. The number of nearest neighbors for the kNNr can be
-specified through the NEAREST_NEIGHBOR sub-block card and the epsilon value for
-considering a zero distance to the nearest neighbor can be specified through the
-KNNR_EPS sub-block card. The construction of this surrogate model is documented in
-Appendix A of Mariner et al. (2019). The coefficients for the neural network model
-can be found in PFLOTRAN_SRC/regression_tests/ufd/ann_surrogate and the FMD generated
-table for the kNNr can be found in PFLOTRAN_SRC/regression_tests/ufd/. They are read
-in by PFLOTRAN and therefore this folder must be in the directory it is executed in.
-This mechanism requires the free ion concentrations of O2(aq),
-CO3--, H2(aq), and Fe++ to be specified in mol/L in the CONCENTRATIONS sub-block
-card of the CONSTRAINT card. 
+FMDM_SURROGATE_KNNR for kNNr. The epsilon value for considering a zero distance
+to the nearest neighbor can be specified through the KNNR_EPS sub-block card.
+The coefficients for the neural network model and the FMD generated table for
+the kNNr are contained in HDF5 databases and can be found in
+PFLOTRAN_SRC/regression_tests/ufd/. They are read in by PFLOTRAN and therefore
+must be in the directory it is executed in. The number of nearest neighbors for
+the kNNr must be specified in the HDF5 database. This mechanism requires the free
+ion concentrations of O2(aq), HCO3-, H2(aq), and Fe++ to be specified in mol/L
+in the CONCENTRATIONS sub-block card of the CONSTRAINT card. 
 
 WIPP Mechanism
 ..............
