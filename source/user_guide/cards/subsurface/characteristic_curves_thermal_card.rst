@@ -6,7 +6,7 @@ THERMAL_CHARACTERISTIC_CURVES
 =============================
 This option specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) associated with a material property. This expands thermal conductivity as a function of both temperature and saturation (with the exception of the ``CONSTANT`` and ``DEFAULT`` thermal conductivity functions). 
 
-The legacy input method of specifying thermal conductivity by :ref:`material-property-card` (i.e. with ``THERMAL_CONDUCTIVITY_DRY`` and ``THERMAL_CONDUCTIVTY_WET``) is backwards-compatible, where parameters are adapted to the ``DEFAULT`` thermal characteristic curve and functions are numbered in material sequence. However, ``THERMAL_CHARACTERISTIC_CURVES`` **cannot** be combined with the legacy convention in the same input file.
+The legacy input method of specifying thermal conductivity by :ref:`material-property-card` (i.e. with ``THERMAL_CONDUCTIVITY_DRY`` and ``THERMAL_CONDUCTIVITY_WET``) is backwards-compatible, where parameters are adapted to the ``DEFAULT`` thermal characteristic curve and functions are numbered in material sequence. However, ``THERMAL_CHARACTERISTIC_CURVES`` **cannot** be combined with the legacy convention in the same input file.
 
 Required Blocks and Cards:
 **************************
@@ -53,12 +53,22 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + REFERENCE_TEMPERATURE
     + LINEAR_RESISTIVITY_COEFFICIENTS
 
+    .. _tcc-frozen-card:
+
+  * FROZEN
+
+    + THERMAL_CONDUCTIVITY_DRY
+    + THERMAL_CONDUCTIVITY_WET
+    + KERSTEN_EXPONENT
+    + THERMAL_CONDUCTIVITY_FROZEN
+    + KERSTEN_EXPONENT_FROZEN
+
 .. _tcc-parameter-definitions:
 
 Thermal Characteristic Curves Parameter Definitions
 ---------------------------------------------------
 
-THERMAL_CONDUCTIVTY_WET <float>
+THERMAL_CONDUCTIVITY_WET <float>
  Thermal conductivity of the wet porous medium (:math:`s_l=1`) [W/m-K].
 
 THERMAL_CONDUCTIVITY_DRY <float>
@@ -92,6 +102,21 @@ LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
  Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0` °C
 
  The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
+
+KERSTEN_EXPONENT <float>
+ In the FROZEN model, this is the exponent (:math:`\alpha` [-]) of liquid saturation: :math:`S^{\alpha}_{l}` (see :ref:`mode-th-ice-model`).
+ 
+ Outside of :ref:`th-card` mode, only the dry and wet components of the ice model are utilized.
+
+THERMAL_CONDUCTIVITY_FROZEN <float>
+  In the FROZEN model, this is the thermal conductivity of frozen soil [W/m-K] (see :ref:`mode-th-ice-model`).
+
+  When this parameter is specified in :ref:`th-card` mode, the FREEZING option in :ref:`th-simulation-options` must be active.
+  
+KERSTEN_EXPONENT_FROZEN <float>
+  In the FROZEN model, this is the exponent (:math:`\alpha_{fr}` [-]) of ice saturation: :math:`S^{\alpha_{fr}}_{i}` (see :ref:`mode-th-ice-model`).
+    
+  When this parameter is specified in :ref:`th-card` mode, the FREEZING option in :ref:`th-simulation-options` must be active.
   
 Optional Card under the THERMAL_CHARACTERISTIC_CURVES block:
 ************************************************************
