@@ -104,7 +104,7 @@ LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
  The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
 
 KERSTEN_EXPONENT <float>
- In the FROZEN model, this is the exponent (:math:`\alpha` [-]) of liquid saturation: :math:`S^{\alpha}_{l}` (see :ref:`mode-th-ice-model`).
+ In the FROZEN model, this is the exponent (:math:`\alpha` [-]) of liquid saturation: :math:`s^{\alpha}_{l}` (see :ref:`mode-th-ice-model`).
  
  Outside of :ref:`th-card` mode, only the dry and wet components of the ice model are utilized.
 
@@ -114,7 +114,7 @@ THERMAL_CONDUCTIVITY_FROZEN <float>
   When this parameter is specified in :ref:`th-card` mode, the FREEZING option in :ref:`th-simulation-options` must be active.
   
 KERSTEN_EXPONENT_FROZEN <float>
-  In the FROZEN model, this is the exponent (:math:`\alpha_{fr}` [-]) of ice saturation: :math:`S^{\alpha_{fr}}_{i}` (see :ref:`mode-th-ice-model`).
+  In the FROZEN model, this is the exponent (:math:`\alpha_{fr}` [-]) of ice saturation: :math:`s^{\alpha_{fr}}_{i}` (see :ref:`mode-th-ice-model`).
     
   When this parameter is specified in :ref:`th-card` mode, the FREEZING option in :ref:`th-simulation-options` must be active.
   
@@ -129,7 +129,12 @@ TEST
   (e) :math:`\frac{\partial \kappa_T}{\partial T}`,
   (f) numerical approximation to (d.), and
   (g) numerical approximation to (e.). 
-
+  
+ When the FROZEN model is in use for :ref:`th-card` mode with FREEZING active, there are additional parameters in the output:
+   * ice saturation [:math:`s_i`]
+   * :math:`\frac{\partial \kappa_T}{\partial s_i}`
+   * numerical approximation to :math:`\frac{\partial \kappa_T}{\partial s_i}`
+ 
 Examples
 ********
 
