@@ -111,12 +111,22 @@ KERSTEN_EXPONENT <float>
 THERMAL_CONDUCTIVITY_FROZEN <float>
   In the FROZEN model, this is the thermal conductivity of frozen soil [W/m-K] (see :ref:`mode-th-ice-model`).
 
-  When this parameter is specified in :ref:`th-card` mode, the FREEZING option in :ref:`th-simulation-options` must be active.
+  When this parameter is specified in :ref:`th-card` mode, the FREEZING option in :ref:`th-simulation-options` becomes active.
   
 KERSTEN_EXPONENT_FROZEN <float>
   In the FROZEN model, this is the exponent (:math:`\alpha_{fr}` [-]) of ice saturation: :math:`s^{\alpha_{fr}}_{i}` (see :ref:`mode-th-ice-model`).
     
-  When this parameter is specified in :ref:`th-card` mode, the FREEZING option in :ref:`th-simulation-options` must be active.
+  This parameter must be specified with THERMAL_CONDUCTIVITY_FROZEN.
+  
+ICE_MODEL 
+  Specifies the ice model for the FROZEN model. Options include:
+    * PAINTER_EXPLICIT
+    * PAINTER_KARRA_IMPLICIT
+    * PAINTER_KARRA_EXPLICIT
+    * PAINTER_KARRA_EXPLICIT_NOCRYO
+    * DALL_AMICO
+    
+  This parameter must be specified with THERMAL_CONDUCTIVITY_FROZEN. When this parameter is specified in :ref:`th-card` mode, it overrides the ICE_MODEL option in :ref:`th-simulation-options`.
   
 Optional Card under the THERMAL_CHARACTERISTIC_CURVES block:
 ************************************************************
