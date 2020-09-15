@@ -126,7 +126,7 @@ ICE_MODEL
     * PAINTER_KARRA_EXPLICIT_NOCRYO
     * DALL_AMICO
     
-  This parameter must be specified with THERMAL_CONDUCTIVITY_FROZEN. When this parameter is specified in :ref:`th-card` mode, it overrides the ICE_MODEL option in :ref:`th-simulation-options`.
+  This parameter must be specified with THERMAL_CONDUCTIVITY_FROZEN.
   
 Optional Card under the THERMAL_CHARACTERISTIC_CURVES block:
 ************************************************************
