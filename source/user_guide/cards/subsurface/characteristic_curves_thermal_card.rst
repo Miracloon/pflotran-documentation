@@ -4,9 +4,9 @@ Back to :ref:`card-index`
 
 THERMAL_CHARACTERISTIC_CURVES
 =============================
-This option specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) associated with a material property. This expands thermal conductivity as a function of both temperature and saturation (with the exception of the ``CONSTANT`` and ``DEFAULT`` thermal conductivity functions). 
+This option specifies the thermal characteristic curves (e.g. thermal conductivity and associated parameters) associated with a material property. This expands thermal conductivity as a function of both temperature and saturation (with the exception of the CONSTANT and DEFAULT thermal conductivity functions). 
 
-The legacy input method of specifying thermal conductivity by :ref:`material-property-card` (i.e. with ``THERMAL_CONDUCTIVITY_DRY`` and ``THERMAL_CONDUCTIVTY_WET``) is backwards-compatible, where parameters are adapted to the ``DEFAULT`` thermal characteristic curve and functions are numbered in material sequence. However, ``THERMAL_CHARACTERISTIC_CURVES`` **cannot** be combined with the legacy convention in the same input file.
+The legacy input method of specifying thermal conductivity by :ref:`material-property-card` (i.e. with THERMAL_CONDUCTIVITY_DRY and THERMAL_CONDUCTIVTY_WET) is backwards-compatible, where parameters are adapted to the DEFAULT thermal characteristic curve and functions are numbered in material sequence. However, THERMAL_CHARACTERISTIC_CURVES **cannot** be combined with the legacy convention in the same input file.
 
 Required Blocks and Cards:
 **************************
@@ -14,6 +14,12 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
   Opens a thermal conductivity block, where <string> indicates the type of thermal conductivity function to be employed. 
 
   Supported THERMAL_CONDUCTIVITY_FUNCTIONs (along with their required cards):
+  
+  .. _tcc-constant-card:
+  
+  * CONSTANT
+    
+    + CONSTANT_THERMAL_CONDUCTIVITY
 
   .. _tcc-default-card:
 
@@ -21,10 +27,6 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     
     + THERMAL_CONDUCTIVITY_DRY
     + THERMAL_CONDUCTIVITY_WET
-
-  * CONSTANT
-
-    + CONSTANT_THERMAL_CONDUCTIVITY
 
   .. _tcc-power-card:      
       
@@ -58,6 +60,9 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
 Thermal Characteristic Curves Parameter Definitions
 ---------------------------------------------------
 
+CONSTANT_THERMAL_CONDUCTIVITY <float>
+ Thermal conductivity of porous medium that does not depend on temperature or saturation [W/m-K].
+
 THERMAL_CONDUCTIVTY_WET <float>
  Thermal conductivity of the wet porous medium (:math:`s_l=1`) [W/m-K].
 
@@ -65,9 +70,6 @@ THERMAL_CONDUCTIVITY_DRY <float>
  Thermal conductivity of the dry porous medium (:math:`s_l=0`) [W/m-K].
 
  Effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation (Somerton et al., 1974) is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \sqrt{s_l}(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K]
- 
-CONSTANT_THERMAL_CONDUCTIVITY <float>
- Thermal conductivity of porous medium that does not depend on temperature or saturation [W/m-K].
 
 REFERENCE_TEMPERATURE <float>
  This temperature is subtracted from the actual temperature before the calculation (useful for conversion from Celsius to Kelvin, or to shift the zero a polynomial) [°C]
@@ -92,11 +94,32 @@ LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
  Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0` °C
 
  The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
+
+Optional Blocks and Cards:
+**************************
+
+.. _tcc-anisotropy-parameter-definitions:
+
+Thermal Conductivity Anisotropy Parameter Definitions
+-----------------------------------------------------
+
+The following parameters are used to impart a direction-dependent treatment of thermal conductivity for thermal characteristic curves that employ :math:`\kappa_T(s_l)` from the DEFAULT function. The following inputs are ratios that determine what fraction of the user-input values (THERMAL_CONDUCTIVITY_DRY or THERMAL_CONDUCTIVITY_WET) comprise particular components of the thermal conductivity tensor. 
+
+ANISOTROPY_RATIO_X <float>
+ The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{xx}` component of the thermal conductivity tensor. Requires additional input of Y and Z ratios. 
+ 
+ANISOTROPY_RATIO_Y <float>
+ The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{yy}` component of the thermal conductivity tensor. Requires additional input of X and Z ratios. 
   
-Optional Card under the THERMAL_CHARACTERISTIC_CURVES block:
-************************************************************
+ANISOTROPY_RATIO_Z <float>
+ The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{zz}` component of the thermal conductivity tensor. Requires additional input of X and Y ratios. 
+
+.. _tcc-test:
+
+Test Thermal Characteristic Curve
+---------------------------------
 TEST
- Including this keyword will produce output (.dat file) which provides 
+ Including this keyword will produce output (.dat file) for a thermal characteristic curve that includes: 
   (a) temperature [:math:`T`],
   (b) liquid saturation [:math:`s_l`],
   (c) thermal conductivity [:math:`\kappa_T`],
@@ -125,25 +148,25 @@ Material with thermal characteristic curve named "cct_power"
     /
   /
 
-  THERMAL_CHARACTERISTIC_CURVES cct_default
-    THERMAL_CONDUCTIVITY_FUNCTION DEFAULT
-      THERMAL_CONDUCTIVITY_DRY 5.5D+0 W/m-C
-      THERMAL_CONDUCTIVITY_WET 5.5D+0 W/m-C
+  THERMAL_CHARACTERISTIC_CURVES cct_constant
+    THERMAL_CONDUCTIVITY_FUNCTION CONSTANT
+      CONSTANT_THERMAL_CONDUCTIVITY 5.5000D+0 W/m-C
     END
     TEST
   END
 
-  THERMAL_CHARACTERISTIC_CURVES cct_constant
-    THERMAL_CONDUCTIVITY_FUNCTION CONSTANT
-      CONSTANT_THERMAL_CONDUCTIVITY 5.5D+0 W/m-C
+  THERMAL_CHARACTERISTIC_CURVES cct_default
+    THERMAL_CONDUCTIVITY_FUNCTION DEFAULT
+      THERMAL_CONDUCTIVITY_DRY 5.5000D+0 W/m-C
+      THERMAL_CONDUCTIVITY_WET 7.0000D+0 W/m-C
     END
     TEST
   END
 
   THERMAL_CHARACTERISTIC_CURVES cct_power
     THERMAL_CONDUCTIVITY_FUNCTION POWER
-      THERMAL_CONDUCTIVITY_DRY 5.9676D+0 W/m-C
-      THERMAL_CONDUCTIVITY_WET 5.9676D+0 W/m-C
+      THERMAL_CONDUCTIVITY_DRY 5.5000D+0 W/m-C
+      THERMAL_CONDUCTIVITY_WET 7.0000D+0 W/m-C
       #REFERENCE_TEMPERATURE -273.15 ! default value
       EXPONENT -1.18D+0 
     END
@@ -152,8 +175,8 @@ Material with thermal characteristic curve named "cct_power"
 
   THERMAL_CHARACTERISTIC_CURVES cct_cubic_polynomial
     THERMAL_CONDUCTIVITY_FUNCTION CUBIC_POLYNOMIAL
-      THERMAL_CONDUCTIVITY_DRY 6.8077D+0 W/m-C
-      THERMAL_CONDUCTIVITY_WET 6.8077D+0 W/m-C
+      THERMAL_CONDUCTIVITY_DRY 5.5000D+0 W/m-C
+      THERMAL_CONDUCTIVITY_WET 7.0000D+0 W/m-C
       #REFERENCE_TEMPERATURE 0.d0 ! default value
       CUBIC_POLYNOMIAL_COEFFICIENTS -4.53398D-3 1.41580D-5 -1.94840D-8
     END
@@ -162,11 +185,40 @@ Material with thermal characteristic curve named "cct_power"
 
   THERMAL_CHARACTERISTIC_CURVES cct_linear_resistivity
     THERMAL_CONDUCTIVITY_FUNCTION LINEAR_RESISTIVITY
-      THERMAL_CONDUCTIVITY_DRY 6.8077D+0 W/m-C
-      THERMAL_CONDUCTIVITY_WET 6.8077D+0 W/m-C
+      THERMAL_CONDUCTIVITY_DRY 5.5000D+0 W/m-C
+      THERMAL_CONDUCTIVITY_WET 7.0000D+0 W/m-C
       #REFERENCE_TEMPERATURE 0.d0 ! default value
       LINEAR_RESISTIVITY_COEFFICIENTS 1.0d0 5.038D-3
     END
     TEST
   END
 
+Material with anisotropic thermal conductivity
+----------------------------------------------
+ ::
+
+  MATERIAL_PROPERTY soil
+    ID 1
+    CHARACTERISTIC_CURVES cc1
+    POROSITY 0.25
+    TORTUOSITY 0.5
+    ROCK_DENSITY 2650.0 kg/m^3
+    THERMAL_CHARACTERISTIC_CURVES cct_linear_resistivity
+    HEAT_CAPACITY 830.0 J/kg-C
+    PERMEABILITY
+      PERM_ISO 1.d-12
+    /
+  /
+
+  THERMAL_CHARACTERISTIC_CURVES cct_linear_resistivity
+    THERMAL_CONDUCTIVITY_FUNCTION LINEAR_RESISTIVITY
+      THERMAL_CONDUCTIVITY_DRY 5.5000D+0 W/m-C
+      THERMAL_CONDUCTIVITY_WET 7.0000D+0 W/m-C
+      #REFERENCE_TEMPERATURE 0.d0 ! default value
+      LINEAR_RESISTIVITY_COEFFICIENTS 1.0d0 5.038D-3
+      ANISOTROPY_RATIO_X  1.0000D+0
+      ANISOTROPY_RATIO_Y  0.8000D+0
+      ANISOTROPY_RATIO_Z  0.5000D+0
+    END
+    TEST
+  END
