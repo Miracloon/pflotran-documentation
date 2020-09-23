@@ -18,8 +18,6 @@ Installation Instructions
 
     .. code-block :: bash
 
-        cd $PETSC_DIR
-        make all 
         sudo apt update --fix-missing
         sudo apt install gcc gfortran make cmake python libtool autoconf build-essential pkg-config automake tcsh mpich
 
