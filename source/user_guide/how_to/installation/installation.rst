@@ -20,6 +20,8 @@ can only be used on Windows either via Cygwin, or Visual Studio.
 
 * :ref:`windows-visual-studio-install`
 
+* :ref:`windows-subsystem-for-linux-install`
+
 * :ref:`legacy-build-install`
 
 * :ref:`previous-petsc-releases`
