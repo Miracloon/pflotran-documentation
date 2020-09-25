@@ -446,7 +446,7 @@ contributions from advection and diffusion
    
    {\boldsymbol{F}}_l = {\boldsymbol{q}}C_l - \varphi D {\boldsymbol{\nabla}}C_l.
    
-The forward reaction rate is based on a elementary aqueous reaction
+The forward reaction rate is based on an elementary aqueous reaction
 
 .. math::
    

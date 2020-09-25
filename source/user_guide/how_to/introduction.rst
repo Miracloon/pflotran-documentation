@@ -30,8 +30,8 @@ flow and transport in porous media including Richards equation,
 two-phase flow involving supercritical :math:`\mathrm{CO_2}`, and
 multicomponent reactive transport including aqueous complexing, sorption
 and mineral precipitation and dissolution. Reactive transport equations
-are solved using a fully implicit Newton-Raphson algorithm. Operator
-splitting is currently not implemented. In addition to single continuum
+are solved using a fully implicit Newton-Raphson algorithm. 
+In addition to single continuum
 processes, a novel approach is used to solve equations resulting from a
 multiple interacting continuum method for modeling flow and transport in
 fractured media. This implementation is still under development.

@@ -9,7 +9,7 @@ Placement within the process model OPTIONS block within the SIMULATION block was
 The new approach involves defining an optional NUMERICAL_METHODS block for FLOW or TRANSPORT with the optional TIMESTEPPER, NEWTON_SOLVER and/or LINEAR_SOLVER blocks placed within. 
 The TIMESTEPPER, NEWTON_SOLVER and LINEAR_SOLVER cards no longer require the FLOW or TRANSPORT card appended, as they inherit the process model associated with the outer NUMERICAL_METHODS card. 
 All time integration and solver settings that were previously specified within the process model OPTIONS block (within the SIMULATION block) are now placed within their respective block within NUMERICAL_METHODS. 
-In general, all parameters altering nonlinear solver convergence criteria (including time step cutting) are placed within the NEWTON_SOLVER block, while parameters affecting time step size (with the exception of time step cutting) are place within the TIMESTEPPER block.
+In general, all parameters altering nonlinear solver convergence criteria (including time step cutting) are placed within the NEWTON_SOLVER block, while parameters affecting time step size (with the exception of time step cutting) are placed within the TIMESTEPPER block.
 
 The below are examples of NUMERICAL_METHODS blocks for FLOW and TRANSPORT.
 

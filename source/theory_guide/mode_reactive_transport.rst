@@ -3,9 +3,9 @@
 Introduction 
 ++++++++++++
 
-The chemistry algorithm implemented in PFLOTRAN emplooys a multicomponent formulation of aqueous species, gases and minerals. The traansport equations are formulated in terms
+The chemistry algorithm implemented in PFLOTRAN employs a multicomponent formulation of aqueous species, gases and minerals. The traansport equations are formulated in terms
 of the total concentration of a chosen set of primary or basis species. 
-A feature of the code is that primary species which form the independent variables can be chosen arbitrarily (so long as they form an independent set), and need not reflect the form of the reactions as wwritten in the thermodynamic database. For example, the sets of 
+A feature of the code is that primary species which form the independent variables can be chosen arbitrarily (so long as they form an independent set of aqueous species), and need not reflect the form of the reactions as wwritten in the thermodynamic database. For example, the sets of 
 primary species :math:`\{\rm K^+, Al^{3+},SiO_2,H^+\}` and 
 :math:`\{\rm K^+, AlOH_4^-,SiO_2,OH^-\}` can be used interchangeably 
 giving identical results.
@@ -38,8 +38,8 @@ and
    
    \frac{{{\partial}}\varphi_m}{{{\partial}}t} = \overline{V}_m I_m,
 
-for minerals with molar volume :math:`\overline{V}_m`, mineral reaction
-rate :math:`I_m` and mineral volume fraction :math:`\varphi_m`
+for minerals with molar volume :math:`\overline{V}_m`, reaction
+rate :math:`I_m` and volume fraction :math:`\varphi_m`
 referenced to an REV. 
 The term involving  :math:`S_j` describes sorptive processes considered in more
 detail below.
@@ -331,14 +331,16 @@ the rate may be expressed alternatively as
 Changes in Material Properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Porosity, permeability, tortuosity and mineral surface area may be
+Permeability, tortuosity and mineral surface area may be
 updated optionally due to mineral precipitation and dissolution
-reactions according to the relations
+reactions through the change in porosity
 
 .. math::
    :label: porosity
    
-   \varphi = 1-\sum_m\varphi_m,
+   \varphi = 1-\sum_m\varphi_m.
+
+Change in permeability involves a phenomenological relation with porosity
 
 .. math::
    :label: permeability
@@ -424,7 +426,8 @@ Therefore the mineral surface area :math:`A_m` is given by
 .. math::
    :label: dum2
 
-   A_m = \eta_m a_m = 6 \eta_m \ell_m^{2} = 6 \eta_m \left(\frac{\phi_m}{\eta_m}\right)^{2/3}.
+   A_m = \eta_m a_m = 6 \eta_m \ell_m^{2} = 6 \eta_m \left(\frac{\phi_m}{\eta_m}\right)^{2/3}
+   = 6 \eta_m^{1/3} \phi_m^{2/3}.
 
 A similar expression can be written for the initial surface area
 
@@ -438,16 +441,38 @@ using the same grain density :math:`\eta_m` by assumption. Taking their ratio th
 .. math::
    :label: dum4
 
-   A_m = A_m^0 \left(\frac{\phi_m}{\phi_m^0}\right)^{2/3}.
+   A_m = A_m^0 \left(\frac{\phi_m}{\phi_m^0}\right)^{2/3},
 
-It should be noted, however, that this result only applies to primary minerals because of the restriction :math:`\phi_m^0 > 0`.
+which is independent of the grain density. It should be noted, however, that this result only applies to primary minerals because of the restriction :math:`\phi_m^0 > 0`. For secondary minerals, or a primary mineral which has completely dissolved at a grid cell, Eqn. :eq:`dum2` must be used 
+(This formulation is currently not implemented in PFLOTRAN).
 
 In PFLOTRAN the solid is represented as an aggregate of minerals
 described quantitatively by specifying its porosity :math:`\varphi` and
-the volume fraction :math:`\varphi_m` of each primary mineral. It is not
+the volume fraction :math:`\varphi_m = V_m/V` of each primary mineral referenced
+to the bulk volume :math:`V` of the porous medium. It is not
 necessary that Eqn. :eq:`porosity` relating porosity and
-mineral volume fractions holds. Typically, however, the solid
-composition is specified by giving the mass fraction :math:`y_m` of each
+mineral volume fractions holds, and often the porosity is kept constant during the simulation. 
+
+An alternative formulation of the mineral volume fraction is to specify it 
+relative to the total mineral volume
+rather than the bulk volume
+
+.. math::
+   :label: solid_vol
+
+   \hat\varphi_m = \frac{V_m}{V_s} = \frac{V_m}{\sum_{m'} V_{m'}},
+
+with :math:`\sum_m\hat\varphi_m=1`.
+The two formulations are related by the porosity as given by
+
+.. math::
+   :label: convert
+
+   \varphi_m = (1-\varphi) \hat\varphi_m.
+
+
+The solid composition may also be specified by giving the mass or 
+mole fractions :math:`y_m, x_m` of each
 of the primary minerals making up the solid phase. The volume fraction
 is related to mole :math:`x_m` and mass :math:`y_m` fractions by the
 expressions
@@ -502,24 +527,29 @@ Mass and mole fractions are related by the expression
    
    W_m x_m = W_s y_m.
 
-Analytical Solution for Mineral Volume Fraction with Variable Surface Area
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Variable Surface Area
+^^^^^^^^^^^^^^^^^^^^^
 
-Consider the case where the mineral volume fraction satisfies the mass balance equation
+An semi-analytical solution can be derived for the mineral volume fraction 
+mass balance equation
 
 .. math::
    :label: min_mass_bal
 
    \frac{\partial\phi_m}{\partial t} = \overline V_m I_m
 
-where the reaction rate :math:`I_m` has the form
+for stationary state conditions. The reaction rate :math:`I_m` is assumed to 
+have the typical form
+based on transition state theory
 
 .. math::
    :label: rate_m
 
    I_m = - k_m A_m \Omega_m
 
-with affinity factor :math:`\Omega_m = 1-K_m Q_m` assumed to be constant and with mineral surface area :math:`A_m` considered as a power law function of mineral volume fraction
+with affinity factor :math:`\Omega_m = 1-K_m Q_m` assumed to be constant. 
+The mineral surface area :math:`A_m` is assumed to be a power law function 
+of the mineral volume fraction
 
 .. math::
    :label: var_surf_area
@@ -1313,11 +1343,11 @@ The total sorbed concentrations are obtained from the equations
 Aqueous Complexing Reaction Kinetics
 ++++++++++++++++++++++++++++++++++++
 
-PFLOTRAN allows the user to input kinetic reactions of homogeneous aqueous complexing reactions
+PFLOTRAN allows the user to input kinetic reactions for homogeneous aqueous complexing reactions
 through the GENERAL_REACTION keyword. 
 The reactions are treated as being elementary reactions with reaction rate expressions
-derived from the law of mass action. Future development will also include specification of
-reaction rates corresponding to overall reactions and not limited to elementary reactions.
+derived from the law of mass action. 
+Use the sandbox for more general kinetic rate laws not limited to elementary reactions based on the law of mass action.
 
 To develop the governing equations for this system, reactions are written for intrinsically
 fast and slow reactions corresponding to local equilibrium and kinetic
@@ -1370,7 +1400,7 @@ respectively, defined as
    \Psi_j = c_j + \sum_i \nu_{ji}^{leq} c_i,\\
    \vec\Omega_j = \vec F_j + \sum_i \nu_{ji}^{leq} \vec F_i,
 
-where :math:`\vec F_k` is the usual so-called free ion flux consisting of contributions from
+where :math:`\vec F_k` is the individual species flux consisting of contributions from
 advection, diffusion and dispersion, and the secondary species concentrations :math:`c_i` are given by
 the mass action law
 
@@ -1502,7 +1532,7 @@ The mean tracer age is calculated in PFLOTRAN by adding the species
         Tracer_Age
       /
 
-including sorption through a constant :math:`K_d` model if desired
+Sorption may be included through a constant :math:`K_d` model if desired.
 
 ::
 
