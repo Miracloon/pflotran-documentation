@@ -1,6 +1,9 @@
 User's Guide
 ============
 
+PFLOTRAN: Getting Started 
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. toctree::
    :maxdepth: 2
    
@@ -78,7 +81,7 @@ SUBSURFACE Block Cards
    /user_guide/cards/subsurface/*
 
 CHEMISTRY Block Cards
-+++++++++++++++++++++
+---------------------
 
 .. toctree::
    :maxdepth: 1

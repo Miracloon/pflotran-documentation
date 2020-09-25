@@ -74,7 +74,7 @@ STEP 2:
 STEP 3:
 
   To run the simulation that is defined by the input file called 
-  ``pflotran.in`` in serial, type the following command,
+  ``pflotran.in`` in serial, enter the following command,
   
   ::
   
@@ -197,7 +197,7 @@ STEP 5:
 
   A ``.out`` file will always be generated. Additional output files (like the
   ``.tec`` files in this example) will be generated according to what has been
-  specified in the input file, under the :ref:`output-card`. 
+  specified in the input file, under :ref:`output-card`. 
   By default, these output files will start with the same name as the input 
   file was given.
   

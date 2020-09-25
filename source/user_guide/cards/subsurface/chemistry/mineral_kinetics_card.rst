@@ -12,13 +12,14 @@ The rate law is defined through transition state theory, as detailed in section
 :ref:`transition-state-theory` of the theory guide. The reaction rate :math:`I_m` for the :math:`m` th mineral is defined as
 
 .. math::
+   :label: tst_rate_law
    
    I_m = -a_m\Big(\sum_l k_{ml}(T) {\mathcal P}_{ml}\Big) \Big|1-\big(K_m Q_m\big)^{\left(\frac{1}{\lambda_m\sigma_m}\right)}\Big|^{\beta_m} {\rm sign}(1-K_mQ_m),
 
 
 where a positive value corresponds to precipitation and a negative value to dissolution, and where
  
- :math:`a_m` = mineral specific surface area [1/m]
+ :math:`a_m` = mineral specific surface area [:math:`m^{-1}`]
 
  :math:`{\mathcal P}_{ml}` = prefactor (a sum of prefactor rates; if activation energy is 
  provided the Arrhenius equation is applyied to each prefactor to calculate rates at different 
@@ -36,7 +37,8 @@ where a positive value corresponds to precipitation and a negative value to diss
  
  :math:`k_{ml}` = rate constant 
 
-Note that prefactor calculations have not yet been verified.
+..
+ Note that prefactor calculations have not yet been verified.
 
 Required Cards:
 ---------------
@@ -56,7 +58,7 @@ Optional Cards:
 ---------------
 
 ACTIVATION_ENERGY <float>
- If specified, used in the prefactor calculations for temperature specific rates.
+ If specified, used in the prefactor calculations for temperature dependent rates.
  (Arrhenius)
  [J/mol]
 
@@ -64,14 +66,15 @@ AFFINITY_THRESHOLD <float>
  If specified, rate is only calculated if :math:`K_m Q_m \geq` threshold and sign < 0 corresponding to dissolution.
 
 AFFINITY_POWER
- :math:`\beta_m` in equation above.
+ :math:`\beta_m` in Eqn. :eq:`tst_rate_law` above.
 
 ..
  ARMOR_MINERAL
  ARMOR_PWR
  ARMOR_CRIT_VOL_FRAC
 
-IRREVERSIBLE
+..
+ IRREVERSIBLE
  Flag indicating the reaction is irreversible
 
 MINERAL_SCALE_FACTOR
@@ -93,7 +96,7 @@ SURFACE_AREA_VOL_FRAC_POWER <float>
  :math:`a_m = a_m^0 (\phi_m/\phi_m^0)^n`, :math:`n` = SURFACE_AREA_VOL_FRAC_POWER. Note that the volume fraction power can be applied only if :math:`\phi_m^0 > 0` corresponding to primary minerals.
 
 TEMKIN_CONSTANT
- Sigma in equation above.
+ Sigma in Eqn. :eq:`tst_rate_law` above.
 
 Examples
 --------
