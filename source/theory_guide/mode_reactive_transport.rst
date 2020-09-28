@@ -798,11 +798,11 @@ right-hand side of the reaction
    z_j^{} {\mathcal A}_i^{z_i+} + z_i^{} (\chi_{\alpha})_{z_j} {\mathcal A}_j {~\rightleftharpoons~} z_i^{} {\mathcal A}_j^{z_j+} + z_j^{} (\chi_{\alpha})_{z_i} {\mathcal A}_i,
    
 
-with valencies :math:`z_j`, :math:`z_i` of cations
+with valencies :math:`z_j`, :math:`z_i` for cations
 :math:`{\mathcal A}_j^{z_j+}` and :math:`{\mathcal A}_i^{z_i+}`,
-respectively, and exchange site :math:`\chi_{{\alpha}}^-` on the solid
+respectively, and exchange site :math:`\chi_{{\alpha}}^-` of type :math:`\alpha` on the solid
 surface. The cations :math:`{{\mathcal A}}_i^{z_i+}, \,i\ne j`
-represents all other cations besides the reference cation. The
+represent all other cations besides the reference cation. The
 corresponding mass action equation is given by
 
 .. math::
@@ -840,7 +840,7 @@ or
 .. math::
    :label: eqkij
       
-   K_{ij}^{\alpha}= \frac{(k_i^{{\alpha}})^{z_j}}{(k_j^{\alpha})^{z_i}}.
+   K_{ij}^{\alpha} = \frac{(k_i^{{\alpha}})^{z_j}}{(k_j^{\alpha})^{z_i}}.
 
 This relation is obtained by multiplying the half reaction for cation
 :math:`{\mathcal A}_j^{z_j+}` by the valence :math:`z_i` and subtracting from
@@ -870,7 +870,7 @@ the literature is
 
 obtained by dividing reaction :eq:`ex1` through by the
 product :math:`z_i z_j`. The mass action equations corresponding to
-reactions :eq:`rxn2` are assumed to have the form
+reactions :eq:`rxn2` have the form
 
 .. math::
    :label: dummy34
@@ -930,9 +930,9 @@ It follows that
    z_j \sum_{i \ne j} z_i \Gamma_{ji},\\
    &=0.
 
-Since charge
-is conserved by the ion exchange reactions, the transport equations coupled to ion exchange must also
-conserve charge.
+Since charge is conserved by the ion exchange reactions, 
+the transport equations coupled to ion exchange must also
+conserve charge and as a result no additional constraints are needed.
 
 Exchange Capacity
 ^^^^^^^^^^^^^^^^^
@@ -1095,7 +1095,7 @@ as reference cation
    :label: dummy49
    
    \rm 2 \, Na^+ + \chi_2 Ca &{~\rightleftharpoons~}\rm Ca^{2+} + 2 \, \chi Na,\\
-   \rm 2\,Mg^{2+} + 2\,\chi_2 Ca &{~\rightleftharpoons~}\rm 2\,Ca^{2+} + 2\,\chi_2 Mg,
+   \rm Mg^{2+} + \chi_2 Ca &{~\rightleftharpoons~} \rm Ca^{2+} + \chi_2 Mg,
 
 with selectivity coefficients :math:`K_{\rm NaCa}` and
 :math:`K_{\rm MgCa}`. Alternatively, using Na\ :math:`^+` as reference

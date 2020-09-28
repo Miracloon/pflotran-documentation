@@ -19,7 +19,7 @@ The rate law is defined through transition state theory, as detailed in section
 
 where a positive value corresponds to precipitation and a negative value to dissolution, and where
  
- :math:`a_m` = mineral specific surface area [:math:`m^{-1}`]
+ :math:`a_m` = mineral specific surface area [m\ :math:`^{-1}`]
 
  :math:`{\mathcal P}_{ml}` = prefactor (a sum of prefactor rates; if activation energy is 
  provided the Arrhenius equation is applyied to each prefactor to calculate rates at different 
@@ -63,7 +63,8 @@ ACTIVATION_ENERGY <float>
  [J/mol]
 
 AFFINITY_THRESHOLD <float>
- If specified, rate is only calculated if :math:`K_m Q_m \geq` threshold and sign < 0 corresponding to dissolution.
+ If specified, rate is only calculated if :math:`K_m Q_m \geq` threshold 
+ and :math:`{\rm sign}(1-K_mQ_m) < 0` corresponding to precipitation.
 
 AFFINITY_POWER
  :math:`\beta_m` in Eqn. :eq:`tst_rate_law` above.
