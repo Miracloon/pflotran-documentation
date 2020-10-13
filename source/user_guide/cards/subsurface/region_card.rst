@@ -48,8 +48,32 @@ Within the REGION block, one of:
     CARTESIAN_BOUNDARY [WEST, EAST, SOUTH, NORTH, BOTTOM, TOP]
 
  FILE <string>
-  Specifies a file (e.g. HDF5) from which cell ids and face directions (for 
-  structured: 1=west, 2=east, 3=south, 4=north, 5=bottom, 6=top) can be read.
+
+  Non-boundary regions for all grid formats:
+   Specify a list of cell IDs in one of the following formats:
+
+    * ASCII: one cell ID per line
+    * HDF5 (.h5): cell IDs are in a 1D integer dataset named *Regions/<region name>/Cell Ids*.
+
+  STRUCTURED Grid:
+   Specify boundary faces through a list of cell and face IDs in one of the following formats:
+
+    * ASCII: one cell and face ID per line
+    * HDF5 (.h5): cell and face IDs are in two 1D integer datasets named *Regions/<region name>/Cell Ids* and *Regions/<region name>/Face Ids*, respectively. 
+
+   Face IDs are numbered as: 1=west, 2=east, 3=south, 4=north, 5=bottom, 6=top.
+
+  UNSTRUCTURED Grid (Implicit):
+   Specify boundary faces through a list of vertex IDs in one of the following formats:
+    * ASCII (.ss): each line specifies a face element type (T=triangle and Q=quadrilateral) and associated vertex IDs
+    * HDF5 (.h5): 2D array of integers where the vertex IDs for each face are in the short dimension and the long dimension equals the number of faces.
+
+  UNSTRUCTURED_EXPLICIT Grid:
+   Specify boundary faces through a list of face connections in the following format:
+    * ASCII (.ex): one connection per line (cell ID, face center coordinate and face area).
+
+  Note that the suffixes *.ss*, *.ex*, and *.h5* are reserved for the file formats defined above.
+  **See ASCII examples below or ASCII and HDF5 examples in PFLOTRAN_DIR/regression_tests/default/discretization.**
 
  LIST
   A generic list of cell ids (**not yet implemented**).  
@@ -115,6 +139,49 @@ Examples
   REGION zone1
     BLOCK 45 90 32 40 1 100
   /
+
+All Grids (non-boundary)
+++++++++++++++++++++++++
+ASCII *.txt* format 
+ ::
+
+  1
+  2
+  ...
+  N
+
+STRUCTURED Grid
++++++++++++++++
+Boundary faces in ASCII *.txt* format 
+
+ ::
+
+  1 1   ! WEST face
+  2 4   ! SOUTH face
+  ...
+  N 5   ! TOP face
+
+UNSTRUCTURED Grid
++++++++++++++++++
+Boundary faces in ASCII *.ss* format 
+ ::
+
+  4
+  Q 4 1 10 13
+  Q 7 4 13 16
+  Q 13 10 19 22
+  Q 16 13 22 25
+
+EXPLICIT_UNSTRUCTURED Grid
+++++++++++++++++++++++++++
+Boundary faces in ASCII *.ex* format 
+ ::
+
+  CONNECTIONS 4
+  1 0. 0.5 0.5 1.
+  3 0. 1.5 0.5 1.
+  5 0. 0.5 1.5 1.
+  7 0. 1.5 1.5 1.
 
 .. _note:
 
