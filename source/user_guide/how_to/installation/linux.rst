@@ -66,7 +66,7 @@ Installation Instructions
 
     .. code-block :: bash
 
-        ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
+        ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-configure-arguments="--with-zlib=yes" --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
 
     3.3. Set the PETSC_DIR and PETSC_ARCH environment variables based on the PETSc_ installation location (PETSC_DIR) and architecture (PETSC_ARCH: hardware, compilers, etc.).  See `PETSc environment variables`_. 
          The environmental variables can be set in your ``~/.bashrc`` file by adding
