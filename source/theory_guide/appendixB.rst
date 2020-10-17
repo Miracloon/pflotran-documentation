@@ -9,8 +9,7 @@ splitting solution methods are supported for reactive transport.
 Integrated Finite Volume Discretization
 ---------------------------------------
 
-The governing partial differential equations for mass conservation can
-be written in the general form
+The governing partial differential equation for mass conservation of primary species :math:`j` can be written in the general form
 
 .. math::
    :label: mass-cons-soln
@@ -51,8 +50,8 @@ grid cells connected to the :math:`n`\ th node with interfacial area
 .. math::
    :label: flux-fluid-soln
    
-   F_{j,nn'}^{{\alpha}}= \big(q_{{\alpha}}X_{{\alpha}}\big)_{nn'} - \big(\varphi s_{{\alpha}}\tau_{{\alpha}}D_{{\alpha}}\big)_{nn'}
-   \frac{X_{n'}^{{\alpha}}- X_n^{{\alpha}}}{d_{n'}+d_n},
+   F_{j,nn'}^{{\alpha}}= \big(q_{{\alpha}}X_j^{{\alpha}}\big)_{nn'} - \big(\varphi s_{{\alpha}}\tau_{{\alpha}}D_{{\alpha}}\big)_{nn'}
+   \frac{X_{jn'}^{{\alpha}}- X_{jn}^{{\alpha}}}{d_{n'}+d_n},
 
 with perpendicular distances to interface :math:`nn'` from nodes
 :math:`n` and :math:`n'` denoted by :math:`d_{n'}` and :math:`d_n`,
@@ -61,10 +60,10 @@ respectively. Upstream weighting is used for the advective term
 .. math::
    :label: upstream-soln
 
-   \big(q_{{\alpha}}X_{{\alpha}})_{nn'} = \left\{
+   \big(q_{{\alpha}}X_j^{{\alpha}}\big)_{nn'} = \left\{
    \begin{array}{ll}
-   q_{nn'}^{{\alpha}}X_{n'}, & q_{nn'} > 0\\
-   q_{nn'}^{{\alpha}}X_{n}, &  q_{nn'} < 0
+   (q_{{\alpha}})_{nn'}X_{jn'}, & (q_{{\alpha}})_{nn'} > 0\\
+   (q_{{\alpha}})_{nn'}X_{jn}, &  (q_{{\alpha}})_{nn'} < 0
    \end{array}
    \right..
 
@@ -84,6 +83,76 @@ volume, or for a well with point source
    :label: CV-soln
    
    \int_{V_n}Q_j\, dV = \hat Q_{jn}.
+
+Two Point Flux Approximation
+----------------------------
+The figure below illustrates the implementation of two point fluxes through Eqs :eq:`flux-soln` and :eq:`flux-fluid-soln` above. 
+
+
+.. figure:: ./figs/tpf_connection.png
+   :name: fig:tpf
+   :scale: 25
+   :align: center
+
+   Schematic of two point flux approximation geometry for two unstructured grid cells.
+
+The dashed line represents :math:`A_{nn'}`, the area of the face projected onto the plane that is normal to the vector connecting cells :math:`n` and :math:`n'`. 
+:math:`d_{n'}` and :math:`d_n` are the distances on either side of the projected face.
+
+When converting an implicit unstructured grid (defined by elements and vertices) with non-orthogonal faces between cells to an explicit unstructured grid format where connection face areas are assumed to be orthogonal to the connecting vector, the user must project the face area onto the orthogonal plane. 
+In other words, the connection areas defined by the explicit unstructured grid format are assumed to be :math:`A_{nn'}`.
+
+Projection and Averaging of Anisotropic Material Property Tensors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Anisotropic material properties (e.g. dispersion, permeability) are assigned with a diagonal or full tensor prescribed for each grid cell.
+For flux calculations, each cell's tensor is projected onto the unit vector :math:`u` connecting the cell centers.
+In the case of anisotropic permeability, the tensor (projection) can be weighted *linearly*:
+
+.. math::
+   :label: direction-of-u 
+   
+   k = k_x u_x + k_y u_y + k_z u_z,
+
+in the direction of *flow*:
+
+.. math::
+   :label: direction-of-flow 
+   
+   k = k_x u_x^2 + k_y u_y^2 + k_z u_z^2,
+
+or in the direction of the *potential* gradient:
+
+.. math::
+   :label: direction-of-potential
+
+   k = \frac{1}{\frac{u_x^2}{k_x} + \frac{u_y^2}{k_y} + \frac{u_z^2}{k_z}}
+
+Assuming a 2D permeability tensor
+
+.. math::
+   :label: perm-tensor
+
+   \begin{bmatrix}
+   k_{xx} & k_{xy} \\
+   k_{yx} & k_{yy} 
+   \end{bmatrix}
+
+with :math:`k_{xx}` = 1e-12, :math:`k_{yy}` = 2e-12, and :math:`k_{xy}` = :math:`k_{yx}` = 0, the figure below illustrates how these weighting functions impact the resulting scalar permeability :math:`(k)` calculated for each cell on either side of the flux calculation. 
+The angle :math:`\theta` describes the orientation of :math:`u` where for 0, :math:`u` points in the x-direction and for :math:`\frac{\pi}{2}`, :math:`u` points in the y-direction. 
+**This example clearly illustrates how linear weighting should only be used for orthogonal Cartesian grids.**
+
+.. figure:: ./figs/perm_tensor_to_scalar.png
+   :name: fig:perm_tensor
+   :scale: 60
+   :align: center
+
+
+In all cases, the resulting projected scalar permeabilities on either side of the face are distance-weighted, harmonically averaged:
+
+.. math::
+   :label: harmonic-perm
+
+   k_\text{ave} = \frac{k_n k_{n'}(d_n+d_{n'})}{d_n k_{n'} + d_{n'} k_n}.
 
 Global Implicit Newton-Raphson Linear and Logarithmic Update
 ------------------------------------------------------------
