@@ -36,14 +36,6 @@ Installation Instructions
         cd petsc
         git checkout v3.13
 
-
-    **NOTE:PFLOTRAN currently uses a snapshot of PETSc 'maint' (release)**
-    **branch. The only supported snapshot/version is specified by the**
-    **changeset-id above. The supported version will change periodically as** 
-    **we need bug fixes or new features and changes will be announced on the** 
-    **mailing lists. The supported version of petsc is used on the buildbot** 
-    **automated testing system.**
-  
     3.2. Configure PETSc (see `PETSc installation instructions`_).
 
     .. code-block:: bash
@@ -67,6 +59,8 @@ Installation Instructions
     .. code-block :: bash
 
         ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
+
+    Note: To support HDF5 zlib compression, add ``--download-hdf5-configure-arguments="--with-zlib=yes"`` to the command line.
 
     3.3. Set the PETSC_DIR and PETSC_ARCH environment variables based on the PETSc_ installation location (PETSC_DIR) and architecture (PETSC_ARCH: hardware, compilers, etc.).  See `PETSc environment variables`_. 
          The environmental variables can be set in your ``~/.bashrc`` file by adding
