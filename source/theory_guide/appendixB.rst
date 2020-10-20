@@ -102,11 +102,11 @@ The dashed line represents :math:`A_{nn'}`, the area of the face projected onto 
 When converting an implicit unstructured grid (defined by elements and vertices) with non-orthogonal faces between cells to an explicit unstructured grid format where connection face areas are assumed to be orthogonal to the connecting vector, the user must project the face area onto the orthogonal plane. 
 In other words, the connection areas defined by the explicit unstructured grid format are assumed to be :math:`A_{nn'}`.
 
-Projection and Averaging of Anisotropic Material Property Tensors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Anisotropic material properties (e.g. dispersion, permeability) are assigned with a diagonal or full tensor prescribed for each grid cell.
-For flux calculations, each cell's tensor is projected onto the unit vector :math:`u` connecting the cell centers.
-In the case of anisotropic permeability, the tensor (projection) can be weighted *linearly*:
+Projection and Averaging of Anisotropic Permeability Tensors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Anisotropic permeabilities are assigned with a diagonal or full tensor prescribed for each grid cell.
+For flux calculations, each cell's permeability tensor is projected onto the unit vector :math:`u` connecting the cell centers.
+The tensor (projection) can be weighted *linearly*:
 
 .. math::
    :label: direction-of-u 
