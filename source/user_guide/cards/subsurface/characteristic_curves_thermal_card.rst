@@ -54,6 +54,10 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + THERMAL_CONDUCTIVITY_WET
     + REFERENCE_TEMPERATURE
     + LINEAR_RESISTIVITY_COEFFICIENTS
+    
+  .. _tcc-composite
+  
+  * COMPOSITE
 
 .. _tcc-parameter-definitions:
 
@@ -113,6 +117,17 @@ ANISOTROPY_RATIO_Y <float>
   
 ANISOTROPY_RATIO_Z <float>
  The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{zz}` component of the thermal conductivity tensor. Requires additional input of X and Y ratios. 
+ 
+In the COMPOSITE function, the following parameters are used to employ previously-defined thermal characteristic curves along certain principal axes. Anisotropy ratios can also be specified if needed. 
+ 
+COMPOSITE_X <string>
+  Name of the thermal characteristic curve governing conduction in the X direction.
+
+COMPOSITE_Y <string>
+  Name of the thermal characteristic curve governing conduction in the Y direction.
+
+COMPOSITE_Z <string>
+  Name of the thermal characteristic curve governing conduction in the Z direction.
 
 .. _tcc-test:
 
@@ -189,6 +204,15 @@ Material with thermal characteristic curve named "cct_power"
       THERMAL_CONDUCTIVITY_WET 7.0000D+0 W/m-C
       #REFERENCE_TEMPERATURE 0.d0 ! default value
       LINEAR_RESISTIVITY_COEFFICIENTS 1.0d0 5.038D-3
+    END
+    TEST
+  END
+  
+  THERMAL_CHARACTERISTIC_CURVES cct_composite
+    THERMAL_CONDUCTIVITY_FUNCTION COMPOSITE
+      COMPOSITE_X cct_default
+      COMPOSITE_Y cct_default
+      COMPOSITE_Z cct_constant
     END
     TEST
   END
