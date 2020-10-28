@@ -3,8 +3,8 @@
 Linux Primer
 ============
 
-The following are basic Linux commands:
----------------------------------------
+Basic Linux commands
+--------------------
 
 **cd <path>** - change to directory *path*.
   
@@ -38,8 +38,7 @@ The following are basic Linux commands:
 
  rm abc.in
 
-
-More advanced commands:
+Advanced Linux commands
 -----------------------
 
 **gedit <filename>** - open file *filename* in the gedit text editor.
