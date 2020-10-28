@@ -8,6 +8,7 @@ PFLOTRAN: Getting Started
    :maxdepth: 2
    
    /user_guide/how_to/introduction.rst
+   /user_guide/how_to/linux_primer.rst
    /user_guide/how_to/installation/installation.rst
    /user_guide/how_to/running.rst
    /user_guide/how_to/creating_an_input_file.rst
