@@ -55,6 +55,17 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + REFERENCE_TEMPERATURE
     + LINEAR_RESISTIVITY_COEFFICIENTS
 
+    .. _tcc-frozen-card:
+
+  * FROZEN
+
+    + THERMAL_CONDUCTIVITY_DRY
+    + THERMAL_CONDUCTIVITY_WET
+    + KERSTEN_EXPONENT
+    + THERMAL_CONDUCTIVITY_FROZEN
+    + KERSTEN_EXPONENT_FROZEN
+    + ICE_MODEL
+
 .. _tcc-parameter-definitions:
 
 Thermal Characteristic Curves Parameter Definitions
@@ -95,6 +106,31 @@ LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
 
  The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
 
+KERSTEN_EXPONENT <float>
+ In :ref:`th-card` mode, this is the exponent (:math:`\alpha_{u}` [-]) of liquid saturation used to derive the Kersten number for unfrozen soil: :math:`Ke_{u}=s^{\alpha_{u}}_{l}` (see :ref:`mode-th-ice-model`).
+ 
+ Outside of :ref:`th-card` mode, only the dry and wet components of the ice model are utilized for FROZEN.
+
+THERMAL_CONDUCTIVITY_FROZEN <float>
+  In the FROZEN model, this is the thermal conductivity of frozen soil [W/m-K] (see :ref:`mode-th-ice-model`).
+
+  When this parameter is specified in :ref:`th-card` mode, the FREEZING option (see :ref:`th-simulation-options`) automatically becomes active.
+  
+KERSTEN_EXPONENT_FROZEN <float>
+  In the FROZEN model, this is the exponent (:math:`\alpha_{f}` [-]) of ice saturation used to derive the Kersten number for frozen soil: :math:`Ke_{f}=s^{\alpha_{f}}_{i}` (see :ref:`mode-th-ice-model`).
+    
+  This parameter must be specified with THERMAL_CONDUCTIVITY_FROZEN.
+  
+ICE_MODEL 
+  Specifies the ice model for the FROZEN model. Options include:
+    * PAINTER_EXPLICIT [1]
+    * PAINTER_KARRA_IMPLICIT [2]
+    * PAINTER_KARRA_EXPLICIT [2]
+    * PAINTER_KARRA_EXPLICIT_NOCRYO [2]
+    * DALL_AMICO [3,4]
+    
+  This parameter must be specified with THERMAL_CONDUCTIVITY_FROZEN.
+
 Optional Blocks and Cards:
 **************************
 
@@ -127,7 +163,12 @@ TEST
   (e) :math:`\frac{\partial \kappa_T}{\partial T}`,
   (f) numerical approximation to (d.), and
   (g) numerical approximation to (e.). 
-
+  
+ When the FROZEN model is in use with FREEZING active, there are additional parameters in the output:
+   * ice saturation [:math:`s_i`]
+   * :math:`\frac{\partial \kappa_T}{\partial s_i}`
+   * numerical approximation to :math:`\frac{\partial \kappa_T}{\partial s_i}`
+ 
 Examples
 ********
 
@@ -192,6 +233,18 @@ Material with thermal characteristic curve named "cct_power"
     END
     TEST
   END
+  
+  THERMAL_CHARACTERISTIC_CURVES cct_frozen
+    THERMAL_CONDUCTIVITY_FUNCTION FROZEN
+      THERMAL_CONDUCTIVITY_DRY 0.2500D+0 W/m-C
+      THERMAL_CONDUCTIVITY_WET 1.3000D+0 W/m-C
+      KERSTEN_EXPONENT 0.45
+      #THERMAL_CONDUCTIVITY_FROZEN 2.3500D+0 W/m-C
+      #KERSTEN_EXPONENT_FROZEN 0.95
+      #ICE_MODEL PAINTER_EXPLICIT
+    END
+    TEST
+  END
 
 Material with anisotropic thermal conductivity
 ----------------------------------------------
@@ -222,3 +275,10 @@ Material with anisotropic thermal conductivity
     END
     TEST
   END
+
+References
+**********
+1. Painter, S.L. (2011). Three-phase numerical model of water migration in partially frozen geological media: model formulation, validation, and applications. Computational Geosciences 15, 69–85. https://doi.org/10.1007/s10596-010-9197-z
+2. Painter, S.L., and S. Karra (2014). Constitutive model for unfrozen water content in subfreezing unsaturated soils. Vadose Zone 13(4), 1-8. https://doi.org/10.2136/vzj2013.04.0071
+3. Dall'Amico, M. (2010). Coupled  water  and  heat  transfer  in  permafrost modeling. Ph.D. thesis, Institute of Civil and Environmental Engineering, Universita’ degli Studi di Trento, Trento, Italy. http://eprints-phd.biblio.unitn.it/335/
+4. Dall'Amico, M., S. Endrizzi, S. Gruber, and R. Rigon (2011). A robust and energy-conserving model of freezing variably-saturated soil. The Cryosphere 5(2), 469-484. https://doi.org/10.5194/tc-5-469-2011

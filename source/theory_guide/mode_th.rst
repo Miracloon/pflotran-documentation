@@ -68,6 +68,8 @@ Thermal conductivity is determined from the equation (Somerton et al.,
 where :math:`\kappa_{\rm dry}` and :math:`\kappa_{\rm sat}` are dry and
 fully saturated rock thermal conductivities.
 
+.. _mode-th-ice-model:
+
 Ice Model
 ~~~~~~~~~
 
