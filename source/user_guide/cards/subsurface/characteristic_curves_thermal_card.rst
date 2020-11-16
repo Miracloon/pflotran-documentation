@@ -55,9 +55,40 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + REFERENCE_TEMPERATURE
     + LINEAR_RESISTIVITY_COEFFICIENTS
     
-  .. _tcc-composite
+  .. _tcc-composite:
   
   * COMPOSITE
+  
+  .. _tcc_assembly:
+  
+  * ASM_AXIAL (Assembly Axial Model)
+  
+    + THERMAL_CONDUCTIVITY_WATER
+    + THERMAL_CONDUCTIVITY_SOLID
+    + POROSITY_ASSEMBLY
+      
+  * ASM_RADIAL (Assembly Radial Model)
+  
+    + THERMAL_CONDUCTIVITY_WATER
+    + THERMAL_CONDUCTIVITY_SOLID
+    + POROSITY_ASSEMBLY
+    + THERMAL_CONDUCTIVITY_DRY
+    + DRY_CONDITIONS_COEFFICIENT
+    + DRY_CONDITIONS_EXPONENT
+      
+  * WATER_FILLED_CONDITIONS (Standalone model for water-filled assembly)
+  
+    + THERMAL_CONDUCTIVITY_WATER
+    + THERMAL_CONDUCTIVITY_SOLID
+    + POROSITY_ASSEMBLY
+    + THERMAL_CONDUCTIVITY_DRY (optional)
+    
+  * DRY_CONDITIONS (Standalone model for dry assembly)
+  
+    + THERMAL_CONDUCTIVITY_DRY
+    + DRY_CONDITIONS_COEFFICIENT
+    + DRY_CONDITIONS_EXPONENT
+    + THERMAL_CONDUCTIVITY_WET (optional)
 
 .. _tcc-parameter-definitions:
 
@@ -98,6 +129,34 @@ LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
  Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0` °C
 
  The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
+
+Assembly Models
+---------------
+Models are available to describe thermal conduction in spent nuclear fuel assemblies along both radial and axial directions. The radial model takes the form of the DEFAULT curve, albeit with a temperature-dependent dry component and a special wet component: :math:`\kappa_{radial}(s_l,T)=\kappa_{d}(T)+[\kappa_{w}^{\prime}-\kappa_{d}(T)\sqrt{s_{l}}]` [W/m-K].
+
+The dry thermal conductivity takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K]. This model can be used on its own with the DRY_CONDITIONS function, where a constant :math:`\kappa_{w}` may be specified to impart the saturation dependence from the DEFAULT model.
+
+The wet thermal conductivity takes into account the porosity of the assembly and thermal conductivities of its solid constituents and contained water: :math:`\kappa_{w}^{\prime}=\kappa_{l}\Bigg[1-\sqrt{1-\Phi}+\frac{\sqrt{1-\Phi}}{1+(\frac{\kappa_{l}}{\kappa_{s}}-1)\sqrt{1-\Phi}}\Bigg]` [W/m-K]. This model can be used on its own with the WATER_FILLED_CONDITIONS function, where a constant :math:`\kappa_{d}` may be specified to impart the saturation dependence from the DEFAULT model.
+
+The axial model assumes parallel conduction between solid constituents in the assembly and the surrounding water. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of solids and water as opposed to dry and wet components: :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi s_{l}\kappa_{l}` [W/m-K].
+
+THERMAL_CONDUCTIVITY_WATER
+ The thermal conductivity of water (:math:`\kappa_{l}` [W/m-K]) saturating the assembly.
+   
+THERMAL_CONDUCTIVITY_SOLID
+ The thermal conductivity of the solid components in the assembly including rods and baskets (:math:`\kappa_{s}` [W/m-K]).
+   
+POROSITY_ASSEMBLY
+ The porosity of the assembly (:math:`\Phi`), or the ratio of the volume of void to the total volume. 
+   
+THERMAL_CONDUCTIVITY_DRY
+ For the radial assembly model, the dry thermal conductivity is applied as the zero-order term describing the baseline thermal conductivity of the dry assembly at 0 °C (:math:`\kappa_{d}^{0}` [W/m-K]).
+   
+DRY_CONDITIONS_COEFFICIENT
+ For the dry state of the radial assembly model, this is the coefficient for the temperature-dependent term (:math:`\alpha`).
+   
+DRY_CONDITIONS_EXPONENT
+ For the dry state of the radial assembly model, this is the exponent of temperature in the temperature-dependent term (:math:`\beta`). Both :math:`\alpha` and :math:`\beta` must be fitted to match units of :math:`\kappa_{d}^{0}`. 
 
 Optional Blocks and Cards:
 **************************
