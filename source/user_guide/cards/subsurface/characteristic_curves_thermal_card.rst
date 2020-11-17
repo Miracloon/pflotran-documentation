@@ -15,20 +15,20 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
 
   Supported THERMAL_CONDUCTIVITY_FUNCTIONs (along with their required cards):
   
-  .. _tcc-constant-card:
+  .. _tcc-constant-input:
   
   * CONSTANT
     
     + CONSTANT_THERMAL_CONDUCTIVITY
 
-  .. _tcc-default-card:
+  .. _tcc-default-input:
 
   * DEFAULT
     
     + THERMAL_CONDUCTIVITY_DRY
     + THERMAL_CONDUCTIVITY_WET
 
-  .. _tcc-power-card:      
+  .. _tcc-power-input:      
       
   * POWER
 
@@ -37,7 +37,7 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + REFERENCE_TEMPERATURE
     + EXPONENT
 
-  .. _tcc-cubic-polynomial-card:
+  .. _tcc-cubic-polynomial-input:
 
   * CUBIC_POLYNOMIAL
 
@@ -46,7 +46,7 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + REFERENCE_TEMPERATURE
     + CUBIC_POLYNOMIAL_COEFFICIENTS
 
-  .. _tcc-linear-resistivity-card:
+  .. _tcc-linear-resistivity-input:
 
   * LINEAR_RESISTIVITY
 
@@ -55,7 +55,7 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + REFERENCE_TEMPERATURE
     + LINEAR_RESISTIVITY_COEFFICIENTS
 
-    .. _tcc-frozen-card:
+  .. _tcc-frozen-input:
 
   * FROZEN
 
@@ -66,19 +66,25 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + KERSTEN_EXPONENT_FROZEN
     + ICE_MODEL
 
-  .. _tcc-composite:
+  .. _tcc-composite-input:
   
   * COMPOSITE
   
-  .. _tcc_assembly:
+    + COMPOSITE_X
+    + COMPOSITE_Y
+    + COMPOSITE_Z
+
+  .. _tcc-assembly-axial-input:
   
-  * ASM_AXIAL (Assembly Axial Model)
+  * ASM_AXIAL (Assembly axial model)
   
     + THERMAL_CONDUCTIVITY_WATER
     + THERMAL_CONDUCTIVITY_SOLID
     + POROSITY_ASSEMBLY
-      
-  * ASM_RADIAL (Assembly Radial Model)
+ 
+  .. _tcc-assembly-radial-input:
+ 
+  * ASM_RADIAL (Assembly radial model)
   
     + THERMAL_CONDUCTIVITY_WATER
     + THERMAL_CONDUCTIVITY_SOLID
@@ -86,14 +92,18 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + THERMAL_CONDUCTIVITY_DRY
     + DRY_CONDITIONS_COEFFICIENT
     + DRY_CONDITIONS_EXPONENT
-      
+ 
+  .. _tcc-assembly-water-input:
+ 
   * WATER_FILLED_CONDITIONS (Standalone model for water-filled assembly)
   
     + THERMAL_CONDUCTIVITY_WATER
     + THERMAL_CONDUCTIVITY_SOLID
     + POROSITY_ASSEMBLY
     + THERMAL_CONDUCTIVITY_DRY (optional)
-    
+
+  .. _tcc-assembly-dry-input:
+
   * DRY_CONDITIONS (Standalone model for dry assembly)
   
     + THERMAL_CONDUCTIVITY_DRY
@@ -115,7 +125,7 @@ THERMAL_CONDUCTIVTY_WET <float>
 THERMAL_CONDUCTIVITY_DRY <float>
  Thermal conductivity of the dry porous medium (:math:`s_l=0`) [W/m-K].
 
- Effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \sqrt{s_l}(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K]. [1]
+ In the DEFAULT model, effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \sqrt{s_l}(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K]. [1]
 
 REFERENCE_TEMPERATURE <float>
  This temperature is subtracted from the actual temperature before the calculation (useful for conversion from Celsius to Kelvin, or to shift the zero a polynomial) [°C].
@@ -166,21 +176,39 @@ ICE_MODEL
     
   This parameter must be specified with THERMAL_CONDUCTIVITY_FROZEN.
 
+.. _tcc-composite-function:
+
+Composite Function
+------------------
+
+In the COMPOSITE function, the following parameters are used to employ previously-defined thermal characteristic curves along certain principal axes (see `example <tcc-example-composite_>`_). `Anisotropy ratios <tcc-anisotropy-parameter-definitions_>`_ can also be specified if needed. 
+ 
+COMPOSITE_X <string>
+  Name of the thermal characteristic curve governing conduction in the X direction.
+
+COMPOSITE_Y <string>
+  Name of the thermal characteristic curve governing conduction in the Y direction.
+
+COMPOSITE_Z <string>
+  Name of the thermal characteristic curve governing conduction in the Z direction.
+
+.. _tcc-assembly-model-definitions:
+
 Assembly Models
 ---------------
 Models are available to describe the conduction of heat in spent nuclear fuel assemblies along both radial and axial directions. 
 
-The radial model takes the form of the DEFAULT curve, albeit with a temperature-dependent dry component and a special wet component: :math:`\kappa_{radial}(s_l,T)=\kappa_{d}(T)+[\kappa_{w}^{\prime}-\kappa_{d}(T)\sqrt{s_{l}}]` [W/m-K].
+The radial model (`ASM_RADIAL <tcc-assembly-radial-input_>`_) takes the form of the DEFAULT curve, albeit with a temperature-dependent dry component and a special wet component: :math:`\kappa_{radial}(s_l,T)=\kappa_{d}(T)+[\kappa_{w}^{\prime}-\kappa_{d}(T)\sqrt{s_{l}}]` [W/m-K].
 
 The dry thermal conductivity of the radial model takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K].[6] 
-  * This model can be used on its own with the DRY_CONDITIONS function.
-  * A constant :math:`\kappa_{w}` may be specified to use the saturation dependence of the DEFAULT model.
+  * This model can be used on its own with the `DRY_CONDITIONS <tcc-assembly-dry-input_>`_ function.
+  * A constant :math:`\kappa_{w}` may be specified to use the saturation dependence of the `DEFAULT <tcc-default-input_>`_ model.
 
 The wet thermal conductivity of the radial model takes into account the porosity of the assembly :math:`(\Phi)` and the thermal conductivities of its solid constituents and contained water (:math:`\kappa_{s}` and :math:`\kappa_{l}`): :math:`\kappa_{w}^{\prime}=\kappa_{l}\Bigg[1-\sqrt{1-\Phi}+\frac{\sqrt{1-\Phi}}{1+(\frac{\kappa_{l}}{\kappa_{s}}-1)\sqrt{1-\Phi}}\Bigg]` [W/m-K].[7] 
-  * This model can be used on its own with the WATER_FILLED_CONDITIONS function.
-  * A constant :math:`\kappa_{d}` may be specified to use the saturation dependence of the DEFAULT model.
+  * This model can be used on its own with the `WATER_FILLED_CONDITIONS <tcc-assembly-water-input_>`_ function.
+  * A constant :math:`\kappa_{d}` may be specified to use the saturation dependence of the `DEFAULT <tcc-default-input_>`_ model.
 
-The axial model assumes parallel conduction between solid constituents in the assembly and the surrounding water. When applied to an unsaturated system, it assumes that the thermal conductivity of gas is negligible. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of assembly solids and water (as opposed to dry and wet components): :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi s_{l}\kappa_{l}` [W/m-K].
+The axial model (`ASM_AXIAL <tcc-assembly-axial-input_>`_) assumes parallel conduction between solid constituents in the assembly and the surrounding water. When applied to an unsaturated system, it assumes that the thermal conductivity of gas is negligible. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of assembly solids and water (as opposed to dry and wet components): :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi s_{l}\kappa_{l}` [W/m-K].
 
 THERMAL_CONDUCTIVITY_WATER <float>
  The thermal conductivity of water (:math:`\kappa_{l}` [W/m-K]) contained in the assembly.
@@ -218,17 +246,6 @@ ANISOTROPY_RATIO_Y <float>
   
 ANISOTROPY_RATIO_Z <float>
  The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{zz}` component of the thermal conductivity tensor. Requires additional input of X and Y ratios. 
- 
-In the COMPOSITE function, the following parameters are used to employ previously-defined thermal characteristic curves along certain principal axes. Anisotropy ratios can also be specified if needed. 
- 
-COMPOSITE_X <string>
-  Name of the thermal characteristic curve governing conduction in the X direction.
-
-COMPOSITE_Y <string>
-  Name of the thermal characteristic curve governing conduction in the Y direction.
-
-COMPOSITE_Z <string>
-  Name of the thermal characteristic curve governing conduction in the Z direction.
 
 .. _tcc-test:
 
@@ -236,21 +253,23 @@ Test Thermal Characteristic Curve
 ---------------------------------
 TEST
  Including this keyword will produce output (.dat file) for a thermal characteristic curve that includes: 
-  (a) temperature [:math:`T`],
-  (b) liquid saturation [:math:`s_l`],
-  (c) thermal conductivity [:math:`\kappa_T`],
+  (a) temperature :math:`(T)`,
+  (b) liquid saturation :math:`(s_l)`,
+  (c) thermal conductivity :math:`(\kappa_T)`,
   (d) :math:`\frac{\partial \kappa_T}{\partial s_l}`,
   (e) :math:`\frac{\partial \kappa_T}{\partial T}`,
   (f) numerical approximation to (d.), and
   (g) numerical approximation to (e.). 
   
- When the FROZEN model is in use with FREEZING active, there are additional parameters in the output:
-   * ice saturation [:math:`s_i`]
+ When the `FROZEN <tcc-frozen-input_>`_ model is in use with FREEZING active, there are additional parameters in the output:
+   * ice saturation :math:`(s_i)`
    * :math:`\frac{\partial \kappa_T}{\partial s_i}`
    * numerical approximation to :math:`\frac{\partial \kappa_T}{\partial s_i}`
  
 Examples
 ********
+
+.. _tcc-example-general:
 
 Material with thermal characteristic curve named "cct_power"
 ------------------------------------------------------------
@@ -326,6 +345,8 @@ Material with thermal characteristic curve named "cct_power"
     TEST
   END
 
+.. _tcc-example-composite:
+
 Material with composite thermal characteristic curve named "cct_composite"
 --------------------------------------------------------------------------
  ::
@@ -372,6 +393,8 @@ Material with composite thermal characteristic curve named "cct_composite"
     END
   END
 
+.. _tcc-example-anisotropic:
+
 Material with anisotropic thermal conductivity
 ----------------------------------------------
  ::
@@ -402,6 +425,8 @@ Material with anisotropic thermal conductivity
     TEST
   END
 
+.. _tcc-references:
+
 References
 **********
 1. Somerton, W.H., J.A. Keese, and S.L. Chu (1974). Thermal behavior of unconsolidated oil sands. Society of Petroleum Engineers Journal 14(5), 513-521. https://doi.org/10.2118/4506-PA
@@ -409,5 +434,5 @@ References
 3. Painter, S.L., and S. Karra (2014). Constitutive model for unfrozen water content in subfreezing unsaturated soils. Vadose Zone 13(4), 1-8. https://doi.org/10.2136/vzj2013.04.0071
 4. Dall'Amico, M. (2010). Coupled  water  and  heat  transfer  in  permafrost modeling. Ph.D. thesis, Institute of Civil and Environmental Engineering, Universita’ degli Studi di Trento, Trento, Italy. http://eprints-phd.biblio.unitn.it/335/
 5. Dall'Amico, M., S. Endrizzi, S. Gruber, and R. Rigon (2011). A robust and energy-conserving model of freezing variably-saturated soil. The Cryosphere 5(2), 469-484. https://doi.org/10.5194/tc-5-469-2011
-6. TRW Environmental Safety Systems (1996). Spent nuclear fuel effective thermal conductivity report. U.S. Department of Energy, Yucca Mountain Site Characterization Project Office, Las Vegas, NV. MOL.19961202.0030. https://www.osti.gov/servlets/purl/778872
+6. TRW Environmental Safety Systems (1996). Spent nuclear fuel effective thermal conductivity report. U.S. Department of Energy, Yucca Mountain Site Characterization Project Office, Las Vegas, NV. MOL.19961202.0030. https://doi.org/10.2172/778872
 7. Cheng, P., and C.-T. Hsu (1999). The effective stagnant thermal conductivity of porous media with periodic structures. Journal of Porous Media 2(1), 19-38. https://doi.org/10.1615/JPorMedia.v2.i1.20 
