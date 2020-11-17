@@ -135,21 +135,21 @@ EXPONENT <float>
 
  Thermal conductivity for the POWER model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)[(T-T_{ref})/300]^\gamma` [W/m-K].
 
- The saturation dependence of the POWER model comes from the DEFAULT model, and when using the default :math:`T_{ref}=-273.15` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 26.85 °C.
+ The saturation dependence of the POWER model comes from the DEFAULT model, and when using the default :math:`T_{ref}=-273.15\:°C`, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 26.85 °C.
 
 CUBIC_POLYNOMIAL_COEFFICIENTS <float> <float> <float>
  Coefficients of a cubic polynomial expression for the temperature-dependence, called :math:`\beta_i`.
 
  Thermal conductivity for the CUBIC_POLYNOMIAL model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)[1 + \beta_1 (T-T_{ref}) + \beta_2 (T-T_{ref})^2 + \beta_3 (T-T_{ref})^3]` [W/m-K].
 
- The saturation dependence of the CUBIC_POLYNOMIAL model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. 
+ The saturation dependence of the CUBIC_POLYNOMIAL model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0\:°C`, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. 
   
 LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
  Coefficients of a linear inverse conductivity (i.e., resistivity), called :math:`a_i`.
 
- Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0` °C.
+ Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0\:°C`.
 
- The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
+ The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0\:°C`, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
 
 KERSTEN_EXPONENT <float>
  In :ref:`th-card` mode, this is the exponent (:math:`\alpha_{u}` [-]) of liquid saturation used to derive the Kersten number for unfrozen soil: :math:`Ke_{u}=s^{\alpha_{u}}_{l}` (see :ref:`mode-th-ice-model`).
@@ -200,7 +200,7 @@ Models are available to describe the conduction of heat in spent nuclear fuel as
 
 The radial model (`ASM_RADIAL <tcc-assembly-radial-input_>`_) takes the form of the DEFAULT curve, albeit with a temperature-dependent dry component and a special wet component: :math:`\kappa_{radial}(s_l,T)=\kappa_{d}(T)+[\kappa_{w}^{\prime}-\kappa_{d}(T)\sqrt{s_{l}}]` [W/m-K].
 
-The dry thermal conductivity of the radial model takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K].[6] 
+The dry thermal conductivity of the radial model takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K] for :math:`T\ge\:0 °C`.[6] 
   * This model can be used on its own with the `DRY_CONDITIONS <tcc-assembly-dry-input_>`_ function.
   * A constant :math:`\kappa_{w}` may be specified to use the saturation dependence of the `DEFAULT <tcc-default-input_>`_ model.
 
