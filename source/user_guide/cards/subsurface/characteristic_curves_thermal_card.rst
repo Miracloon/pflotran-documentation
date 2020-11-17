@@ -115,10 +115,10 @@ THERMAL_CONDUCTIVTY_WET <float>
 THERMAL_CONDUCTIVITY_DRY <float>
  Thermal conductivity of the dry porous medium (:math:`s_l=0`) [W/m-K].
 
- Effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation (Somerton et al., 1974) is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \sqrt{s_l}(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K]
+ Effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \sqrt{s_l}(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K]. [1]
 
 REFERENCE_TEMPERATURE <float>
- This temperature is subtracted from the actual temperature before the calculation (useful for conversion from Celsius to Kelvin, or to shift the zero a polynomial) [°C]
+ This temperature is subtracted from the actual temperature before the calculation (useful for conversion from Celsius to Kelvin, or to shift the zero a polynomial) [°C].
 
 EXPONENT <float>
  In the POWER model, this is the exponent of temperature, called :math:`\gamma` [-].
@@ -135,9 +135,9 @@ CUBIC_POLYNOMIAL_COEFFICIENTS <float> <float> <float>
  The saturation dependence of the CUBIC_POLYNOMIAL model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. 
   
 LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
- Coefficients of a linear inverse conductivity (i.e., resistivity), called :math:`a_i`
+ Coefficients of a linear inverse conductivity (i.e., resistivity), called :math:`a_i`.
 
- Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0` °C
+ Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0` °C.
 
  The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0` °C, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
 
@@ -158,11 +158,11 @@ KERSTEN_EXPONENT_FROZEN <float>
   
 ICE_MODEL 
   Specifies the ice model for the FROZEN model. Options include:
-    * PAINTER_EXPLICIT [1]
-    * PAINTER_KARRA_IMPLICIT [2]
-    * PAINTER_KARRA_EXPLICIT [2]
-    * PAINTER_KARRA_EXPLICIT_NOCRYO [2]
-    * DALL_AMICO [3,4]
+    * PAINTER_EXPLICIT [2]
+    * PAINTER_KARRA_IMPLICIT [3]
+    * PAINTER_KARRA_EXPLICIT [3]
+    * PAINTER_KARRA_EXPLICIT_NOCRYO [3]
+    * DALL_AMICO [4,5]
     
   This parameter must be specified with THERMAL_CONDUCTIVITY_FROZEN.
 
@@ -320,6 +320,23 @@ Material with thermal characteristic curve named "cct_power"
     TEST
   END
 
+Material with composite thermal characteristic curve named "cct_composite"
+--------------------------------------------------------------------------
+ ::
+
+   MATERIAL_PROPERTY wp
+     ID 1
+     CHARACTERISTIC_CURVES cc_wp
+     POROSITY 0.50
+     TORTUOSITY 1.0
+     ROCK_DENSITY 5000.0 kg/m^3
+     THERMAL_CHARACTERISTIC_CURVES cct_composite
+     HEAT_CAPACITY 450.0 J/kg-C
+     PERMEABILITY
+       PERM_ISO 1.d-16
+     /
+   /
+
   THERMAL_CHARACTERISTIC_CURVES cct_axial
     THERMAL_CONDUCTIVITY_FUNCTION ASM_AXIAL
       THERMAL_CONDUCTIVITY_WATER 1.7200D+0 W/m-C
@@ -379,7 +396,8 @@ Material with anisotropic thermal conductivity
 
 References
 **********
-1. Painter, S.L. (2011). Three-phase numerical model of water migration in partially frozen geological media: model formulation, validation, and applications. Computational Geosciences 15, 69–85. https://doi.org/10.1007/s10596-010-9197-z
-2. Painter, S.L., and S. Karra (2014). Constitutive model for unfrozen water content in subfreezing unsaturated soils. Vadose Zone 13(4), 1-8. https://doi.org/10.2136/vzj2013.04.0071
-3. Dall'Amico, M. (2010). Coupled  water  and  heat  transfer  in  permafrost modeling. Ph.D. thesis, Institute of Civil and Environmental Engineering, Universita’ degli Studi di Trento, Trento, Italy. http://eprints-phd.biblio.unitn.it/335/
-4. Dall'Amico, M., S. Endrizzi, S. Gruber, and R. Rigon (2011). A robust and energy-conserving model of freezing variably-saturated soil. The Cryosphere 5(2), 469-484. https://doi.org/10.5194/tc-5-469-2011
+1. Somerton, W.H., J.A. Keese, and S.L. Chu (1974). Thermal behavior of unconsolidated oil sands. Society of Petroleum Engineers Journal 14(5), 513-521. https://doi.org/10.2118/4506-PA
+2. Painter, S.L. (2011). Three-phase numerical model of water migration in partially frozen geological media: model formulation, validation, and applications. Computational Geosciences 15, 69–85. https://doi.org/10.1007/s10596-010-9197-z
+3. Painter, S.L., and S. Karra (2014). Constitutive model for unfrozen water content in subfreezing unsaturated soils. Vadose Zone 13(4), 1-8. https://doi.org/10.2136/vzj2013.04.0071
+4. Dall'Amico, M. (2010). Coupled  water  and  heat  transfer  in  permafrost modeling. Ph.D. thesis, Institute of Civil and Environmental Engineering, Universita’ degli Studi di Trento, Trento, Italy. http://eprints-phd.biblio.unitn.it/335/
+5. Dall'Amico, M., S. Endrizzi, S. Gruber, and R. Rigon (2011). A robust and energy-conserving model of freezing variably-saturated soil. The Cryosphere 5(2), 469-484. https://doi.org/10.5194/tc-5-469-2011
