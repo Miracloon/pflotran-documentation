@@ -168,22 +168,28 @@ ICE_MODEL
 
 Assembly Models
 ---------------
-Models are available to describe thermal conduction in spent nuclear fuel assemblies along both radial and axial directions. The radial model takes the form of the DEFAULT curve, albeit with a temperature-dependent dry component and a special wet component: :math:`\kappa_{radial}(s_l,T)=\kappa_{d}(T)+[\kappa_{w}^{\prime}-\kappa_{d}(T)\sqrt{s_{l}}]` [W/m-K].
+Models are available to describe the conduction of heat in spent nuclear fuel assemblies along both radial and axial directions. 
 
-The dry thermal conductivity takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K].[6] This model can be used on its own with the DRY_CONDITIONS function, where a constant :math:`\kappa_{w}` may be specified to impart the saturation dependence from the DEFAULT model.
+The radial model takes the form of the DEFAULT curve, albeit with a temperature-dependent dry component and a special wet component: :math:`\kappa_{radial}(s_l,T)=\kappa_{d}(T)+[\kappa_{w}^{\prime}-\kappa_{d}(T)\sqrt{s_{l}}]` [W/m-K].
 
-The wet thermal conductivity takes into account the porosity of the assembly and thermal conductivities of its solid constituents and contained water: :math:`\kappa_{w}^{\prime}=\kappa_{l}\Bigg[1-\sqrt{1-\Phi}+\frac{\sqrt{1-\Phi}}{1+(\frac{\kappa_{l}}{\kappa_{s}}-1)\sqrt{1-\Phi}}\Bigg]` [W/m-K].[7] This model can be used on its own with the WATER_FILLED_CONDITIONS function, where a constant :math:`\kappa_{d}` may be specified to impart the saturation dependence from the DEFAULT model.
+The dry thermal conductivity of the radial model takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K].[6] 
+  * This model can be used on its own with the DRY_CONDITIONS function.
+  * A constant :math:`\kappa_{w}` may be specified to use the saturation dependence of the DEFAULT model.
 
-The axial model assumes parallel conduction between solid constituents in the assembly and the surrounding water. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of solids and water as opposed to dry and wet components: :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi s_{l}\kappa_{l}` [W/m-K].
+The wet thermal conductivity of the radial model takes into account the porosity of the assembly :math:`(\Phi)` and the thermal conductivities of its solid constituents and contained water (:math:`\kappa_{s}` and :math:`\kappa_{l}`): :math:`\kappa_{w}^{\prime}=\kappa_{l}\Bigg[1-\sqrt{1-\Phi}+\frac{\sqrt{1-\Phi}}{1+(\frac{\kappa_{l}}{\kappa_{s}}-1)\sqrt{1-\Phi}}\Bigg]` [W/m-K].[7] 
+  * This model can be used on its own with the WATER_FILLED_CONDITIONS function.
+  * A constant :math:`\kappa_{d}` may be specified to use the saturation dependence of the DEFAULT model.
+
+The axial model assumes parallel conduction between solid constituents in the assembly and the surrounding water. When applied to an unsaturated system, it assumes that the thermal conductivity of gas is negligible. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of assembly solids and water (as opposed to dry and wet components): :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi s_{l}\kappa_{l}` [W/m-K].
 
 THERMAL_CONDUCTIVITY_WATER <float>
- The thermal conductivity of water (:math:`\kappa_{l}` [W/m-K]) saturating the assembly.
+ The thermal conductivity of water (:math:`\kappa_{l}` [W/m-K]) contained in the assembly.
    
 THERMAL_CONDUCTIVITY_SOLID <float>
- The thermal conductivity of the solid components in the assembly including rods and baskets (:math:`\kappa_{s}` [W/m-K]).
+ The thermal conductivity of the solid components in the assembly, including rods and baskets (:math:`\kappa_{s}` [W/m-K]).
    
 POROSITY_ASSEMBLY <float>
- The porosity of the assembly (:math:`\Phi`), or the ratio of the volume of void to the total volume. 
+ The porosity of the assembly :math:`(\Phi)`, or the ratio of the volume of void to the total volume. 
    
 THERMAL_CONDUCTIVITY_DRY <float>
  For the radial assembly model, the dry thermal conductivity is applied as the zero-order term describing the baseline thermal conductivity of the dry assembly at 0 °C (:math:`\kappa_{d}^{0}` [W/m-K]).
@@ -192,7 +198,7 @@ DRY_CONDITIONS_COEFFICIENT <float>
  For the dry state of the radial assembly model, this is the coefficient for the temperature-dependent term (:math:`\alpha`).
    
 DRY_CONDITIONS_EXPONENT <float>
- For the dry state of the radial assembly model, this is the exponent of temperature in the temperature-dependent term (:math:`\beta`). Both :math:`\alpha` and :math:`\beta` must be fitted to match the units of :math:`\kappa_{d}^{0}`. 
+ For the dry state of the radial assembly model, this is the exponent of temperature in the temperature-dependent term (:math:`\beta`). Both :math:`\alpha` and :math:`\beta` must be fitted to align with the units of :math:`\kappa_{d}^{0}`. 
 
 Optional Blocks and Cards:
 **************************
@@ -343,6 +349,7 @@ Material with composite thermal characteristic curve named "cct_composite"
       THERMAL_CONDUCTIVITY_SOLID 1.6700D+1 W/m-C
       POROSITY_ASSEMBLY          5.0000D-1
     END
+    TEST
   END
   
   THERMAL_CHARACTERISTIC_CURVES cct_radial
@@ -354,6 +361,7 @@ Material with composite thermal characteristic curve named "cct_composite"
       DRY_CONDITIONS_EXPONENT    3.8300D-5
       POROSITY_ASSEMBLY          5.0000D-1
     END
+    TEST
   END
   
   THERMAL_CHARACTERISTIC_CURVES cct_composite
