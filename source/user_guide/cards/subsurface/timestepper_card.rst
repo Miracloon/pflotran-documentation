@@ -44,7 +44,7 @@ MAX_NUM_CONTIGUOUS_REVERTS <int>
 MINIMUM_TIMESTEP_SIZE <float> <string>
  Specifies the minimum time step size and time units. This minimum step size is used to softly exit the simulation when time step sizes are cut below this threshold. If TS_ACCELERATION, the step size will not drop below this threshold.
 
-NUM_CONST_STEPS_AFTER_TS_CUT <int>
+NUM_STEPS_AFTER_TS_CUT <int>
  Number of time steps after a time step cut that the time step size must be held constant.  Use 0 to ramp up immediately (default: 5).
 
 TIMESTEP_MAXIMUM_GROWTH_FACTOR <float>
