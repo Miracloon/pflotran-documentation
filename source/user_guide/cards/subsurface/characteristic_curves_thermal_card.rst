@@ -170,9 +170,9 @@ Assembly Models
 ---------------
 Models are available to describe thermal conduction in spent nuclear fuel assemblies along both radial and axial directions. The radial model takes the form of the DEFAULT curve, albeit with a temperature-dependent dry component and a special wet component: :math:`\kappa_{radial}(s_l,T)=\kappa_{d}(T)+[\kappa_{w}^{\prime}-\kappa_{d}(T)\sqrt{s_{l}}]` [W/m-K].
 
-The dry thermal conductivity takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K]. This model can be used on its own with the DRY_CONDITIONS function, where a constant :math:`\kappa_{w}` may be specified to impart the saturation dependence from the DEFAULT model.
+The dry thermal conductivity takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K].[6] This model can be used on its own with the DRY_CONDITIONS function, where a constant :math:`\kappa_{w}` may be specified to impart the saturation dependence from the DEFAULT model.
 
-The wet thermal conductivity takes into account the porosity of the assembly and thermal conductivities of its solid constituents and contained water: :math:`\kappa_{w}^{\prime}=\kappa_{l}\Bigg[1-\sqrt{1-\Phi}+\frac{\sqrt{1-\Phi}}{1+(\frac{\kappa_{l}}{\kappa_{s}}-1)\sqrt{1-\Phi}}\Bigg]` [W/m-K]. This model can be used on its own with the WATER_FILLED_CONDITIONS function, where a constant :math:`\kappa_{d}` may be specified to impart the saturation dependence from the DEFAULT model.
+The wet thermal conductivity takes into account the porosity of the assembly and thermal conductivities of its solid constituents and contained water: :math:`\kappa_{w}^{\prime}=\kappa_{l}\Bigg[1-\sqrt{1-\Phi}+\frac{\sqrt{1-\Phi}}{1+(\frac{\kappa_{l}}{\kappa_{s}}-1)\sqrt{1-\Phi}}\Bigg]` [W/m-K].[7] This model can be used on its own with the WATER_FILLED_CONDITIONS function, where a constant :math:`\kappa_{d}` may be specified to impart the saturation dependence from the DEFAULT model.
 
 The axial model assumes parallel conduction between solid constituents in the assembly and the surrounding water. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of solids and water as opposed to dry and wet components: :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi s_{l}\kappa_{l}` [W/m-K].
 
@@ -401,3 +401,5 @@ References
 3. Painter, S.L., and S. Karra (2014). Constitutive model for unfrozen water content in subfreezing unsaturated soils. Vadose Zone 13(4), 1-8. https://doi.org/10.2136/vzj2013.04.0071
 4. Dall'Amico, M. (2010). Coupled  water  and  heat  transfer  in  permafrost modeling. Ph.D. thesis, Institute of Civil and Environmental Engineering, Universita’ degli Studi di Trento, Trento, Italy. http://eprints-phd.biblio.unitn.it/335/
 5. Dall'Amico, M., S. Endrizzi, S. Gruber, and R. Rigon (2011). A robust and energy-conserving model of freezing variably-saturated soil. The Cryosphere 5(2), 469-484. https://doi.org/10.5194/tc-5-469-2011
+6. TRW Environmental Safety Systems (1996). Spent nuclear fuel effective thermal conductivity report. U.S. Department of Energy, Yucca Mountain Site Characterization Project Office, Las Vegas, NV. MOL.19961202.0030. https://www.osti.gov/servlets/purl/778872
+7. Cheng, P., and C.-T. Hsu (1999). The effective stagnant thermal conductivity of porous media with periodic structures. Journal of Porous Media 2(1), 19-38. https://doi.org/10.1615/JPorMedia.v2.i1.20 
