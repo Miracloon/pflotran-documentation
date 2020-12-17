@@ -90,12 +90,12 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
     + THERMAL_CONDUCTIVITY_SOLID
     + POROSITY_ASSEMBLY
     + THERMAL_CONDUCTIVITY_DRY
-    + DRY_CONDITIONS_COEFFICIENT
-    + DRY_CONDITIONS_EXPONENT
+    + ASM_DRY_COEFFICIENT
+    + ASM_DRY_EXPONENT
  
   .. _tcc-assembly-water-input:
  
-  * WATER_FILLED_CONDITIONS (Standalone model for water-filled assembly)
+  * ASM_WATER_FILLED (Standalone model for water-filled assembly)
   
     + THERMAL_CONDUCTIVITY_WATER
     + THERMAL_CONDUCTIVITY_SOLID
@@ -104,11 +104,11 @@ THERMAL_CONDUCTIVITY_FUNCTION <string>
 
   .. _tcc-assembly-dry-input:
 
-  * DRY_CONDITIONS (Standalone model for dry assembly)
+  * ASM_DRY (Standalone model for dry assembly)
   
     + THERMAL_CONDUCTIVITY_DRY
-    + DRY_CONDITIONS_COEFFICIENT
-    + DRY_CONDITIONS_EXPONENT
+    + ASM_DRY_COEFFICIENT
+    + ASM_DRY_EXPONENT
     + THERMAL_CONDUCTIVITY_WET (optional)
 
 .. _tcc-parameter-definitions:
@@ -201,11 +201,11 @@ Models are available to describe the conduction of heat in spent nuclear fuel as
 The radial model (`ASM_RADIAL <tcc-assembly-radial-input_>`_) takes the form of the DEFAULT curve, albeit with a temperature-dependent dry component and a special wet component: :math:`\kappa_{radial}(s_l,T)=\kappa_{d}(T)+[\kappa_{w}^{\prime}-\kappa_{d}(T)\sqrt{s_{l}}]` [W/m-K].
 
 The dry thermal conductivity of the radial model takes the form of a power law with temperature: :math:`\kappa_{d}(T)=\kappa_{d}^{0}+\alpha T^{\beta}` [W/m-K] for :math:`T\ge\:0 °C`.[6] 
-  * This model can be used on its own with the `DRY_CONDITIONS <tcc-assembly-dry-input_>`_ function.
+  * This model can be used on its own with the `ASM_DRY <tcc-assembly-dry-input_>`_ function.
   * A constant :math:`\kappa_{w}` may be specified to use the saturation dependence of the `DEFAULT <tcc-default-input_>`_ model.
 
 The wet thermal conductivity of the radial model takes into account the porosity of the assembly :math:`(\Phi)` and the thermal conductivities of its solid constituents and contained water (:math:`\kappa_{s}` and :math:`\kappa_{l}`): :math:`\kappa_{w}^{\prime}=\kappa_{l}\Bigg[1-\sqrt{1-\Phi}+\frac{\sqrt{1-\Phi}}{1+(\frac{\kappa_{l}}{\kappa_{s}}-1)\sqrt{1-\Phi}}\Bigg]` [W/m-K].[7] 
-  * This model can be used on its own with the `WATER_FILLED_CONDITIONS <tcc-assembly-water-input_>`_ function.
+  * This model can be used on its own with the `ASM_WATER_FILLED <tcc-assembly-water-input_>`_ function.
   * A constant :math:`\kappa_{d}` may be specified to use the saturation dependence of the `DEFAULT <tcc-default-input_>`_ model.
 
 The axial model (`ASM_AXIAL <tcc-assembly-axial-input_>`_) assumes parallel conduction between solid constituents in the assembly and the surrounding water. When applied to an unsaturated system, it assumes that the thermal conductivity of gas is negligible. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of assembly solids and water (as opposed to dry and wet components): :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi s_{l}\kappa_{l}` [W/m-K].
@@ -222,10 +222,10 @@ POROSITY_ASSEMBLY <float>
 THERMAL_CONDUCTIVITY_DRY <float>
  For the radial assembly model, the dry thermal conductivity is applied as the zero-order term describing the baseline thermal conductivity of the dry assembly at 0 °C (:math:`\kappa_{d}^{0}` [W/m-K]).
    
-DRY_CONDITIONS_COEFFICIENT <float>
+ASM_DRY_COEFFICIENT <float>
  For the dry state of the radial assembly model, this is the coefficient for the temperature-dependent term (:math:`\alpha`).
    
-DRY_CONDITIONS_EXPONENT <float>
+ASM_DRY_EXPONENT <float>
  For the dry state of the radial assembly model, this is the exponent of temperature in the temperature-dependent term (:math:`\beta`). Both :math:`\alpha` and :math:`\beta` must be fitted to align with the units of :math:`\kappa_{d}^{0}`. 
 
 Optional Blocks and Cards:
@@ -378,8 +378,8 @@ Material with composite thermal characteristic curve named "cct_composite"
       THERMAL_CONDUCTIVITY_DRY   0.1430D+0 W/m-C
       THERMAL_CONDUCTIVITY_WATER 1.7200D+0 W/m-C
       THERMAL_CONDUCTIVITY_SOLID 1.6700D+1 W/m-C
-      DRY_CONDITIONS_COEFFICIENT 3.8300D-5
-      DRY_CONDITIONS_EXPONENT    1.6700D+0
+      ASM_DRY_COEFFICIENT        3.8300D-5
+      ASM_DRY_EXPONENT           1.6700D+0
       POROSITY_ASSEMBLY          5.0000D-1
     END
     TEST
