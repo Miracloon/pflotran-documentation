@@ -21,12 +21,12 @@ TYPE <string>
   DIRICHLET : Specified concentration
 
   DIRICHLET_ZERO_GRADIENT : Dirichlet (specified concentration) for inflow and 
-  zero diffusive gradient on outflow (i.e. only advective transport is 
+  zero diffusive gradient for outflow (i.e. only advective transport is 
   considered on outflow).
 
   NEUMANN : Specified solute flux (**not currently implemented**)
 
-  ZERO_GRADIENT : Prescribes a third-type or Robin boundary conditon on inflow
+  ZERO_GRADIENT : Prescribes a third-type or Robin boundary conditon for inflow
   and zero diffusive gradient for outflow.
 
   EQUILIBRIUM : Only applicable to the :ref:`source-sink-card` card. 
