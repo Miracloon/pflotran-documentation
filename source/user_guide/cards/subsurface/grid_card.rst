@@ -88,6 +88,9 @@ STENCIL_WIDTH <int>
 STENCIL_TYPE <string>
  Specifies stencil with options BOX or STAR. Default = STAR
 
+IMPLICIT_GRID_AREA_CALCULATION <string>
+ Specifies whether or not project the face area in the direction of the vector connecting the two cells sharing the face with option TRUE_AREA or PROJECTED_AREA for implicit UNSTRUCTURED grid. Default = PROJECTED_AREA
+
 DOMAIN_FILENAME <string>
  Specifies the path to the filename defining explicit unstructured grid geometry for inclusion in HDF5 output enabling plotting in Paraview/Visit.
 
