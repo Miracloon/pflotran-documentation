@@ -54,7 +54,7 @@ SMECTITE_INITIAL <float>
  The initial fraction of smectite in the material relative to illite, :math:`f_{S,0}` (default of 1.0).
 
 THRESHOLD <float>
- The temperature in Celsius at and above which the illitization process occurs, :math:`T_{th}` (default of 20°C).
+ The temperature in Celsius at and above which the illitization process occurs, :math:`T_{th}` (default of 0°C).
 
 SHIFT_PERM <float>
  The factor applied to the net change in illite fraction that is used to modify the permeability, :math:`C_{k}` (default of 1.0).
