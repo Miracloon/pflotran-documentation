@@ -6,6 +6,8 @@ ILLITIZATION
 =============================
 This option specifies the illitization model associated with a material property. This allows for a time- and temperature-dependent change from smectite to illite to be evaluated during the simulation, which in turn can be used to impart a commensurate change in permeability, etc.
 
+This feature is currently available for :ref:`general-card` and :ref:`th-card` modes.
+
 Required Blocks and Cards:
 **************************
 ILLITIZATION_FUNCTION <string>
