@@ -32,7 +32,7 @@ ILLITIZATION_FUNCTION <string>
 Illitization Parameter Definitions
 ---------------------------------------------------
 
-In the DEFAULT model, the time rate of change of smectite :math:`\left(\frac{df_{S}}{dt}\right)` into illite based on an initial smectite fraction :math:`f_{S,0}` and potassium cation concentration :math:`[K^{+}]` is computed as follows:
+In the DEFAULT model, the time rate of change of smectite :math:`\left(\frac{df_{S}}{dt}\right)` into illite based on an initial smectite fraction :math:`f_{S,0}>0` and potassium cation concentration :math:`[K^{+}]` is computed as follows:
 
 :math:`\left.\frac{df_{S}}{dt}\right|_{i}=\left\{{\begin{array}{cc} [K^{+}]\cdot f_{S,0}^{2}\cdot A\exp{\left(-\frac{E_{a}}{RT_{i}}\right)} & T_{i}\geq T_{th} \\ 0 & T_{i}<T_{th} \\ \end{array} } \right.` [1/s]
 
@@ -48,9 +48,11 @@ This cumulative change is used to evaluate the smectite and illite fractions:
 
 :math:`f_{I,i+1} = 1 - f_{S,i+1}`
 
-The change in a given permeability component :math:`k_{j}` as a result of illitization is computed using the initial illite fraction :math:`f_{I,0}=1-f_{S,0}` and a shift factor :math:`C_{k}`:
+The change in a given permeability component :math:`k_{j}` at time step :math:`i` as a result of illitization is computed using the proportional change in the smectite fraction and a shift factor :math:`C_{k}`:
 
-:math:`k_{j}=k_{j,0}\left[1+\left(\frac{f_{I}-f_{I,0}}{f_{I,0}}\right)\cdot C_{k}\right]` 
+:math:`k_{j,i}=k_{j,0}\left[1+\left(\frac{f_{S,0}-f_{S,i}}{f_{S,0}}\right)\cdot C_{k}\right]`
+
+This suggests that when all of the original smectite is illitized, the permeability has been enhanced by a factor of :math:`1+ C_{k}`. 
 
 SMECTITE_INITIAL <float>
  The initial fraction of smectite in the material relative to illite, :math:`f_{S,0}` (default of 1.0).
