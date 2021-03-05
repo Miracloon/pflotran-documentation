@@ -390,6 +390,55 @@ MECHANISM <type_string>
        VITALITY_UPPER_TRUNCATION -3.0
        CANISTER_MATERIAL_CONSTANT 1500
      /
+  
+  SPACER_DEGRADATION_MODEL sub-block (optional for all mechanism types involving spent nuclear fuel)
+  
+    If this optional block is included, a time- and temperature-dependent spacer grid corrosion model will be evaluated as a means of terminating criticality events associated with the waste form. The model becomes active after the canister is breached. When the spacer grids have degraded below 0.5% of the original total mass, they are assumed to fail, which implies a loss of critical configuration.
+    
+    The spacer grid vitality :math:`V_{s}` is determined using the corrosion rate :math:`R` and total initial mass :math:`M_{0}` over time steps :math:`t_{i}` to :math:`t_{i+1}`, where at canister breach :math:`V_{s,0}=1`:
+    
+    :math:`V_{s,i+1}=V_{s,i}-\frac{R_{i+1}\cdot(t_{i+1}-t_{i})}{M_{0}}`
+    
+    The corrosion rate is governed by an Arrhenius term using the average temperature of the waste form :math:`\bar{T}`, the total spacer grid surface area :math:`A_{0}`, and a saturation-dependent term :math:`f_{S}(S_{l})`, where :math:`R` is the ideal gas constant:
+    
+    :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot A_{0}\cdot\mathcal{C}\exp{\left(-\frac{Q}{R\bar{T}_{i+1}}\right)}`
+    
+    The saturation-dependent term modifies the corrosion rate depending on an exposure level :math:`S_{l}^{exp}`, which is the saturation for which the spacer grids are considered fully-inundated with water. When the saturation of the waste form is at or above this limit, the corrosion rate is unaffected. Otherwise, the rate is reduced proportionally based on the saturation.  
+    
+    :math:`f_{S}(S_{l})=\left\{{\begin{array}{cc}
+    \frac{S_{l}}{S_{l}^{exp}} & S_{l}<S_{l}^{exp} \\
+    1 & S_{l}\geq S_{l}^{exp} \\
+    \end{array} }\right.`
+  
+    MASS <double> <unit_string>
+     
+     Total mass of spacer grids, :math:`M_{0}` [kg].
+     
+    SURFACE_AREA <double> <unit_string>
+     
+     Total surface area of spacer grids, :math:`A_{0}\,[m^{2}]` .
+     
+    EXPOSURE_LEVEL <double> (optional)
+     
+     Threshold saturation :math:`S_{l}^{exp}` for spacer grids to be considered fully-inundated with water. Saturation-dependence can be turned off by setting :math:`S_{l}^{exp}=0` or by not including this entry. 
+     
+    C <double> <unit_string>
+     
+     Empirical coefficient of the Arrhenius term governing corrosion, :math:`\mathcal{C}\,\,\left[\frac{kg}{m^{2}s}\right]`.
+     
+    Q <double> <unit_string>
+     
+     Activation energy operating on the reciprocal of temperature within the Arrhenius term governing corrosion, :math:`Q` [J/mol]. 
+    
+    ::
+
+     SPACER_DEGRADATION_MODEL
+       MASS           1.67040D+05 g
+       SURFACE_AREA   2.37309D+04 dm^2
+       EXPOSURE_LEVEL 9.93317D-01
+       C              3.4700D+07  mg/s-dm^2
+       Q              2.2675D+04  cal/mol
+     /
 
 Full examples of the MECHANISM sub-block (note some values may be unrealistic, these are just examples
 for form, not parameter values):
@@ -500,6 +549,13 @@ for form, not parameter values):
         VITALITY_UPPER_TRUNCATION -2.75
         CANISTER_MATERIAL_CONSTANT 1500.0
       /
+      SPACER_DEGRADATION_MODEL
+        MASS           1.00000D+05 g
+        SURFACE_AREA   2.50000D+04 dm^2
+        EXPOSURE_LEVEL 9.00000D-01
+        C              3.50000D+07 mg/s-dm^2
+        Q              8.50000D+04 J/mol
+      /
     /
 
       MECHANISM FMDM
@@ -586,6 +642,19 @@ WASTE_FORM sub-block
    you don't want to back-calculate what the inventory should have been at
    the beginning of the simulation.
 
+  CRITICALITY sub-block (optional)
+   
+   If this optional block is included, the heat source terms from decay and/or criticality can be evaluated for the waste form along with the time-dependent inventory table. Multiple sub-blocks may be named if criticality events occur at different time periods.
+   
+   MECH_NAME <string>
+    Name of the criticality mechanism sub-block governing the criticality event.
+   
+   CRIT_START <double> <unit_string>
+    Start time of criticality event.
+   
+   CRIT_END <double> <unit_string>
+    End time of criticality event.
+
   ::
 
     WASTE_FORM
@@ -600,6 +669,12 @@ WASTE_FORM sub-block
       VOLUME 2.1d0 m^3
       CANISTER_BREACH_TIME 250 yr
       MECHANISM_NAME custom01
+      
+      CRITICALITY
+        MECH_NAME crit_1
+        CRIT_START 3.00d+2 y
+        CRIT_END   2.00d+3 y
+      /
     /
 
     WASTE_FORM
@@ -624,6 +699,74 @@ IMPLICIT_SOLUTION
  inventory within the waste form using an implicit approach based on solving
  the Bateman equation using Newton's method. This option should be used if the
  3-generation analytical solution is not appropriate.
+
+CRITICALITY_MECH
+ 
+ Including this card will define the mechanism for associated criticality events in a waste form.
+ 
+ NAME <name_string>
+  
+  Specifies a unique name for the criticality mechanism.
+ 
+ CRITICAL_SATURATION <double>
+  
+  This is the liquid saturation below which the criticality event cannot be sustained. There is no heat emission from criticality until the waste form saturation is at or above this level. This is meant to be used for canisters in unsaturated systems.
+ 
+ CRITICAL_WATER_DENSITY <double> <unit_string>
+  
+  This the liquid density below which the criticality event cannot be sustained. There is no heat emission from criticality until the waste form liquid density is at or above this level. This is meant to be used for canisters in saturated systems where moderator voiding is a key reactivity feedback mechanism.
+ 
+ HEAT_OF_CRITICALITY
+  
+  This sub-block defines the heat source term from criticality either as a constant or as  a value that can obtained from a temperature-based lookup table. 
+  
+  CONSTANT_HEAT <double> <unit_string>
+  
+  DATASET <file_string>
+  
+ DECAY_HEAT <type_string>
+  
+  This sub-block defines the heat source term from radioactive decay, which is obtained from a time-dependent lookup table. The types of decay heat treatment include TOTAL, ADDITIONAL, and CYCLIC. When a criticality event is active, the criticality source term is assumed to account for decay heat, so this term is ignored.
+  
+  DATASET <file_string>
+  
+ INVENTORY
+  
+  This sub-block defines the fractional change (g/g) in nuclide inventory during criticality, which is obtained from a time-dependent lookup table. The number of data entries in this table must equal the number of species specified in the waste form process model.
+  
+  DATASET <file_string>
+ 
+ ::
+ 
+   WASTE_FORM
+     REGION wf
+     EXPOSURE_FACTOR 1.d0
+     VOLUME 1.5d0 m^3
+     MECHANISM_NAME csnf
+     CANISTER_BREACH_TIME 2.50d+2 y
+     
+     CRITICALITY
+       MECH_NAME crit_1
+       CRIT_START 3.00d+2 y
+       CRIT_END   2.00d+3 y
+     /
+   /
+   
+   CRITICALITY_MECH
+     NAME crit_1
+     CRITICAL_SATURATION    0.700d+0
+     CRITICAL_WATER_DENSITY 9.200d+2 kg/m^3
+     HEAT_OF_CRITICALITY
+       CONSTANT_HEAT 4.0d+0 kW
+       # DATASET criticality_heat.txt
+     /
+     DECAY_HEAT TOTAL
+       DATASET ./decay_heat.txt
+     /
+     INVENTORY
+       DATASET ./inventory_crit.txt
+     /
+   /
 
 
 Full Example:
