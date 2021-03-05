@@ -399,9 +399,9 @@ MECHANISM <type_string>
     
     :math:`V_{s,i+1}=V_{s,i}-\frac{R_{i+1}\cdot(t_{i+1}-t_{i})}{M_{0}}`
     
-    The corrosion rate is governed by an Arrhenius term using the average temperature of the waste form :math:`\bar{T}`, the total spacer grid surface area :math:`A_{0}`, and a saturation-dependent term :math:`f_{S}(S_{l})`, where :math:`R` is the ideal gas constant:
+    The corrosion rate is governed by an Arrhenius term using the average temperature of the waste form :math:`\bar{T}`, the total spacer grid surface area :math:`A_{0}`, and a saturation-dependent term :math:`f_{S}(S_{l})`, where :math:`\mathcal{R}` is the ideal gas constant:
     
-    :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot A_{0}\cdot\mathcal{C}\exp{\left(-\frac{Q}{R\bar{T}_{i+1}}\right)}`
+    :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot A_{0}\cdot\mathcal{C}\exp{\left(-\frac{Q}{\mathcal{R}\bar{T}_{i+1}}\right)}`
     
     The saturation-dependent term modifies the corrosion rate depending on an exposure level :math:`S_{l}^{exp}`, which is the saturation for which the spacer grids are considered fully-inundated with water. When the saturation of the waste form is at or above this limit, the corrosion rate is unaffected. Otherwise, the rate is reduced proportionally based on the saturation.  
     
@@ -718,7 +718,7 @@ CRITICALITY_MECH
  
  HEAT_OF_CRITICALITY
   
-  This sub-block defines the heat source term from criticality either as a constant or as  a value that can obtained from a temperature-based lookup table. 
+  This sub-block defines the heat source term from criticality either as a constant or as a value that can obtained from a temperature-based lookup table. The average temperature of the waste form is used for linear interpolation of this table.
   
   CONSTANT_HEAT <double> <unit_string>
   
@@ -726,7 +726,7 @@ CRITICALITY_MECH
   
  DECAY_HEAT <type_string>
   
-  This sub-block defines the heat source term from radioactive decay, which is obtained from a time-dependent lookup table. The types of decay heat treatment include TOTAL, ADDITIONAL, and CYCLIC. When a criticality event is active, the criticality source term is assumed to account for decay heat, so this term is ignored.
+  This sub-block defines the heat source term from radioactive decay, which is obtained from a time-dependent lookup table. The types of decay heat treatment include TOTAL, ADDITIONAL, and CYCLIC. When a criticality event is active, the criticality source term is assumed to account for decay heat and this data is ignored.
   
   DATASET <file_string>
   
