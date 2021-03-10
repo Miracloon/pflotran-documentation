@@ -20,7 +20,7 @@ ILLITIZATION_FUNCTION <string>
   * DEFAULT
 
     + SMECTITE_INITIAL
-    + THRESHOLD
+    + TEMPERATURE_THRESHOLD
     + SHIFT_PERM
     + EA
     + FREQ
@@ -34,9 +34,9 @@ Illitization Parameter Definitions
 
 In the DEFAULT model, the time rate of change of smectite :math:`\left(\frac{df_{S}}{dt}\right)` into illite based on an initial smectite fraction :math:`f_{S,0}>0` and potassium cation concentration :math:`[K^{+}]` is computed as follows:
 
-:math:`\left.\frac{df_{S}}{dt}\right|_{i}=\left\{{\begin{array}{cc} [K^{+}]\cdot f_{S,0}^{2}\cdot A\exp{\left(-\frac{E_{a}}{RT_{i}}\right)} & T_{i}\geq T_{th} \\ 0 & T_{i}<T_{th} \\ \end{array} } \right.` [1/s]
+:math:`\left.\frac{df_{S}}{dt}\right|_{i}=\left\{{\begin{array}{cc} [K^{+}]\cdot f_{S,0}^{2}\cdot A\exp{\left(-\frac{E_{a}}{\mathcal{R}T_{i}}\right)} & T_{i}\geq T_{th} \\ 0 & T_{i}<T_{th} \\ \end{array} } \right.` [1/s]
 
-where :math:`A` is the frequency term, :math:`E_{a}` is the activation energy, :math:`R` is the ideal gas constant, :math:`T_{i}` is the temperature in Kelvin at time step :math:`i`, and :math:`T_{th}` is the threshold temperature. [1] The value of :math:`[K^{+}]` is currently implemented as a constant.
+where :math:`A` is the frequency term, :math:`E_{a}` is the activation energy, :math:`\mathcal{R}` is the ideal gas constant, :math:`T_{i}` is the temperature in Kelvin at time step :math:`i`, and :math:`T_{th}` is the threshold temperature. [1] The value of :math:`[K^{+}]` is currently implemented as a constant.
 
 The cumulative change in smectite at time step :math:`i+1` is evaluated as follows:
 
@@ -57,7 +57,7 @@ This suggests that when all of the original smectite is illitized, the permeabil
 SMECTITE_INITIAL <float>
  The initial fraction of smectite in the material relative to illite, :math:`f_{S,0}` (default of 1.0).
 
-THRESHOLD <float>
+TEMPERATURE_THRESHOLD <float>
  The temperature in Celsius at and above which the illitization process occurs, :math:`T_{th}` (default of 0°C).
 
 SHIFT_PERM <float>
@@ -116,12 +116,12 @@ Material with illitization model named "ilt_bentonite"
 
   ILLITIZATION ilt_bentonite
     ILLITIZATION_FUNCTION DEFAULT
-      THRESHOLD         2.00000d+1 C
-      EA                1.17152d+5 J/mol
-      FREQ              8.08000d+4 L/mol-s
-      K_CONC            2.16000d-3 M
-      SMECTITE_INITIAL  0.95000d+0
-      SHIFT_PERM        1.00000d+0
+      TEMPERATURE_THRESHOLD 2.00000d+1 C
+      EA                    1.17152d+5 J/mol
+      FREQ                  8.08000d+4 L/mol-s
+      K_CONC                2.16000d-3 M
+      SMECTITE_INITIAL      0.95000d+0
+      SHIFT_PERM            1.00000d+0
     END
     TEST
   END
