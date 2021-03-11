@@ -708,13 +708,13 @@ CRITICALITY_MECH
   
   Specifies a unique name for the criticality mechanism.
  
- CRITICAL_SATURATION <double>
+ CRITICAL_WATER_SATURATION <double>
   
-  This is the liquid saturation below which the criticality event cannot be sustained. There is no heat emission from criticality until the waste form saturation is at or above this level. This is meant to be used for canisters in unsaturated systems.
+  This is the liquid saturation below which the criticality event cannot be sustained. There is no heat emission from criticality until the waste form saturation is at or above this level. This is meant to be used for canisters in unsaturated systems and is not a permanent criticality termination mechanism.
  
  CRITICAL_WATER_DENSITY <double> <unit_string>
   
-  This the liquid density below which the criticality event cannot be sustained. There is no heat emission from criticality until the waste form liquid density is at or above this level. This is meant to be used for canisters in saturated systems where moderator voiding is a key reactivity feedback mechanism.
+  This the liquid density below which the criticality event cannot be sustained. There is no heat emission from criticality until the waste form liquid density is at or above this level. This is meant to be used for canisters in saturated systems where moderator voiding is a key reactivity feedback mechanism, and it is not a permanent criticality termination mechanism.
  
  HEAT_OF_CRITICALITY
   
@@ -726,13 +726,13 @@ CRITICALITY_MECH
   
  DECAY_HEAT <type_string>
   
-  This sub-block defines the heat source term from radioactive decay, which is obtained from a time-dependent lookup table. The types of decay heat treatment include TOTAL, ADDITIONAL, and CYCLIC. When a criticality event is active, the criticality source term is assumed to account for decay heat and this data is ignored.
+  This sub-block defines the heat source term from radioactive decay, which is obtained from a time-dependent lookup table. The types of decay heat treatment include TOTAL, ADDITIONAL, and CYCLIC. By default, when a criticality event is active, the criticality source term is assumed to account for decay heat and this data is ignored.
   
   DATASET <file_string>
   
  INVENTORY
   
-  This sub-block defines the fractional change (g/g) in nuclide inventory during criticality, which is obtained from a time-dependent lookup table. The number of data entries in this table must equal the number of species specified in the waste form process model.
+  This sub-block defines the fractional (g/g) nuclide inventory during criticality, which is obtained from a time-dependent lookup table and overrides the implicit calculation with the Bateman equations. The number of data entries in this table must equal the number of species specified in the waste form process model.
   
   DATASET <file_string>
  
@@ -754,7 +754,7 @@ CRITICALITY_MECH
    
    CRITICALITY_MECH
      NAME crit_1
-     CRITICAL_SATURATION    0.700d+0
+     CRITICAL_WATER_SATURATION    0.700d+0
      CRITICAL_WATER_DENSITY 9.200d+2 kg/m^3
      HEAT_OF_CRITICALITY
        CONSTANT_HEAT 4.0d+0 kW
