@@ -56,6 +56,8 @@ the name of the dataset entered under a
 DATASET block elsewhere in the input file.  However, the user must exercise 
 vigilance to ensure that the dataset is properly organized in the HDF5 file and 
 is aligned spatially with the domain.  
+Gridded Datasets are distributed on a **uniform Cartesian grid**
+in 1D, 2D or 3D from which PFLOTRAN may interpolate values.
 Within the HDF5 file, the dataset takes the following form (names used in these steps refer to the examples below):
 
  1. At the top of the HDF5 file (i.e. outside of any lower level groups), the user creates an HDF5 Group, in this case named *river_head*.  
