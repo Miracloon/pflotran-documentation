@@ -20,7 +20,7 @@ ILLITIZATION_FUNCTION <string>
   * DEFAULT
 
     + SMECTITE_INITIAL
-    + TEMPERATURE_THRESHOLD
+    + THRESHOLD_TEMPERATURE
     + SHIFT_PERM
     + EA
     + FREQ
@@ -57,7 +57,7 @@ This suggests that when all of the original smectite is illitized, the permeabil
 SMECTITE_INITIAL <float>
  The initial fraction of smectite in the material relative to illite, :math:`f_{S,0}` (default of 1.0).
 
-TEMPERATURE_THRESHOLD <float>
+THRESHOLD_TEMPERATURE <float>
  The temperature in Celsius at and above which the illitization process occurs, :math:`T_{th}` (default of 0°C).
 
 SHIFT_PERM <float>
@@ -116,7 +116,7 @@ Material with illitization model named "ilt_bentonite"
 
   ILLITIZATION ilt_bentonite
     ILLITIZATION_FUNCTION DEFAULT
-      TEMPERATURE_THRESHOLD 2.00000d+1 C
+      THRESHOLD_TEMPERATURE 2.00000d+1 C
       EA                    1.17152d+5 J/mol
       FREQ                  8.08000d+4 L/mol-s
       K_CONC                2.16000d-3 M
