@@ -40,11 +40,11 @@ where :math:`A` is the frequency term, :math:`E_{a}` is the activation energy, :
 
 The cumulative change in smectite at time step :math:`i+1` is evaluated as follows:
 
-:math:`\Delta f_{S,i+1}\approx\Delta f_{S,i}+\left(\frac{df_{S}}{dt}\right)_{i+1}\cdot(t_{i+1}-t_{i})`
+:math:`\Delta f_{S,i+1}\approx\left(\frac{df_{S}}{dt}\right)_{i+1}\cdot(t_{i+1}-t_{i})`
 
 This cumulative change is used to evaluate the smectite and illite fractions: 
 
-:math:`f_{S,i+1} = \frac{f_{S,0}}{1+\Delta f_{S,i+1}}`
+:math:`f_{S,i+1} = \frac{f_{S,i}}{1+\Delta f_{S,i+1}}`
 
 :math:`f_{I,i+1} = 1 - f_{S,i+1}`
 
