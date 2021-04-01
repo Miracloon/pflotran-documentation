@@ -50,7 +50,7 @@ This cumulative change is used to evaluate the smectite and illite fractions:
 
 The change in a given permeability component :math:`k_{j}` at time step :math:`i` as a result of illitization is computed using the proportional change in the smectite fraction and a shift factor :math:`C_{k}`:
 
-:math:`k_{j,i}=k_{j,0}\left[1+\left(\frac{f_{S,0}-f_{S,i}}{f_{S,0}}\right)\cdot C_{k}\right]`
+:math:`k_{j,i}=k_{j,0}\left[1+\left(\frac{f_{I,i}-f_{I,0}}{f_{S,0}}\right)\cdot C_{k}\right]`
 
 This suggests that when all of the original smectite is illitized, the permeability has been enhanced by a factor of :math:`1+ C_{k}`. 
 
