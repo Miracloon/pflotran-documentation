@@ -20,7 +20,7 @@ ILLITIZATION_FUNCTION <string>
   * DEFAULT
 
     + SMECTITE_INITIAL
-    + TEMPERATURE_THRESHOLD
+    + THRESHOLD_TEMPERATURE
     + SHIFT_PERM
     + EA
     + FREQ
@@ -40,11 +40,11 @@ where :math:`A` is the frequency term, :math:`E_{a}` is the activation energy, :
 
 The cumulative change in smectite at time step :math:`i+1` is evaluated as follows:
 
-:math:`\Delta f_{S,i+1}\approx\Delta f_{S,i}+\left(\frac{df_{S}}{dt}\right)_{i+1}\cdot(t_{i+1}-t_{i})`
+:math:`\Delta f_{S,i+1}\approx\left(\frac{df_{S}}{dt}\right)_{i+1}\cdot(t_{i+1}-t_{i})`
 
 This cumulative change is used to evaluate the smectite and illite fractions: 
 
-:math:`f_{S,i+1} = \frac{f_{S,0}}{1+\Delta f_{S,i+1}}`
+:math:`f_{S,i+1} = \frac{f_{S,i}}{1+\Delta f_{S,i+1}}`
 
 :math:`f_{I,i+1} = 1 - f_{S,i+1}`
 
@@ -57,7 +57,7 @@ This suggests that when all of the original smectite is illitized, the permeabil
 SMECTITE_INITIAL <float>
  The initial fraction of smectite in the material relative to illite, :math:`f_{S,0}` (default of 1.0).
 
-TEMPERATURE_THRESHOLD <float>
+THRESHOLD_TEMPERATURE <float>
  The temperature in Celsius at and above which the illitization process occurs, :math:`T_{th}` (default of 0°C).
 
 SHIFT_PERM <float>
@@ -116,7 +116,7 @@ Material with illitization model named "ilt_bentonite"
 
   ILLITIZATION ilt_bentonite
     ILLITIZATION_FUNCTION DEFAULT
-      TEMPERATURE_THRESHOLD 2.00000d+1 C
+      THRESHOLD_TEMPERATURE 2.00000d+1 C
       EA                    1.17152d+5 J/mol
       FREQ                  8.08000d+4 L/mol-s
       K_CONC                2.16000d-3 M
