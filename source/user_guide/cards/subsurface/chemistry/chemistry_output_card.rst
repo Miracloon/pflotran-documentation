@@ -92,6 +92,9 @@ AGE
 SITE_DENSITY
  Free sorption site density is printed.
 
+PRINT_TOTAL_MASS_KG
+ Prints total component mass in [kg] for regions specified in the TOTAL_MASS_REGIONS sub-block.
+
 **Notes:**
  - By default, ALL and MINERALS specify that volume fractions and kinetic rates 
    be printed for all kinetic minerals.  To print saturation indices for 

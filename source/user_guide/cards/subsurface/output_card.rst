@@ -70,10 +70,7 @@ Within the SNAPSHOT_FILE block only, the output file format can be specified:
  FORMAT <string>
   Specifies the output file type for snapshots in time. Options available include TECPLOT BLOCK, TECPLOT POINT, VTK, HDF5, HDF5 SINGLE_FILE, or HDF5 MULTIPLE_FILES.  The default for HDF5 is SINGLE_FILE. For HDF5 MULTIPLE_FILES, each snapshot will be printed into a new HDF5 file. The optional keyword TIMES_PER_FILE <int> can be included, which will limit the number of snapshots printed to each HDF5 file to <int> number of snapshots.  **The POINT format is not supported in parallel. PFLOTRAN will switch from POINT to BLOCK if the number of cores employed is greater than one.**
 
-Within the MASS_BALANCE_FILE block only, you can specify a sub-block called 
-TOTAL_MASS_REGIONS which specifies a list of regions where the total component 
-mass is calculated within the region. The total component mass includes all 
-species in the aqueous, sorbed, and precipitated states (see examples below).
+Within the MASS_BALANCE_FILE block only, you can specify the sub-block NO_PRINT_SOURCE_SINK which will not print out source and sinks to the mass ballance file and the sub-block TOTAL_MASS_REGIONS which specifies a list of regions where the total component mass is calculated within the region. The total component mass includes all species in the aqueous, sorbed, and precipitated states is outputted in [mols] (see examples below).
 
 Optional Cards
 --------------
