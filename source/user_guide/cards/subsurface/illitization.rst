@@ -116,12 +116,12 @@ Material with illitization model named "ilt_bentonite"
 
   ILLITIZATION ilt_bentonite
     ILLITIZATION_FUNCTION DEFAULT
-      THRESHOLD_TEMPERATURE 2.00000d+1 C
+      THRESHOLD_TEMPERATURE 2.50000d+1 C
       EA                    1.17152d+5 J/mol
       FREQ                  8.08000d+4 L/mol-s
       K_CONC                2.16000d-3 M
       SMECTITE_INITIAL      0.95000d+0
-      SHIFT_PERM            1.00000d+0
+      SHIFT_PERM            1.00000d+3
     END
     TEST
   END
