@@ -390,55 +390,6 @@ MECHANISM <type_string>
        VITALITY_UPPER_TRUNCATION -3.0
        CANISTER_MATERIAL_CONSTANT 1500
      /
-  
-  SPACER_DEGRADATION_MODEL sub-block (optional for all mechanism types involving spent nuclear fuel)
-  
-    If this optional block is included, a time- and temperature-dependent spacer grid corrosion model will be evaluated as a means of terminating criticality events associated with the waste form. The model becomes active after the canister is breached. When the spacer grids have degraded below 0.5% of the original total mass, they are assumed to fail, which implies a loss of critical configuration.
-    
-    The spacer grid vitality :math:`V_{s}` is determined using the corrosion rate :math:`R` and total initial mass :math:`M_{0}` over time steps :math:`t_{i}` to :math:`t_{i+1}`, where at canister breach :math:`V_{s,0}=1`:
-    
-    :math:`V_{s,i+1}=V_{s,i}-\frac{R_{i+1}\cdot(t_{i+1}-t_{i})}{M_{0}}`
-    
-    The corrosion rate is governed by an Arrhenius term using the average temperature of the waste form :math:`\bar{T}`, the total spacer grid surface area :math:`A_{0}`, and a saturation-dependent term :math:`f_{S}(S_{l})`, where :math:`\mathcal{R}` is the ideal gas constant:
-    
-    :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot A_{0}\cdot\mathcal{C}\exp{\left(-\frac{Q}{\mathcal{R}\bar{T}_{i+1}}\right)}`
-    
-    The saturation-dependent term modifies the corrosion rate depending on an exposure level :math:`S_{l}^{exp}`, which is the saturation for which the spacer grids are considered fully-inundated with water. When the saturation of the waste form is at or above this limit, the corrosion rate is unaffected. Otherwise, the rate is reduced proportionally based on the saturation.  
-    
-    :math:`f_{S}(S_{l})=\left\{{\begin{array}{cc}
-    \frac{S_{l}}{S_{l}^{exp}} & S_{l}<S_{l}^{exp} \\
-    1 & S_{l}\geq S_{l}^{exp} \\
-    \end{array} }\right.`
-  
-    MASS <double> <unit_string>
-     
-     Total mass of spacer grids, :math:`M_{0}` [kg].
-     
-    SURFACE_AREA <double> <unit_string>
-     
-     Total surface area of spacer grids, :math:`A_{0}\,[m^{2}]` .
-     
-    EXPOSURE_LEVEL <double> (optional)
-     
-     Threshold saturation :math:`S_{l}^{exp}` for spacer grids to be considered fully-inundated with water. Saturation-dependence can be turned off by setting :math:`S_{l}^{exp}=0` or by not including this entry. 
-     
-    C <double> <unit_string>
-     
-     Empirical coefficient of the Arrhenius term governing corrosion, :math:`\mathcal{C}\,\,\left[\frac{kg}{m^{2}s}\right]`.
-     
-    Q <double> <unit_string>
-     
-     Activation energy operating on the reciprocal of temperature within the Arrhenius term governing corrosion, :math:`Q` [J/mol]. 
-    
-    ::
-
-     SPACER_DEGRADATION_MODEL
-       MASS           1.67040D+05 g
-       SURFACE_AREA   2.37309D+04 dm^2
-       EXPOSURE_LEVEL 9.93317D-01
-       C              3.4700D+07  mg/s-dm^2
-       Q              2.2675D+04  cal/mol
-     /
 
 Full examples of the MECHANISM sub-block (note some values may be unrealistic, these are just examples
 for form, not parameter values):
@@ -549,13 +500,6 @@ for form, not parameter values):
         VITALITY_UPPER_TRUNCATION -2.75
         CANISTER_MATERIAL_CONSTANT 1500.0
       /
-      SPACER_DEGRADATION_MODEL
-        MASS           1.00000D+05 g
-        SURFACE_AREA   2.50000D+04 dm^2
-        EXPOSURE_LEVEL 9.00000D-01
-        C              3.50000D+07 mg/s-dm^2
-        Q              8.50000D+04 J/mol
-      /
     /
 
       MECHANISM FMDM
@@ -642,18 +586,14 @@ WASTE_FORM sub-block
    you don't want to back-calculate what the inventory should have been at
    the beginning of the simulation.
 
-  CRITICALITY sub-block (optional)
+  CRITICALITY_MECHANISM_NAME <string> (optional)
    
-   If this optional block is included, the heat source terms from decay and/or criticality can be evaluated for the waste form along with the time-dependent inventory table. Multiple sub-blocks may be named if criticality events occur at different time periods.
+   Specifies the name of the associated criticality mechanism defining the steady-state criticality event in the waste form. The criticality mechanism name given here must match one of the mechanisms defined in the CRITICALITY_MECH sub-block(s).
    
-   MECH_NAME <string>
-    Name of the criticality mechanism sub-block governing the criticality event.
+  SPACER_MECHANISM_NAME <string> (optional)
    
-   CRIT_START <double> <unit_string>
-    Start time of criticality event.
+   Specifies the name of the associated spacer grid degradation mechanism in the waste form. The spacer grid degradation mechanism name given here must match one of the mechanisms defined in the SPACER_DEGRADATION_MECHANISM sub-block(s).
    
-   CRIT_END <double> <unit_string>
-    End time of criticality event.
 
   ::
 
@@ -669,12 +609,8 @@ WASTE_FORM sub-block
       VOLUME 2.1d0 m^3
       CANISTER_BREACH_TIME 250 yr
       MECHANISM_NAME custom01
-      
-      CRITICALITY
-        MECH_NAME crit_1
-        CRIT_START 3.00d+2 y
-        CRIT_END   2.00d+3 y
-      /
+      CRITICALITY_MECHANISM_NAME crit_01
+      SPACER_MECHANISM_NAME spc_01
     /
 
     WASTE_FORM
@@ -699,6 +635,49 @@ IMPLICIT_SOLUTION
  inventory within the waste form using an implicit approach based on solving
  the Bateman equation using Newton's method. This option should be used if the
  3-generation analytical solution is not appropriate.
+ 
+SPACER_DEGRADATION_MECHANISM
+ 
+ If this optional block is included, a time- and temperature-dependent spacer grid corrosion model will be evaluated as a means of terminating criticality events associated with the waste form. The model becomes active after the canister is breached. When the spacer grids have degraded below 0.5% of the original total mass, they are assumed to fail, which implies a loss of critical configuration.
+ 
+ The spacer grid vitality :math:`V_{s}` is determined using the corrosion rate :math:`R` and total initial mass :math:`M_{0}` over time steps :math:`t_{i}` to :math:`t_{i+1}`, where at canister breach :math:`V_{s,0}=1`:
+ 
+ :math:`V_{s,i+1}=V_{s,i}-\frac{R_{i+1}\cdot(t_{i+1}-t_{i})}{M_{0}}`
+ 
+ The corrosion rate is governed by an Arrhenius term using the average temperature of the waste form :math:`\bar{T}`, the total spacer grid surface area :math:`A_{0}`, and a saturation-dependent term :math:`f_{S}(S_{l})`, where :math:`\mathcal{R}` is the ideal gas constant:
+ 
+ :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot A_{0}\cdot\mathcal{C}\exp{\left(-\frac{Q}{\mathcal{R}\bar{T}_{i+1}}\right)}`
+ 
+ The saturation-dependent term modifies the corrosion rate depending on an exposure level :math:`S_{l}^{exp}`, which is the saturation for which the spacer grids are considered fully-inundated with water. When the saturation of the waste form is at or above this limit, the corrosion rate is unaffected. Otherwise, the rate is reduced proportionally based on the saturation.  
+ 
+ :math:`f_{S}(S_{l})=\left\{{\begin{array}{cc}
+ \frac{S_{l}}{S_{l}^{exp}} & S_{l}<S_{l}^{exp} \\
+ 1 & S_{l}\geq S_{l}^{exp} \\
+ \end{array} }\right.`
+ 
+ NAME <name_string>
+ 
+  Specifies a unique name for the spacer grid degradation model.
+ 
+ MASS <double> <unit_string>
+
+  Total mass of spacer grids, :math:`M_{0}` [kg].
+
+ SURFACE_AREA <double> <unit_string>
+
+  Total surface area of spacer grids, :math:`A_{0}\,[m^{2}]` .
+
+ EXPOSURE_LEVEL <double> (optional)
+
+  Threshold saturation :math:`S_{l}^{exp}` for spacer grids to be considered fully-inundated with water. Saturation-dependence can be turned off by setting :math:`S_{l}^{exp}=0` or by not including this entry. 
+
+ C <double> <unit_string>
+
+  Empirical coefficient of the Arrhenius term governing corrosion, :math:`\mathcal{C}\,\,\left[\frac{kg}{m^{2}s}\right]`.
+
+ Q <double> <unit_string>
+
+  Activation energy operating on the reciprocal of temperature within the Arrhenius term governing corrosion, :math:`Q` [J/mol]. 
 
 CRITICALITY_MECH
  
@@ -707,7 +686,15 @@ CRITICALITY_MECH
  NAME <name_string>
   
   Specifies a unique name for the criticality mechanism.
- 
+
+ CRIT_START <double> <unit_string>
+
+  Start time of criticality event.
+
+ CRIT_END <double> <unit_string>
+
+  End time of criticality event.
+
  CRITICAL_WATER_SATURATION <double>
   
   This is the liquid saturation below which the criticality event cannot be sustained. There is no heat emission from criticality until the waste form saturation is at or above this level. This is meant to be used for canisters in unsaturated systems and is not a permanent criticality termination mechanism.
@@ -744,16 +731,14 @@ CRITICALITY_MECH
      VOLUME 1.5d0 m^3
      MECHANISM_NAME csnf
      CANISTER_BREACH_TIME 2.50d+2 y
-     
-     CRITICALITY
-       MECH_NAME crit_1
-       CRIT_START 3.00d+2 y
-       CRIT_END   2.00d+3 y
-     /
+     CRITICALITY_MECHANISM_NAME crit_01
+     SPACER_MECHANISM_NAME spc_01
    /
    
    CRITICALITY_MECH
-     NAME crit_1
+     NAME crit_01
+     CRIT_START 3.00d+2 y
+     CRIT_END   2.00d+3 y
      CRITICAL_WATER_SATURATION    0.700d+0
      CRITICAL_WATER_DENSITY 9.200d+2 kg/m^3
      HEAT_OF_CRITICALITY
@@ -766,6 +751,15 @@ CRITICALITY_MECH
      INVENTORY
        DATASET ./inventory_crit.txt
      /
+   /
+   
+   SPACER_DEGRADATION_MECHANISM
+     NAME           spc_01
+     MASS           1.67040d+05 g
+     SURFACE_AREA   2.37309d+04 dm^2
+     EXPOSURE_LEVEL 9.93317d-01
+     C              3.47000d+07  mg/s-dm^2
+     Q              2.26750d+04  cal/mol
    /
 
 
