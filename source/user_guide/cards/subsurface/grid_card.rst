@@ -80,7 +80,7 @@ PERM_TENSOR_TO_SCALAR_MODEL <string>
  and POTENTIAL for unstructured grids. 
 
 MAX_CELLS_SHARING_A_VERTEX <int>
- Specifies the maximum number of cells sharing a single vertex. Necessary for expansing arrays used to read in complex grids where a vertex is shared by a large number of cells. Default = 24
+ Specifies the maximum number of cells sharing a single vertex. Necessary for expanding arrays used to read in complex grids where a vertex is shared by a large number of cells. Default = 24
 
 STENCIL_WIDTH <int>
  Width of structured grid stencil. Default = 1
