@@ -638,7 +638,7 @@ IMPLICIT_SOLUTION
  
 SPACER_DEGRADATION_MECHANISM
  
- If this optional block is included, a time- and temperature-dependent spacer grid corrosion model will be evaluated as a means of terminating criticality events associated with the waste form. The model becomes active after the canister is breached. When the spacer grids have degraded below 0.5% of the original total mass, they are assumed to fail, which implies a loss of critical configuration.
+ If this optional block is included, a time- and temperature-dependent spacer grid corrosion model will be evaluated as a means of terminating criticality events associated with the waste form. The model becomes active after the canister is breached. When the spacer grids have degraded below 1% of the original total mass, they are assumed to fail, which implies a loss of critical configuration.
  
  The spacer grid vitality :math:`V_{s}` is determined using the corrosion rate :math:`R` and total initial mass :math:`M_{0}` over time steps :math:`t_{i}` to :math:`t_{i+1}`, where at canister breach :math:`V_{s,0}=1`:
  
@@ -681,7 +681,7 @@ SPACER_DEGRADATION_MECHANISM
 
 CRITICALITY_MECH
  
- Including this card will define the mechanism for associated criticality events in a waste form.
+ Including this card will define a criticality mechanism that can specified for a waste form containing fissile material.
  
  NAME <name_string>
   
@@ -689,11 +689,11 @@ CRITICALITY_MECH
 
  CRIT_START <double> <unit_string>
 
-  Start time of criticality event.
+  The start time of the criticality event.
 
  CRIT_END <double> <unit_string>
 
-  End time of criticality event.
+  The end time of the criticality event.
 
  CRITICAL_WATER_SATURATION <double>
   
@@ -705,11 +705,41 @@ CRITICALITY_MECH
  
  HEAT_OF_CRITICALITY
   
-  This sub-block defines the heat source term from criticality either as a constant or as a value that can obtained from a temperature-based lookup table. The average temperature of the waste form is used for linear interpolation of this table.
+  This sub-block defines the heat source term from criticality either as a constant (CONSTANT_POWER) or as a value that can obtained from a temperature-based lookup table (DATASET). The average temperature of the waste form and CRIT_START are used for interpolation of the lookup table to provide the power output from the waste form for the duration of the criticality event.
   
-  CONSTANT_HEAT <double> <unit_string>
+  CONSTANT_POWER <double> <unit_string>
   
   DATASET <file_string>
+  
+    Please refer to the example "crit_heat.txt" provided for the regression test "glass_general.in" for formatting. The data file specified by <file_string> contains the following input segments:
+    
+    NUM_START_TIMES <integer>
+      
+      The number of criticality start times provided in START_TIME (see below).
+    
+    NUM_VALUES_PER_START_TIME <integer>
+    
+      The number of data values per given criticality start time.
+    
+    TIME_UNITS <unit_string> (optional)
+    
+      The units of time provided for the START_TIME values (see below).
+    
+    POWER_UNITS <unit_string> (optional)
+    
+      The units of power provided for the POWER values (see below).
+    
+    START_TIME <list double>
+    
+      The start times of the criticality events relative to the beginning of the PFLOTRAN simulation. This affects the power output as the quantity of fissile nuclides, precursors, and neutron absorbers forming the source term for sustained chain reactions are affected by the decay period.
+    
+    TEMPERATURE <list double>
+    
+      The average waste form temperatures determining power output for a given start time. The temperature affects the power output via reactivity feedback from Doppler broadening, thermal expansion, and moderator voiding. Such phenomena are factored into the original neutronics calculations forming the basis of this surrogate model.
+    
+    POWER <list double>
+    
+      The waste form power output from the criticality event per given average temperature and start time.
   
  DECAY_HEAT <type_string>
   
@@ -742,7 +772,7 @@ CRITICALITY_MECH
      CRITICAL_WATER_SATURATION    0.700d+0
      CRITICAL_WATER_DENSITY 9.200d+2 kg/m^3
      HEAT_OF_CRITICALITY
-       CONSTANT_HEAT 4.0d+0 kW
+       CONSTANT_POWER 4.0d+0 kW
        # DATASET criticality_heat.txt
      /
      DECAY_HEAT TOTAL
