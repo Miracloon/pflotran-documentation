@@ -588,7 +588,7 @@ WASTE_FORM sub-block
 
   CRITICALITY_MECHANISM_NAME <string> (optional)
    
-   Specifies the name of the associated criticality mechanism defining the steady-state criticality event in the waste form. The criticality mechanism name given here must match one of the mechanisms defined in the CRITICALITY_MECH sub-block(s).
+   Specifies the name of the associated criticality mechanism defining the criticality event in the waste form. The criticality mechanism name given here must match one of the mechanisms defined in the CRITICALITY_MECH sub-block(s).
    
   SPACER_MECHANISM_NAME <string> (optional)
    
