@@ -80,13 +80,16 @@ PERM_TENSOR_TO_SCALAR_MODEL <string>
  and POTENTIAL for unstructured grids. 
 
 MAX_CELLS_SHARING_A_VERTEX <int>
- Specifies the maximum number of cells sharing a single vertex. Necessary for expansing arrays used to read in complex grids where a vertex is shared by a large number of cells. Default = 24
+ Specifies the maximum number of cells sharing a single vertex. Necessary for expanding arrays used to read in complex grids where a vertex is shared by a large number of cells. Default = 24
 
 STENCIL_WIDTH <int>
  Width of structured grid stencil. Default = 1
 
 STENCIL_TYPE <string>
  Specifies stencil with options BOX or STAR. Default = STAR
+
+IMPLICIT_GRID_AREA_CALCULATION <string>
+ Specifies whether or not project the face area in the direction of the vector connecting the two cells sharing the face with option TRUE_AREA or PROJECTED_AREA for implicit UNSTRUCTURED grid. Default = PROJECTED_AREA
 
 DOMAIN_FILENAME <string>
  Specifies the path to the filename defining explicit unstructured grid geometry for inclusion in HDF5 output enabling plotting in Paraview/Visit.
