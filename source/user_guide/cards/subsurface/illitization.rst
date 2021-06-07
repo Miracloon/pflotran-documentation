@@ -32,25 +32,25 @@ ILLITIZATION_FUNCTION <string>
 Illitization Parameter Definitions
 ---------------------------------------------------
 
-In the DEFAULT model, the time rate of change of smectite :math:`\left(\frac{df_{S}}{dt}\right)` into illite based on the smectite fraction :math:`f_{S}` and potassium cation concentration :math:`[K^{+}]` is computed as follows:
+In the DEFAULT model, for a given time step :math:`i+1`, the time rate of change of smectite :math:`\left(\frac{df_{S}}{dt}\right)` into illite is based on the smectite fraction :math:`f_{S,i}` and potassium cation concentration :math:`[K^{+}]`. It is computed as follows:
 
-:math:`\left.-\frac{df_{S}}{dt}\right|_{i}=\left\{{\begin{array}{cc} [K^{+}]\cdot f_{S}^{2}\cdot A\exp{\left(-\frac{E_{a}}{\mathcal{R}T_{i}}\right)} & T_{i}\geq T_{th} \\ 0 & T_{i}<T_{th} \\ \end{array} } \right.` [1/s]
+:math:`\left.-\frac{df_{S}}{dt}\right|_{i+1}=\left\{{\begin{array}{cc} [K^{+}]\cdot f_{S,i}^{2}\cdot A\exp{\left(-\frac{E_{a}}{\mathcal{R}T_{i+1}}\right)} & T_{i+1}\geq T_{th} \\ 0 & T_{i+1}<T_{th} \\ \end{array} } \right.` [1/s]
 
-where :math:`A` is the frequency term, :math:`E_{a}` is the activation energy, :math:`\mathcal{R}` is the ideal gas constant, :math:`T_{i}` is the temperature in Kelvin at time step :math:`i`, and :math:`T_{th}` is the threshold temperature. [1] The value of :math:`[K^{+}]` is currently implemented as a constant.
+where :math:`A` is the frequency term, :math:`E_{a}` is the activation energy, :math:`\mathcal{R}` is the ideal gas constant, :math:`T_{i+1}` is the temperature in Kelvin, and :math:`T_{th}` is the threshold temperature. [1] The value of :math:`[K^{+}]` is currently implemented as a constant.
 
 The cumulative change in smectite at time step :math:`i+1` is evaluated as follows:
 
 :math:`\Delta f_{S,i+1}\approx-\left(\frac{df_{S}}{dt}\right)_{i+1}\cdot(t_{i+1}-t_{i})`
 
-This cumulative change is used to evaluate the smectite and illite fractions: 
+This cumulative change is then used to evaluate the smectite and illite fractions: 
 
 :math:`f_{S,i+1} = \frac{f_{S,i}}{1+\Delta f_{S,i+1}}`
 
 :math:`f_{I,i+1} = 1 - f_{S,i+1}`
 
-The change in a given permeability component :math:`k_{j,i}` at time step :math:`i` as a result of illitization is computed as follows:
+The change in a given permeability component :math:`k_{j,i+1}` at time step :math:`i+1` as a result of illitization is computed as follows:
 
-:math:`k_{j,i}=k_{j,0}\left[1+\left(\frac{f_{I,i}-f_{I,0}}{f_{S,0}}\right)\cdot C_{k}\right]`
+:math:`k_{j,i+1}=k_{j,0}\left[1+\left(\frac{f_{I,i+1}-f_{I,0}}{f_{S,0}}\right)\cdot C_{k}\right]`
 
 where :math:`k_{j,0}` is the original permeability tensor, :math:`C_{k}` is the permeability shift factor, and :math:`f_{S,0}` and :math:`f_{I,0}` are the initial fractions of smectite and illite, respectively. This suggests that when all of the original smectite is illitized, the permeability has been enhanced by a factor of :math:`1+ C_{k}`. 
 
