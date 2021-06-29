@@ -26,6 +26,7 @@ CONCENTRATIONS
   * F = free ion concentration
   * T = total aqueous component concentration
   * P = pH
+  * PE = pe (for O2(aq) or H+ only)
   * M = concentration based on equilibrium with specified mineral. The 
     float is an initial guess.
   * G = concentration based on equilibrium with a gas 
