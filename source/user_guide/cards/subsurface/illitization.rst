@@ -38,13 +38,9 @@ In the DEFAULT model, for a given time step :math:`i+1`, the time rate of change
 
 where :math:`A` is the frequency term, :math:`E_{a}` is the activation energy, :math:`\mathcal{R}` is the ideal gas constant, :math:`T_{i+1}` is the temperature in Kelvin, and :math:`T_{th}` is the threshold temperature. [1] The value of :math:`[K^{+}]` is currently implemented as a constant.
 
-The cumulative change in smectite at time step :math:`i+1` is evaluated as:
+The time-integrated smectite fraction is evaluated as: 
 
-:math:`\Delta f_{S,i+1}=-\left(\frac{df_{S}}{dt}\right)_{i+1}\cdot(t_{i+1}-t_{i})`
-
-The time-integrated smectite fraction is then evaluated as: 
-
-:math:`f_{S,i+1} = \frac{f_{S,i}}{1+f_{S,i}\cdot\Delta f_{S,i+1}}`
+:math:`f_{S,i+1} = \frac{f_{S,i}}{1-[K^{+}]\cdot A\exp{\left(-\frac{E_{a}}{\mathcal{R}T_{i+1}}\right)}\cdot (t_{i+1}-t_{i})}`
 
 The illite fraction is defined as the complement of the smectite fraction:
 
