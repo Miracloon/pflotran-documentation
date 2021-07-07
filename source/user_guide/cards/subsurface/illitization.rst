@@ -51,7 +51,7 @@ where :math:`A` is the frequency term, :math:`E_{a}` is the activation energy, :
 
 The time-integrated smectite fraction is evaluated as: 
 
-:math:`f_{S}^{i+1} = \frac{f_{S}^{i}}{1-[K^{+}]\cdot A\exp{\left(-\frac{E_{a}}{\mathcal{R}T^{i+1}}\right)}\cdot (t^{i+1}-t^{i})}`
+:math:`f_{S}^{i+1} = \frac{f_{S}^{i}}{1-[K^{+}]\cdot A\exp{\left(-\frac{E_{a}}{\mathcal{R}T^{i+1}}\right)}\cdot (t^{i+1}-t^{i})\cdot f_{S}^{i}}`
 
 The illite fraction is defined as the complement of the smectite fraction:
 
