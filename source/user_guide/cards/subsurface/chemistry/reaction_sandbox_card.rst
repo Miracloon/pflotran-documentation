@@ -19,6 +19,9 @@ Optional Cards:
 
 :ref:`clm-cn-card`
  Block for specifying CLM-CN reaction parameters
+:ref:`bioparticle-card`
+ Block for specifying BIOPARTICLE transport using kinetic attachment rates from colloid filtration theory and decay rates from temperature models.
+
 
 Examples
 --------
