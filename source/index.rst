@@ -20,7 +20,7 @@ preserve tight collaboration with experienced domain scientists, without which
 PFLOTRAN's sophisticated process models would not exist. PFLOTRAN's source code repository is on Bitbucket_.
 
 Announcements
-============
+=============
 
 .. toctree::
    :maxdepth: 1
