@@ -100,10 +100,13 @@ NO_CHECKPOINT_ACT_COEFS
  previous time step, the original and restarted solutions will not 
  match identically if such checkpointing is disabled.
 
-UPDATE_POROSITY <optional float>
- Update porosity after every time step.  Optional float specifies minimum 
- porosity to which porosity is truncated if below that value.
- (default = 0)
+UPDATE_POROSITY
+ Update porosity after every time step.  Default minimum porosity is 0,
+ make minimum porosity non-zero using MINIMUM_POROSITY.
+
+MINIMUM_POROSITY <float>
+ Float specifies minimum porosity to which porosity is truncated if
+ below that value. (default = 0)
 
 UPDATE_PERMEABILITY
  Update permeabilty after every time step.
