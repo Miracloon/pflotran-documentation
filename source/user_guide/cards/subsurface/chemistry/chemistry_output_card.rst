@@ -41,6 +41,9 @@ GASES
 MINERALS
  All minerals are printed.
 
+IMMOBILE
+ All immobile species are printed.
+
 PH
  pH is printed (if applicable--i.e. H+ exists).
 

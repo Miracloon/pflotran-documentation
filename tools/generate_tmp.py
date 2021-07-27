@@ -5,7 +5,7 @@ if len(sys.argv) <= min_args:
     sys.exit('Number of arguments must be greater than {}.'.format(min_args))
 
 available_modes = ['RICHARDS','TH','GENERAL','MPHASE','HYDRATE','WIPP_FLOW',
-                   'RT','NWT']
+                   'RT','NWT','DUMMY']
 
 filenames = sys.argv
 mode = sys.argv[1]
@@ -106,10 +106,11 @@ for entry in sorted(basic_dictionary):
     strings = basic_dictionary[entry][2]
     for string in strings:
         f.write('{}\n'.format(string))
-if len(expert_dictionary) > 0:
-    if len(basic_dictionary) > 0:
-        f.write('\n--------------------\n')
-    f.write('\n**Expert Settings**\n\n')
+if not mode.startswith('DUMMY'):
+    if len(expert_dictionary) > 0:
+        if len(basic_dictionary) > 0:
+            f.write('\n--------------------\n')
+        f.write('\n**Expert Settings**\n\n')
 for entry in sorted(expert_dictionary):
     f.write('{}\n'.format(expert_dictionary[entry][1].strip()))
     strings = expert_dictionary[entry][2]
