@@ -4,7 +4,7 @@ Back to :ref:`chemistry-card`
 
 .. _chemistry-output-card:
 
-(CHEMISTRY) OUTPUT
+OUTPUT (CHEMISTRY)
 ==================
 Specifies output options for biogeochemical transport.
 
