@@ -86,7 +86,7 @@ SHIFT_PERM <float>
  The factor applied to the net change in illite fraction that is used to modify the permeability, :math:`C_{k}` (default of 1.0).
 
 SHIFT_KD (optional)
- For specified elements, factors are provided to modify the sorption distribution coefficients, :math:`K_{d}`, based on the net change in the illite fraction. One list entry consists of the element <name>, which must be present in the :ref:`ufd-decay-card` process model, and the factor <float>. 
+ For specified elements, factors are provided to modify sorption distribution coefficients, :math:`K_{d}`, based on the net change in the illite fraction. One list entry consists of the element <string>, which must be present in the :ref:`ufd-decay-card` process model, and the factor <float>. 
 
 EA <float>
   The activation energy in the temperature-dependent Arrhenius term, :math:`E_{a}` [J/mol].
