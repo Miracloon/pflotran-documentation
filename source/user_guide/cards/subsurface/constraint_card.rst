@@ -23,12 +23,12 @@ CONCENTRATIONS
   species_name concentration constraint_type constraint_species
 
  Constraint type options (Reactive Transport Mode):
-  * F = free ion concentration
-  * T = total aqueous component concentration
+  * F = free ion concentration. Default units [mol/m\ :sup:`3`\ :sub:`water`\]
+  * T = total aqueous component concentration.  Default units [mol/m\ :sup:`3`\ :sub:`water`\]
   * P = pH
   * PE = pe (for O2(aq) or H+ only)
   * M = concentration based on equilibrium with specified mineral. The 
-    float is an initial guess.
+    float is an initial guess.  Default units [mol/m\ :sup:`3`\ :sub:`water`\]
   * G = concentration based on equilibrium with a gas 
     (partial pressure) [bars]
   * L = Base 10 logarithm of concentration
