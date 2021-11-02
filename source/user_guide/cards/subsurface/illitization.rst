@@ -59,9 +59,13 @@ The illite fraction is defined as the complement of the smectite fraction:
 
 :math:`f_{I}^{i+1} = 1 - f_{S}^{i+1}`
 
-Finally, the change in a given permeability component :math:`k_{j}^{i+1}` at time step :math:`i+1` as a result of illitization is computed as:
+A scale factor :math:`F` is defined that ranges from 0 to 1 and is based on the relative change in the fraction of illite:
 
-:math:`k_{j}^{i+1}=k_{j}^{0}\left[1+\left(\frac{f_{I}^{i+1}-f_{I}^{0}}{f_{S}^{0}}\right)\cdot C_{k}\right]`
+:math:`F= \frac{f_{I}^{i+1}-f_{I}^{0}}{f_{S}^{0}}`
+
+The change in a given permeability component :math:`k_{j}^{i+1}` at time step :math:`i+1` as a result of illitization is computed as:
+
+:math:`k_{j}^{i+1}=k_{j}^{0}\left(1+F\cdot C_{k}\right)`
 
 where :math:`k_{j}^{0}` is the original permeability tensor, :math:`C_{k}` is the permeability shift factor, and :math:`f_{S}^{0}` and :math:`f_{I}^{0}` are the initial fractions of smectite and illite, respectively. This suggests that when all of the original smectite is illitized, the permeability has been enhanced by a factor of :math:`1+ C_{k}`. 
 
@@ -86,7 +90,11 @@ SHIFT_PERM <float>
  The factor applied to the net change in illite fraction that is used to modify the permeability, :math:`C_{k}` (default of 1.0).
 
 SHIFT_KD (optional)
- For specified elements, factors are provided to modify sorption distribution coefficients, :math:`K_{d}`, based on the net change in the illite fraction. One list entry consists of the element <string>, which must be present in the :ref:`ufd-decay-card` process model, and the factor <float>. 
+ For specified elements, factors are provided to modify sorption distribution coefficients, :math:`K_{d}`, based on the net change in the illite fraction. One list entry consists of the element <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type, and the functional parameters <float> (see below).
+   
+   DEFAULT - :math:`C_{1}` <float>
+   
+     :math:`K_{d}^{i+1} = K_{d}^{i}(1 + F\cdot C_{1})`
 
 EA <float>
   The activation energy in the temperature-dependent Arrhenius term, :math:`E_{a}` [J/mol].
