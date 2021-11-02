@@ -159,7 +159,7 @@ Material with illitization model named "ilt_bentonite"
       SMECTITE_INITIAL      0.95000d+0
       SHIFT_PERM            1.00000d+3
       SHIFT_KD
-        Cs  1.05d+0
+        Cs  DEFAULT  1.05320d+0
       /
     END
     TEST
