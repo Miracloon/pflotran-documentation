@@ -73,7 +73,7 @@ In the GENERAL model (ref. 2), the time rate of change of smectite is defined wi
 
 :math:`\left.-\frac{df_{S}}{dt}\right|^{i+1}=\left\{{\begin{array}{cc} [K^{+}]^{m}\cdot (f_{S}^{i})^{n}\cdot k(T) & T^{i+1}\geq T_{th} \\ 0 & T^{i+1}<T_{th} \\ \end{array} } \right.` [1/s]
 
-The time-integrated smectite fraction is evaluated based on the choice of :math:`n`:
+The frequency term :math:`A` in :math:`k(T)` must be defined in units that correspond to the choice of :math:`m` and :math:`n`. The time-integrated smectite fraction is evaluated based on the choice of :math:`n`:
 
 :math:`f_{S}^{i+1}=\left\{{\begin{array}{cc} \left\{[K^{+}]^{m}\cdot k(T)\cdot (n-1)(t^{i+1}-t^{i})+(f_{S}^{i})^{1-n}) \right\}^{\frac{1}{1-n}} & n>1 \\ f_{S}^{i}\cdot \exp{\left\{-k(T)\cdot[K^{+}]^{m}\cdot(t^{i+1}-t^{i})\right\}} & n=1 \\ \end{array} } \right.`
 
@@ -159,7 +159,7 @@ Material with illitization model named "ilt_bentonite"
       SMECTITE_INITIAL      0.95000d+0
       SHIFT_PERM            1.00000d+3
       SHIFT_KD
-        Cs  DEFAULT  1.05320d+0
+        Cs  DEFAULT  1.05320d+0 # Cs must be listed in UFD Decay
       /
     END
     TEST
