@@ -87,14 +87,14 @@ THRESHOLD_TEMPERATURE <float>
  The temperature in Celsius at and above which the illitization process occurs, :math:`T_{th}` (default of 0°C).
 
 SHIFT_PERM <float>
- The factor applied to the net change in illite fraction that is used to modify the permeability, :math:`C_{k}` (default of 1.0).
+ The factor applied to the relative change in the illite fraction :math:`(F)` that is used to modify the permeability, :math:`C_{k}` (default of 1.0).
 
 SHIFT_KD (optional)
- For specified elements, factors are provided to modify sorption distribution coefficients, :math:`K_{d}`, based on the net change in the illite fraction. One list entry consists of the element <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type, and the functional parameters <float> (see below).
+ For specified elements, factors are provided to modify sorption distribution coefficients, :math:`K_{d}`, based on changes to the smectite/illite composition. One list entry consists of the element :math:`e` <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
    
-   DEFAULT - :math:`C_{1}` <float>
+   DEFAULT - :math:`C_{1}`
    
-     :math:`K_{d}^{i+1} = K_{d}^{i}(1 + F\cdot C_{1})`
+     :math:`K_{d,e}^{i+1} = K_{d,e}^{i}(1 + F\cdot C_{1,e})`
 
 EA <float>
   The activation energy in the temperature-dependent Arrhenius term, :math:`E_{a}` [J/mol].
@@ -157,9 +157,9 @@ Material with illitization model named "ilt_bentonite"
       FREQ                  8.08000d+4 L/mol-s
       K_CONC                2.16000d-3 M
       SMECTITE_INITIAL      0.95000d+0
-      SHIFT_PERM            1.00000d+3
+      SHIFT_PERM            9.90000d+2
       SHIFT_KD
-        Cs  DEFAULT  1.05320d+0 # Cs must be listed in UFD Decay
+        Cs  DEFAULT  -5.32470d-1 # Cs must be listed in UFD Decay
       /
     END
     TEST
