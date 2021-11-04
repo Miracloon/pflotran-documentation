@@ -61,11 +61,11 @@ The illite fraction is defined as the complement of the smectite fraction:
 
 A scale factor :math:`F` is defined that ranges from 0 to 1 and is based on the relative change in the fraction of illite:
 
-:math:`F= \frac{f_{I}^{i+1}-f_{I}^{0}}{f_{S}^{0}}`
+:math:`F^{i+1}= \frac{f_{I}^{i+1}-f_{I}^{0}}{f_{S}^{0}}`
 
 The change in a given permeability component :math:`k_{j}^{i+1}` at time step :math:`i+1` as a result of illitization is computed as:
 
-:math:`k_{j}^{i+1}=k_{j}^{0}\left(1+F\cdot C_{k}\right)`
+:math:`k_{j}^{i+1}=k_{j}^{0}\left(1+F^{i+1}\cdot C_{k}\right)`
 
 where :math:`k_{j}^{0}` is the original permeability tensor, :math:`C_{k}` is the permeability shift factor, and :math:`f_{S}^{0}` and :math:`f_{I}^{0}` are the initial fractions of smectite and illite, respectively. This suggests that when all of the original smectite is illitized, the permeability has been enhanced by a factor of :math:`1+ C_{k}`. 
 
@@ -90,11 +90,11 @@ SHIFT_PERM <float>
  The factor applied to the relative change in the illite fraction :math:`(F)` that is used to modify the permeability, :math:`C_{k}` (default of 1.0).
 
 SHIFT_KD (optional)
- For specified elements, factors are provided to modify sorption distribution coefficients, :math:`K_{d}`, based on changes to the smectite/illite composition. One list entry consists of the element :math:`e` <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
+ For specified elements, factors are provided to modify original sorption distribution coefficients, :math:`K_{d}^{0}`, based on changes to the smectite/illite composition. One list entry consists of the element :math:`e` <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
    
    DEFAULT - :math:`C_{1}`
    
-     :math:`K_{d,e}^{i+1} = K_{d,e}^{i}(1 + F\cdot C_{1,e})`
+     :math:`K_{d,e}^{i+1} = K_{d,e}^{0}(1 + F^{i+1}\cdot C_{1,e})`
 
 EA <float>
   The activation energy in the temperature-dependent Arrhenius term, :math:`E_{a}` [J/mol].
