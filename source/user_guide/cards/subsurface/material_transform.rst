@@ -1,10 +1,14 @@
 Back to :ref:`card-index`
 
-.. _illitization-card:
+.. _material-transform-card:
+
+MATERIAL TRANSFORM
+##################
+This option specifies a material transform model associated with a :ref:`material-property-card`.
 
 ILLITIZATION
-=============================
-This option specifies the illitization model associated with a material property. This allows for a time- and temperature-dependent change from smectite to illite to be evaluated during the simulation, which in turn can be used to impart a commensurate change in permeability, etc.
+============
+The illitization function allows for a time- and temperature-dependent change from smectite to illite to be evaluated during the simulation, which in turn can be used to impart a commensurate change in permeability and/or sorption.
 
 This feature is currently available for :ref:`general-card` and :ref:`th-card` modes.
 
@@ -43,7 +47,7 @@ ILLITIZATION_FUNCTION <string>
 .. _ilt-parameter-definitions:
 
 Illitization Parameter Definitions
----------------------------------------------------
+----------------------------------
 
 In the DEFAULT model (ref. 1), for a given time step :math:`i+1`, the time rate of change of smectite :math:`\left(\frac{df_{S}}{dt}\right)` into illite is based on the smectite fraction :math:`f_{S,i}` and potassium cation concentration :math:`[K^{+}]`. It is defined as follows:
 
@@ -144,13 +148,13 @@ Material with illitization model named "ilt_bentonite"
      ROCK_DENSITY 2700.
      THERMAL_CHARACTERISTIC_CURVES cct_bentonite
      HEAT_CAPACITY 830.
-     ILLITIZATION ilt_bentonite
+     MATERIAL_TRANSFORM ilt_bentonite
      PERMEABILITY
        PERM_ISO  1.d-20
      /
    /
 
-  ILLITIZATION ilt_bentonite
+  MATERIAL_TRANSFORM ilt_bentonite
     ILLITIZATION_FUNCTION DEFAULT
       THRESHOLD_TEMPERATURE 2.50000d+1 C
       EA                    1.17152d+5 J/mol
