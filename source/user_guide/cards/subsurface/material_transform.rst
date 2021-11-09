@@ -2,15 +2,22 @@ Back to :ref:`card-index`
 
 .. _material-transform-card:
 
-MATERIAL TRANSFORM
+MATERIAL_TRANSFORM
 ##################
 This option specifies a material transform model associated with a :ref:`material-property-card`.
+
+Supported MATERIAL_TRANSFORMs include the following:
+  * :ref:`mtf-ilt`
+
+.. _mtf-ilt:
 
 ILLITIZATION
 ============
 The illitization function allows for a time- and temperature-dependent change from smectite to illite to be evaluated during the simulation, which in turn can be used to impart a commensurate change in permeability and/or sorption.
 
 This feature is currently available for :ref:`general-card` and :ref:`th-card` modes.
+
+.. _mtf-ilt-required-blocks:
 
 Required Blocks and Cards:
 **************************
@@ -19,7 +26,7 @@ ILLITIZATION_FUNCTION <string>
 
   Supported ILLITIZATION_FUNCTIONs (along with their required cards):
 
-  .. _ilt-default-input:
+  .. _mtf-ilt-default-input:
 
   * DEFAULT (HUANG)
 
@@ -30,6 +37,8 @@ ILLITIZATION_FUNCTION <string>
     + EA
     + FREQ
     + K_CONC
+  
+  .. _mtf-ilt-general-input:
   
   * GENERAL (CUADROS_AND_LINARES)
 
@@ -44,10 +53,10 @@ ILLITIZATION_FUNCTION <string>
     + K_EXP
 
 
-.. _ilt-parameter-definitions:
+.. _mtf-ilt-parameter-definitions:
 
 Illitization Parameter Definitions
-----------------------------------
+**********************************
 
 In the DEFAULT model (ref. 1), for a given time step :math:`i+1`, the time rate of change of smectite :math:`\left(\frac{df_{S}}{dt}\right)` into illite is based on the smectite fraction :math:`f_{S,i}` and potassium cation concentration :math:`[K^{+}]`. It is defined as follows:
 
@@ -116,7 +125,7 @@ K_EXP <float>
 Optional Blocks and Cards:
 **************************
 
-.. _ilt-test:
+.. _mtf-ilt-test:
 
 Test Illitization Model
 -----------------------
@@ -129,12 +138,12 @@ TEST
   (e) :math:`\frac{df_{I}}{dT}`
 
 Examples
-********
+========
 
-.. _ilt-example-general:
+.. _mtf-ilt-example-general:
 
-Material with illitization model named "ilt_bentonite"
-------------------------------------------------------
+Material with transform named "mtf_bentonite" containing illitization model
+***************************************************************************
  ::
 
    MATERIAL_PROPERTY buffer
@@ -148,32 +157,34 @@ Material with illitization model named "ilt_bentonite"
      ROCK_DENSITY 2700.
      THERMAL_CHARACTERISTIC_CURVES cct_bentonite
      HEAT_CAPACITY 830.
-     MATERIAL_TRANSFORM ilt_bentonite
+     MATERIAL_TRANSFORM mtf_bentonite
      PERMEABILITY
        PERM_ISO  1.d-20
      /
    /
 
-  MATERIAL_TRANSFORM ilt_bentonite
-    ILLITIZATION_FUNCTION DEFAULT
-      THRESHOLD_TEMPERATURE 2.50000d+1 C
-      EA                    1.17152d+5 J/mol
-      FREQ                  8.08000d+4 L/mol-s
-      K_CONC                2.16000d-3 M
-      SMECTITE_INITIAL      0.95000d+0
-      SHIFT_PERM            9.90000d+2
-      SHIFT_KD
-        Cs  DEFAULT  -5.32470d-1 # Cs must be listed in UFD Decay
-      /
+  MATERIAL_TRANSFORM mtf_bentonite
+    ILLITIZATION
+      ILLITIZATION_FUNCTION DEFAULT
+        THRESHOLD_TEMPERATURE 2.50000d+1 C
+        EA                    1.17152d+5 J/mol
+        FREQ                  8.08000d+4 L/mol-s
+        K_CONC                2.16000d-3 M
+        SMECTITE_INITIAL      0.95000d+0
+        SHIFT_PERM            9.90000d+2
+        SHIFT_KD
+          Cs  DEFAULT  -5.32470d-1 # Cs must be listed in UFD Decay
+        /
+      END
+      TEST
     END
-    TEST
   END
 
 
-.. _ilt-references:
+.. _mtf-ilt-references:
 
 References
-**********
+==========
 1. Huang, W.-L., J. M. Longo, and D. R. Pevear (1993). An experimentally derived kinetic model for smectite-to-illite conversion and its use as a geothermometer. Clays and Clay Minerals 41(2), 162-177. https://doi.org/10.1346/CCMN.1993.0410205
 
 2. Cuadros, J., and Linares, J. (1996). Experimental kinetic study of the smectite-to-illite transformation. Geochimica et Cosmochimica Acta 60(3), 439-453. https://doi.org/10.1016/0016-7037(95)00407-6
