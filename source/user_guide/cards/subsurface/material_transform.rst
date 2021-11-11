@@ -15,12 +15,12 @@ ILLITIZATION
 ============
 The illitization function allows for a time- and temperature-dependent change from smectite to illite to be evaluated during the simulation, which in turn can be used to impart a commensurate change in permeability and/or sorption.
 
-This feature is currently available for :ref:`general-card` and :ref:`th-card` modes.
+The ILLITIZATION sub-block is currently available for :ref:`general-card` and :ref:`th-card` modes.
 
 .. _mtf-ilt-required-blocks:
 
-Required Blocks and Cards:
-**************************
+Required Blocks and Cards
+*************************
 ILLITIZATION_FUNCTION <string>
   Opens an illitization block, where <string> indicates the type of illitization model to be employed.
 
@@ -76,11 +76,7 @@ A scale factor :math:`F` is defined that ranges from 0 to 1 and is based on the 
 
 :math:`F^{i+1}= \frac{f_{I}^{i+1}-f_{I}^{0}}{f_{S}^{0}}`
 
-The change in a given permeability component :math:`k_{j}^{i+1}` at time step :math:`i+1` as a result of illitization is computed as:
-
-:math:`k_{j}^{i+1}=k_{j}^{0}\left(1+F^{i+1}\cdot C_{k}\right)`
-
-where :math:`k_{j}^{0}` is the original permeability tensor, :math:`C_{k}` is the permeability shift factor, and :math:`f_{S}^{0}` and :math:`f_{I}^{0}` are the initial fractions of smectite and illite, respectively. This suggests that when all of the original smectite is illitized, the permeability has been enhanced by a factor of :math:`1+ C_{k}`. 
+This is used to modify the permeability and/or soprtion based on a user-specified function (see SHIFT_PERM and SHIFT_KD below). 
 
 In the GENERAL model (ref. 2), the time rate of change of smectite is defined with the potassium concentration raised to exponent :math:`m` and the smectite fraction raised to exponent :math:`n`, where the temperature-dependent Arrhenius term is simplified as :math:`k(T)`:
 
@@ -99,11 +95,19 @@ SMECTITE_EXP <float>
 THRESHOLD_TEMPERATURE <float>
  The temperature in Celsius at and above which the illitization process occurs, :math:`T_{th}` (default of 0°C).
 
-SHIFT_PERM <float>
- The factor applied to the relative change in the illite fraction :math:`(F)` that is used to modify the permeability, :math:`C_{k}` (default of 1.0).
+SHIFT_PERM <string> <float> (optional)
+ Factors are provided to modify the original permeability tensor :math:`k_{j}^{0}` based on changes to the smectite/illite composition. This entry consists of the function type <string> and the functional parameters :math:`C_{k}` <float> (see below).
+   
+   DEFAULT - :math:`C_{k,1}`
+
+     :math:`C_{k,1}` (default of 1.0) is the factor applied to the relative change in the illite fraction :math:`(F)` that is used to isotropically modify the original permeability. The change in a given permeability component :math:`k_{j}^{i+1}` at time step :math:`i+1` as a result of illitization is computed as:
+
+     :math:`k_{j}^{i+1}=k_{j}^{0}\left(1+F^{i+1}\cdot C_{k,1}\right)`
+
+     This suggests that when all of the original smectite is transformed to illite, the permeability has been enhanced by a factor of :math:`1+ C_{k,1}`.
 
 SHIFT_KD (optional)
- For specified elements, factors are provided to modify original sorption distribution coefficients, :math:`K_{d}^{0}`, based on changes to the smectite/illite composition. One list entry consists of the element :math:`e` <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
+ For specified elements, factors are provided to modify original sorption distribution coefficients, :math:`K_{d}^{0}`, based on changes to the smectite/illite composition. In this sub-block, one list entry consists of the element :math:`e` <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
    
    DEFAULT - :math:`C_{1}`
    
@@ -122,8 +126,8 @@ K_EXP <float>
   The exponent of the potassium cation concentration, :math:`m`.
 
 
-Optional Blocks and Cards:
-**************************
+Optional Blocks and Cards
+*************************
 
 .. _mtf-ilt-test:
 
@@ -171,7 +175,7 @@ Material with transform named "mtf_bentonite" containing illitization model
         FREQ                  8.08000d+4 L/mol-s
         K_CONC                2.16000d-3 M
         SMECTITE_INITIAL      0.95000d+0
-        SHIFT_PERM            9.90000d+2
+        SHIFT_PERM   DEFAULT  9.90000d+2
         SHIFT_KD
           Cs  DEFAULT  -5.32470d-1 # Cs must be listed in UFD Decay
         /
