@@ -98,20 +98,44 @@ THRESHOLD_TEMPERATURE <float>
 SHIFT_PERM <string> <float> (optional)
  Factors are provided to modify the original permeability tensor :math:`k_{j}^{0}` based on changes to the smectite/illite composition. This entry consists of the function type <string> and the functional parameters :math:`C_{k}` <float> (see below).
    
-   DEFAULT - :math:`C_{k,1}`
+   DEFAULT/LINEAR - :math:`C_{k,1}`
 
      :math:`C_{k,1}` (default of 1.0) is the factor applied to the relative change in the illite fraction :math:`(F)` that is used to isotropically modify the original permeability. The change in a given permeability component :math:`k_{j}^{i+1}` at time step :math:`i+1` as a result of illitization is computed as:
 
-     :math:`k_{j}^{i+1}=k_{j}^{0}\left(1+F^{i+1}\cdot C_{k,1}\right)`
+     :math:`k_{j}^{i+1}=k_{j}^{0}\left(1+C_{k,1}\cdot F^{i+1} \right)`
 
      This suggests that when all of the original smectite is transformed to illite, the permeability has been enhanced by a factor of :math:`1+ C_{k,1}`.
+   
+   QUADRATIC - :math:`C_{k,1}, C_{k,2}`
+   
+      :math:`k_{j}^{i+1} = k_{j}^{0}\left[1 + C_{k,1}\cdot F^{i+1} + C_{k,2}\cdot (F^{i+1})^{2}\right]`
+   
+   POWER - :math:`C_{k,1}, C_{k,2}`
+   
+      :math:`k_{j}^{i+1} = k_{j}^{0}\left[1 + C_{k,1}\cdot(F^{i+1})^{C_{k,2}}\right]`
+   
+   EXPONENTIAL - :math:`C_{k,1}`
+   
+      :math:`k_{j}^{i+1} = k_{j}^{0}\exp{\left[C_{k,1}\cdot F^{i+1}\right]}`
 
 SHIFT_KD (optional)
  For specified elements, factors are provided to modify original sorption distribution coefficients, :math:`K_{d}^{0}`, based on changes to the smectite/illite composition. In this sub-block, one list entry consists of the element :math:`e` <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
    
-   DEFAULT - :math:`C_{1}`
+   DEFAULT/LINEAR - :math:`C_{1}`
    
-     :math:`K_{d,e}^{i+1} = K_{d,e}^{0}(1 + F^{i+1}\cdot C_{1,e})`
+     :math:`K_{d,e}^{i+1} = K_{d,e}^{0}\left(1 + C_{1,e}\cdot F^{i+1}\right)`
+   
+   QUADRATIC - :math:`C_{1}, C_{2}`
+   
+     :math:`K_{d,e}^{i+1} = K_{d,e}^{0}\left[1 + C_{1,e}\cdot F^{i+1} + C_{2,e}\cdot (F^{i+1})^{2}\right]`
+   
+   POWER - :math:`C_{1}, C_{2}`
+   
+     :math:`K_{d,e}^{i+1} = K_{d,e}^{0}\left[1 + C_{1,e}\cdot(F^{i+1})^{C_{2,e}}\right]`
+   
+   EXPONENTIAL - :math:`C_{1}`
+   
+     :math:`K_{d,e}^{i+1} = K_{d,e}^{0}\exp{\left[C_{1,e}\cdot F^{i+1}\right]}`
 
 EA <float>
   The activation energy in the temperature-dependent Arrhenius term, :math:`E_{a}` [J/mol].
@@ -177,7 +201,9 @@ Material with transform named "mtf_bentonite" containing illitization model
         SMECTITE_INITIAL      0.95000d+0
         SHIFT_PERM   DEFAULT  9.90000d+2
         SHIFT_KD
-          Cs  DEFAULT  -5.32470d-1 # Cs must be listed in UFD Decay
+          Cs  LINEAR      -5.32470d-1             # Cs must be listed in UFD Decay
+          Sr  QUADRATIC   -2.59980d-1 -2.63453d-1 # Sr must be listed in UFD Decay
+          Tc  EXPONENTIAL -7.53200d-1             # Tc must be listed in UFD Decay
         /
       END
       TEST
