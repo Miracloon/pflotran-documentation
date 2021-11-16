@@ -204,7 +204,7 @@ Material with transform named "mtf_bentonite" containing illitization model
           Sr  QUADRATIC   -2.50000d-1 -2.50000d-1 # Sr must be listed in UFD Decay
           Tc  EXPONENTIAL -6.94000d-1             # Tc must be listed in UFD Decay
           Cs  LINEAR      -5.00000d-1             # Cs must be listed in UFD Decay
-          Np  POWER       -5.00000d-1 -5.00000d-1 # Np must be listed in UFD Decay
+          Np  POWER       -5.00000d-1  5.00000d-1 # Np must be listed in UFD Decay
         /
       END
       TEST
