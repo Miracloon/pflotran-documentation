@@ -100,7 +100,7 @@ SHIFT_PERM <string> <float> (optional)
    
    DEFAULT/LINEAR - :math:`C_{k,1}`
 
-     :math:`C_{k,1}` (default of 1.0) is the factor applied to the relative change in the illite fraction :math:`(F)` that is used to isotropically modify the original permeability. The change in a given permeability component :math:`k_{j}^{i+1}` at time step :math:`i+1` as a result of illitization is computed as:
+     :math:`C_{k,1}` is the factor applied to the relative change in the illite fraction :math:`(F)` that is used to isotropically modify the original permeability. The change in a given permeability component :math:`k_{j}^{i+1}` at time step :math:`i+1` as a result of illitization is computed as:
 
      :math:`k_{j}^{i+1}=k_{j}^{0}\left(1+C_{k,1}\cdot F^{i+1} \right)`
 
