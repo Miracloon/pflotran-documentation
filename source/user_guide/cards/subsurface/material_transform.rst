@@ -201,9 +201,10 @@ Material with transform named "mtf_bentonite" containing illitization model
         SMECTITE_INITIAL      0.95000d+0
         SHIFT_PERM   DEFAULT  9.90000d+2
         SHIFT_KD
-          Cs  LINEAR      -5.32470d-1             # Cs must be listed in UFD Decay
-          Sr  QUADRATIC   -2.59980d-1 -2.63453d-1 # Sr must be listed in UFD Decay
-          Tc  EXPONENTIAL -7.53200d-1             # Tc must be listed in UFD Decay
+          Sr  QUADRATIC   -2.50000d-1 -2.50000d-1 # Sr must be listed in UFD Decay
+          Tc  EXPONENTIAL -6.94000d-1             # Tc must be listed in UFD Decay
+          Cs  LINEAR      -5.00000d-1             # Cs must be listed in UFD Decay
+          Np  POWER       -5.00000d-1 -5.00000d-1 # Np must be listed in UFD Decay
         /
       END
       TEST
