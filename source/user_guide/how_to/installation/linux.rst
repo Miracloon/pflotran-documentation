@@ -23,8 +23,8 @@ Installation Instructions
 2. Install a Fortran compiler (see bullets above), MPI, BLAS/LAPACK and 
    HDF5_ libraries (Note that petsc can be 
    configured to download and install these libraries automatically.  
-   E.g. --download-mpich=yes or --download-openmpi=yes, --download-hdf5=yes, 
-   --download-f-blas-lapack=yes)
+   E.g. -\\-download-mpich=yes or -\\-download-openmpi=yes, 
+   -\\-download-hdf5=yes, -\\-download-f-blas-lapack=yes)
 
 3. Install PETSc
 
@@ -34,7 +34,7 @@ Installation Instructions
 
         git clone https://gitlab.com/petsc/petsc petsc
         cd petsc
-        git checkout v3.13
+        git checkout release-3.13
 
     3.2. Configure PETSc (see `PETSc installation instructions`_).
 

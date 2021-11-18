@@ -19,7 +19,7 @@ Optional Cards:
 
 .. _PETSc: http://www.mcs.anl.gov/petsc/documentation/index.html
 
-.. include:: ../raw_txt/newton/newton.txt
+.. include:: ./newton.tmp
 
 Examples
 --------

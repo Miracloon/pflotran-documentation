@@ -4,7 +4,7 @@ Back to :ref:`chemistry-card`
 
 .. _chemistry-output-card:
 
-(CHEMISTRY) OUTPUT
+OUTPUT (CHEMISTRY)
 ==================
 Specifies output options for biogeochemical transport.
 
@@ -40,6 +40,9 @@ GASES
 
 MINERALS
  All minerals are printed.
+
+IMMOBILE
+ All immobile species are printed.
 
 PH
  pH is printed (if applicable--i.e. H+ exists).
