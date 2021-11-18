@@ -15,7 +15,7 @@ ILLITIZATION
 ============
 The illitization function allows for a time- and temperature-dependent change from smectite to illite to be evaluated during the simulation, which in turn can be used to impart a commensurate change in permeability and/or sorption.
 
-The ILLITIZATION sub-block is currently available for :ref:`general-card` and :ref:`th-card` modes.
+The ILLITIZATION sub-block is currently available for :ref:`general-card`, :ref:`th-card`, and :ref:`richards-card` modes. In RICHARDS mode, temperature-dependence in the model will be based on the REFERENCE_TEMPERATURE specified in the :ref:`SUBSURFACE <card-index-subsurface>` block.
 
 .. _mtf-ilt-required-blocks:
 
@@ -116,10 +116,10 @@ SHIFT_PERM <string> <float> (optional)
    
    EXPONENTIAL - :math:`C_{k,1}`
    
-      :math:`k_{j}^{i+1} = k_{j}^{0}\exp{\left[C_{k,1}\cdot F^{i+1}\right]}`
+      :math:`k_{j}^{i+1} = k_{j}^{0}\exp{\left(C_{k,1}\cdot F^{i+1}\right)}`
 
 SHIFT_KD (optional)
- For specified elements, factors are provided to modify original sorption distribution coefficients, :math:`K_{d}^{0}`, based on changes to the smectite/illite composition. In this sub-block, one list entry consists of the element :math:`e` <string>, which must be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
+ For specified elements, factors are provided to modify original sorption distribution coefficients, :math:`K_{d}^{0}`, based on changes to the smectite/illite composition. In this sub-block, one list entry consists of the element :math:`e` <string>, which *must* be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
    
    DEFAULT/LINEAR - :math:`C_{1}`
    
@@ -135,7 +135,7 @@ SHIFT_KD (optional)
    
    EXPONENTIAL - :math:`C_{1}`
    
-     :math:`K_{d,e}^{i+1} = K_{d,e}^{0}\exp{\left[C_{1,e}\cdot F^{i+1}\right]}`
+     :math:`K_{d,e}^{i+1} = K_{d,e}^{0}\exp{\left(C_{1,e}\cdot F^{i+1}\right)}`
 
 EA <float>
   The activation energy in the temperature-dependent Arrhenius term, :math:`E_{a}` [J/mol].
