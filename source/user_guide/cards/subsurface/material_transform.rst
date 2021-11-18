@@ -163,7 +163,8 @@ TEST
   (b) temperature :math:`(T)`,
   (c) time :math:`(t)`,
   (d) illite fraction :math:`(f_{I})`,
-  (e) :math:`\frac{df_{I}}{dT}`
+  (e) :math:`\frac{df_{I}}{dT}`,
+  (f) scale factor :math:`F`
 
 Examples
 ========
