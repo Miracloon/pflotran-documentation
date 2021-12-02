@@ -52,7 +52,6 @@ Examples
  ::
 
   REGION polyvol_xy
-    TYPE CELL_CENTERS_IN_VOLUME
     POLYGON
       XY
         1. 1. 0.

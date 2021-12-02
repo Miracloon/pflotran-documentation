@@ -143,6 +143,25 @@ Examples
     BLOCK 45 90 32 40 1 100
   /
 
+  REGION pond
+    POLYGON
+      TYPE BOUNDARY_FACES_IN_VOLUME
+      XY
+        1081.09 512.609 0.
+        1008.38 536.404 0.
+        957.98 554.706 0.
+        ...
+        860.4 401.267 0.
+        950.316 432.744 0.
+        1015.65 472.986 0.
+      /
+      XZ
+        0. 0. 1.
+        1126. 0. -22.
+      /
+    /
+  END
+
 All Grids (non-boundary)
 ++++++++++++++++++++++++
 ASCII *.txt* format 
