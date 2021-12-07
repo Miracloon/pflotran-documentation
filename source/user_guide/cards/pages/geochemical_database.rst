@@ -53,7 +53,7 @@ The fields are separated by spaces.
 
  - For each temperature:
 
-  -  gas logK 
+  -  logK 
 
  -  a0 
  -  Z 

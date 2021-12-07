@@ -117,6 +117,7 @@ Utility Cards
    /user_guide/cards/pages/*
    /user_guide/cards/simulation/subsurface_flow_modes/*
    /user_guide/cards/subsurface/grids/*
+   /user_guide/cards/subsurface/region/*
    /user_guide/cards/gdsa/*
    /user_guide/cards/wipp/*
 
