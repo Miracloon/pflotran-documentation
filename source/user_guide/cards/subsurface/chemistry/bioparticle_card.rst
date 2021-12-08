@@ -37,9 +37,6 @@ BIOPARTICLE
   Defines how to calculate the inactivation rate of particles while immobilized. 
   It can be a constant rate or derived from a temperature model.
 
-/
-
-
 Examples
 --------
 
