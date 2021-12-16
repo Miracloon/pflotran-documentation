@@ -278,36 +278,36 @@ PFLOTRAN Input File
     skip
     FLOW_CONDITION west
       TYPE
-        FLUX NEUMANN
+        LIQUID_FLUX NEUMANN
       /
-      FLUX 0.317098d-7 ! 1 m/y
-      #FLUX 1.5855d-9 ! 5 cm/y
-      #FLUX file 200w_recharge_1951-2000_daily.dat
+      LIQUID_FLUX 0.317098d-7 ! 1 m/y
+      #LIQUID_FLUX 1.5855d-9 ! 5 cm/y
+      #LIQUID_FLUX file 200w_recharge_1951-2000_daily.dat
     /
     noskip
 
     FLOW_CONDITION Initial
       TYPE
-        PRESSURE HYDROSTATIC
+        LIQUID_PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 0.d0
-      PRESSURE 101325.d0
+      LIQUID_PRESSURE 101325.d0
     /
 
     FLOW_CONDITION west
       TYPE
-        PRESSURE HYDROSTATIC
+        LIQUID_PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 0.d0
-      PRESSURE 101425.d0
+      LIQUID_PRESSURE 101425.d0
     END
 
     FLOW_CONDITION east
       TYPE
-        PRESSURE HYDROSTATIC
+        LIQUID_PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 0.d0
-      PRESSURE 101325.d0
+      LIQUID_PRESSURE 101325.d0
     END
 
     # == transport conditions =====================================================
@@ -1278,28 +1278,28 @@ PFLOTRAN input file ``sx115.in``:
     #=========================== flow conditions ==================================
     FLOW_CONDITION initial
       TYPE
-        PRESSURE HYDROSTATIC
+        LIQUID_PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 6.d0
-      PRESSURE 101325.d0
+      LIQUID_PRESSURE 101325.d0
     END
 
     FLOW_CONDITION infiltration
       TYPE
-        FLUX NEUMANN
+        LIQUID_FLUX NEUMANN
       /
-    # FLUX 2.53678e-8 ! 0.08 m/yr
-    # FLUX 2.53678e-9 ! 0.08 m/yr
-      FLUX 2.53678e-10 ! 8 mm/yr
-    # FLUX 0.d0
+    # LIQUID_FLUX 2.53678e-8 ! 0.08 m/yr
+    # LIQUID_FLUX 2.53678e-9 ! 0.08 m/yr
+      LIQUID_FLUX 2.53678e-10 ! 8 mm/yr
+    # LIQUID_FLUX 0.d0
     END
 
     FLOW_CONDITION water_table
       TYPE
-        PRESSURE HYDROSTATIC
+        LIQUID_PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 6.d0
-      PRESSURE 101325.d0
+      LIQUID_PRESSURE 101325.d0
       #PRESSURE 1.4e5 ! 200 meter piezometric head (200*997.32*9.81)
     END
 
