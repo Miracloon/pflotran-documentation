@@ -21,11 +21,8 @@ PFLOTRAN: Getting Started
    :hidden:
    
    /user_guide/how_to/installation/linux.rst
-   /user_guide/how_to/installation/mac.rst
-   /user_guide/how_to/installation/windows_cygwin.rst
    /user_guide/how_to/installation/windows_visual_studio.rst
    /user_guide/how_to/installation/windows_wsl.rst
-   /user_guide/how_to/installation/legacy_build.rst
    /user_guide/how_to/installation/machine_specific.rst
    /user_guide/how_to/installation/vm.rst
    /user_guide/how_to/installation/previous_petsc_releases.rst

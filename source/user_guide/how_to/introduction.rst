@@ -12,10 +12,9 @@ Scientific Computation) libraries for the parallelization framework
 
 PFLOTRAN has been developed from the ground up for parallel scalability
 and has been run on up to :math:`2^{18}` processor cores with problem
-sizes up to 2 billion degrees of freedom. Written in object oriented
-Fortran 90, the code requires the latest compilers compatible with
-Fortran 2003. At the time of this writing this requires, for example,
-gcc 4.7.x or Intel 13.x.x or later. As a requirement of running problems
+sizes up to 2 billion degrees of freedom. Written in object oriented,
+modern Fortran, the code requires the latest compilers compatible with
+Fortran 2003/2008.  As a requirement of running problems
 with a large number of degrees of freedom, PFLOTRAN allows reading input
 data that would be too large to fit into memory if allocated to a single
 processor core. The current limitation to the problem size PFLOTRAN can
@@ -26,9 +25,9 @@ problem size that can be currently run with PFLOTRAN. Hopefully this
 limitation will be remedied in the near future.
 
 Currently PFLOTRAN can handle a number of subsurface processes involving
-flow and transport in porous media including Richards equation,
-two-phase flow involving supercritical :math:`\mathrm{CO_2}`, and
-multicomponent reactive transport including aqueous complexing, sorption
+flow and transport in porous media including the Richards equation;
+aniosothermal, miscible, multiphsae flow; and
+multicomponent reactive transport with aqueous complexation, sorption
 and mineral precipitation and dissolution. Reactive transport equations
 are solved using a fully implicit Newton-Raphson algorithm. 
 In addition to single continuum
@@ -37,18 +36,15 @@ multiple interacting continuum method for modeling flow and transport in
 fractured media. This implementation is still under development.
 Finally, an elastic geomechanical model is implemented.
 
-A novel feature of the code is its ability to run multiple input files
-and multiple realizations simultaneously, for example with different
+A novel feature of the code is its ability to run multiple
+realizations simultaneously, for example with different
 permeability and porosity fields, on one or more processor cores per
 run. This can be extremely useful when conducting sensitivity analyses
 and quantifying model uncertainties. When running on machines with many
-cores this means that hundreds of simulations can be conducted in the
+processes this means that hundreds of simulations can be conducted in the
 amount of time needed for a single realization.
 
-Additional information can be found on the PFLOTRAN `wiki home
-page <https://bitbucket.org/pflotran/pflotran/wiki/Home>`__ which
-should be consulted for the most up-to-date information. Questions
-regarding installing PFLOTRAN on workstations, small clusters, and super
-computers, and bug reports, may be directed to:
+For questions regarding installing PFLOTRAN on workstations, small 
+clusters, and supercomputers, and bug reports, please constant:
 ``pflotran-users at googlegroups dot com``. For questions regarding
-running PFLOTRAN contact: ``pflotran-users at googlegroups dot com``.
+running PFLOTRAN, contact: ``pflotran-users at googlegroups dot com``.
