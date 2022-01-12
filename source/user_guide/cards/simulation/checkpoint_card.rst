@@ -12,11 +12,12 @@ Required Cards:
 CHECKPOINT
  Opens the CHECKPOINT block and turns on checkpointing with a default '-restart.*' file being generated at the end of a simulation. The TIMES and PERIODIC TIME/TIMESTEP cards below are necessary for checkpointing at specific times or timestep increments. The checkpoint card block must be located within the :ref:`simulation-card` block.
 
-TIMES <time_unit> <double> <double> . . . <double>
- Specifies the points in time when checkpoint file output is desired, where 
- <time_unit> indicates the units of the points in time, and <double> is each 
- point in time. 
- Any number of specific time points can be listed.
+Optional Cards:
+---------------
+
+FORMAT <string>
+ Indicates the checkpoint file format. Only <string> = BINARY or HDF5 supported.
+ If FORMAT is not specified, the default format is BINARY.
 
 PERIODIC TIME <double> <time_unit>
  Specifies a time interval for checkpoint file output, where <double> is the 
@@ -27,12 +28,11 @@ PERIODIC TIMESTEP <int>
  Outputs checkpoint files every <int> number of timesteps. 
  This option is identical to CHECKPOINT <int>.
 
-Optional Cards:
----------------
-
-FORMAT <string>
- Indicates the checkpoint file format. Only <string> = BINARY or HDF5 supported.
- If FORMAT is not specified, the default format is BINARY.
+TIMES <time_unit> <double> <double> . . . <double>
+ Specifies the points in time when checkpoint file output is desired, where 
+ <time_unit> indicates the units of the points in time, and <double> is each 
+ point in time. 
+ Any number of specific time points can be listed.
 
 TIME_UNITS <time_unit>
  By default, the time units for checkpoint files are consistent with the time units for all output. This card allows one to override the default time units so that checkpoint files are in a different unit of time.
