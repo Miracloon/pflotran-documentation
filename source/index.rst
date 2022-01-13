@@ -8,7 +8,7 @@ PFLOTRAN Documentation
 **********************
 .. image:: /_static/pflotran_logo.jpg
 
-The current version of PFLOTRAN is 4.0 and was released **January 06 2021**.
+**This is the development version of the documentation.**
 
 PFLOTRAN is an open source, state-of-the-art massively parallel subsurface flow 
 and reactive transport code. The code is developed under a GNU LGPL license 
@@ -25,6 +25,7 @@ Announcements
 .. toctree::
    :maxdepth: 1
 
+..
    announcements/v4_changes.rst
 
 Documentation
