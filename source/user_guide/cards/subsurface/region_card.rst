@@ -181,7 +181,7 @@ Boundary faces in ASCII *.txt* format
   1 1   ! WEST face
   2 4   ! SOUTH face
   ...
-  N 5   ! TOP face
+  N 6   ! TOP face
 
 UNSTRUCTURED Grid
 +++++++++++++++++

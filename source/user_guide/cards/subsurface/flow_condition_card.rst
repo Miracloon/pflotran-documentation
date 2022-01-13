@@ -26,17 +26,18 @@ TYPE
 TYPE specification in RICHARDS and TH flow modes
 ++++++++++++++++++++++++++++++++++++++++++++++++
  TYPE 
-  [PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, CONDUCTANCE, DIRICHLET_SEEPAGE,
-  DIRICHLET_CONDUCTANCE}, 
+  [LIQUID_PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, CONDUCTANCE, 
+  DIRICHLET_SEEPAGE, DIRICHLET_CONDUCTANCE}, 
   RATE {MASS_RATE, VOLUMETRIC_RATE, SCALED_MASS_RATE, SCALED_VOLUMETRIC_RATE}, 
-  FLUX {NEUMANN},
+  LIQUID_FLUX {NEUMANN},
   TEMPERATURE {DIRICHLET},
   ENERGY_RATE {ENERGY_RATE, SCALED_ENERGY_RATE},
   ENERGY_FLUX {NEUMANN}]
          
-  * PRESSURE DIRICHLET: specifies a fixed pressure across the entire condition.
+  * LIQUID_PRESSURE DIRICHLET: specifies a fixed pressure across the 
+    entire condition.
 
-  * PRESSURE HYDROSTATIC: specifies a hydrostatic condition where a 
+  * LIQUID_PRESSURE HYDROSTATIC: specifies a hydrostatic condition where a 
     hydrostatic pressure profile is assigned based on the defined 
     DATUM (and GRADIENT, if applicable) and the function rho*g*h where 
     rho is water density, g is gravity and h is the distance from the 
@@ -44,13 +45,13 @@ TYPE specification in RICHARDS and TH flow modes
     algorithm moves above or below the DATUM at which the assigned 
     pressure and temperature are defined.
 
-  * PRESSURE SEEPAGE: a seepage face condition is similar to a hydrostatic, 
+  * LIQUID_PRESSURE SEEPAGE: a seepage face condition is similar to a hydrostatic, 
     EXCEPT that flow may only come into the domain when the boundary face 
     pressure is above a user defined reference pressure. The flow out of the 
     domain is unmodified and is possible at all times. The default reference 
     pressure is atmospheric pressure (101325 Pa).
 
-  * PRESSURE CONDUCTANCE: the conductance type condition is designed to mimic a 
+  * LIQUID_PRESSURE CONDUCTANCE: the conductance type condition is designed to mimic a 
     lower permeability soil layer at the boundary of a domain (e.g. a mud layer 
     at the bottom of a river).  A conductance condition is similar to a seepage 
     face, EXCEPT that a conductance term (permeability/distance) is specified 
@@ -58,19 +59,19 @@ TYPE specification in RICHARDS and TH flow modes
     grid cell and its size (i.e. distance from cell center to boundary) no 
     longer matter. The conductance coefficient is a fit parameter.
 
-  * PRESSURE DIRICHLET_SEEPAGE: a dirichlet-seepage condition is 
+  * LIQUID_PRESSURE DIRICHLET_SEEPAGE: a dirichlet-seepage condition is 
     similar to seepage, except a specified dirichlet pressure is applied
     at the boundary instead of sampling pressure from a hydrostatic profile.
     Inflow only occurs when the specified pressure is higher than the
     reference pressure.
 
-  * PRESSURE DIRICHLET_CONDUCTANCE: a dirichlet-conductance condition is 
+  * LIQUID_PRESSURE DIRICHLET_CONDUCTANCE: a dirichlet-conductance condition is 
     similar to conductance, except a specified dirichlet pressure is applied
     at the boundary instead of sampling pressure from a hydrostatic profile.
     Inflow only occurs when the specified pressure is higher than the
     reference pressure.
 
-  * FLUX NEUMANN: specifies a Darcy flux. 
+  * LIQUID_FLUX NEUMANN: specifies a Darcy flux. 
 
   * RATE MASS_RATE: specifies a mass extraction/injection rate.
 
@@ -154,7 +155,7 @@ TYPE specification in GENERAL flow mode
       
  GENERAL mode flow conditions must include a TEMPERATURE and a 
  MOLE_FRACTION/RELATIVE_HUMIDITY or GAS_SATURATION/LIQUID_SATURATION 
- (but not both SATURATION and a MOLE_FRACTION/RELATIVE_HUMIDITY).
+ (but not both LIQUID_SATURATION and a MOLE_FRACTION/RELATIVE_HUMIDITY).
     
 TYPE specification in WIPP_FLOW flow mode
 +++++++++++++++++++++++++++++++++++++++++
@@ -259,8 +260,8 @@ Optional Cards:
 
 DATUM <float float float>
  Reference X,Y, Z coordinate for defining the flow condition.  
- E.g. If type is PRESSURE HYDROSTATIC, the datum coordinate is 
- where the PRESSURE value is set, and other pressures in the 
+ E.g. If type is LIQUID_PRESSURE HYDROSTATIC, the datum coordinate is 
+ where the LIQUID_PRESSURE value is set, and other pressures in the 
  hydrostatic condition are calculated in the vertical and horizontal 
  (if a GRADIENT is defined) based on that reference point.
 
@@ -276,7 +277,7 @@ GRADIENT
  **keywords: FILE <string>.  To do so, one must provide an external file** 
  **with a** :ref:`rank-three`.
 
- PRESSURE <float float float>
+ LIQUID_PRESSURE <float float float>
   When the Z value is zero (0.),
    Specifies the unitless head gradient in the x and y directions through
    the gradient plane <dh/dx, dh/dy> [m/m]
@@ -311,32 +312,32 @@ RICHARDS Mode Examples
 
   FLOW_CONDITION Initial
     TYPE
-      PRESSURE HYDROSTATIC
+      LIQUID_PRESSURE HYDROSTATIC
     /
     DATUM 0.d0 0.d0 105.016d0
     GRADIENT
-      PRESSURE -1.9542d-4 1.4240d-4 0.d0
+      LIQUID_PRESSURE -1.9542d-4 1.4240d-4 0.d0
     /
-    PRESSURE 101325.d0
+    LIQUID_PRESSURE 101325.d0
   /
 
   FLOW_CONDITION Piezometric_Surface
     TYPE
-      PRESSURE HYDROSTATIC
+      LIQUID_PRESSURE HYDROSTATIC
     /
     CYCLIC
     DATUM FILE ./A_datum_2008.txt
     GRADIENT
-      PRESSURE FILE ./A_gradient_2008.txt
+      LIQUID_PRESSURE FILE ./A_gradient_2008.txt
     /
-    PRESSURE 101325.d0
+    LIQUID_PRESSURE 101325.d0
   /
 
   FLOW_CONDITION Recharge
     TYPE
-      FLUX NEUMANN
+      LIQUID_FLUX NEUMANN
     /
-    FLUX 1.757d-9 ! [m/s]
+    LIQUID_FLUX 1.757d-9 ! [m/s]
   /
 
   FLOW_CONDITION injection
@@ -383,19 +384,19 @@ TH Mode Examples
 
   FLOW_CONDITION initial
     TYPE
-      PRESSURE DIRICHLET
+      LIQUID_PRESSURE DIRICHLET
       TEMPERATURE DIRICHLET
     /
-    PRESSURE 1.D5
+    LIQUID_PRESSURE 1.D5
     TEMPERATURE DATASET Temperature
   END
 
   FLOW_CONDITION recharge
     TYPE
-      FLUX NEUMANN
+      LIQUID_FLUX NEUMANN
       TEMPERATURE DIRICHLET
     /
-    FLUX 10 cm/y
+    LIQUID_FLUX 10 cm/y
     TEMPERATURE 25.D0
   END
 

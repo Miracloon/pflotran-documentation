@@ -101,10 +101,10 @@ Dataset use in FLOW_CONDITION
 
   FLOW_CONDITION river
     TYPE
-      PRESSURE HYDROSTATIC
+      LIQUID_PRESSURE HYDROSTATIC
     /
     DATUM DATASET y_river_boundary_head
-    PRESSURE 101325.d0
+    LIQUID_PRESSURE 101325.d0
   END
 
 Porosity dataset used in MATERIAL_PROPERTY that is consistent with :download:`cell_indexed_dataset.py <files/cell_indexed_dataset.py>`

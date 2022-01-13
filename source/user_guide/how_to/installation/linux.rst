@@ -5,7 +5,7 @@ Linux Installation Instructions
 
 Required software packages:
 ---------------------------
-* Fortran 2003 compiler: gfortran > 4.7.x, intel >= 14
+* Fortran 2003/2008 compiler: gfortran >= 7.x, intel >= 19
 * Git_ source control management tool
 * Message Passing Interface (MPI):  E.g.  `MPICH2 <http://www.mcs.anl.gov/research/projects/mpich2>`_, `Open MPI <http://www.open-mpi.org>`_, etc.
 * BLAS/LAPACK libraries 
@@ -34,7 +34,7 @@ Installation Instructions
 
         git clone https://gitlab.com/petsc/petsc petsc
         cd petsc
-        git checkout release-3.13
+        git checkout v3.16.2
 
     3.2. Configure PETSc (see `PETSc installation instructions`_).
 
@@ -46,19 +46,19 @@ Installation Instructions
 
     .. code-block :: bash
 
-        ./configure --download-mpich=yes --download-hdf5=yes --download-fblaslapack=yes
+        ./configure --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes
 
     or (to add unstructured grid capability)
 
     .. code-block :: bash
 
-        ./configure --download-mpich=yes --download-hdf5=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
+        ./configure --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
 
     or (**for most users**, compile an optimized executable with full capability)
 
     .. code-block :: bash
 
-        ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
+        ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
 
     Note: To support HDF5 zlib compression, add ``--download-hdf5-configure-arguments="--with-zlib=yes"`` to the command line.
 
@@ -104,13 +104,13 @@ Installation Instructions
  ::
 
   cd pflotran/src/pflotran
-  git checkout master
+  git checkout maint/v4.0
   make pflotran
 
 .. _Git: http://git-scm.com/
 .. _PETSc: https://gitlab.com/petsc/petsc
-.. _PETSc installation instructions: http://www.mcs.anl.gov/petsc/documentation/installation.html
-.. _PETSc environment variables: http://www.mcs.anl.gov/petsc/documentation/installation.html#vars
+.. _PETSc installation instructions: https://petsc.org/release/installPETSC_HAVE_PARMETIS
+.. _PETSc environment variables: https://petsc.org/release/install/multibuild/#environmental-variables-petsc-dir-and-petsc-arch
 .. _HDF5: http://www.hdfgroup.org/HDF5
 .. _Bitbucket: https://bitbucket.org/pflotran/pflotran/wiki/Home.
 

@@ -5,10 +5,10 @@ Visualization of the results produced by PFLOTRAN can be achieved using
 several different utilities including commercial and open source
 software. Plotting 2D or 3D output files can be done using the
 commercial package **Tecplot**, or the opensource packages
-`VisIt <https://wci.llnl.gov/codes/visit/>`__ and
-`ParaView <http://www.paraview.org/>`__. **Paraview** is similar to
-**VisIt**, and both are capable of remote visualization on parallel
-architectures.
+`ParaView <http://www.paraview.org/>`__ and
+`VisIt <https://wci.llnl.gov/codes/visit/>`__.
+Both **Paraview** and **VisIt** are capable of remote visualization 
+on parallel architectures.
 
 Several potentially useful hints on using these packages are provided
 below.

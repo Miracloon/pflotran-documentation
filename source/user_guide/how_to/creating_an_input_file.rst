@@ -64,7 +64,7 @@ The following shows an input file "skeleton:"
      TIMES y 10. 30. 45.
      FORMAT HDF5
    /
-   RESTART restart.chk 0.
+   RESTART restart.chk
  END      
   
  SUBSURFACE

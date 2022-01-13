@@ -96,16 +96,16 @@ This input file will run a vertical 1D column with variable saturated flow using
 | #=========================== flow conditions ==================================
 | :ref:`flow-condition-card` top
 |   TYPE
-|     FLUX NEUMANN
+|     LIQUID_FLUX NEUMANN
 |   /
-|   FLUX 3.171d-10  ! 1 cm/yr
+|   LIQUID_FLUX 3.171d-10  ! 1 cm/yr
 | END
 | 
 | :ref:`flow-condition-card` initial
 |   TYPE
-|     PRESSURE HYDROSTATIC
+|     LIQUID_PRESSURE HYDROSTATIC
 |   /
-|   PRESSURE 101325.d0
+|   LIQUID_PRESSURE 101325.d0
 | END
 | 
 | #=========================== condition couplers ===============================
