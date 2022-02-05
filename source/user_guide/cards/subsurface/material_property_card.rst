@@ -177,6 +177,11 @@ SPECIFIC_HEAT <float> or HEAT_CAPACITY <float>
 
  Specific heat capacity of material [J/(kg-K)]
  
+TENSORIAL_REL_PERM_EXPONENT <float> <float> <float>
+
+ Specifies the three exponents for tensorial relative permeability, one for
+ each principal direction.
+ 
 THERMAL_CHARACTERISTIC_CURVES <string>
 
   Name of thermal characteristic curve to be associated with material. This replaces THERMAL_CONDUCTIVITY_DRY and THERMAL_CONDUCTIVITY_WET.
