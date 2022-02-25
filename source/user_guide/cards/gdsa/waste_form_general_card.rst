@@ -752,7 +752,77 @@ CRITICALITY_MECH
   This sub-block defines the fractional (g/g) nuclide inventory during criticality, which is obtained from a time-dependent lookup table and overrides the implicit calculation with the Bateman equations. The number of data entries in this table must equal the number of species specified in the waste form process model.
   
   DATASET <file_string>
- 
+  
+    This option allows for the specification of simple lookup table specified by <file_string> where each row has the time of evaluation followed by mass fractions for each nuclide in the waste form listed in the order provided within SPECIES in MECHANISM. The table is linearly interpolated during the simulation and is assumed to correspond to the criticality conditions implied in the CRITICALITY_MECHANISM sub-block. The data table is preceded by the following keywords in the file:
+
+    TIME_UNITS <unit_string> (optional)
+
+      The units of time.
+
+    DATA_UNITS <unit_string> (optional)
+    
+      The units for the nuclide inventory.
+
+  EXPANDED_DATASET <file_string>
+
+    This option allows for the specification of an expanded inventory lookup table that can be interpolated in three dimensions for a given criticality start time (CRIT_START), criticality power output (HEAT_OF_CRITICALITY), and a given time during the simulation. These values are used to interpolate a data matrix where the start time and power are pivot variables for each dataset and the simulation time is the independent variable. The data file specified by <file_string> contains the following input segments:
+
+    MODE <string> (optional)
+
+      POLYNOMIAL (default)
+       The lookup table will be interpolated with Lagrange polynomials.
+
+      LINEAR
+        The lookup table will be interpolated using the trilinear method.
+
+    TOTAL_POINTS <integer> (optional)
+
+      The total number of inventory evaluation times in the REAL_TIME list. This keyword must be used if the time arrays for each dataset are of different lengths and cannot be described in full by NUM_REAL_TIMES.
+
+    NUM_START_TIMES <integer>
+
+      The number of criticality start times provided in the START_TIME list.
+
+    NUM_POWERS <integer>
+
+      The number of powers provided in the POWER list.
+
+    NUM_REAL_TIMES <integer>
+
+      The maximum length of an individual real time array provided in the REAL_TIME list. This can be used without TOTAL_POINTS if the time arrays for each dataset are the same length.
+
+    NUM_SPECIES <integer>
+
+      The number of INVENTORY blocks in the file. This must match the number of species listed in the waste form referencing this lookup table.
+
+    TIME_UNITS <unit_string> (optional)
+
+      The units of time for the values in START_TIME and REAL_TIME.
+
+    POWER_UNITS <unit_string> (optional)
+
+      The units of power for the values in POWERS.
+
+    DATA_UNITS <unit_string> (optional)
+
+      The units of inventory for the values in each INVENTORY block.
+
+    START_TIME <list double>
+
+      The start times of the criticality events relative to the beginning of the PFLOTRAN simulation. This is the first pivot variable used to construct the data matrix.
+
+    POWER <list double>
+
+      The power outputs of the criticality events. This is the second pivot variable used to construct the data matrix and does not have to be duplicated per START_TIME.
+
+    REAL_TIME <list double>
+
+      The arrays of evaluation times for the radionuclide inventory. The times must increase monotonically as a means of separating data sets if TOTAL_POINTS is specified. These values serve as the independent variables for the data matrix and have a multiplicity based on START_TIME and POWER.
+
+    INVENTORY <list double>
+
+      For each radionuclide in the waste form referencing this lookup table, an INVENTORY block provides the mass fractions per given value in the REAL_TIME list. The number of INVENTORY blocks must be the same as the number of nuclides in the waste form. 
+
  ::
  
    WASTE_FORM
