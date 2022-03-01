@@ -35,6 +35,8 @@ Required Cards:
 WASTE_FORM_GENERAL
  Opens the WASTE_FORM_GENERAL block. Must have a matching END_WASTE_FORM_GENERAL.
 
+.. _waste-form-general-mechanism:
+
 MECHANISM <type_string>
 
  The mechanism block specifies a waste form mechanism. The mechanism includes the details of the radionuclide
@@ -58,6 +60,8 @@ MECHANISM <type_string>
   ::
 
     NAME glass02
+
+.. _waste-form-general-mechanism-species:
 
  SPECIES sub-block (required for all mechanism types)
 
@@ -679,6 +683,8 @@ SPACER_DEGRADATION_MECHANISM
 
   Activation energy operating on the reciprocal of temperature within the Arrhenius term governing corrosion, :math:`Q` [J/mol]. 
 
+.. _waste-form-general-criticality-mechanism:
+
 CRITICALITY_MECH
  
  Including this card will define a criticality mechanism that can specified for a waste form containing fissile material.
@@ -686,6 +692,8 @@ CRITICALITY_MECH
  NAME <name_string>
   
   Specifies a unique name for the criticality mechanism.
+
+.. _waste-form-general-criticality-mechanism-start:
 
  CRIT_START <double> <unit_string>
 
@@ -702,6 +710,8 @@ CRITICALITY_MECH
  CRITICAL_WATER_DENSITY <double> <unit_string>
   
   This the liquid density below which the criticality event cannot be sustained. There is no heat emission from criticality until the waste form liquid density is at or above this level. This is meant to be used for canisters in saturated systems where moderator voiding is a key reactivity feedback mechanism, and it is not a permanent criticality termination mechanism.
+
+.. _waste-form-general-criticality-mechanism-heat:
  
  HEAT_OF_CRITICALITY
   
@@ -746,7 +756,9 @@ CRITICALITY_MECH
   This sub-block defines the heat source term from radioactive decay, which is obtained from a time-dependent lookup table. The types of decay heat treatment include TOTAL, ADDITIONAL, and CYCLIC. By default, when a criticality event is active, the criticality source term is assumed to account for decay heat and this data is ignored.
   
   DATASET <file_string>
-  
+
+.. _waste-form-general-criticality-mechanism-inventory:
+
  INVENTORY
   
   This sub-block defines the fractional (g/g) nuclide inventory during criticality, which is obtained from a time-dependent lookup table and overrides the implicit calculation with the Bateman equations. The number of data entries in this table must equal the number of species specified in the waste form process model.
@@ -763,9 +775,11 @@ CRITICALITY_MECH
     
       The units for the nuclide inventory.
 
+.. _waste-form-general-criticality-mechanism-inventory-expanded:
+
   EXPANDED_DATASET <file_string>
 
-    This option allows for the specification of an expanded inventory lookup table that can be interpolated in three dimensions for a given criticality start time (CRIT_START), criticality power output (HEAT_OF_CRITICALITY), and a given time during the simulation. These values are used to interpolate a data matrix where the start time and power are pivot variables for each dataset and the simulation time is the independent variable. The data file specified by <file_string> contains the following input segments:
+    This option allows for the specification of an expanded inventory lookup table that can be interpolated in three dimensions for a given criticality start time (:ref:`CRIT_START<waste-form-general-criticality-mechanism-start>`), criticality power output (:ref:`HEAT_OF_CRITICALITY<waste-form-general-criticality-mechanism-heat>`), and a given time during the simulation. These values are used to interpolate a data matrix where the start time and power are pivot variables and the simulation time is the independent variable. The data file specified by <file_string> contains the following input segments:
 
     MODE <string> (optional)
 
@@ -777,7 +791,7 @@ CRITICALITY_MECH
 
     TOTAL_POINTS <integer> (optional)
 
-      The total number of inventory evaluation times in the REAL_TIME list. This keyword must be used if the time arrays for each dataset are of different lengths and cannot be described in full by NUM_REAL_TIMES.
+      The total number of inventory evaluation times in the REAL_TIME list. This keyword must be used if the real time arrays for each dataset are of different lengths and cannot be described completely by NUM_REAL_TIMES.
 
     NUM_START_TIMES <integer>
 
@@ -789,11 +803,11 @@ CRITICALITY_MECH
 
     NUM_REAL_TIMES <integer>
 
-      The maximum length of an individual real time array provided in the REAL_TIME list. This can be used without TOTAL_POINTS if the time arrays for each dataset are the same length.
+      The maximum length of an individual real time array provided in the REAL_TIME list. This can be used without TOTAL_POINTS if the real time arrays for each dataset are the same length.
 
     NUM_SPECIES <integer>
 
-      The number of INVENTORY blocks in the file. This must match the number of species listed in the waste form referencing this lookup table.
+      The number of INVENTORY blocks in the file. This must match the number of :ref:`SPECIES<waste-form-general-mechanism-species>` listed in the :ref:`MECHANISM<waste-form-general-mechanism>` of the waste form using this lookup table.
 
     TIME_UNITS <unit_string> (optional)
 
@@ -813,15 +827,15 @@ CRITICALITY_MECH
 
     POWER <list double>
 
-      The power outputs of the criticality events. This is the second pivot variable used to construct the data matrix and does not have to be duplicated per START_TIME.
+      The power outputs of the criticality events. This is the second pivot variable used to construct the data matrix so the list is not duplicated per START_TIME. Per combination of START_TIME and POWER, there must be a dataset (i.e. no sparse data matrix).
 
     REAL_TIME <list double>
 
-      The arrays of evaluation times for the radionuclide inventory. The times must increase monotonically as a means of separating data sets if TOTAL_POINTS is specified. These values serve as the independent variables for the data matrix and have a multiplicity based on START_TIME and POWER.
+      The arrays of evaluation times for the radionuclide inventory. These values serve as the independent variables for the data matrix and the arrays have a multiplicity based on START_TIME and POWER. If TOTAL_POINTS is specified, the times must increase monotonically as a means of separating arrays.
 
     INVENTORY <list double>
 
-      For each radionuclide in the waste form referencing this lookup table, an INVENTORY block provides the mass fractions per given value in the REAL_TIME list. The number of INVENTORY blocks must be the same as the number of nuclides in the waste form. 
+      For each radionuclide in the waste form using this lookup table, an INVENTORY block provides the mass fractions per given value in the REAL_TIME list. The INVENTORY blocks must follow the order and total number of :ref:`SPECIES<waste-form-general-mechanism-species>` in the waste form :ref:`MECHANISM<waste-form-general-mechanism>`.
       
   OPTION (optional)
 
@@ -829,11 +843,11 @@ CRITICALITY_MECH
     
     USE_LOOKUP_AND_IMPLICIT (optional)
 
-      If EXPANDED_DATASET is being used, this option allows for the PFLOTRAN implicit solution to be used for extrapolation if the simulation time exceeds the maximum REAL_TIME detected in the relevant portion of the lookup table.
+      If :ref:`EXPANDED_DATASET<waste-form-general-criticality-mechanism-inventory-expanded>` is being used, this option allows for the PFLOTRAN implicit solution to be employed (i.e., radionuclide decay with no external sources) if the simulation time exceeds the maximum REAL_TIME in the relevant portion of the lookup table.
 
     USE_LOOKUP_AND_EXTRAPOLATION (optional)
 
-      If EXPANDED_DATASET is being used, this option allows for the interpolation subroutine to be used for extrapolation when the simulation time exceeds the maximum REAL_TIME detected in the relevant portion of the lookup table.
+      If :ref:`EXPANDED_DATASET<waste-form-general-criticality-mechanism-inventory-expanded>` is being used, this option allows for the interpolation subroutine to also be used for extrapolation when the simulation time exceeds the maximum REAL_TIME in the relevant portion of the lookup table.
 
  ::
  
@@ -907,8 +921,8 @@ The following example specifies several waste forms, each associated with one of
         MATRIX_DENSITY 2.44d3 kg/m^3
         SPECIES 
          #name,   MW[g/mol],dcy[1/s], initMF, inst_rel_frac,daughter
-          Pu-240  240.05d0  3.34d-12  2.84d-3  0.2d0 
-          U-236   236.05d0  9.20d-16  4.33d-3  0.0d0  Pu-240
+          Pu-240  240.05d0  3.34d-12  2.84d-3  0.2d0   U-236
+          U-236   236.05d0  9.20d-16  4.33d-3  0.0d0
           Tc-99   98.91d0   1.04d-13  8.87d-4  0.0d0
         /
         CANISTER_DEGRADATION_MODEL
