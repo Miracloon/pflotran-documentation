@@ -408,10 +408,10 @@ for form, not parameter values):
       SPECIES 
        #name,   MW[g/mol],dcy[1/s], initMF, inst_rel_frac,daughter
         I-129   128.90d0  1.29d-15  2.18d-4   0.2d0
-        Am-241  241.06d0  5.08d-11  8.70d-4   0.0d0         
-        Np-237  237.05d0  1.03d-14  8.59d-4   0.2d0  Am-241
-        U-233   233.04d0  1.38d-13  9.70d-9   0.0d0  Np-237   
-        Th-229  229.03d0  2.78d-12  4.43d-12  0.0d0  U-233
+        Am-241  241.06d0  5.08d-11  8.70d-4   0.0d0  Np-237       
+        Np-237  237.05d0  1.03d-14  8.59d-4   0.2d0  U-233
+        U-233   233.04d0  1.38d-13  9.70d-9   0.0d0  Th-229
+        Th-229  229.03d0  2.78d-12  4.43d-12  0.0d0
       /
       CANISTER_DEGRADATION_MODEL
         VITALITY_LOG10_MEAN -3.5
@@ -478,8 +478,8 @@ for form, not parameter values):
       MATRIX_DENSITY 2.44d3 kg/m^3
       SPECIES 
        #name,   MW[g/mol],dcy[1/s], initMF, inst_rel_frac,daughter
-        Pu-240  240.05d0  3.34d-12  2.84d-3  0.2d0 
-        U-236   236.05d0  9.20d-16  4.33d-3  0.0d0  Pu-240
+        Pu-240  240.05d0  3.34d-12  2.84d-3  0.2d0  U-236 
+        U-236   236.05d0  9.20d-16  4.33d-3  0.0d0
         Tc-99   98.91d0   1.04d-13  8.87d-4  0.0d0
       /
       CANISTER_DEGRADATION_MODEL
@@ -494,8 +494,8 @@ for form, not parameter values):
       MATRIX_DENSITY 2.44d3 kg/m^3
       SPECIES 
        #name,   MW[g/mol],dcy[1/s], initMF, inst_rel_frac,daughter
-        Pu-240  240.05d0  3.34d-12  2.84d-3  0.2d0 
-        U-236   236.05d0  9.20d-16  4.33d-3  0.0d0  Pu-240
+        Pu-240  240.05d0  3.34d-12  2.84d-3  0.2d0  U-236
+        U-236   236.05d0  9.20d-16  4.33d-3  0.0d0
         Tc-99   98.91d0   1.04d-13  8.87d-4  0.0d0
       /
       CANISTER_DEGRADATION_MODEL
