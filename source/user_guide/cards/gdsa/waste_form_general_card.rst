@@ -822,6 +822,18 @@ CRITICALITY_MECH
     INVENTORY <list double>
 
       For each radionuclide in the waste form referencing this lookup table, an INVENTORY block provides the mass fractions per given value in the REAL_TIME list. The number of INVENTORY blocks must be the same as the number of nuclides in the waste form. 
+      
+  OPTION (optional)
+
+    This sub-block allows for the specification of options for the INVENTORY block.
+    
+    USE_LOOKUP_AND_IMPLICIT (optional)
+
+      If EXPANDED_DATASET is being used, this option allows for the PFLOTRAN implicit solution to be used for extrapolation if the simulation time exceeds the maximum REAL_TIME detected in the relevant portion of the lookup table.
+
+    USE_LOOKUP_AND_EXTRAPOLATION (optional)
+
+      If EXPANDED_DATASET is being used, this option allows for the interpolation subroutine to be used for extrapolation when the simulation time exceeds the maximum REAL_TIME detected in the relevant portion of the lookup table.
 
  ::
  
