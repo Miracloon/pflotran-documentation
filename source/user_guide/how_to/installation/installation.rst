@@ -16,15 +16,9 @@ prone to error.
 
 * :ref:`linux-install`
 
-* :ref:`mac-install`
-
 * :ref:`windows-subsystem-for-linux-install`
 
-* :ref:`windows-cygwin-gnu-install`
-
 * :ref:`windows-visual-studio-install`
-
-* :ref:`legacy-build-install`
 
 * :ref:`previous-petsc-releases`
 

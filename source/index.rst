@@ -26,7 +26,7 @@ Announcements
    :maxdepth: 1
 
 ..
-   announcements/numerical_methods_refactor.rst
+   announcements/v4_changes.rst
 
 Documentation
 =============

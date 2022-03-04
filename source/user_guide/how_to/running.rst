@@ -30,16 +30,38 @@ STEP 0:
     /usr/bin/python regression_tests.py -e ../src/pflotran/pflotran  --mpiexec /home/jmfrede/software/petsc/gnu-c-debug/bin/mpiexec \
 		  --suite standard standard_parallel \
 		  --config-files ascem/1d/1d-calcite/1d-calcite.cfg
-      Test log file : pflotran-tests-2016-10-13_09-34-26.testlog
+
+    Test log file : pflotran-tests-2021-12-21_10-32-33.testlog
+
     Running pflotran regression tests :
+
+      Legend
+
+        . - success
+        F - failed regression test (results are outside error tolerances)
+        M - failed regression test (results are FAR outside error tolerances)
+        G - general error
+        U - user error
+        V - simulator failure (e.g. failure to converge)
+        X - simulator crash
+        T - time out error
+        C - configuration file [.cfg] error
+        I - missing information (e.g. missing files)
+        B - pre-processing error (e.g. error in simulation setup scripts
+        A - post-processing error (e.g. error in solution comparison)
+        S - test skipped
+        W - warning
+        ? - unknown
+
     ..
-    ----------------------------------------------------------------------
+
+    --------------------------------------------------------------------------------
     Regression test summary:
-	Total run time: 3.81521 [s]
-	Total tests : 2
-	Tests run : 2
-	All tests passed.
-	
+        Total run time: 1.81472 [s]
+        Total tests : 2
+        Tests run : 2
+        All tests passed.
+
   If you do not see this, go back and try installing PFLOTRAN again: 
   :ref:`installation`.
 
@@ -145,7 +167,6 @@ STEP 4:
     FLOW TS BE SNES time = 0.1 seconds
 
     Wall Clock Time:  1.2695E-01 [sec]   2.1158E-03 [min]   3.5263E-05 [hr]
-    [2]+  Done                    emacs vgb.in
 
   
   If you made a mistake in your input file, then you will see an error message
@@ -154,33 +175,34 @@ STEP 4:
   
   ::
   
-    ------------------------------ Provenance --------------------------------------
-    pflotran_compile_date_time = unknown
-    pflotran_compile_user = unknown
-    pflotran_compile_hostname = unknown
-    pflotran_changeset = unknown
-    pflotran_status = unknown
-    petsc_changeset = unknown
-    petsc_status = unknown
-    --------------------------------------------------------------------------------
-    "grid_structured_type" set to default value.
-    pflotran card:: GRID
-    pflotran card:: REGION
-    left_face
-    pflotran card:: REGION
-    right_face
-    pflotran card:: MATERIAL_PROPERTY
-    pflotran card:: CHARACTERISTIC_CURVES
+   =================
+     PFLOTRAN v4.0
+   =================
 
-    ERROR: A liquid-phase relative permeability function is being requested for the gas phase under CHARACTERISTIC_CURVES,PERMEABILITY_FUNCTION,MUALEM_VG_LIQ.
+    "grid_structured_type" set to default value.
+    pflotran card:: NUMERICAL_METHODS
+    pflotran card:: REGRESSION
+    pflotran card:: GRID
+    pflotran card:: MATERIAL_PROPERTY
+      Name :: soil1
+ 
+    ------------------------------------------------------------------------------
+
+     Helpful information for debugging the input deck:
+
+         Filename : pflotran.in
+      Line Number : 43
+          Keyword : SUBSURFACE,MATERIAL_PROPERTY,POROSITY
+ 
+    ------------------------------------------------------------------------------
+
+    ERROR: While reading "porosity" under keyword: MATERIAL_PROPERTY.
 
     Stopping!
-    WARNING! There are options you set that were not used!
-    WARNING! could be spelling mistake, etc!
-    Option left: name:-input_prefix value: vgb
-    
-  In this example, the error indicates that something is wrong with how the
-  relative permeability functions were defined in the input file ``vgb.in``.
+
+  In this example, the error message indicates that something is wrong with
+  how the porosity was defined in the material property named ``soil1`` 
+  at line 43 of input file ``pflotran.in``.
 
 STEP 5:
   
@@ -198,7 +220,7 @@ STEP 5:
   A ``.out`` file will always be generated. Additional output files (like the
   ``.tec`` files in this example) will be generated according to what has been
   specified in the input file, under :ref:`output-card`. 
-  By default, these output files will start with the same name as the input 
+  By default, these output files will start with the same prefix as the input 
   file was given.
   
    

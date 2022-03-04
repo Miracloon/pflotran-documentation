@@ -53,7 +53,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'PFLOTRAN Documentation'
-copyright = u'2021, PFLOTRAN'
+copyright = u'2022, PFLOTRAN'
 author = u'Glenn E Hammond'
 
 # The version info for the project you're documenting, acts as replacement for
