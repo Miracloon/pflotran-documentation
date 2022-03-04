@@ -2,11 +2,34 @@ Back to :ref:`card-index`
 
 .. _material-transform-card:
 
-MATERIAL_TRANSFORM
-##################
-This option specifies a material transform model associated with a :ref:`material-property-card`.
+MATERIAL_TRANSFORM_GENERAL
+##########################
+The Material Transform Process Model is documented here.
 
-Supported MATERIAL_TRANSFORMs include the following:
+This option specifies the material transform process model, which is a child of flow and a peer of transport. Under the :ref:`simulation-card` block, the process model is included by adding 
+the MATERIAL_TRANSFORM block:
+
+ ::
+
+   SIMULATION
+     SIMULATION_TYPE SUBSURFACE
+     PROCESS_MODELS
+       SUBSURFACE_FLOW flow
+         MODE GENERAL
+       /
+       SUBSURFACE_TRANSPORT transport
+         MODE GIRT
+       /
+       MATERIAL_TRANSFORM <name_string>
+       /
+     /
+   END
+
+where <name_string> is a user-defined name for the process model. There are currently no additional options for this block. Functionality is currently available for problems utilizing flow modes such as :ref:`general-card`, :ref:`th-card`, and :ref:`richards-card`.
+
+The details of the process model are included in the MATERIAL_TRANSFORM_GENERAL block, which lists several MATERIAL_TRANSFORM objects that can be associated with a :ref:`material-property-card`.
+
+Supported models that can be included in a MATERIAL_TRANSFORM object include the following:
   * :ref:`mtf-ilt`
 
 .. _mtf-ilt:
@@ -14,8 +37,6 @@ Supported MATERIAL_TRANSFORMs include the following:
 ILLITIZATION
 ============
 The illitization function allows for a time- and temperature-dependent change from smectite to illite to be evaluated during the simulation, which in turn can be used to impart a commensurate change in permeability and/or sorption.
-
-The ILLITIZATION sub-block is currently available for :ref:`general-card`, :ref:`th-card`, and :ref:`richards-card` modes. In RICHARDS mode, temperature-dependence in the model will be based on the REFERENCE_TEMPERATURE specified in the :ref:`SUBSURFACE <card-index-subsurface>` block.
 
 .. _mtf-ilt-required-blocks:
 
@@ -192,25 +213,32 @@ Material with transform named "mtf_bentonite" containing illitization model
      /
    /
 
-  MATERIAL_TRANSFORM mtf_bentonite
-    ILLITIZATION
-      ILLITIZATION_FUNCTION DEFAULT
-        THRESHOLD_TEMPERATURE 2.50000d+1 C
-        EA                    1.17152d+5 J/mol
-        FREQ                  8.08000d+4 L/mol-s
-        K_CONC                2.16000d-3 M
-        SMECTITE_INITIAL      0.95000d+0
-        SHIFT_PERM   DEFAULT  9.90000d+2
-        SHIFT_KD
-          Sr  QUADRATIC   -2.50000d-1 -2.50000d-1 # Sr must be listed in UFD Decay
-          Tc  EXPONENTIAL -6.94000d-1             # Tc must be listed in UFD Decay
-          Cs  LINEAR      -5.00000d-1             # Cs must be listed in UFD Decay
-          Np  POWER       -5.00000d-1  5.00000d-1 # Np must be listed in UFD Decay
-        /
+  ...
+
+  #=========================== pm material transform ============================
+  MATERIAL_TRANSFORM_GENERAL
+
+    MATERIAL_TRANSFORM mtf_bentonite
+      ILLITIZATION
+        ILLITIZATION_FUNCTION DEFAULT
+          THRESHOLD_TEMPERATURE 2.50000d+1 C
+          EA                    1.17152d+5 J/mol
+          FREQ                  8.08000d+4 L/mol-s
+          K_CONC                2.16000d-3 M
+          SMECTITE_INITIAL      0.95000d+0
+          SHIFT_PERM   DEFAULT  9.90000d+2
+          SHIFT_KD
+            Sr  QUADRATIC   -2.50000d-1 -2.50000d-1 # Sr must be listed in UFD Decay
+            Tc  EXPONENTIAL -6.94000d-1             # Tc must be listed in UFD Decay
+            Cs  LINEAR      -5.00000d-1             # Cs must be listed in UFD Decay
+            Np  POWER       -5.00000d-1  5.00000d-1 # Np must be listed in UFD Decay
+          /
+        END
+        TEST
       END
-      TEST
     END
-  END
+
+  END # MATERIAL_TRANSFORM_GENERAL
 
 
 .. _mtf-ilt-references:
