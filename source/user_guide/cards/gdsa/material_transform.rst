@@ -6,8 +6,7 @@ MATERIAL_TRANSFORM_GENERAL
 ##########################
 The Material Transform Process Model is documented here.
 
-This option specifies the material transform process model, which is a child of flow and a peer of transport. Under the :ref:`simulation-card` block, the process model is included by adding 
-the MATERIAL_TRANSFORM block:
+This option specifies the material transform process model, which is a child of flow and a peer of transport. Under the :ref:`simulation-card` block, the process model is included by adding the MATERIAL_TRANSFORM block:
 
  ::
 
@@ -25,7 +24,7 @@ the MATERIAL_TRANSFORM block:
      /
    END
 
-where <name_string> is a user-defined name for the process model. There are currently no additional options for this block. Functionality is currently available for problems utilizing flow modes such as :ref:`general-card`, :ref:`th-card`, and :ref:`richards-card`.
+where <name_string> is a user-defined name for the process model. There are currently no additional options for this block. Functionality is currently available for problems utilizing flow modes (such as :ref:`general-card`, :ref:`th-card`, and :ref:`richards-card`) and/or reactive transport with :ref:`ufd-decay-card`.
 
 The details of the process model are included in the MATERIAL_TRANSFORM_GENERAL block, which lists several MATERIAL_TRANSFORM objects that can be associated with a :ref:`material-property-card`.
 
@@ -117,7 +116,7 @@ THRESHOLD_TEMPERATURE <float>
  The temperature in Celsius at and above which the illitization process occurs, :math:`T_{th}` (default of 0°C).
 
 SHIFT_PERM <string> <float> (optional)
- Factors are provided to modify the original permeability tensor :math:`k_{j}^{0}` based on changes to the smectite/illite composition. This entry consists of the function type <string> and the functional parameters :math:`C_{k}` <float> (see below).
+ Factors are provided to modify the original permeability tensor :math:`k_{j}^{0}` based on changes to the smectite/illite composition. This entry consists of the function type <string> and the functional parameters :math:`C_{k}` <float> (see below). Simulations utilizing this feature must have an active flow mode.
    
    DEFAULT/LINEAR - :math:`C_{k,1}`
 
@@ -140,7 +139,7 @@ SHIFT_PERM <string> <float> (optional)
       :math:`k_{j}^{i+1} = k_{j}^{0}\exp{\left(C_{k,1}\cdot F^{i+1}\right)}`
 
 SHIFT_KD (optional)
- For specified elements, factors are provided to modify original sorption distribution coefficients, :math:`K_{d}^{0}`, based on changes to the smectite/illite composition. In this sub-block, one list entry consists of the element :math:`e` <string>, which *must* be present in the :ref:`ufd-decay-card` process model, the function type <string>, and the functional parameters :math:`C` <float> (see below).
+ For specified elements, factors are provided to modify original sorption distribution coefficients, :math:`K_{d}^{0}`, based on changes to the smectite/illite composition. In this sub-block, one list entry consists of the element :math:`e` <string>, the function type <string>, and the functional parameters :math:`C` <float> (see below). Simulations utilizing this feature must have an active transport mode and elements listed *must* be present in the :ref:`ufd-decay-card` process model.
    
    DEFAULT/LINEAR - :math:`C_{1}`
    
@@ -196,6 +195,10 @@ Material with transform named "mtf_bentonite" containing illitization model
 ***************************************************************************
  ::
 
+   #================================= subsurface ================================
+
+   ...
+
    MATERIAL_PROPERTY buffer
      ID 1
      POROSITY 3.5d-1
@@ -203,8 +206,8 @@ Material with transform named "mtf_bentonite" containing illitization model
      SOIL_COMPRESSIBILITY 1.6d-8
      SOIL_COMPRESSIBILITY_FUNCTION LEIJNSE
      SOIL_REFERENCE_PRESSURE 1.01325d+5
-     ROCK_DENSITY 2.700d+3
-     HEAT_CAPACITY 8.30d+2
+     ROCK_DENSITY  2.7d+3
+     HEAT_CAPACITY 8.3d+2
      CHARACTERISTIC_CURVES cc_bentonite
      THERMAL_CHARACTERISTIC_CURVES cct_bentonite
      MATERIAL_TRANSFORM mtf_bentonite
@@ -216,6 +219,7 @@ Material with transform named "mtf_bentonite" containing illitization model
   ...
 
   #=========================== pm material transform ============================
+
   MATERIAL_TRANSFORM_GENERAL
 
     MATERIAL_TRANSFORM mtf_bentonite
