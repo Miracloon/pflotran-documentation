@@ -793,21 +793,21 @@ CRITICALITY_MECH
 
       The total number of inventory evaluation times in the REAL_TIME list. This keyword must be used if the real time arrays for each dataset are of different lengths and cannot be described completely by NUM_REAL_TIMES.
 
-    NUM_START_TIMES <integer>
+    NUM_START_TIMES <integer> (optional)
 
-      The number of criticality start times provided in the START_TIME list.
+      The number of criticality start times expected in the START_TIME list.
 
-    NUM_POWERS <integer>
+    NUM_POWERS <integer> (optional)
 
-      The number of powers provided in the POWER list.
+      The number of powers expected in the POWER list.
 
     NUM_REAL_TIMES <integer>
 
       The maximum length of an individual real time array provided in the REAL_TIME list. This can be used without TOTAL_POINTS if the real time arrays for each dataset are the same length.
 
-    NUM_SPECIES <integer>
+    NUM_SPECIES <integer> (optional)
 
-      The number of INVENTORY blocks in the file. This must match the number of :ref:`SPECIES<waste-form-general-mechanism-species>` listed in the :ref:`MECHANISM<waste-form-general-mechanism>` of the waste form using this lookup table.
+      The number of INVENTORY blocks expected in the file. This must match the number of :ref:`SPECIES<waste-form-general-mechanism-species>` listed in the :ref:`MECHANISM<waste-form-general-mechanism>` of the waste form using this lookup table.
 
     TIME_UNITS <unit_string> (optional)
 
