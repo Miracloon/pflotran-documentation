@@ -789,37 +789,37 @@ CRITICALITY_MECH
       LINEAR
         The lookup table will be interpolated using the trilinear method.
 
-    TOTAL_POINTS <integer> (optional)
-
-      The total number of inventory evaluation times in the REAL_TIME list. This keyword must be used if the real time arrays for each dataset are of different lengths and cannot be described completely by NUM_REAL_TIMES.
-
     NUM_START_TIMES <integer> (optional)
 
-      The number of criticality start times expected in the START_TIME list.
+      Checks the number of criticality start times expected in the START_TIME list.
 
     NUM_POWERS <integer> (optional)
 
-      The number of powers expected in the POWER list.
+      Checks the number of powers expected in the POWER list.
 
-    NUM_REAL_TIMES <integer>
+    TOTAL_POINTS <integer> (optional)
 
-      The maximum length of an individual real time array provided in the REAL_TIME list. This can be used without TOTAL_POINTS if the real time arrays for each dataset are the same length.
+      Checks the total number of inventory evaluation times expected in the REAL_TIME list. This keyword can be used if the real time arrays for each dataset are of different lengths and cannot be described completely by NUM_REAL_TIMES.
+
+    NUM_REAL_TIMES <integer> (optional)
+
+      Checks the maximum length of an individual real time array expected in the REAL_TIME list. This keyword can be used without TOTAL_POINTS if the real time arrays for each dataset are the same length.
 
     NUM_SPECIES <integer> (optional)
 
-      The number of INVENTORY blocks expected in the file. This must match the number of :ref:`SPECIES<waste-form-general-mechanism-species>` listed in the :ref:`MECHANISM<waste-form-general-mechanism>` of the waste form using this lookup table.
+      Checks the number of INVENTORY blocks expected in the file. This should match the number of :ref:`SPECIES<waste-form-general-mechanism-species>` listed in the :ref:`MECHANISM<waste-form-general-mechanism>` of the waste form using this lookup table.
 
     TIME_UNITS <unit_string> (optional)
 
-      The units of time for the values in START_TIME and REAL_TIME.
+      The units of time for the values in START_TIME and REAL_TIME (used for conversion to internal units).
 
     POWER_UNITS <unit_string> (optional)
 
-      The units of power for the values in POWERS.
+      The units of power for the values in POWERS (used for conversion to internal units).
 
     DATA_UNITS <unit_string> (optional)
 
-      The units of inventory for the values in each INVENTORY block.
+      The units of inventory for the values in each INVENTORY block (used for conversion to internal units).
 
     START_TIME <list double>
 
