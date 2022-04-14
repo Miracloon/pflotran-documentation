@@ -699,6 +699,8 @@ CRITICALITY_MECH
 
   The start time of the criticality event.
 
+.. _waste-form-general-criticality-mechanism-end:
+
  CRIT_END <double> <unit_string>
 
   The end time of the criticality event.
@@ -848,6 +850,10 @@ CRITICALITY_MECH
     USE_LOOKUP_AND_EXTRAPOLATION (optional)
 
       If :ref:`EXPANDED_DATASET<waste-form-general-criticality-mechanism-inventory-expanded>` is being used, this option allows for the interpolation subroutine to also be used for extrapolation when the simulation time exceeds the maximum REAL_TIME in the relevant portion of the lookup table.
+
+    USE_LOOKUP_AFTER_CRITICALITY (optional)
+
+      If :ref:`EXPANDED_DATASET<waste-form-general-criticality-mechanism-inventory-expanded>` is being used, this option allows for the lookup table to continue defining radionuclide inventories after the criticality event has ended (see :ref:`CRIT_END<waste-form-general-criticality-mechanism-end>`). Otherwise, the implicit solution (decay-only) is employed when time exceeds CRIT_END.
 
  ::
  
