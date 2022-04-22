@@ -741,17 +741,17 @@ CRITICALITY_MECH
     
       The units of power provided for the POWER values (see below).
     
-    START_TIME <list double>
+    START_TIME
     
-      The start times of the criticality events relative to the beginning of the PFLOTRAN simulation. This affects the power output as the quantity of fissile nuclides, precursors, and neutron absorbers forming the source term for sustained chain reactions are affected by the decay period.
+      The start times of the criticality events relative to the beginning of the PFLOTRAN simulation, which are provided after the keyword as a list of reals. This affects the power output as the quantity of fissile nuclides, precursors, and neutron absorbers forming the source term for sustained chain reactions are affected by the decay period.
     
-    TEMPERATURE <list double>
+    TEMPERATURE
     
-      The average waste form temperatures determining power output for a given start time. The temperature affects the power output via reactivity feedback from Doppler broadening, thermal expansion, and moderator voiding. Such phenomena are factored into the original neutronics calculations forming the basis of this surrogate model.
+      The average waste form temperatures determining power output for a given start time, which are provided after the keyword as a list of reals. The temperature affects the power output via reactivity feedback from Doppler broadening, thermal expansion, and moderator voiding. Such phenomena are factored into the original neutronics calculations forming the basis of this surrogate model.
     
-    POWER <list double>
+    POWER
     
-      The waste form power output from the criticality event per given average temperature and start time.
+      The waste form power outputs from the criticality event per given average temperature and start time, which are provided after the keyword as a list of reals.
   
  DECAY_HEAT <type_string>
   
@@ -781,7 +781,7 @@ CRITICALITY_MECH
 
   EXPANDED_DATASET <file_string>
 
-    This option allows for the specification of an expanded inventory lookup table that can be interpolated in three dimensions for a given criticality start time (:ref:`CRIT_START<waste-form-general-criticality-mechanism-start>`), criticality power output (:ref:`HEAT_OF_CRITICALITY<waste-form-general-criticality-mechanism-heat>`), and a given time during the simulation. These values are used to interpolate a data matrix where the start time and power are pivot variables and the simulation time is the independent variable. The data file specified by <file_string> contains the following input segments:
+    This option allows for the specification of an expanded inventory lookup table that can be interpolated in three dimensions for a given criticality start time (:ref:`CRIT_START<waste-form-general-criticality-mechanism-start>`), criticality power output (:ref:`HEAT_OF_CRITICALITY<waste-form-general-criticality-mechanism-heat>`), and a given time during the simulation. These values are used to interpolate a data matrix where the start time and power are pivot variables and the simulation time is the independent variable. Please refer to the example data tables provided for the regression test "glass_criticality_inventory.in" for guidance on formatting. The data file specified by <file_string> contains the following input segments:
 
     MODE <string> (optional)
 
@@ -823,21 +823,21 @@ CRITICALITY_MECH
 
       The units of inventory for the values in each INVENTORY block (used for conversion to internal units).
 
-    START_TIME <list double>
+    START_TIME
 
-      The start times of the criticality events relative to the beginning of the PFLOTRAN simulation. This is the first pivot variable used to construct the data matrix.
+      The start times of the criticality events relative to the beginning of the PFLOTRAN simulation, which are provided after the keyword as a list of reals. This is the first pivot variable used to construct the data matrix.
 
-    POWER <list double>
+    POWER
 
-      The power outputs of the criticality events. This is the second pivot variable used to construct the data matrix so the list is not duplicated per START_TIME. Per combination of START_TIME and POWER, there must be a dataset (i.e. no sparse data matrix).
+      The power outputs of the criticality events, which are provided after the keyword as a list of reals. This is the second pivot variable used to construct the data matrix so the list is not duplicated per START_TIME. Per combination of START_TIME and POWER, there must be a dataset (i.e. no sparse data matrix).
 
-    REAL_TIME <list double>
+    REAL_TIME
 
-      The arrays of evaluation times for the radionuclide inventory. These values serve as the independent variables for the data matrix and the arrays have a multiplicity based on START_TIME and POWER. If TOTAL_POINTS is specified, the times must increase monotonically as a means of separating arrays.
+      The arrays of evaluation times for the radionuclide inventory, which are provided after the keyword as a list of reals. These values serve as the independent variables for the data matrix and the arrays have a multiplicity based on START_TIME and POWER. If TOTAL_POINTS is specified, the times must increase monotonically as a means of separating arrays.
 
-    INVENTORY <list double>
+    INVENTORY <name_string>
 
-      For each radionuclide in the waste form using this lookup table, an INVENTORY block provides the mass fractions per given value in the REAL_TIME list. The INVENTORY blocks must follow the order and total number of :ref:`SPECIES<waste-form-general-mechanism-species>` in the waste form :ref:`MECHANISM<waste-form-general-mechanism>`.
+      For each radionuclide in the waste form using this lookup table, an INVENTORY block provides the mass fractions per given value in the REAL_TIME list. The name of the radionuclide is provided as <name_string> and must follow the spellings of :ref:`SPECIES<waste-form-general-mechanism-species>` in the waste form :ref:`MECHANISM<waste-form-general-mechanism>`. However, the INVENTORY blocks do not have to follow the same order as SPECIES. The mass fractions are listed as real numbers after the keyword line.
       
   OPTION (optional)
 
