@@ -70,6 +70,8 @@ SIMULATION Block Cards
 
    /user_guide/cards/simulation/subsurface_transport_modes/*
 
+.. _card-index-subsurface:
+
 SUBSURFACE Block Cards
 ----------------------
 

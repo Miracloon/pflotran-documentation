@@ -38,6 +38,8 @@ PROCESS_MODELS
 
  WIPP_SOURCE_SINK
 
+ :ref:`MATERIAL_TRANSFORM <material-transform-card>`
+
 Optional Cards:
 ---------------
 
