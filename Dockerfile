@@ -1,5 +1,5 @@
 # Dockerfile
-FROM ubuntu:latest
+FROM ubuntu:focal
 RUN apt-get update -q
 
 RUN apt-get install -y ssh
