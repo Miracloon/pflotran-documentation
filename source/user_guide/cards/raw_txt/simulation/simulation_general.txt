@@ -8,3 +8,6 @@ ISOTHERMAL
 NO_AIR
  Disables the gas component mass conservation equation.
 
+NEWTONTRDC_HOLD_INNER_ITERATIONS
+ @EXPERT
+ If your simulation expects many state changes throughout the simulation, NEWTONTRDC_HOLD_INNER_ITERATIONS is recommended.
