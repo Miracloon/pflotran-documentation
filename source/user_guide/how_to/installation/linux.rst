@@ -34,7 +34,7 @@ Installation Instructions
 
         git clone https://gitlab.com/petsc/petsc petsc
         cd petsc
-        git checkout v3.16.2
+        git checkout v3.17.2
 
     3.2. Configure PETSc (see `PETSc installation instructions`_).
 
