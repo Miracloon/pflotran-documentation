@@ -3,7 +3,7 @@
 Previous PETSc Releases
 =======================
 
-2022-05-10 ~ Current: git checkout v3.17.1
+2022-05-10 ~ Current: git checkout v3.17.x
 
 2022-01-06 ~ 2022-05-10 (Hammond) : git checkout v3.16.2
 
