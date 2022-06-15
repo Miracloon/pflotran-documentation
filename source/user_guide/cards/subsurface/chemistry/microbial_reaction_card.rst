@@ -20,7 +20,7 @@ REACTION <string>
  equation.  The reaction may be inhibited by any species in the system.
 
 RATE_CONSTANT <float>
- Rate constant for the reaction, where the units are [mol/L-sec] if no biomass, or [mol-m\ :sup:`3` \ bulk/(L water-mol biomass-sec)] if biomass. Here, concentration units are the default [mol/L].
+ Rate constant for the reaction, where the units are [mol/L-sec] if no biomass, or [mol/(mol biomass-sec)] if biomass. Here, aqueous concentration units are the default [mol/L].
 
 Optional Cards:
 ---------------
