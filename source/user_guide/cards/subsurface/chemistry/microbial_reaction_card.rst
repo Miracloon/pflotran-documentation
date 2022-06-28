@@ -6,7 +6,10 @@ Back to :ref:`chemistry-card`
 
 MICROBIAL_REACTION
 ==================
-Specifies parameters for microbially-mediated reactions.
+Specifies parameters for microbially-mediated reactions. 
+
+By default, all aqueous concentrations are in molarity [mol/L].
+The units of concentration in the RATE_CONSTANT, HALF_SATURATION, THRESHOLD_CONCENTRATION and INHIBITION_CONSTANT parameters must be consistent throughout all microbial reactions.
 
 Required Cards:
 ---------------
@@ -17,7 +20,7 @@ REACTION <string>
  equation.  The reaction may be inhibited by any species in the system.
 
 RATE_CONSTANT <float>
- Rate constant for the reaction, where the units are [mol/L-sec] if no biomass, or [mol-m\ :sup:`3` \ bulk/(L water-mol biomass-sec)] if biomass.
+ Rate constant for the reaction, where the units are [mol/L-sec] if no biomass, or [mol/(mol biomass-sec)] if biomass. Here, aqueous concentration units are the default [mol/L].
 
 Optional Cards:
 ---------------
@@ -46,7 +49,7 @@ INHIBITION
       TYPE MONOD
        Specifies the type of inhibition to be Monod.  The reaction proceeds as 
        long as the species concentration is well below the half saturation 
-       constant: inhibition = C\ :sub:`th`\ / (C\ :sub:`th`\ + concentration) 
+       constant: inhibition = C\ :sub:`th`\ / (C\ :sub:`th` \ + concentration) 
 
       INHIBITION_CONSTANT <float>
        Half saturation constant.
@@ -59,7 +62,7 @@ INHIBITION
       TYPE INVERSE_MONOD
        Specifies the type of inhibition to be inverse Monod.  The reaction 
        proceeds as long as the species concentration is well above the half 
-       saturation constant: inhibition = concentration / (C\ :sub:`th`\ + 
+       saturation constant: inhibition = concentration / (C\ :sub:`th` \ + 
        concentration) 
 
       INHIBITION_CONSTANT <float>
@@ -74,8 +77,8 @@ INHIBITION
         Specifies the type of inhibition to be threshold and the scaling factor 
         to be applied.  Inhibition is calculated based on the following 
         equation: inhibition = 0.5 + arctan((concentration - C\ :sub:`th`\) * f) / PI.  
-        Inhibition is above and below C\ :sub:`th`\ when the sign of 
-        C\ :sub:`th`\ is negative or positive, respectively.
+        Inhibition is above and below C\ :sub:`th` \ when the sign of 
+        C\ :sub:`th` \ is negative or positive, respectively.
 
       INHIBITION_CONSTANT <float>
        Threshold concentration
@@ -88,6 +91,9 @@ BIOMASS
    
   YIELD <float>
    Fraction of energy going towared biomass synthesis.
+
+CONCENTRATION_UNITS <string>
+ Options include MOLARITY [mol/L], MOLALITY, [mol/kg water] and ACTIVITY. Default = MOLARITY.
 
 Examples:
 ---------
@@ -131,6 +137,7 @@ Examples:
       D(im)
     /
     MICROBIAL_REACTION
+      CONCENTRATION_UNITS ACTIVITY
       REACTION A(aq) + 2 B(aq) <-> 1.5 C(aq)
       RATE_CONSTANT 1.d-6
       MONOD

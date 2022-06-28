@@ -53,369 +53,292 @@ PFLOTRAN Input File
 
 ::
 
-    #Description: 1D ion exchange problem
+ #Description: 1D ion exchange problem
 
-    SIMULATION
-      SIMULATION_TYPE SUBSURFACE
-      PROCESS_MODELS
-        SUBSURFACE_TRANSPORT transport
-          MODE GIRT
-        /
-      /
-    END
+ SIMULATION
+   SIMULATION_TYPE SUBSURFACE
+   PROCESS_MODELS
+     SUBSURFACE_TRANSPORT transport
+       MODE GIRT
+     /
+   /
+ END
 
-    SUBSURFACE
+ SUBSURFACE
 
-    # m/s
-    UNIFORM_VELOCITY 5.69333e-4 0.d0 0.d0
+ #=========================== numerical methods ================================
+ NUMERICAL_METHODS TRANSPORT
 
-    #=========================== runtime ==========================================
-    #CHECKPOINT 100
-    #WALLCLOCK_STOP 11.75
+   TIMESTEPPER
+     TS_ACCELERATION 8
+     MAX_STEPS 100000
+   /
 
-    # == chemistry ================================================================
-    CHEMISTRY
-      #OPERATOR_SPLIT
-      PRIMARY_SPECIES
-        Na+
-        #K+
-        Ca++
-        Mg++
-        H+
-        HCO3-
-        Cl-
-        Tracer
-      /
-      SECONDARY_SPECIES
-        OH-
-        CO3--
-        CO2(aq)
-        CaOH+
-        CaCO3(aq)
-        CaHCO3+
-        CaCl+
-        MgCO3(aq)
-        MgHCO3+
-        MgCl+
-        HCl(aq)
-        #KCl(aq)
-        NaCl(aq)
-        NaOH(aq)
-      /
-      GAS_SPECIES
-        CO2(g)
-      /
-      MINERALS
-        Halite
-      /
+   NEWTON_SOLVER
+     PRECONDITIONER_MATRIX_TYPE AIJ
+     RTOL 1.d-8
+     ATOL 1.d-8
+     STOL 1.d-30
+   /
 
-      MINERAL_KINETICS
-        Halite
-          RATE_CONSTANT 1.e-30
-        /
-      /
-      SORPTION
-        ION_EXCHANGE_RXN
-      # MINERAL Halite
-        CEC 71.004  ! mol/m^3
-        CATIONS
-          Ca++   1.0 REFERENCE
-          Na+    0.125893
-          Mg++   0.691831
-        /
-      /
-    /
-    DATABASE /Users/lichtner/projects/parallel/repository/pflotran/database/hanford.dat
-    LOG_FORMULATION
-    ACTIVITY_COEFFICIENTS ! NEWTON_ITERATION
-    MOLAL
-    OUTPUT
-      All
-      TOTAL
-      FREE_ION
-      /
-    /
+   LINEAR_SOLVER
+     SOLVER DIRECT
+   /
 
-    # == reference variables ======================================================
-    REFERENCE_POROSITY 0.61d0
+ END
 
-    # == time stepping ============================================================
-    TIMESTEPPER
-      TS_ACCELERATION 8
-      MAX_STEPS 100000
-      #MAX_STEPS 1
-    /
+ SPECIFIED_VELOCITY
+   UNIFORM? YES
+   DATASET 5.69333e-4 0.d0 0.d0 m/yr
+ END
 
-    # == discretization ===========================================================
-    GRID
-      TYPE structured
-      NXYZ 250 1 1
-      BOUNDS
-        0.d0 0.d0 0.d0
-        0.481d0 1.d0 1.d0
-      /
-    /
+ # == chemistry ================================================================
+ CHEMISTRY
+   PRIMARY_SPECIES
+     Na+
+     Ca++
+     #K+
+     Mg++
+     H+
+     HCO3-
+     Cl-
+     Tracer
+   /
+   SECONDARY_SPECIES
+     OH-
+     CO3--
+     CO2(aq)
+     CaOH+
+     CaCO3(aq)
+     CaHCO3+
+     CaCl+
+     MgCO3(aq)
+     MgHCO3+
+     MgCl+
+     HCl(aq)
+     #KCl(aq)
+     NaCl(aq)
+     NaOH(aq)
+   /
+   PASSIVE_GAS_SPECIES
+     CO2(g)
+   /
+   MINERALS
+     Halite
+   /
+  #
+   MINERAL_KINETICS
+     Halite
+       RATE_CONSTANT 1.e-30
+     /
+   /
+   SORPTION
+     ION_EXCHANGE_RXN
+       #MINERAL Halite
+       CEC 71.004  ! mol/m^3
+       CATIONS
+         Na+   7.94328
+         Ca++  1. REFERENCE
+         Mg++  1.44544
+       /
+     /
+   /
+   DATABASE ../../../database/hanford.dat
+   LOG_FORMULATION
+   ACTIVITY_COEFFICIENTS ! NEWTON_ITERATION
+   MOLAL
+   OUTPUT
+   All
+   FREE_ION
+     TOTAL
+   /
+ END
 
-    # == flow solvers =============================================================
-    NEWTON_SOLVER FLOW
-      PRECONDITIONER_MATRIX_TYPE AIJ
-      RTOL 1.d-8
-      ATOL 1.d-8
-      STOL 1.d-30
-      ITOL_UPDATE 1.d0
-      #NO_INFINITY_NORM
-      #NO_PRINT_CONVERGENCE
-      #PRINT_DETAILED_CONVERGENCE
-    /
+ # == reference variables ======================================================
+ REFERENCE_POROSITY 0.61d0
 
-    LINEAR_SOLVER FLOW
-      #KSP_TYPE PREONLY
-      #PC_TYPE LU
-      #KSP_TYPE FGMRES !samrai
-      #PC_TYPE SHELL !samrai
-    /
+ # == discretization ===========================================================
+ GRID
+   TYPE STRUCTURED 
+   NXYZ 250 1 1
+   BOUNDS
+     0.d0 0.d0 0.d0
+     0.481d0 1.d0 1.d0
+   /
+ END
 
-    # == transport solvers ========================================================
-    NEWTON_SOLVER TRANSPORT
-      PRECONDITIONER_MATRIX_TYPE AIJ
-      RTOL 1.d-8
-      ATOL 1.d-8
-      STOL 1.d-30
-      #NO_INFINITY_NORM
-      #NO_PRINT_CONVERGENCE
-      #PRINT_DETAILED_CONVERGENCE
-    /
+ # == fluid properties =========================================================
+ FLUID_PROPERTY
+   DIFFUSION_COEFFICIENT 1.d-9
+ END
 
-    LINEAR_SOLVER TRANSPORT
-      #PC_TYPE LU
-      #KSP_TYPE PREONLY
-      #KSP_TYPE FGMRES ! samrai
-      #PC_TYPE SHELL !samrai
-    /
+ # == material properties ======================================================
+ MATERIAL_PROPERTY HD
+   ID 1
+   POROSITY 0.61
+   TORTUOSITY 1.0
+   #LONGITUDINAL_DISPERSIVITY 0.001
+   PERMEABILITY
+     PERM_ISO 5.43d-13
+   /
+ END
 
-    # == fluid properties =========================================================
-    FLUID_PROPERTY
-      DIFFUSION_COEFFICIENT 1.d-9
-      #DIFFUSION_COEFFICIENT 9.33333e-7
-    /
+ # == output ===================================================================
+ OUTPUT
+   TIMES s 10307.1 33498.2 41228.6
+   PRINT_COLUMN_IDS
+   PERIODIC_OBSERVATION TIMESTEP 1
+   #PERIODIC TIMESTEP 1
+   #PERIODIC TIME 0.04 y
+   SCREEN PERIODIC 10
+   #FORMAT HDF5
+   FORMAT TECPLOT POINT
+   #VELOCITIES
+ END
 
-    # == material properties ======================================================
-    MATERIAL_PROPERTY HD
-      ID 1
-      SATURATION_FUNCTION default
-      POROSITY 0.61
-      TORTUOSITY 1.0
-      #LONGITUDINAL_DISPERSIVITY 0.001
-      PERMEABILITY
-        PERM_ISO 5.43d-13
-      /
-    /
+ # == times ====================================================================
+ TIME
+   FINAL_TIME 41228.6 s
+   INITIAL_TIMESTEP_SIZE 1. s
+   MAXIMUM_TIMESTEP_SIZE 20. s
+   MAXIMUM_TIMESTEP_SIZE 1. s at 10200. s
+   MAXIMUM_TIMESTEP_SIZE 20. s at 10350 s
+   MAXIMUM_TIMESTEP_SIZE 1. s at 33300 s
+   MAXIMUM_TIMESTEP_SIZE 20. s at 33600 s
+ END
 
-    # == saturation / permeability functions ======================================
-    SATURATION_FUNCTION HD
-      SATURATION_FUNCTION_TYPE VAN_GENUCHTEN
-      RESIDUAL_SATURATION 0.115
-      LAMBDA 0.286
-      ALPHA 1.9401d-4
-    /
+ # == regions ==================================================================
+ REGION all
+   COORDINATES
+     -1.d20 -1.d20 -1.d20
+     1.d20 1.d20 1.d20
+   /
+ END
 
-    #=========================== saturation functions =============================
-    SATURATION_FUNCTION default
-    /
+ REGION west
+   FACE WEST
+   COORDINATES
+     0. 0. 0.
+     0. 1. 1. 
+   /
+ END
 
-    # == output ===================================================================
-    OUTPUT
-      TIMES s 10307.1 33498.2 41228.6
-      PERIODIC_OBSERVATION TIMESTEP 1
-      #PERIODIC TIMESTEP 1
-      #PERIODIC TIME 0.04 y
-      SCREEN PERIODIC 10
-      #FORMAT HDF5
-      FORMAT TECPLOT POINT
-      VELOCITIES
-    /
+ REGION east
+   FACE EAST
+   COORDINATES
+     0.481 0. 0.
+     0.481 1. 1.
+   /
+ END
 
-    # == times ====================================================================
-    TIME
-      FINAL_TIME 41228.6 s
-      INITIAL_TIMESTEP_SIZE 1. s
-      MAXIMUM_TIMESTEP_SIZE 20. s
-      MAXIMUM_TIMESTEP_SIZE 1. s at 10200. s
-      MAXIMUM_TIMESTEP_SIZE 20. s at 10350 s
-      MAXIMUM_TIMESTEP_SIZE 1. s at 33300 s
-      MAXIMUM_TIMESTEP_SIZE 20. s at 33600 s
-    /
+ OBSERVATION 
+   REGION east
+ END
 
-    # == regions ==================================================================
-    REGION all
-      COORDINATES
-        0.d0 0.d0 0.d0
-        0.481d0 1.d0 1.d0
-      /
-    /
+ # == transport conditions =====================================================
+ TRANSPORT_CONDITION Initial
+   TYPE DIRICHLET
+   CONSTRAINT_LIST
+     0.d0 Initial
+   /
+ END
 
-    REGION west
-      FACE WEST
-      COORDINATES
-        0. 0. 0.
-        0. 1. 1.
-      /
-    /
+ TRANSPORT_CONDITION east
+   TYPE DIRICHLET
+   CONSTRAINT_LIST
+     0.d0 Initial
+   /
+ END
 
-    REGION east
-      FACE EAST
-      COORDINATES
-        0.481 0. 0.
-        0.481 1. 1.
-      /
-    /
+ TRANSPORT_CONDITION west
+   TYPE DIRICHLET
+   CONSTRAINT_LIST
+     0.d0    Inlet1
+     10307.1 Inlet2
+     33498.2 Inlet3
+   /
+ END
 
-    OBSERVATION
-      REGION east
-    /
+ # == couplers =================================================================
+ INITIAL_CONDITION Initial
+   TRANSPORT_CONDITION Initial
+   REGION all
+ END
 
-    # == flow conditions ==========================================================
-    skip
-    FLOW_CONDITION west
-      TYPE
-        FLUX NEUMANN
-      /
-      FLUX 0.317098d-7 ! 1 m/y
-      #FLUX 1.5855d-9 ! 5 cm/y
-      #FLUX file 200w_recharge_1951-2000_daily.dat
-    /
-    noskip
+ BOUNDARY_CONDITION
+   TRANSPORT_CONDITION west
+   REGION west
+ END
 
-    FLOW_CONDITION Initial
-      TYPE
-        PRESSURE HYDROSTATIC
-      /
-      DATUM 0.d0 0.d0 0.d0
-      PRESSURE 101325.d0
-    /
+ BOUNDARY_CONDITION
+   TRANSPORT_CONDITION east
+   REGION east
+ END
 
-    FLOW_CONDITION west
-      TYPE
-        PRESSURE HYDROSTATIC
-      /
-      DATUM 0.d0 0.d0 0.d0
-      PRESSURE 101425.d0
-    END
+ # == stratigraphy =============================================================
+ STRATA
+   MATERIAL HD
+   REGION all
+ END
 
-    FLOW_CONDITION east
-      TYPE
-        PRESSURE HYDROSTATIC
-      /
-      DATUM 0.d0 0.d0 0.d0
-      PRESSURE 101325.d0
-    END
+ # == transport constraints ====================================================
+ CONSTRAINT Initial
+   CONCENTRATIONS
+     Na+           4.65d-3  T
+     #K+            2.d-4    T
+     Ca++          5.2d-3   T
+     Mg++          4.55e-3  T
+     H+            4.6     pH
+     HCO3-        -3.5      G   CO2(g)
+     Cl-           1.d-3    Z
+     Tracer        4.65d-3  T
+   /
+   MINERALS
+     Halite        0.5 1.
+   /
+ END
 
-    # == transport conditions =====================================================
-    TRANSPORT_CONDITION Initial
-      TYPE DIRICHLET
-      CONSTRAINT_LIST
-        0.d0 Initial
-      /
-    /
+ CONSTRAINT Inlet1
+   CONCENTRATIONS
+     Na+           1.d-16  T
+     #K+            1.d-10  T
+     Ca++          5.3d-3  T
+     Mg++          1.e-16  T
+     H+            4.6    pH
+     HCO3-        -3.5     G   CO2(g)
+     Cl-           3.d-4   Z
+     Tracer        9.4d-3  T
+  /
+ END
 
-    TRANSPORT_CONDITION east
-      TYPE DIRICHLET
-      CONSTRAINT_LIST
-        0.d0 Initial
-      /
-    /
+ CONSTRAINT Inlet2
+   CONCENTRATIONS
+     Na+           4.6d-3  T
+     #K+            1.d-10  T
+     Ca++          1.d-16  T
+     Mg++          2.4e-3  T
+     H+            4.6    pH
+     HCO3-        -3.5     G   CO2(g)
+     Cl-           3.d-4   Z
+     Tracer        9.4d-3  T
+   /
+ END
 
-    TRANSPORT_CONDITION west
-      TYPE DIRICHLET
-      CONSTRAINT_LIST
-        0.d0    Inlet1
-        10307.1 Inlet2
-        33498.2 Inlet3
-      /
-    /
+ CONSTRAINT Inlet3
+   CONCENTRATIONS
+     Na+           4.65d-3 T
+     #K+            1.d-10  T
+     Ca++          5.2d-3  T
+     Mg++          4.55e-3 T
+     H+            4.6    pH
+     HCO3-        -3.5     G   CO2(g)
+     Cl-           3.d-4   Z
+     Tracer        9.4d-3  T
+   /
+ END
 
-    # == couplers =================================================================
-    INITIAL_CONDITION Initial
-      #FLOW_CONDITION Initial
-      TRANSPORT_CONDITION Initial
-      REGION all
-    /
+ END_SUBSURFACE
 
-    BOUNDARY_CONDITION
-      #FLOW_CONDITION west
-      TRANSPORT_CONDITION west
-      REGION west
-    END
-
-    BOUNDARY_CONDITION
-      #FLOW_CONDITION east
-      TRANSPORT_CONDITION east
-      REGION east
-    END
-
-    # == stratigraphy =============================================================
-    STRATA
-      MATERIAL HD
-      REGION all
-    /
-
-    # == transport constraints ====================================================
-    CONSTRAINT Initial
-      CONCENTRATIONS
-        Na+           4.65d-3  T
-        #K+            2.d-4    T
-        Ca++          5.2d-3   T
-        Mg++          4.55e-3  T
-        H+            4.6     pH
-        HCO3-        -3.5      G   CO2(g)
-        Cl-           1.d-3    Z
-        Tracer        4.65d-3  T
-      /
-      MINERALS
-        Halite        0.5 1.
-      /
-    /
-
-    CONSTRAINT Inlet1
-      CONCENTRATIONS
-        Na+           1.d-16  T
-        #K+            1.d-10  T
-        Ca++          5.3d-3  T
-        Mg++          1.e-16  T
-        H+            4.6    pH
-        HCO3-        -3.5     G   CO2(g)
-        Cl-           3.d-4   Z
-        Tracer        9.4d-3  T
-      /
-    /
-
-    CONSTRAINT Inlet2
-      CONCENTRATIONS
-        Na+           4.6d-3  T
-        #K+            1.d-10  T
-        Ca++          1.d-16  T
-        Mg++          2.4e-3  T
-        H+            4.6    pH
-        HCO3-        -3.5     G   CO2(g)
-        Cl-           3.d-4   Z
-        Tracer        9.4d-3  T
-      /
-    /
-
-    CONSTRAINT Inlet3
-      CONCENTRATIONS
-        Na+           4.65d-3 T
-        #K+            1.d-10  T
-        Ca++          5.2d-3  T
-        Mg++          4.55e-3 T
-        H+            4.6    pH
-        HCO3-        -3.5     G   CO2(g)
-        Cl-           3.d-4   Z
-        Tracer        9.4d-3  T
-      /
-    /
-
-    END_SUBSURFACE
 
 GENERAL\_REACTION Example
 -------------------------
@@ -1278,28 +1201,28 @@ PFLOTRAN input file ``sx115.in``:
     #=========================== flow conditions ==================================
     FLOW_CONDITION initial
       TYPE
-        PRESSURE HYDROSTATIC
+        LIQUID_PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 6.d0
-      PRESSURE 101325.d0
+      LIQUID_PRESSURE 101325.d0
     END
 
     FLOW_CONDITION infiltration
       TYPE
-        FLUX NEUMANN
+        LIQUID_FLUX NEUMANN
       /
-    # FLUX 2.53678e-8 ! 0.08 m/yr
-    # FLUX 2.53678e-9 ! 0.08 m/yr
-      FLUX 2.53678e-10 ! 8 mm/yr
-    # FLUX 0.d0
+    # LIQUID_FLUX 2.53678e-8 ! 0.08 m/yr
+    # LIQUID_FLUX 2.53678e-9 ! 0.08 m/yr
+      LIQUID_FLUX 2.53678e-10 ! 8 mm/yr
+    # LIQUID_FLUX 0.d0
     END
 
     FLOW_CONDITION water_table
       TYPE
-        PRESSURE HYDROSTATIC
+        LIQUID_PRESSURE HYDROSTATIC
       /
       DATUM 0.d0 0.d0 6.d0
-      PRESSURE 101325.d0
+      LIQUID_PRESSURE 101325.d0
       #PRESSURE 1.4e5 ! 200 meter piezometric head (200*997.32*9.81)
     END
 

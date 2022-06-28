@@ -53,7 +53,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'PFLOTRAN Documentation'
-copyright = u'2020, PFLOTRAN'
+copyright = u'2022, PFLOTRAN'
 author = u'Glenn E Hammond'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -70,7 +70,7 @@ release = u'1.1'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = u'en'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:

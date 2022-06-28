@@ -571,7 +571,7 @@ How can I troubleshoot multi-phase flow problems in GENERAL mode?
    Wall Clock Time:  1.3692E+01 [sec]   2.2821E-01 [min]   3.8034E-03 [hr]
 
 
-**Try**: Adding USE_INFINITY_NORM_CONVERGENCE to the GENERAL mode OPTIONS block
+**Try**: Adding USE_INFINITY_NORM_CONVERGENCE to the NEWTON_SOLVER block.
 **This will**: Impose infinity norm convergence criteria to declare simulation convergence instead of the default Euclidean norm convergence criteria. 
 
 **Fixed Example**:
@@ -695,7 +695,7 @@ How can I troubleshoot multi-phase flow problems in GENERAL mode?
 
 **Example**: Simulation shows spurious spikes in output variables.
 
-**Try**: With USE_INFINITY_NORM_CONVERGENCE in the GENERAL mode OPTIONS block, try tightening convergence tolerances by setting values for RESIDUAL_INF_TOL and REL_UPDATE_INF_TOL
+**Try**: With USE_INFINITY_NORM_CONVERGENCE in the NEWTON_SOLVER block, try tightening convergence tolerances by setting values for RESIDUAL_INF_TOL and REL_UPDATE_INF_TOL
 **This will**: Force stricter convergence criteria on the simulation and potentially prevent nonlinearities from causing spurious solution behavior.
 
 

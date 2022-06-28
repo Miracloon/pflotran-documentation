@@ -23,20 +23,21 @@ CONCENTRATIONS
   species_name concentration constraint_type constraint_species
 
  Constraint type options (Reactive Transport Mode):
-  * F = free ion concentration
-  * T = total aqueous component concentration
+  * F = free ion concentration. Default units [mol/L]
+  * T = total aqueous component concentration.  Default units [mol/L]
   * P = pH
+  * PE = pe (for O2(aq) or H+ only)
   * M = concentration based on equilibrium with specified mineral. The 
-    float is an initial guess.
+    float is an initial guess.  Default units [mol/L]
   * G = concentration based on equilibrium with a gas 
     (partial pressure) [bars]
   * L = Base 10 logarithm of concentration
   * Z = charge balance
   * TOTAL_SORB = total sorbed concentration [mol/m\ :sup:`3`\ :sub:`bulk`\]
   * TOTAL_AQ_PLUS_SORB = total aqueous + total sorbed component concentration 
-    [mol/L\ :sub:`water`\]. The total sorbed concentration 
+    [mol/L]. The total sorbed concentration 
     [mol/m\ :sup:`3`\ :sub:`bulk`\] 
-    must be converted to molarity [mol/L\ :sub:`water`\] 
+    must be converted to molarity [mol/L] 
     by dividing by porosity * saturation * 1000 before being summed.
 
  Constraint type options (Nuclear Waste Transport Mode):

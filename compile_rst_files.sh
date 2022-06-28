@@ -140,6 +140,13 @@ num_errors=$((num_errors + $?))
 # ---------------------------------------------------------------------------- #
 # FLOW
 
+# generic Newton
+# DUMMY causes the script to skip all mode-specific cards
+python3 ./tools/generate_tmp.py DUMMY \
+$CARDS_DIR/subsurface/newton.tmp \
+$CARDS_DIR/raw_txt/newton/newton.txt
+num_errors=$((num_errors + $?))
+
 # GENERAL
 python3 ./tools/generate_tmp.py GENERAL \
 $CARDS_DIR/simulation/subsurface_flow_modes/newton_general.tmp \

@@ -14,7 +14,7 @@ SIMULATION
 
 SIMULATION_TYPE <string>
  Specifies the type of simulation. Options for <string> include: SUBSURFACE,
- SURFACE_SUBSURFACE, GEOMECHANICS_SUBSURFACE.
+ GEOMECHANICS_SUBSURFACE.
 
 PROCESS_MODELS
  Opens the PROCESS_MODELS block and lists the process models that are used in
@@ -37,6 +37,8 @@ PROCESS_MODELS
  WASTE_FORM
 
  WIPP_SOURCE_SINK
+
+ :ref:`MATERIAL_TRANSFORM <material-transform-card>`
 
 Optional Cards:
 ---------------

@@ -131,6 +131,10 @@ TRANSVERSE_DISPERSIVITY_H <float>
 TRANSVERSE_DISPERSIVITY_V <float>
 
  Vertical transverse dispersivity for transport within material [m]
+ 
+MATERIAL_TRANSFORM <string>
+
+ Name of material transform function to be associated with material.
 
 PERMEABILITY_CRITICAL_POROSITY <float>
 
@@ -176,6 +180,11 @@ SOIL_REFERENCE_PRESSURE [<float> or INITIAL_PRESSURE]
 SPECIFIC_HEAT <float> or HEAT_CAPACITY <float>
 
  Specific heat capacity of material [J/(kg-K)]
+ 
+TENSORIAL_REL_PERM_EXPONENT <float> <float> <float>
+
+ Specifies the three exponents for tensorial relative permeability, one for
+ each principal direction.
  
 THERMAL_CHARACTERISTIC_CURVES <string>
 

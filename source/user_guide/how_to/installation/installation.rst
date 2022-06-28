@@ -9,20 +9,16 @@ Installing PFLOTRAN
 PFLOTRAN can be installed on Linux, Mac, and Windows systems, or through a
 virtual machine. 
 We provide instructions for these systems in the links below. 
-Please note, a Windows installer is not yet available. PFLOTRAN
-can only be used on Windows either via Cygwin, or Visual Studio.
+Please note that a Windows installer is not available.
+The use of Windows Subsystem for Linux is highly recommended for Windows
+as compiling through Cygwin and Visual Studio is very difficult and
+prone to error.
 
 * :ref:`linux-install`
 
-* :ref:`mac-install`
-
-* :ref:`windows-cygwin-gnu-install`
-
-* :ref:`windows-visual-studio-install`
-
 * :ref:`windows-subsystem-for-linux-install`
 
-* :ref:`legacy-build-install`
+* :ref:`windows-visual-studio-install`
 
 * :ref:`previous-petsc-releases`
 

@@ -19,7 +19,7 @@ Optional Cards:
 
 .. _PETSc: http://www.mcs.anl.gov/petsc/documentation/index.html
 
-.. include:: ../raw_txt/newton/newton.txt
+.. include:: ./newton.tmp
 
 Examples
 --------
@@ -56,3 +56,19 @@ Examples
       IU YES
     /
   /
+
+  NEWTON_SOLVER
+    MAXIMUM_NUMBER_OF_ITERATIONS  15
+    SNES_TYPE NTRDC # ntrdc solver
+  /
+
+  NEWTON_SOLVER
+    SNES_TYPE NTR # ntr solver
+    NTR_OPTIONS
+      AUTO_SCALE FALSE # for general mode
+      ETA 0.001 # trust-region parameter
+      T1 0.25 # tr shrink factor
+      T2 2.00 # tr expansion factor
+    END
+  /
+  
