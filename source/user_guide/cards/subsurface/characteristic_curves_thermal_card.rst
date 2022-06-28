@@ -158,7 +158,9 @@ LINEAR_RESISTIVITY_COEFFICIENTS <float> <float>
 
  Thermal conductivity for the LINEAR_RESISTIVITY model is computed as :math:`\kappa_T(s_l,T)=\kappa_T(s_l)/[a_1 + a_2 (T - T_{ref})]` [W/m-K], with the default :math:`T_{ref}=0\:°C`.
 
- The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0\:°C`, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`. 
+ The saturation dependence of the LINEAR_RESISTIVITY model comes from the DEFAULT model, and when using the default :math:`T_{ref}=0\:°C`, THERMAL_CONDUCTIVITY_WET and THERMAL_CONDUCTIVITY_DRY are at 0 °C. Typically :math:`a_1=1`.
+
+ Note: this function also implements porosity dependence. See :ref:`tcc-porosity-dependence-definitions` for additional parameters needed to turn on this behavior.
 
 KERSTEN_EXPONENT <float>
  In :ref:`th-card` mode, this is the exponent (:math:`\alpha_{u}` [-]) of liquid saturation used to derive the Kersten number for unfrozen soil: :math:`Ke_{u}=s^{\alpha_{u}}_{l}` (see :ref:`mode-th-ice-model`).
@@ -256,25 +258,49 @@ ANISOTROPY_RATIO_Y <float>
 ANISOTROPY_RATIO_Z <float>
  The ratio applied to user-input thermal conductivity to derive the :math:`\kappa_{zz}` component of the thermal conductivity tensor. Requires additional input of X and Y ratios. 
 
+.. _tcc-porosity-dependence-definitions:
+
+Porosity-Dependent Thermal Conductivity Definition
+--------------------------------------------------
+
+The LINEAR_RESISTIVITY thermal conductivity model has three optional parameters. If these parameters are not specified, the model has no variation with porosity (see LINEAR_RESISTIVITY_COEFFICIENTS in :ref:`tcc-parameter-definitions`). All three optional parameters presented below must be specified to turn on this behavior. 
+
+REFERENCE_POROSITY <float>
+ Maximum porosity expected (:math:`\phi_{\mathrm{ref}}`). Value used to normalize porosity values between 0 and 1. If porosity goes above REFERENCE_POROSITY, the normalized value is capped at 1.0.
+
+POROSITY_EXPONENT <float>
+ A dimensionless exponent applied to the solid fraction (:math:`\xi`).
+
+INITIAL_LINEAR_COEFFICIENTS <float> <float>
+ Two coefficients (:math:`b_1` and :math:`b_2`) used to express linear temperature dependence of the thermal conductivity of the pore space (:math:`b_1 + b_2 T`).
+
+The expression was developed for reconsolidation of granular salt with air-filled porosity (Bollingerfehr et al., 2012; Table B.4, Saltgrus), :math:`\kappa_T(s_l,T,\phi) = \kappa_T(s_l,T) (1-\frac{\phi}{\phi_{\mathrm{ref}}})^\xi + (\frac{\phi}{\phi_{\mathrm{ref}}}) \cdot (b_1 + b_2 T)`.
+
+:math:`\kappa_T(s_l,T)` is the LINEAR_RESISTIVITY function presented previously (associated with LINEAR_RESISTIVITY_COEFFICIENTS without porosity variation).
+
+At :math:`\phi=0`, the thermal conductivity is equal to the LINEAR_RESISTIVITY model without porosity variation. At :math:`\phi\ge\phi_\mathrm{ref}` the thermal conductivity has a linear dependence on temperature, given by :math:`b_1` and :math:`b_2`. At porosities between these two endmembers, the porosity is interpolated as a combination of the two.
+
 .. _tcc-test:
 
 Test Thermal Characteristic Curve
 ---------------------------------
 TEST
  Including this keyword will produce output (.dat file) for a thermal characteristic curve that includes: 
-  (a) temperature :math:`(T)`,
-  (b) liquid saturation :math:`(s_l)`,
-  (c) thermal conductivity :math:`(\kappa_T)`,
-  (d) :math:`\frac{\partial \kappa_T}{\partial s_l}`,
-  (e) :math:`\frac{\partial \kappa_T}{\partial T}`,
-  (f) numerical approximation to (d.), and
-  (g) numerical approximation to (e.). 
-  
+  (a) temperature [C] :math:`(T)`,
+  (b) liquid saturation [-] :math:`(s_l)`,
+  (c) porosity [-] :math:`(\phi)`
+  (d) thermal conductivity [W/m*K] :math:`(\kappa_T)`,
+  (e) derivative of thermal conductivity with respect to liquid saturation :math:`(\frac{\partial \kappa_T}{\partial s_l})`,
+  (f) derivative of thermal conductivity with respect to temperature :math:`(\frac{\partial \kappa_T}{\partial T})`,
+  (g) numerical approximation to (e.),
+  (h) numerical approximation to (f.), and
+  (i) numerical approximation to derivative of thermal conductivity with respect to porosity :math:`(\frac{\partial \kappa_T}{\partial \phi})`
+
  When the `FROZEN <tcc-frozen-input_>`_ model is in use with FREEZING active, there are additional parameters in the output:
    * ice saturation :math:`(s_i)`
    * :math:`\frac{\partial \kappa_T}{\partial s_i}`
    * numerical approximation to :math:`\frac{\partial \kappa_T}{\partial s_i}`
- 
+
 Examples
 ********
 
@@ -444,4 +470,5 @@ References
 4. Dall'Amico, M. (2010). Coupled  water  and  heat  transfer  in  permafrost modeling. Ph.D. thesis, Institute of Civil and Environmental Engineering, Universita’ degli Studi di Trento, Trento, Italy. http://eprints-phd.biblio.unitn.it/335/
 5. Dall'Amico, M., S. Endrizzi, S. Gruber, and R. Rigon (2011). A robust and energy-conserving model of freezing variably-saturated soil. The Cryosphere 5(2), 469-484. https://doi.org/10.5194/tc-5-469-2011
 6. TRW Environmental Safety Systems (1996). Spent nuclear fuel effective thermal conductivity report. U.S. Department of Energy, Yucca Mountain Site Characterization Project Office, Las Vegas, NV. MOL.19961202.0030. https://doi.org/10.2172/778872
-7. Cheng, P., and C.-T. Hsu (1999). The effective stagnant thermal conductivity of porous media with periodic structures. Journal of Porous Media 2(1), 19-38. https://doi.org/10.1615/JPorMedia.v2.i1.20 
+7. Cheng, P., and C.-T. Hsu (1999). The effective stagnant thermal conductivity of porous media with periodic structures. Journal of Porous Media 2(1), 19-38. https://doi.org/10.1615/JPorMedia.v2.i1.20
+8. Bollingerfehr, W., W. Filbert, S. Dorr, P. Herold, C. Lerch, P. Burgwinkel, F. Charlier, B. Thomauske, G. Bracke, R. Kliger (2012). Endlangerauslegung und -optimierung. GRS-281, ISBN 978-3-939355-57-1, Gesellschaft für Anlagen- und Reaktorsicherheit (GRS) gGmbH.
