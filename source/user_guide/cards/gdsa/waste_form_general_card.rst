@@ -855,6 +855,10 @@ CRITICALITY_MECH
 
       If :ref:`EXPANDED_DATASET<waste-form-general-criticality-mechanism-inventory-expanded>` is being used, this option allows for the lookup table to continue defining radionuclide inventories after the criticality event has ended (see :ref:`CRIT_END<waste-form-general-criticality-mechanism-end>`). Otherwise, the implicit solution (decay-only) is employed when time exceeds CRIT_END.
 
+    LOG10_TIME_INTERPOLATION (optional)
+
+      If :ref:`EXPANDED_DATASET<waste-form-general-criticality-mechanism-inventory-expanded>` is being used, this option allows for REAL_TIME interpolation of the lookup table to be based on the logarithm (base-10) of those values. For instances of :math:`t=0\,[s]` in the lookup table, a substitute value of :math:`t=10^{-24}\,[s]` is used, which may introduce bias depending on the choice of time steps in the simulation and the degree of time fidelity in the table. This option is recommended only if the simulation extends multiple decades of time and if the time fidelity of the table is relatively limited.
+
  ::
  
    WASTE_FORM
