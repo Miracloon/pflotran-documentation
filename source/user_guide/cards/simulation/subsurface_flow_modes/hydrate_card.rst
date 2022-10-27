@@ -70,7 +70,7 @@ WITH_GIBBS_THOMSON
   Turns on the Gibbs-Thomson effect. Shifts the gas hydrate phase boundary as a function of required subcooling to precipitate hydrate.
 
 GT_3PHASE
-  Applies the Gibbs-Thomson effect in the 3-phase zone. Currently this works by partitioning the pore space occupied by hydrate and gas 50/50
+  Applies the Gibbs-Thomson effect in 3-phase and 4-phase states.
 
 ADJUST_SOLUBILITY_WITHIN_GHSZ
   Applies a correction to methane solubility within the hydrate stability zone as a function of distance from the phase boundary.
@@ -82,7 +82,7 @@ EFFECTIVE_SAT_SCALING
  Scale saturations of mobile pore species by the total amount of mobile pore fluids. 
 
 HYDRATE_PHASE_BOUNDARY <string>
- Sets the gas hydrate phase boundary equation. Default is Kamath, 1984. Current options: MORIDIS
+ Sets the gas hydrate phase boundary equation. Default is Kamath, 1984. Current options: MORIDIS, MORIDIS_SIMPLE
 
 SCALE_PERM_BY_HYD_SAT
  Scales the absolute permeability of the sediment matrix by hydrate saturation.
@@ -92,6 +92,16 @@ PERM_SCALING_FUNCTION <string>
 
 HENRYS_CONSTANT <string>
  Set function for Henry's constant for methane. Current default: Carroll and Mather, 1997. Current options: CRAMER
+
+SALINITY <float>
+ Set a constant salinity, which shifts the hydrate phase boundary and the
+freezing point of water.
+
+THERMAL_CONDUCTIVITY <string>
+ Set the thermal conductivity model. Default is a phase saturation weighted 
+average. Current options: IGHCC2
+
+
 
 .. _hydrate-examples:
 

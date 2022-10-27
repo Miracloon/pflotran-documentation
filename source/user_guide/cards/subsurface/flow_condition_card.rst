@@ -156,7 +156,96 @@ TYPE specification in GENERAL flow mode
  GENERAL mode flow conditions must include a TEMPERATURE and a 
  MOLE_FRACTION/RELATIVE_HUMIDITY or GAS_SATURATION/LIQUID_SATURATION 
  (but not both LIQUID_SATURATION and a MOLE_FRACTION/RELATIVE_HUMIDITY).
-    
+
+TYPE specification in HYDRATE flow mode
++++++++++++++++++++++++++++++++++++++++
+ TYPE
+  [LIQUID_PRESSURE {DIRICHLET, HYDROSTATIC, SEEPAGE, CONDUCTANCE},
+  GAS_PRESSURE {DIRICHLET, HYDROSTATIC (advanced)},
+  LIQUID_SATURATION {DIRICHLET},
+  GAS_SATURATION {DIRICHLET},
+  HYDRATE_SATURATION {DIRICHLET},
+  ICE_SATURATION {DIRICHLET}
+  TEMPERATURE {DIRICHLET},
+  MOLE_FRACTION {DIRICHLET},
+  RELATIVE_HUMIDITY {DIRICHLET},
+  LIQUID_FLUX {NEUMANN},
+  GAS_FLUX {NEUMANN},
+  ENERGY_FLUX {NEUMANN},
+  RATE {MASS_RATE, SCALED_MASS_RATE}]
+
+  * LIQUID_PRESSURE DIRICHLET: specified a fixed pressure.
+    Note that HYDROSTATIC can be used, but only within the saturated zone
+    or in 2-phase gas-aqueous with very low gas saturation, an advanced
+    feature.
+
+  * GAS_PRESSURE DIRICHLET: specifies a fixed gas pressure. When a gas phase
+    is not present, gas pressure and liquid pressure can be used
+    interchangeably.
+
+  * LIQUID_SATURATION DIRICHLET: specifies a liquid phase saturation.
+
+  * GAS_SATURATION DIRICHLET: specifies a gas phase saturation.
+
+  * HYDRATE_SATURATION DIRICHLET: specifies a gas hydrate phase saturation.
+
+  * ICE_SATURATION DIRICHLET: specifies a ice phase saturation.
+
+  * TEMPERATURE DIRICHLET: specifies a temperature.
+
+  * ENERGY_FLUX NEUMANN: specifies an energy flux.
+
+  * LIQUID_FLUX NEUMANN: specifies a liquid phase Darcy flux.
+
+  * GAS_FLUX NEUMANN: specifies a gas phase Darcy flux.
+
+  * RELATIVE_HUMIDITY DIRICHLET: specifies a relative humidity from which
+    an air partial pressure will be calculated
+    (gas phase state only).
+
+  * MOLE_FRACTION DIRICHLET: specifies the air mole fraction in the
+    liquid or gas phase.
+
+  * RATE MASS_RATE: specifies a mass extraction/injection rate. **Note that
+    this actually applies to energy too.**
+
+  * RATE SCALED_MASS_RATE <string>: specifies an extraction/injection rate
+    scaled/distributed among grid cells in the coupled region, where <string>
+    is one of the scaling options below. **Note that
+    this actually applies to energy too.**
+
+ Initial thermodynamic states for combinations of Dirichlet-based conditions:
+
+  * Aqueous State: LIQUID_PRESSURE + MOLE_FRACTION + TEMPERATURE
+
+  * Gas State: GAS_PRESSURE + (MOLE_FRACTION | RELATIVE_HUMIDITY) + TEMPERATURE
+
+  * Hydrate State (can be unstable): GAS_PRESSURE + TEMPERATURE
+
+  * Ice State (can be unsable): GAS_PRESSURE + TEMPERATURE
+
+  * Gas-Aqueous State: GAS_PRESSURE + GAS_SATURATION + TEMPERATURE
+
+  * Hydrate-Gas State: GAS_PRESSURE + GAS_SATURATION + TEMPERATURE
+
+  * Hydrate-Aqueous State: GAS_PRESSURE + HYDRATE_SATURATION + TEMPERATURE
+
+  * Hydrate-Ice State: GAS_PRESSURE + HYDRATE_SATURATION + TEMPERATURE
+
+  * Gas-Ice State: GAS_PRESSURE + ICE_SATURATION + TEMPERATURE
+
+  * Aqueous-Ice State: LIQUID_PRESSURE + MOLE_FRACTION + LIQUID_SATURATION
+
+  * Hydrate-Gas-Aqueous State: LIQUID_SATURATION + HYDRATE_SATURATION + 
+                               TEMPERATURE
+ 
+  * Hydrate-Gas-Ice State: ICE_SATURATION + HYDRATE_SATURATION + TEMPERATURE
+
+  * Gas-Aqueous-Ice State: GAS_PRESSURE + LIQUID_SATURATION + ICE_SATURATION
+
+  * Hydrate-Gas-Aqueous-Ice State: LIQUID_SATURATION + GAS_SATURATION + 
+                                   ICE_SATURATION
+
 TYPE specification in WIPP_FLOW flow mode
 +++++++++++++++++++++++++++++++++++++++++
  TYPE 
@@ -302,7 +391,13 @@ SYNC_TIMESTEP_WITH_UPDATE
 
 CONDUCTANCE <float>
  Conductance coefficient used when a conductance condition is specified.
- 
+
+STATE <string>
+ For HYDRATE mode, specify the state of the flow condition. This is necessary
+ for ice state (I), hydrate state (H), hydrate-ice (HI), hydrate-gas (HG), and
+ hydrate-aqueous-ice (HAI).
+  
+
 Examples
 --------
 
@@ -510,6 +605,49 @@ GENERAL Mode Examples
     LIQUID_PRESSURE 101325 Pa
     MOLE_FRACTION 1.d-10
   END
+
+HYDRATE Mode Examples
++++++++++++++++++++++++
+ ::
+
+  #HYDRATE-AQUEOUS State Flow Condition
+  FLOW_CONDITION initial
+    TYPE
+      LIQUID_PRESSURE DIRICHLET
+      HYDRATE_SATURATION DIRICHLET
+      TEMPERATURE DIRICHLET
+    /
+    LIQUID_PRESSURE 1.d7
+    HYDRATE_SATURATION 2.d-1
+    TEMPERATURE 5.d0 
+  END
+
+  #AQUEOUS-ICE State Flow Condition
+  FLOW_CONDITION initial
+    TYPE
+      LIQUID_PRESSURE DIRICHLET
+      MOLE_FRACTION DIRICHLET
+      LIQUID_SATURATION DIRICHLET
+    /
+    LIQUID_PRESSURE 1.d6
+    MOLE_FRACTION 1.d-5
+    LIQUID_SATURATION 9.d-1
+  END
+
+  #HYDRATE-AQUEOUS-ICE State Flow Condition
+  FLOW_CONDITION initial
+    TYPE
+      LIQUID_PRESSURE DIRICHLET
+      LIQUID_SATURATION DIRICHLET
+      ICE_SATURATION DIRICHLET
+    /
+    LIQUID_PRESSURE 1.d7
+    LIQUID_SATURATION 6.5d-1
+    ICE_SATURATION 3.d-1
+    STATE HAI
+  END
+
+
 
 WIPP_FLOW Mode Examples
 +++++++++++++++++++++++
