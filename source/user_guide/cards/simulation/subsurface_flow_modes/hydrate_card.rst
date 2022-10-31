@@ -94,13 +94,10 @@ HENRYS_CONSTANT <string>
  Set function for Henry's constant for methane. Current default: Carroll and Mather, 1997. Current options: CRAMER
 
 SALINITY <float>
- Set a constant salinity, which shifts the hydrate phase boundary and the
-freezing point of water.
+ Set a constant salinity, which shifts the hydrate phase boundary and the freezing point of water.
 
 THERMAL_CONDUCTIVITY <string>
- Set the thermal conductivity model. Default is a phase saturation weighted 
-average. Current options: IGHCC2
-
+ Set the thermal conductivity model. Default is a phase saturation weighted average. Current options: IGHCC2
 
 
 .. _hydrate-examples:
