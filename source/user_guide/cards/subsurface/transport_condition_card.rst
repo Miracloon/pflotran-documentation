@@ -24,6 +24,11 @@ TYPE <string>
   zero diffusive gradient for outflow (i.e. only advective transport is 
   considered on outflow).
 
+  MEMBRANE_FILTER : Works like a membrane filter. Water can pass through
+  and solutes cannot (e.g., useful for mimicking evaporation at the land 
+  surface when modeling single-phase variably saturated flow). The assignment
+  of a CONSTRAINT is required, but the concentrations are ignored.
+
   NEUMANN : Specified solute flux (**not currently implemented**)
 
   ZERO_GRADIENT : Prescribes a third-type or Robin boundary conditon for inflow
@@ -65,11 +70,25 @@ Examples
   END
 
   TRANSPORT_CONDITION U_source
-    TYPE DIRICHLET_ZERO_GRADIENT
+    TYPE DIRICHLET
     TIME_UNITS s
     CONSTRAINT_LIST
       0.d0 U_source
       336000.d0 Initial
+    /
+  END
+
+  TRANSPORT_CONDITION 3rd_type_bc
+    TYPE ZERO_GRADIENT
+    CONSTRAINT_LIST
+      0.d0 river_water
+    /
+  END
+
+  TRANSPORT_CONDITION evaporation
+    TYPE MEMBRANE_FILTER
+    CONSTRAINT_LIST
+      0.d0 any_constraint_name
     /
   END
 
