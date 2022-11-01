@@ -16,6 +16,7 @@ Flow Modes
    /theory_guide/mode_richards.rst
    /theory_guide/mode_th.rst
    /theory_guide/mode_general.rst
+   /theory_guide/mode_hydrate.rst
    /theory_guide/mode_mphase.rst
    /theory_guide/constitutive_relations.rst
 
