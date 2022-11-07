@@ -48,6 +48,12 @@ PERMEABILITY <float>
  
   Isotropic permeability [m\ :sup:`2`\].
 
+ PERM_HORIZONTAL <float>
+ 
+  Permeability in x- and y-directions. One must include the 
+  VERTICAL_ANISOTROPY_RATIO card to define the permeability in the 
+  z-direction [m\ :sup:`2`\].
+
  PERM_X <float>
  
   Permeability in x-direction [m\ :sup:`2`\].
@@ -106,8 +112,8 @@ PERMEABILITY <float>
 
  VERTICAL_ANISOTROPY_RATIO <float>
   Sets the horizontal permeability (kx and ky) to the
-  value specified by PERM_ISO (which can be a dataset) and scales the vertical 
-  permeability (kz) by the ratio <float>.
+  value specified by PERM_ISO (in the case of a dataset) or PERM_HORIZONTAL 
+  and scales the vertical permeability (kz) by the ratio <float>.
 
  DATASET <string>
  
@@ -158,7 +164,8 @@ ROCK_DENSITY <float>
 
 SATURATION_FUNCTION <string>
 
- Name of saturation function to be associated with material
+ Name of saturation function to be associated with material (deprecated for
+ most flow modes).
 
 SOIL_COMPRESSIBILITY <float>
 
@@ -224,7 +231,7 @@ Examples
 
   MATERIAL_PROPERTY Hanford
     ID 1
-    SATURATION_FUNCTION sf1
+    CHARACTERISTIC_CURVES cc1
     POROSITY 0.2
     TORTUOSITY 0.5
     PERMEABILITY
@@ -234,9 +241,20 @@ Examples
     /
   END
 
+  MATERIAL_PROPERTY Hanford
+    ID 1
+    CHARACTERISTIC_CURVES cc1
+    POROSITY 0.2
+    TORTUOSITY 0.5
+    PERMEABILITY
+      PERM_HORIZONTAL 7.387d-9
+      VERTICAL_ANISOTROPY_RATIO 0.1d0
+    /
+  END
+
   MATERIAL_PROPERTY soil
     ID 1
-    SATURATION_FUNCTION sf1
+    CHARACTERISTIC_CURVES cc1
     POROSITY 0.45
     TORTUOSITY 1.
     ROCK_DENSITY 2650.d0
@@ -258,7 +276,7 @@ Porosity compressibility
 
   MATERIAL_PROPERTY rock1
     ID 1
-    SATURATION_FUNCTION default
+    CHARACTERISTIC_CURVES default
     POROSITY 0.20
     TORTUOSITY 1.
     ROCK_DENSITY 2650.d0
@@ -280,7 +298,7 @@ Tortuosity as a function
 
   MATERIAL_PROPERTY shale
     ID 1
-    SATURATION_FUNCTION default
+    CHARACTERISTIC_CURVES default
     POROSITY 0.20
     TORTUOSITY_FUNCTION_OF_POROSITY 1.4 
     ROCK_DENSITY 2700.d0
@@ -301,7 +319,7 @@ Associating datasets with material properties
 
   MATERIAL_PROPERTY Hanford
     ID 1
-    SATURATION_FUNCTION sf1
+    CHARACTERISTIC_CURVES cc1
     POROSITY DATASET poros
     TORTUOSITY 0.5
     PERMEABILITY
@@ -332,7 +350,7 @@ Anisotropic permeability dataset within material properties
 
   MATERIAL_PROPERTY Hanford
     ID 1
-    SATURATION_FUNCTION sf1
+    CHARACTERISTIC_CURVES cc1
     POROSITY DATASET poros
     TORTUOSITY 0.5
     PERMEABILITY
