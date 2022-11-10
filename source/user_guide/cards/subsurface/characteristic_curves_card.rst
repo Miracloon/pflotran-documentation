@@ -162,7 +162,9 @@ PERMEABILITY_FUNCTION <string>
   MUALEM_LINEAR_LIQ, BURDINE_LINEAR_LIQ, MUALEM_VG_LIQ, and BURDINE_VG_LIQ. The
   gas phase options include: MUALEM_BC_GAS, BURDINE_BC_GAS, MUALEM_LINEAR_GAS,
   BURDINE_LINEAR_GAS, MUALEM_VG_GAS, BURDINE_VG_GAS, several BRAGFLO-related
-  options, MODIFIED_KOSUGI_LIQ, and MODIFIED_KOSUGI_GAS. The available relative
+  options, MODIFIED_KOSUGI_LIQ, MODIFIED_KOSUGI_GAS,
+  MODIFIED_BROOKS_COREY_LIQ and MODIFIED_BROOKS_COREY_GAS.
+  The available relative
   permeability functions are documented in the Theory Guide under
   :ref:`relative-permeability-functions-general`.
   (Note: BC = Brooks Corey; VG = van Genuchten)
@@ -191,7 +193,14 @@ PERMEABILITY_FUNCTION <string>
   * MODIFIED_KOSUGI_LIQ (:ref:`see QA plot <mk-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
      + SIGMAZ
-
+  * MODIFIED_KOSUGI_LIQ (:ref:`see QA plot <mk-rel-perm>`)
+     + LIQUID_RESIDUAL_SATURATION
+     + SIGMAZ
+  * MODIFIED_BROOKS_COREY_LIQ
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+     + KR_MAX
+     + N
 
   Supported gas phase PERMEABILITY_FUNCTIONs (along with their 
   required cards):
@@ -224,6 +233,11 @@ PERMEABILITY_FUNCTION <string>
      + LIQUID_RESIDUAL_SATURATION
      + GAS_RESIDUAL_SATURATION
      + SIGMAZ
+  * MODIFIED_BROOKS_COREY_GAS
+     + LIQUID_RESIDUAL_SATURATION
+     + GAS_RESIDUAL_SATURATION
+     + KR_MAX
+     + N
 
   WIPP-specific liquid and gas phase PERMEABILITY_FUNCTIONs:
 
@@ -302,11 +316,18 @@ Parameter Definitions
 ALPHA <float>
  Inverse of the air entry pressure for the saturation function [Pa\ :sup:`-1`\].
 
+KR_MAX <float>
+ Modified Brooks Corey relative permeability function maximum 
+ relative permeability [-].
+
 LAMBDA <float>
  Brooks-Corey \lambda parameter [-].
 
 M <float>
  van Genuchten m parameter, as in (m = 1-1/n) or (m = 1 - 2/n) [-].
+
+N <float>
+ Modified Brooks Corey relative permeability exponent "n" [-].
 
 GAS_RESIDUAL_SATURATION <float>
  Residual saturation for gas phase [-].

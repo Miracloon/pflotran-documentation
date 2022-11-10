@@ -123,6 +123,29 @@ saturation function has the form
    k_r &= \big(s_e\big)^{3+2/\lambda} \\
        &= \left(\frac{p_c}{p_c^0}\right)^{-(3+2\lambda)}.
 
+Modified Brooks Corey Relative Permeability
++++++++++++++++++++++++++++++++++++++++++++
+
+The modified Brooks Corey relative permeability function can be associated
+with any saturation function. 
+The liquid relative permeability is defined as
+
+.. math::
+   :label: krl_modified_brooks_corey
+   
+   s_{el} &= \left(\frac{s_l-s_{rl}}{1-s_{rl}-s_{rg}}\right) \\
+   k_{rl} &= k_{rl,\text{max}} s_{el}^{n_l}
+
+The gas phase relative permeability is defined as 
+
+.. math::
+   :label: krg_modified_brooks_corey
+
+   s_{eg} &= \left(\frac{1-s_l-s_{rg}}{1-s_{rl}-s_{rg}}\right) \\
+   k_{rg} &= k_{rg,\text{max}} s_{eg}^{n_g}
+
+where :math:`k_{r\alpha,\text{max}}`, :math:`n_\alpha` and :math:`s_{e\alpha}` are the maximum relative permeability, modified Brooks Corey exponent and effective saturation for phase :math:`\alpha`.
+
 .. _smoothing-operation:       
        
 Smoothing
