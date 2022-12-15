@@ -2,7 +2,7 @@ Back to :ref:`card-index`
 
 Back to :ref:`chemistry-card`
 
-.. _chemistry-output-card:
+.. _output-chemistry-card:
 
 OUTPUT (CHEMISTRY)
 ==================
