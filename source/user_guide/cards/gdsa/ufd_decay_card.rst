@@ -21,6 +21,8 @@ ELEMENT <string>
   KD <float>
 
    Opens a block where linear Kds are entered for each material property (see example below). It is assumed that all elemental isotopes sorb at the same rate, in units of [kg-water/m3-bulk].
+   
+   (Optional) If the Kd of a material within an element is defined by a dataset file, the `DATASET` keyword can be used followed by the name of the file and the name of the material.
 
 ::
 
@@ -28,11 +30,14 @@ ELEMENT <string>
  ...
  MATERIAL_PROPERTY sand
  ...
+ MATERIAL_PROPERTY loam
+ ...
  ELEMENT Am
    SOLUBILITY 3.39d-7 ! [M]
    KD
      clay 6.d6
      sand 6.d4
+     DATASET Kd_Am_loam.txt loam # Kd of loam defined by dataset file
    /
  /
 
