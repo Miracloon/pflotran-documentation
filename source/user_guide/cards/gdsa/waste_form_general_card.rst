@@ -644,13 +644,21 @@ SPACER_DEGRADATION_MECHANISM
  
  If this optional block is included, a time- and temperature-dependent spacer grid corrosion model will be evaluated as a means of terminating criticality events associated with the waste form. The model becomes active after the canister is breached. When the spacer grids have degraded below 1% of the original total mass, they are assumed to fail, which implies a loss of critical configuration.
  
- The spacer grid vitality :math:`V_{s}` is determined using the corrosion rate :math:`R` and total initial mass :math:`M_{0}` over time steps :math:`t_{i}` to :math:`t_{i+1}`, where at canister breach :math:`V_{s,0}=1`:
+ The spacer grid vitality :math:`V_{s}` is determined using the corrosion rate :math:`R` and initial spacer thickness :math:`\tau` over time steps :math:`t_{i}` to :math:`t_{i+1}`, where :math:`V_{s,0}=1` until the canister breach time:
  
- :math:`V_{s,i+1}=V_{s,i}-\frac{R_{i+1}\cdot(t_{i+1}-t_{i})}{M_{0}}`
+ :math:`V_{s,i+1}=V_{s,i}-\frac{2R_{i+1}\cdot(t_{i+1}-t_{i})}{\tau}`
  
- The corrosion rate is governed by an Arrhenius term using the average temperature of the waste form :math:`\bar{T}`, the total spacer grid surface area :math:`A_{0}`, and a saturation-dependent term :math:`f_{S}(S_{l})`, where :math:`\mathcal{R}` is the ideal gas constant:
+ The areal weight gain :math:`W` of the oxide layer is governed by a scaling constant :math:`\mathcal{C}` and an Arrhenius term with the average temperature of the waste form :math:`\bar{T}`, the activation energy :math:`Q`, and the ideal gas constant :math:`\mathcal{R}`:
  
- :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot A_{0}\cdot\mathcal{C}\exp{\left(-\frac{Q}{\mathcal{R}\bar{T}_{i+1}}\right)}`
+ :math:`W_{i+1}=\mathcal{C}\exp{\left(-\frac{Q}{\mathcal{R}\bar{T}_{i+1}}\right)}`
+ 
+ The total corrosion rate :math:`R` is found by including the metal loss ratio :math:`\alpha` and a saturation-dependent term :math:`f_{S}(S_{l})`:
+ 
+ :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot \alpha\cdot W_{i+1}`
+ 
+ The extent of original metal consumed in the oxide layer formation :math:`\Delta\tau|_{lab}` and the areal weight gain of oxide layer :math:`\Delta W|_{lab}`, as observed in the laboratory, are used to determine the metal loss ratio :math:`\alpha`, which is considered constant:
+ 
+ :math:`\alpha=\frac{\Delta\tau|_{lab}}{\Delta W|_{lab}}`
  
  The saturation-dependent term modifies the corrosion rate depending on an exposure level :math:`S_{l}^{exp}`, which is the saturation for which the spacer grids are considered fully-inundated with water. When the saturation of the waste form is at or above this limit, the corrosion rate is unaffected. Otherwise, the rate is reduced proportionally based on the saturation.  
  
@@ -663,13 +671,13 @@ SPACER_DEGRADATION_MECHANISM
  
   Specifies a unique name for the spacer grid degradation model.
  
- MASS <double> <unit_string>
+ METAL_LOSS_RATIO <double> <unit_string>
 
-  Total mass of spacer grids, :math:`M_{0}` [kg].
+  The ratio of the extent [m] of original metal that is consumed by corrosion to the areal weight gain :math:`\left[\frac{kg}{m^2}\right]` of the oxide layer, :math:`\alpha\,\left[\frac{m^{3}}{kg}\right]`.
 
- SURFACE_AREA <double> <unit_string>
+ THICKNESS <double> <unit_string>
 
-  Total surface area of spacer grids, :math:`A_{0}\,[m^{2}]` .
+  Initial thickness of the spacer grid metallic separators, :math:`\tau` [m] .
 
  EXPOSURE_LEVEL <double> (optional)
 
@@ -890,12 +898,12 @@ CRITICALITY_MECH
    /
    
    SPACER_DEGRADATION_MECHANISM
-     NAME           spc_01
-     MASS           1.67040d+05 g
-     SURFACE_AREA   2.37309d+04 dm^2
-     EXPOSURE_LEVEL 9.93317d-01
-     C              3.47000d+07  mg/s-dm^2
-     Q              2.26750d+04  cal/mol
+     NAME              spc_01
+     METAL_LOSS_RATIO  4.42953d-04  m^3/kg
+     THICKNESS         5.00000d-04  m
+     EXPOSURE_LEVEL    9.93317d-01
+     C                 3.47000d+07  mg/day-dm^2
+     Q                 2.26750d+04  cal/mol
    /
 
 
