@@ -1,0 +1,11 @@
+FROM ubuntu:jammy
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt update -q
+RUN apt install -y ssh
+RUN apt install -y make
+RUN apt install -y vim
+RUN apt-get install -y --no-install-recommends tzdata
+RUN apt install -y sphinx
+
