@@ -652,11 +652,11 @@ SPACER_DEGRADATION_MECHANISM
  
  :math:`W_{i+1}=\mathcal{C}\exp{\left(-\frac{Q}{\mathcal{R}\bar{T}_{i+1}}\right)}`
  
- The total corrosion rate :math:`R` is found by including the metal loss ratio :math:`\alpha` and a saturation-dependent term :math:`f_{S}(S_{l})`:
+ The total corrosion rate :math:`R` is found by including the metal loss ratio :math:`\alpha`, an irradiation factor :math:`\beta`, and a saturation-dependent term :math:`f_{S}(S_{l})`:
  
- :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot \alpha\cdot W_{i+1}`
+ :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot \alpha\cdot\beta\cdot W_{i+1}`
  
- The extent of original metal consumed in the oxide layer formation :math:`\Delta\tau|_{lab}` and the areal weight gain of oxide layer :math:`\Delta W|_{lab}`, as observed in the laboratory, are used to determine the metal loss ratio :math:`\alpha`, which is considered constant:
+ The extent of original metal consumed in the oxide layer formation :math:`\Delta\tau|_{lab}` and the areal weight gain of oxide layer :math:`\Delta W|_{lab}`, as observed in the laboratory, are used to determine the metal loss ratio :math:`\alpha`, which is considered constant. The factor :math:`\beta` is used to adjust the rate based on the effects of prior irradiation.
  
  :math:`\alpha=\frac{\Delta\tau|_{lab}}{\Delta W|_{lab}}`
  
@@ -690,6 +690,10 @@ SPACER_DEGRADATION_MECHANISM
  Q <double> <unit_string>
 
   Activation energy operating on the reciprocal of temperature within the Arrhenius term governing corrosion, :math:`Q` [J/mol]. 
+
+ RAD_FACTOR <double>
+
+  Factor by which to increase the corrosion rate based on the effect of prior irradiation, :math:`\beta`. This should be set to 1.0 for non-irradiated Zircaloy or a higher value (around 2.0) for spacer grids that have been irradiated. :math:`\beta` cannot be less than or equal to zero.
 
 .. _waste-form-general-criticality-mechanism:
 
@@ -903,7 +907,8 @@ CRITICALITY_MECH
      THICKNESS         5.00000d-04  m
      EXPOSURE_LEVEL    9.93317d-01
      C                 3.47000d+07  mg/day-dm^2
-     Q                 2.26750d+04  cal/mol
+     Q                 2.27570d+04  cal/mol
+     RAD_FACTOR        2.00000d+00
    /
 
 
