@@ -1,0 +1,20 @@
+ARG SSH_PRIVATE_KEY
+
+FROM ubuntu:jammy
+
+ENV SSH_PRIVATE_KEY=$SSH_PRIVATE_KEY
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt update -q
+RUN apt install -y ssh
+RUN apt install -y make
+RUN apt install -y vim
+RUN apt-get install -y --no-install-recommends tzdata
+RUN apt install -y sphinx
+
+COPY . /app
+WORKDIR /app
+RUN /app/tools/build-on-gitlab.sh
+#RUN echo $SSH_PRIVATE_KEY
+#RUN /app/tools/deploy-from-gitlab.sh
+
