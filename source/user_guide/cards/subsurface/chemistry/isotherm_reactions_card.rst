@@ -20,13 +20,8 @@ ISOTHERM_REACTIONS
 <Species_Name>
  Name of primary species that sorbs.
 
-DISTRIBUTION_COEFFICIENT <float>
- The value of K\ :sub:`D` \ [kg\ :sub:`water` \ / m\ :sup:`3` :sub:`bulk`\].  
- For K\ :sub:`D` \ values provided in e.g. mL / g, convert to 
- kg\ :sub:`w` \ / m\ :sup:`3` :sub:`bulk` \ by multiplying by 
- \rho\ :sub:`water` \ and \rho\ :sub:`bulk` \, with proper units conversion. 
- If KD_MINERAL_NAME is included, the units of K\ :sub:`D` become 
- [mL\ :sub:`water` \ / g\ :sub:`rock`\].
+DISTRIBUTION_COEFFICIENT <float> <string>
+ The value of K\ :sub:`D` \ , where <string> defines the units of K\ :sub:`D` \. (Default units [kg\ :sub:`water` \ / m\ :sup:`3` :sub:`bulk`\]).
 
 Optional Cards: 
 ---------------
@@ -50,14 +45,9 @@ FREUNDLICH_N <float>
 KD_MINERAL_NAME <string>
  Name of mineral, the volume fraction of which will be used in conjunction with 
  the distribution coefficient to calculate the PFLOTRAN internal distribution 
- coefficient of kg water per cubic meter bulk.
- The distribution coefficient then has units of L\ :sub:`water` / kg\ :sub:`soil`.  
- The conversion equation is 
- K\ :sub:`D` (kg\ :sub:`water` / m\ :sup:`3`\ :sub:`bulk`) = 
- K\ :sub:`D` (mL\ :sub:`water` / g\ :sub:`soil`) * water density * 
- (1 - porosity) * soil particle density * 10\ :sup:`-3` * mineral volume fraction.  
- Note that the mineral volume fraction has no units in this case; it is solely 
- a scaling parameter for varying the KD in space.
+ coefficient of kg water per cubic meter bulk. Note that the mineral volume
+ fraction has no units in this case; it is solely a scaling parameter for varying
+ the KD in space.
 
 Examples
 --------
@@ -80,7 +70,7 @@ Examples
       !   water_density = 1000 kg/m^3
       !   soil particle density = 2500 kg/m^3
       !   porosity = 0.25
-      DISTRIBUTION_COEFFICIENT 0.133333
+      DISTRIBUTION_COEFFICIENT 0.133333 mL/kg
       KD_MINERAL_NAME Calcite  
     /
   END
