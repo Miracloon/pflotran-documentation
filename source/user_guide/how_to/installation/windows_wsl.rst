@@ -15,7 +15,7 @@ Installation Instructions
 1. Install Windows Subsystem for Linux. You can follow the instruction from 
    Microsoft `here <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`_.
    If you don't know which Linux distribution to choose, Ubuntu should be your 
-   default choice as these instructions were writted for Ubuntu 20.04 LTS.
+   default choice as these instructions were writted for Ubuntu 22.04 LTS.
 
 2. Prepare the new Ubuntu distribution to install PFLOTRAN. Run in the command line:
 

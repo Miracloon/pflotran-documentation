@@ -3,7 +3,7 @@
 Linux Virtual Machine Installation Instructions
 ===============================================
 
-An Ubuntu 18.04 virtual machine (VM) with PFLOTRAN and supporting software 
+An Ubuntu 22.04 virtual machine (VM) with PFLOTRAN and supporting software 
 (i.e. GNU compilers, python [h5py, matplotlib], ParaView) can be downloaded 
 from Google Drive. This virtual machine is small (4 cores, 8 GB memory, 100 GB hard drive) and designed for use in PFLOTRAN short courses; so please bear in mind that it is not ideal for large simulations or parallel computing, and the regression tests will not pass due to the 4-core limitation.
 
