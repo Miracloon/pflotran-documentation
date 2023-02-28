@@ -345,14 +345,14 @@ Change in permeability involves a phenomenological relation with porosity
 .. math::
    :label: permeability
    
-   k = k_0 f(\varphi,\,\varphi_0,\,\varphi_c,\,a),
+   k = k_0 f(\varphi,\,\varphi_0,\,\varphi_c,\,n),
 
 with
 
 .. math::
    :label: permf
    
-   f = \left(\frac{\varphi-\varphi_c}{\varphi_0-\varphi_c}\right)^a,
+   f = \left(\frac{\varphi-\varphi_c}{\varphi_0-\varphi_c}\right)^n,
    
 .. math::
    :label: fmin
