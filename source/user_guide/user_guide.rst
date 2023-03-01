@@ -107,6 +107,15 @@ Utility Cards
    :glob:
 
    /user_guide/cards/utility_cards/*
+
+GDSA Cards
+----------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   /user_guide/cards/gdsa/*
    
 .. The following are hidden pages that are linked in the Input Deck Cards:
 .. toctree::
