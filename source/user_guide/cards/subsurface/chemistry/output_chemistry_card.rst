@@ -47,6 +47,9 @@ IMMOBILE
 PH
  pH is printed (if applicable--i.e. H+ exists).
 
+AGE
+ Groundwater age is printed.
+
 KD
  The KD (ratio of sorbed to aqueous mass) for each primary species is printed.
 
@@ -89,14 +92,16 @@ MINERAL_SATURATION_INDEX
 MINERAL_SURFACE_AREA
  Outputs mineral specific surface areas for all minerals specified in OUTPUT block.
 
-AGE
- Groundwater age is printed.
-
 SITE_DENSITY
  Free sorption site density is printed.
 
 PRINT_TOTAL_MASS_KG
  Prints total component mass in [kg] for regions specified in the TOTAL_MASS_REGIONS sub-block.
+
+PRINT_VERBOSE_CONSTRAINTS
+ For each primary species, the secondary aqueous complexes that make up its
+ total component concentration are printed, ordered by descending percent
+ contribution to the total.
 
 **Notes:**
  - By default, ALL and MINERALS specify that volume fractions and kinetic rates 

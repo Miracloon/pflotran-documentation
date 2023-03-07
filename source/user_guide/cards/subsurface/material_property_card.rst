@@ -144,11 +144,11 @@ MATERIAL_TRANSFORM <string>
 
 PERMEABILITY_CRITICAL_POROSITY <float>
 
- Critical porosity (\Phi_c)  in the equation that scales permeability as a function of porosity.  See UPDATE_PERMEABILITY in users manual.
+ Critical porosity (:math:`\varphi_c`)  in the equation that scales permeability as a function of porosity.  See UPDATE_PERMEABILITY in users manual.
 
 PERMEABILITY_POWER <float>
 
- Coefficient *a* in the equation that scales permeability as a function of porosity.  See UPDATE_PERMEABILITY in users manual.
+ Coefficient :math:`n` in the equation that scales permeability as a function of porosity.  See UPDATE_PERMEABILITY in users manual.
 
 PERMEABILITY_MIN_SCALE_FACTOR <float>
 
