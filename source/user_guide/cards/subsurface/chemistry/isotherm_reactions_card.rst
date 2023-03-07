@@ -21,7 +21,8 @@ ISOTHERM_REACTIONS
  Name of primary species that sorbs.
 
 DISTRIBUTION_COEFFICIENT <float> <string>
- The value of K\ :sub:`D` \ , where <string> defines the units of K\ :sub:`D` \. (Default units [kg\ :sub:`water` \ / m\ :sup:`3` :sub:`bulk`\]).
+ The value of K\ :sub:`D` \ , where <string> defines the units of K\ :sub:`D` \.
+ (Default units [kg\ :sub:`water` \ / m\ :sup:`3` :sub:`bulk`\]).
 
 Optional Cards: 
 ---------------
