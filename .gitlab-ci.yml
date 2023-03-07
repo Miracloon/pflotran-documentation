@@ -68,3 +68,4 @@ failure:
   script:
     - BUILD_STATUS=failed BUILD_KEY=push ./.gitlab/build_status
   when: on_failure
+
