@@ -8,7 +8,9 @@ PFLOTRAN Documentation
 **********************
 .. image:: /_static/pflotran_logo.jpg
 
-**This is the development version of the documentation.**
+**This is the development version of the documentation.** 
+You may find the documentation for the latest release of PFLOTRAN at
+`release.documentation.pflotran.org <https://release.documentation.pflotran.org>`_
 
 PFLOTRAN is an open source, state-of-the-art massively parallel subsurface flow 
 and reactive transport code. The code is developed under a GNU LGPL license 

@@ -3,9 +3,9 @@
 echo 'checking branch name'
 
 if [[ $CI_COMMIT_BRANCH = master ]]; then
-  TARGET_DIR=public_html/documentation-dev
-elif [[ $CI_COMMIT_BRANCH =~ ^maint ]]; then
   TARGET_DIR=public_html/documentation
+elif [[ $CI_COMMIT_BRANCH =~ ^maint ]]; then
+  TARGET_DIR=public_html/documentation-release
 else
   echo 'Deployment skipped since this branch is not deployable. It must be merged to the master or a maintenance branch: ' $CI_COMMIT_BRANCH
   exit 0
