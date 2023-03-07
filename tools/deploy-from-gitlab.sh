@@ -7,7 +7,7 @@ if [[ $CI_COMMIT_BRANCH = master ]]; then
 elif [[ $CI_COMMIT_BRANCH =~ ^maint ]]; then
   TARGET_DIR=public_html/documentation
 else
-  echo 'Deployment skipped since this branch is not deployable. It must be merged to the master or a maintenance branck: ' $CI_COMMIT_BRANCH
+  echo 'Deployment skipped since this branch is not deployable. It must be merged to the master or a maintenance branch: ' $CI_COMMIT_BRANCH
   exit 0
 fi
 
