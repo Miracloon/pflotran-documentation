@@ -229,3 +229,26 @@ where :math:`p_v` represents the vapor pressure, :math:`p_{\rm sat}` the
 saturation pressure of pure water, :math:`p_c` capillary pressure, 
 :math:`\rho_l` liquid mole density, :math:`T` denotes the temperature, and 
 :math:`R` the gas constant. 
+
+Fully Implicit Solute Coupling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A third mass conservation equation for a solute can optionally be solved with a mass conservation equation similar to Eq.:mass-conservation-general:
+
+.. math::
+   :label: solute-conservation-general
+   \frac{{{\partial}}}{{{\partial}}t} \varphi \Big(s_l \rho_l x_i^l + s_p \rho_p x_i^p) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l\rho_l x_i^l -\varphi s_l D_l \rho_l {\boldsymbol{\nabla}}x_i^l) = Q_i
+
+for liquid and solid precipitate saturation math:`s_{l,\,p}^{}`, density
+:math:`\rho_{l,\,p}^{}`, diffusivity :math:`D_{l}^{}`, Darcy
+velocity :math:`{\boldsymbol{q}}_{l}^{}` and mole fraction
+:math:`x_i^{l,\,p}`. 
+
+At solute concentrations above solubility, a solid precipitate phase forms. Transport of the solute is only possible through advection or diffusion within the liquid phase.
+
+Alternatively, the rock matrix can be soluble, in which case the mass conservation equation becomes
+
+.. math::
+   :label: soluble-matrix-conservation-general
+   \frac{{{\partial}}}{{{\partial}}t} \Big(\varphi \Big(s_l \rho_l x_i^l)+\Big(1-\varphi)) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l \rho_l x_i^l -\varphi s_l D_l \rho_l {\boldsymbol{\nabla}}x_i^l) = Q_i
+
