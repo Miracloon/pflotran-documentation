@@ -76,9 +76,10 @@ INHIBITION
       TYPE THRESHOLD <float>
         Specifies the type of inhibition to be threshold and the scaling factor 
         to be applied.  Inhibition is calculated based on the following 
-        equation: inhibition = 0.5 + arctan((concentration - C\ :sub:`th`\) * f) / PI.  
+        equation: inhibition = 0.5 + sign(1.,C\ :sub:`th`\) * arctan((concentration - C\ :sub:`th`\) * f) / PI.  
         Inhibition is above and below C\ :sub:`th` \ when the sign of 
-        C\ :sub:`th` \ is negative or positive, respectively.
+        C\ :sub:`th` \ is negative or positive, respectively. A good value 
+        for scaling factor f is 1.e4/abs(C\ :sub:`th`\).
 
       INHIBITION_CONSTANT <float>
        Threshold concentration
