@@ -104,7 +104,6 @@ Installation Instructions
  ::
 
   cd pflotran/src/pflotran
-  git checkout maint/v4.0
   make pflotran
 
 .. _Git: http://git-scm.com/
