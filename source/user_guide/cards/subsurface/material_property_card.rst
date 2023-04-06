@@ -167,6 +167,9 @@ SATURATION_FUNCTION <string>
  Name of saturation function to be associated with material (deprecated for
  most flow modes).
 
+:ref:`secondary-continuum-card`
+ Specifies parameters for multiple continuum model
+
 SOIL_COMPRESSIBILITY <float>
 
  Compressibility :math:`C_{s}` of the soil matrix [1/Pa] (i.e. non-void-space volume fraction).  :math:`C_{s} \equiv (\alpha_s - \alpha_b)`, where :math:`\alpha_s` and :math:`\alpha_b` are the solid volume and bulk volume compressibility coefficients defined in Bear (1972) as :math:`\alpha_s \equiv -\frac{1}{V_s}\frac{\partial V_s}{\partial p}` and :math:`\alpha_b \equiv -\frac{1}{V_b}\frac{\partial V_b}{\partial p}`.  Note that :math:`\alpha_b = (1-\phi) \alpha_s + \phi \alpha_p`.  Typically, :math:`\alpha_s` is positive while :math:`\alpha_b` is negative, and the resulting :math:`C_{s}` is a positive number.  If you assume that the solid particles of the porous medium are incompressible (:math:`\alpha_s \approx 0`), then :math:`C_{s} \approx -\alpha_b`.   Use in conjuction with SOIL_COMPRESSIBILITY_FUNCTION LEIJNSE (DEFAULT).

@@ -50,6 +50,11 @@ KD_MINERAL_NAME <string>
  fraction has no units in this case; it is solely a scaling parameter for varying
  the KD in space.
 
+SEC_CONT_KD <float> <string>
+ The value of K\ :sub:`D` \ for the secondary continuum, where <string> defines
+ the units of K\ :sub:`D` \. (Default units [kg\ :sub:`water` \ / m\ :sup:`3`
+ :sub:`bulk`\]).
+
 Examples
 --------
  :: 
