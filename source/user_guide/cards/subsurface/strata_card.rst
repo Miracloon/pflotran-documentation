@@ -31,14 +31,8 @@ and
 MATERIAL <string>
 
 SURFACE_DATASET <string>
- Name of a 2D gridded :ref:`dataset-card` in XY defining the top or bottom 
+ Name of a 2D gridded :ref:`dataset-card` in XY defining the top 
  surface of a geologic layer.
-
-and
-
-SET_MATERIAL_IDS_BELOW_SURFACE or SET_MATERIAL_IDS_ABOVE_SURFACE
- Flag dictating whether cells are to be set to the MATERIAL type 
- below or above the SURFACE_DATASET.
 
 Optional Cards:
 ---------------
@@ -78,9 +72,8 @@ Examples
   /
 
 **Assign material properties using surface datasets and superposition.**
-Since SET_MATERIAL_IDS_BELOW_SURFACE is defined, strata overwrite 
-all cell IDs below their surface. 
-Therefore, all cells are initially inactivated (i.e., the INACTIVE 
+With SURFACE_DATASET, all cell IDs below the surface are overwritten.
+Below, all cells are initially inactivated (i.e., the INACTIVE 
 card inactivates the cells regardless of which soil is assigned). 
 Then, soil1 is assigned to all cells below layer1_dataset,
 soil2 is assigned to all cells below layer1_dataset, and soil3 to all
@@ -100,19 +93,16 @@ that region by including a REGION card.*
   STRATA ! all cells below layer1_dataset surface are assigned soil1
     MATERIAL soil1
     SURFACE_DATASET layer1_dataset
-    SET_MATERIAL_IDS_BELOW_SURFACE
   END
   
   STRATA ! all cells below layer1_dataset surface are assigned soil2
     MATERIAL soil2
     SURFACE_DATASET layer2_dataset
-    SET_MATERIAL_IDS_BELOW_SURFACE
   END
   
   STRATA ! all cells below layer1_dataset surface are assigned soil3
     MATERIAL soil3
     SURFACE_DATASET layer3_dataset
-    SET_MATERIAL_IDS_BELOW_SURFACE
   END
 
 **Assigning evolving strata:**
