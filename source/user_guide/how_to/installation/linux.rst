@@ -12,6 +12,7 @@ Required software packages:
 * Hierarchical Data Format HDF5_
 * `PETSc git repository <https://gitlab.com/petsc/petsc>`_
 * `METIS/ParMETIS <http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview>`_ (for unstructured grids)
+* Python3, including python3-h5py and python3-matplotlib (or pip3 install h5py matplotlib)
 
 Installation Instructions
 -------------------------
