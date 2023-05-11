@@ -101,6 +101,8 @@ TYPE specification in GENERAL flow mode
   GAS_SATURATION {DIRICHLET}, 
   TEMPERATURE {DIRICHLET}, 
   MOLE_FRACTION {DIRICHLET}, 
+  SOLUTE_FRACTION {DIRICHLET},
+  POROSITY {DIRICHLET}
   RELATIVE_HUMIDITY {DIRICHLET}, 
   LIQUID_FLUX {NEUMANN}, 
   GAS_FLUX {NEUMANN}, 
@@ -119,6 +121,8 @@ TYPE specification in GENERAL flow mode
   
   * GAS_SATURATION DIRICHLET: specifies a gas phase saturation
     (two phase state only).
+
+  * PRECIPITATE_SATURATION DIRICHLET: specifies a solid phase saturation (Note: NUMBER_OF_EQUATIONS 4 and SOLUTE must be set in the OPTIONS block).
   
   * TEMPERATURE DIRICHLET: specifies a temperature.
   
@@ -135,6 +139,10 @@ TYPE specification in GENERAL flow mode
   * MOLE_FRACTION DIRICHLET: specifies the air mole fraction in the 
     gas or liquid phase 
     (liquid and gas phase states only).
+ 
+  * SOLUTE_FRACTION DIRICHLET: specifies the solute mole fraction in the liquid phase (Note: NUMBER_OF_EQUATIONS 4 and SOLUTE must be set in the OPTIONS block).
+
+  * POROSITY DIRICHLET: specifies the porosity when the SOLUBLE_MATRIX option is enabled with NUMBER_OF_EQUATIONS 4.
        
   * RATE MASS_RATE: specifies a mass extraction/injection rate. **Note that
     this actually applies to energy too.**
@@ -152,7 +160,17 @@ TYPE specification in GENERAL flow mode
     
   * GAS_PRESSURE + (MOLE_FRACTION | RELATIVE_HUMIDITY) = single-phase gas 
     state
-      
+ 
+ Initial thermodynamic states for combinations of Dirichlet-based conditions including a solute:
+
+  * LIQUID_PRESSURE + MOLE_FRACTION + SOLUTE_FRACTION = single-phase liquid state,
+
+  * LIQUID_PRESSURE + MOLE_FRACTION + (PRECIPITATE_SATURATION | POROSITY) = liquid and (precipitate phase or soluble rock matrix) state,
+
+  * GAS_PRESSURE + GAS_SATURATION + (PRECIPITATE_SATURATION | POROSITY) = liquid, gas and (precipitate phase or soluble rock matrix) state,
+
+  * GAS_PRESSURE + (RELATIVE_HUMIDITY | MOLE_FRACTION) + (POROSITY | PRECIPITATE_SATURATION) = gas and (precipitate phase or soluble rock matrix) state
+ 
  GENERAL mode flow conditions must include a TEMPERATURE and a 
  MOLE_FRACTION/RELATIVE_HUMIDITY or GAS_SATURATION/LIQUID_SATURATION 
  (but not both LIQUID_SATURATION and a MOLE_FRACTION/RELATIVE_HUMIDITY).

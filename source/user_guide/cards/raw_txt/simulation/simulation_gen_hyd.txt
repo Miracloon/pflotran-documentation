@@ -43,3 +43,12 @@ WINDOW_EPSILON <float>
  @EXPERT
  Specifies the tolerance or window that must be exceeded before state change
  will occur.
+
+NUMBER_OF_EQUATIONS <int>
+ Specifies the number of equations solved (3: air/water/energy (default), 4: air/water/solute/energy)
+
+SOLUBLE_MATRIX
+ Allows the rock matrix to dissolve with changing solubility conditions. Requires NUMBER_OF_EQUATIONS 4 and SOLUTE SALT.
+
+SOLUTE <string>
+ Specifies the solute used when NUMBER_OF_EQUATIONS 4. Default SALT.
