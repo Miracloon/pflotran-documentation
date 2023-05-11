@@ -62,7 +62,8 @@ DATABASE <string>
 
 LOG_FORMULATION
  Flag for solving Newton-Raphson equations with derivatives computed with 
- respect to the logarithm  (base 10) of the concentrations.
+ respect to the logarithm  (base 10) of the concentrations. Should not be
+ used for linear equations (e.g. conservative tracers).
 
 ACTIVITY_COEFFICIENTS <algorithm string> <frequency string>
  Specifies algorithms for calculating activity coefficients. 
