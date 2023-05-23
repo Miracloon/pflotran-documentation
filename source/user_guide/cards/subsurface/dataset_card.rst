@@ -69,7 +69,7 @@ Within the HDF5 file, the dataset takes the following form (names used in these 
      is indexed farthest to the right (dim1,dim2,...,t).
   b. The ''Time'' Dataset is one dimensional and holds the times associated 
      with the data in the *Data* dataset, if transient. It sized equal to 
-     the number of times in the *Data* dataset.
+     the number of times in the *Data* dataset. See *Time Units* below.
 
  3. Add the following HDF5 Attributes to the HDF5 Group
 
@@ -83,6 +83,10 @@ Within the HDF5 file, the dataset takes the following form (names used in these 
   f. Cell Centered <bool>: the dataset is cell centered.  Otherwise, it is node 
      centered and you need an additional entry for each dimension (e.g. nx+1 
      values for X).
+  g. Time Units <string>: time units for ''Time'' Dataset. Required only
+     only if time units are not seconds (s). Options include second, minute,
+     hour, day, week, month, year. You can also use abbreviations: 
+     s,min,h,d,w,mo,y.
 
 The attached :download:`gridded_dataset.h5 <files/gridded_dataset.h5>` illustrates 
 the usage.
