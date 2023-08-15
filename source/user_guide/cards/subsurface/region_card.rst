@@ -47,6 +47,34 @@ Within the REGION block, one of:
 
     CARTESIAN_BOUNDARY [WEST, EAST, SOUTH, NORTH, BOTTOM, TOP]
 
+ LIST
+
+  Non-boundary regions for all grid formats:
+   Specify a list of cell IDs, one per line.
+
+   ::
+
+    LIST
+      1
+      2
+      3
+    /
+
+  STRUCTURED Grid only:
+   Specify boundary faces through a list of cell and face IDs, 
+   one combo per line. 
+   Face IDs are numbered as: 1=west, 2=east, 3=south, 4=north, 5=bottom, 6=top.
+
+   ::
+
+    LIST
+      1 6
+      2 6
+      3 6
+    /
+
+  UNSTRUCTURED Grids: **not supported**
+
  FILE <string>
 
   Non-boundary regions for all grid formats:
@@ -77,9 +105,6 @@ Within the REGION block, one of:
 
  :ref:`polygonal-region-card`
   Opens a block for defining a region by intersecting two polygons in separate XY, XZ or YZ planes.
-
- LIST
-  A generic list of cell ids (**not yet implemented**).  
 
 Optional Card:
 --------------
@@ -139,6 +164,24 @@ Examples
     COORDINATE 60.07 88.75 102.5d0
   /
 
+  REGION well
+    LIST
+      349
+      459
+      559
+    /
+  /
+
+  REGION top !(structured grid only)
+    LIST
+      1   6
+      2   6
+      3   6
+      ...
+      500 6
+    /
+  /
+
   REGION zone1
     BLOCK 45 90 32 40 1 100
   /
@@ -164,7 +207,7 @@ Examples
 
 All Grids (non-boundary)
 ++++++++++++++++++++++++
-ASCII *.txt* format 
+ASCII *.txt* format or LIST
  ::
 
   1
@@ -174,7 +217,7 @@ ASCII *.txt* format
 
 STRUCTURED Grid
 +++++++++++++++
-Boundary faces in ASCII *.txt* format 
+Boundary faces in ASCII *.txt* format or LIST
 
  ::
 
