@@ -28,6 +28,14 @@ Reactive Transport Mode (Keyword CHEMISTRY)
 
    /theory_guide/mode_reactive_transport.rst
 
+Geophysics Modes
+++++++++++++++++
+
+.. toctree::
+   :maxdepth: 3
+
+   /theory_guide/mode_ert.rst
+
 Process Models Under Development
 ++++++++++++++++++++++++++++++++
 
