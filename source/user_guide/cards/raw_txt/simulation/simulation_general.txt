@@ -11,3 +11,12 @@ NO_AIR
 NEWTONTRDC_HOLD_INNER_ITERATIONS
  @EXPERT
  If your simulation expects many state changes throughout the simulation, NEWTONTRDC_HOLD_INNER_ITERATIONS is recommended.
+
+NON_DARCY_FLOW
+ Calculates non-Darcian flow based on Liu (2014)
+
+NON_DARCY_FLOW_A
+ Parameter A for non-Darcian flow in equation 11 in Liu (2014)
+
+NON_DARCY_FLOW_B
+ Parameter B for non-Darcian flow in equation 11 in Liu (2014)
