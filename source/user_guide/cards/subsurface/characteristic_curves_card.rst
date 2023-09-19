@@ -187,9 +187,11 @@ PERMEABILITY_FUNCTION <string>
   * MUALEM_VG_LIQ (:ref:`see QA plot <vgm-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
      + M
+     + SMOOTH
   * BURDINE_VG_LIQ (:ref:`see QA plot <vgb-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
      + M
+     + SMOOTH
   * MODIFIED_KOSUGI_LIQ (:ref:`see QA plot <mk-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
      + SIGMAZ
@@ -358,11 +360,15 @@ S_EFFMIN <float>
  S_MIN.
 
 SMOOTH
- Applies polynomial smoothing to relative permeability or saturation function.
- **Strongly recommended** for the Brooks-Corey saturation function if cells in
- the domain will transition from saturated to variably-saturated conditions.
+ Applies polynomial smoothing to discontinuities in derivatives for relative 
+ permeability or saturation functions.
  The smoothing operation is documented under :ref:`smoothing-operation` in
  the Theory Guide.
+ Supported for the following:
+
+  * Brooks Corey (**highly recommended if saturated cells exist**)
+  * Burdine (w/ van Genuchten liquid relative permeability)
+  * Mualem (w/ van Genuchten liquid relative permeability)
 
 MODIFIED_KOSUGI model
  This model is based on a truncated lognormal pore-size
