@@ -6,13 +6,12 @@ ERT Mode
 Governing Equations
 ~~~~~~~~~~~~~~~~~~~
 
-The ``ERT`` geophysics mode solves the following electrostatic Poisson equation
+The ``ERT`` geophysics mode solves the following electrostatic Poisson equation for electrical potential $\porosity$ [V]
 
 .. math::
+   \pmb{\nabla} \cdot \bulkelectricalconductivity \pmb{\nabla} \porosity = -Q_I,
    :label: conservation-ert
 
-    \pmb{\nabla} \cdot \sigma(\mathbf{r}) \pmb{\nabla} \phi(\mathbf{r}) = -I\delta(\mathbf{r}-\mathbf{r}_\mathrm{s})
+where $\bulkelectricalconductivity$ is bulk electrical conductivity [S m$^{-1}$] and $Q_I$ is electrical current [A m$^{-3}$ s$^{-1}$] injected through an electrode at a point in space. Bulk electrical conductivity is calculated as a function of fluid and rock/soil conductivity, liquid saturation and porosity through empirical relationships (e.g., Archie's law).
 
-where :math:`\phi` is the electrical potential at position :math:`\mathbf{r}` for a given conductivity :math:`\sigma(\mathbf{r})` due to a current :math:`I` injected through a point located at :math:`\mathbf{r}_\mathrm{s}`; and :math:`\delta` is the Dirac delta function. For brevity, hereinafter, the dependencies on :math:`\mathbf{r}` will be omitted except where necessary to show.
-   
-
+Example of dummy reference to Eq. :eq:`conservation-ert`
