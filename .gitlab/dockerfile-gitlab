@@ -5,12 +5,14 @@ FROM ubuntu:jammy
 ENV SSH_PRIVATE_KEY=$SSH_PRIVATE_KEY
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update -q
-RUN apt install -y ssh
-RUN apt install -y make
-RUN apt install -y vim
+RUN apt-get update -q
+RUN apt-get install -y ssh
+RUN apt-get install -y make
+RUN apt-get install -y vim
 RUN apt-get install -y --no-install-recommends tzdata
-RUN apt install -y sphinx
+RUN apt-get install -y sphinx
+RUN apt-get install -y python3-pip
+RUN pip3 install sphinx-math-dollar
 
 COPY . /app
 WORKDIR /app
