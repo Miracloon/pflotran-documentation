@@ -18,11 +18,11 @@ solved by PIMS are given by
 .. math::
    :label:  mass
       
-   \frac{{{\partial}}}{{{\partial}}t}\big(\varphi\rho_{{\alpha}}^{} s_{{\alpha}}^{}\big) + {\boldsymbol{\nabla}}\cdot \big(\rho_{{\alpha}}^{} {\boldsymbol{q}}_{{\alpha}}\big) = Q_{{\alpha}},
+   \frac{{{\partial}}}{{{\partial}}t}\big(\porosity\rho_{{\alpha}}^{} s_{{\alpha}}^{}\big) + {\boldsymbol{\nabla}}\cdot \big(\rho_{{\alpha}}^{} {\boldsymbol{q}}_{{\alpha}}\big) = Q_{{\alpha}},
 
 where the subscript :math:`{{\alpha}}` denotes an immiscible phase.
 
-In this equation :math:`\varphi` is porosity, :math:`s_{{\alpha}}`,
+In this equation :math:`\porosity` is porosity, :math:`s_{{\alpha}}`,
 :math:`\rho_{{\alpha}}` refer to the :math:`{{\alpha}}`\ th phase
 saturation and density, respectively,
 :math:`{\boldsymbol{q}}_{{\alpha}}` is the Darcy velocity of the
@@ -50,7 +50,7 @@ equation given by
 .. math::
    :label: mass-energy-immis
    
-   \frac{{{\partial}}}{{{\partial}}t} \Big(\varphi\sum_{{\alpha}}s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}+ (1-\varphi) \rho_r C_r T\Big) + {\boldsymbol{\nabla}}\cdot\Big(\sum_{{\alpha}}\rho_{{\alpha}}{\boldsymbol{q}}_{{\alpha}}H_{{\alpha}}- \kappa{\boldsymbol{\nabla}}T\Big) = Q_e,
+   \frac{{{\partial}}}{{{\partial}}t} \Big(\porosity\sum_{{\alpha}}s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}+ (1-\porosity) \rho_r C_r T\Big) + {\boldsymbol{\nabla}}\cdot\Big(\sum_{{\alpha}}\rho_{{\alpha}}{\boldsymbol{q}}_{{\alpha}}H_{{\alpha}}- \kappa{\boldsymbol{\nabla}}T\Big) = Q_e,
 
 where :math:`U_{{\alpha}}`, :math:`H_{{\alpha}}` denote the internal
 energy and enthalpy of the :math:`{{\alpha}}`\ th fluid phase,

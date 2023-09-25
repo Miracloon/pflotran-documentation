@@ -51,7 +51,7 @@ deformation on the pore structure is accounted for via
 .. math::
    :label: pore-structure
    
-   \phi = \phi_0 +  \text{tr}({\boldsymbol{\varepsilon}}).
+   \porosity = \porosity_0 +  \text{tr}({\boldsymbol{\varepsilon}}).
 
 Note that the above equations are solved using the finite element method
 (Galerkin finite element) with the displacements solved for at the

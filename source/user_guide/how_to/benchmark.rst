@@ -21,14 +21,14 @@ mol/m\ :math:`^3` this was obtained from the formula
 .. math::
    
    \omega = \frac{N_s}{V} =
-   \frac{N_s}{M_s}\frac{M_s}{V_s}\frac{V_s}{V} = \rho_s (1-\varphi) {\rm CEC}.
+   \frac{N_s}{M_s}\frac{M_s}{V_s}\frac{V_s}{V} = \rho_s (1-\porosity) {\rm CEC}.
    
 Using a porosity of 0.61, the solid grain density :math:`\rho_s` is
 given by
 
 .. math::
 
-   \rho_s = \frac{\varphi \rho_l}{1-\varphi} = 3.0344 \text{g/cm$^3$},
+   \rho_s = \frac{\porosity \rho_l}{1-\porosity} = 3.0344 \text{g/cm$^3$},
  
 .. figure:: ./figs/ionex.png
    :alt: Breakthrough curves for Ca2+, Mg2+ and Na+ compared with experimental results from Voegelin et al. (2000).
@@ -359,7 +359,7 @@ for advection, diffusion and reaction is given by
 
 .. math::
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi C_l + {\boldsymbol{\nabla}}\cdot{\boldsymbol{F}}_l = - \varphi \nu_l {{{\mathcal R}}}, \ \ \ \ (l=A,\,B,\,C),
+   \frac{{{\partial}}}{{{\partial}}t} \porosity C_l + {\boldsymbol{\nabla}}\cdot{\boldsymbol{F}}_l = - \porosity \nu_l {{{\mathcal R}}}, \ \ \ \ (l=A,\,B,\,C),
    
 with stoichiometric coefficients :math:`\nu_A = 1`, :math:`\nu_B = 2`,
 and :math:`\nu_C=-1`. The flux :math:`{\boldsymbol{F}}_l` consists of
@@ -367,7 +367,7 @@ contributions from advection and diffusion
 
 .. math::
    
-   {\boldsymbol{F}}_l = {\boldsymbol{q}}C_l - \varphi D {\boldsymbol{\nabla}}C_l.
+   {\boldsymbol{F}}_l = {\boldsymbol{q}}C_l - \porosity D {\boldsymbol{\nabla}}C_l.
    
 The forward reaction rate is based on an elementary aqueous reaction
 
@@ -375,7 +375,7 @@ The forward reaction rate is based on an elementary aqueous reaction
    
    {{{\mathcal R}}}= k_f C_A^{\nu_A} C_B^{\nu_B}.
    
-Dividing through by porosity (assuming :math:`\varphi` = constant), the
+Dividing through by porosity (assuming :math:`\porosity` = constant), the
 transport equation becomes
 
 .. math::
@@ -386,7 +386,7 @@ with average pore velocity
 
 .. math::
    
-   {\boldsymbol{v}}= \frac{{\boldsymbol{q}}}{\varphi}.
+   {\boldsymbol{v}}= \frac{{\boldsymbol{q}}}{\porosity}.
    
 Initial and boundary conditions imposed on the solution are given by
 
@@ -610,15 +610,15 @@ fluid flow given by
 
 .. math::
 
-   \frac{{{\partial}}}{{{\partial}}t} \varphi s\rho + {\boldsymbol{\nabla}}\cdot{\boldsymbol{q}}\rho = Q,
+   \frac{{{\partial}}}{{{\partial}}t} \porosity s\rho + {\boldsymbol{\nabla}}\cdot{\boldsymbol{q}}\rho = Q,
    
 and solute transport of a tracer
 
 .. math::
    
-   \frac{{{\partial}}}{{{\partial}}t}\varphi C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C - \varphi s \tau D {\boldsymbol{\nabla}}C\big) = Q_C.
+   \frac{{{\partial}}}{{{\partial}}t}\porosity C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C - \porosity s \tau D {\boldsymbol{\nabla}}C\big) = Q_C.
    
-In these equations :math:`\varphi` denotes the spatially variable
+In these equations :math:`\porosity` denotes the spatially variable
 porosity of the porous medium assumed to constant within each
 stratigraphic layer, :math:`s` gives the saturation state of the porous
 medium, :math:`\rho` represents the fluid density in general a function
@@ -767,7 +767,7 @@ and tortuosity was set to one.
 
 .. table:: Parameters for material and thermal properties for intrinsic rock
     density :math:`\rho_s`, heat capacity :math:`c`, wet and dry thermal conductivity
-    :math:`\kappa`, porosity :math:`\varphi`, residual water saturation
+    :math:`\kappa`, porosity :math:`\porosity`, residual water saturation
     :math:`s_r`, van Genuchten parameters :math:`\alpha` and
     :math:`\lambda`, and vertical water saturated permeability
     :math:`k_{\rm sat}`. Data taken from Khaleel and Freeman (1995), Khaleel
@@ -787,7 +787,7 @@ and tortuosity was set to one.
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
     | :math:`\kappa_{\rm wet}` | [W m\ :math:`^{-1}` K\ :math:`^{-1}`]  |     2       |     2      |     2       |    2       |   2        | 
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
-    | :math:`\varphi`          | [---]                                  |  0.2585     |  0.3586    |   0.4223    | 0.2625     | 0.1643     |
+    | :math:`\porosity`          | [---]                                  |  0.2585     |  0.3586    |   0.4223    | 0.2625     | 0.1643     |
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
     | :math:`s_r`              | [---]                                  |  0.0774     | 0.0837     |   0.2595    | 0.2130     | 0.0609     |
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
@@ -1384,7 +1384,7 @@ Table [tco2].
 +-----------------------------+----------------------------------+----------------------------------------------------------+
 | Permeability                | :math:`k`                        | :math:`10^{-15}` m\ :math:`^2`                           |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
-| Porosity                    | :math:`\varphi`                  | 0.12                                                     |
+| Porosity                    | :math:`\porosity`                  | 0.12                                                     |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
 | Tortuosity                  | :math:`\tau`                     | 1                                                        |
 +-----------------------------+----------------------------------+----------------------------------------------------------+

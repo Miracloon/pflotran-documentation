@@ -25,7 +25,7 @@ mass and energy conservation solved by PFLOTRAN have the general form:
 .. math::
    :label: mass_conservation_equation
    
-   \frac{\partial}{\partial t} \bigg(\varphi \sum_{\alpha}s_{\alpha}^{}\eta_{\alpha}^{} x_i^{\alpha}\bigg)
+   \frac{\partial}{\partial t} \bigg(\porosity \sum_{\alpha}s_{\alpha}^{}\eta_{\alpha}^{} x_i^{\alpha}\bigg)
    + {\boldsymbol{\nabla}}\cdot\sum_{\alpha} {\boldsymbol{F}}_i^{\alpha}= Q_{i},
 
 for the :math:`i`\ th component where the flux
@@ -34,14 +34,14 @@ for the :math:`i`\ th component where the flux
 .. math::
    :label: flux-mphase
 
-   {\boldsymbol{F}}_i^{{\alpha}}= {\boldsymbol{q}}_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}} - \varphi s_{{\alpha}}^{} D_{{\alpha}}^{} \eta_{{\alpha}}^{} {\boldsymbol{\nabla}}x_i^{{\alpha}},
+   {\boldsymbol{F}}_i^{{\alpha}}= {\boldsymbol{q}}_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}} - \porosity s_{{\alpha}}^{} D_{{\alpha}}^{} \eta_{{\alpha}}^{} {\boldsymbol{\nabla}}x_i^{{\alpha}},
 
 and
 
 .. math::
    :label: energy_equation
    
-   \frac{{{\partial}}}{{{\partial}}t} \bigg(\varphi \sum_{{\alpha}}s_{{\alpha}}\eta_{{\alpha}}U_{{\alpha}}+ (1-\varphi) \rho_r c_r T\bigg)
+   \frac{{{\partial}}}{{{\partial}}t} \bigg(\porosity \sum_{{\alpha}}s_{{\alpha}}\eta_{{\alpha}}U_{{\alpha}}+ (1-\porosity) \rho_r c_r T\bigg)
    + {\boldsymbol{\nabla}}\cdot\bigg[\sum_{{\alpha}}{\boldsymbol{q}}_{{\alpha}}\eta_{{\alpha}}H_{{\alpha}}- \kappa{\boldsymbol{\nabla}}T\bigg] = Q_{e},
 
 for energy. In these equations :math:`{{\alpha}}` designates a fluid
@@ -49,7 +49,7 @@ phase (:math:`{{\alpha}}=l`, sc) at temperature :math:`T` and pressure
 :math:`P_{{\alpha}}` with the sums over all fluid phases present in the
 system, and source/sink terms :math:`Q_i` and :math:`Q_e` described in
 more detail below. Species are designated by the subscript :math:`i`
-(:math:`i=\mathrm{H_2O}`, :math:`\mathrm{CO_2}`); :math:`\varphi`
+(:math:`i=\mathrm{H_2O}`, :math:`\mathrm{CO_2}`); :math:`\porosity`
 denotes the porosity of the porous medium; :math:`s_{\alpha}` denotes
 the phase saturation state; :math:`x_i^{\alpha}` denotes the mole
 fraction of species :math:`i` satisfying
@@ -217,7 +217,7 @@ where the molality at equilibrium is given by
 .. math::
    :label: eq-molality-mphase
    
-   m_{{\rm CO_2}}^{eq} = \left(1-\dfrac{P_{\rm sat}(T)}{p}\right)\frac{\phi_{{\rm CO_2}}p}{K_{{\rm CO_2}}\gamma_{{\rm CO_2}}},
+   m_{{\rm CO_2}}^{eq} = \left(1-\dfrac{P_{\rm sat}(T)}{p}\right)\frac{\porosity_{{\rm CO_2}}p}{K_{{\rm CO_2}}\gamma_{{\rm CO_2}}},
 
 where it is assumed that
 
@@ -236,7 +236,7 @@ phases as expressed by the relation
 .. math::
    :label: chem-pot-mphase
    
-   f_{{\rm CO_2}}^{} = y_{{\rm CO_2}}^{}\phi_{{\rm CO_2}}^{} p_g^{} = K_{{\rm CO_2}}^{} \big(\gamma_{{\rm CO_2}}^{} m_{{\rm CO_2}}^{}\big),
+   f_{{\rm CO_2}}^{} = y_{{\rm CO_2}}^{}\porosity_{{\rm CO_2}}^{} p_g^{} = K_{{\rm CO_2}}^{} \big(\gamma_{{\rm CO_2}}^{} m_{{\rm CO_2}}^{}\big),
 
 where
 
@@ -274,7 +274,7 @@ where
 .. math::
    :label: K-mphase
    
-   \widetilde K_{{\rm CO_2}}^{} = \frac{\gamma_{{\rm CO_2}}^{} K_{{\rm CO_2}}^{}}{\phi_{{\rm CO_2}}^{} p_g}\frac{m_{{\rm CO_2}}}{x_{{\rm CO_2}}}.
+   \widetilde K_{{\rm CO_2}}^{} = \frac{\gamma_{{\rm CO_2}}^{} K_{{\rm CO_2}}^{}}{\porosity_{{\rm CO_2}}^{} p_g}\frac{m_{{\rm CO_2}}}{x_{{\rm CO_2}}}.
 
 :math:`\bullet` A phase change to single liquid or gas phase occurs if
 :math:`s_g \leq 0` or :math:`s_g\geq 1`, respectively.

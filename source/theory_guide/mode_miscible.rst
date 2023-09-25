@@ -11,7 +11,7 @@ mass conservation equations have the form
 .. math::
    :label: mass-cons-misc
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi \eta x_i + {\boldsymbol{\nabla}}\cdot\left[{\boldsymbol{q}}\eta x_i - \varphi D \eta {\boldsymbol{\nabla}}x_i\right] = Q_i,
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \eta x_i + {\boldsymbol{\nabla}}\cdot\left[{\boldsymbol{q}}\eta x_i - \porosity D \eta {\boldsymbol{\nabla}}x_i\right] = Q_i,
 
 with source/sink term :math:`Q_i`. It should be noted that the mass- and
 mole-fraction formulations of the conservation equations are not exactly
@@ -113,11 +113,11 @@ with
 .. math::
    :label: Mi-misc
    
-   M_i = \int \varphi \eta x_i dV.
+   M_i = \int \porosity \eta x_i dV.
 
 In terms of mass fractions and mass density
 
 .. math::
    :label: Mi2-misc
    
-   M_i^m = W_i M_i = \int \varphi \rho y_i dV.
+   M_i^m = W_i M_i = \int \porosity \rho y_i dV.

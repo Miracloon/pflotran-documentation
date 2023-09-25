@@ -144,7 +144,7 @@ MATERIAL_TRANSFORM <string>
 
 PERMEABILITY_CRITICAL_POROSITY <float>
 
- Critical porosity (:math:`\varphi_c`)  in the equation that scales permeability as a function of porosity.  See UPDATE_PERMEABILITY in users manual.
+ Critical porosity (:math:`\porosity_c`)  in the equation that scales permeability as a function of porosity.  See UPDATE_PERMEABILITY in users manual.
 
 PERMEABILITY_POWER <float>
 
@@ -156,7 +156,7 @@ PERMEABILITY_MIN_SCALE_FACTOR <float>
 
 POROSITY_COMPRESSIBILITY <float>
 
- Compressibility :math:`C_{\phi}` of the void-space volume fraction [1/Pa].  :math:`C_{\phi} \equiv (\alpha_b - \alpha_p)`, where :math:`\alpha_b` and :math:`\alpha_p` are the bulk volume and pore volume compressibility coefficients  defined in Bear (1972) as :math:`\alpha_b \equiv -\frac{1}{V_b}\frac{\partial V_b}{\partial p}` and :math:`\alpha_p \equiv -\frac{1}{V_p}\frac{\partial V_p}{\partial p}`.  Note that :math:`\alpha_b = (1-\phi) \alpha_s + \phi \alpha_p`.  Typically, :math:`\alpha_b` and :math:`\alpha_p` are negative numbers, and the resulting :math:`C_{\phi}` is a positive number.  If you assume that the solid particles of the porous medium are incompressible (:math:`\alpha_s \approx 0`), then :math:`C_{\phi} \approx -\frac{(1-\phi)}{\phi} \alpha_b`.   Use in conjuction with SOIL_COMPRESSIBILITY_FUNCTION POROSITY_EXPONENTIAL.
+ Compressibility :math:`C_{\porosity}` of the void-space volume fraction [1/Pa].  :math:`C_{\porosity} \equiv (\alpha_b - \alpha_p)`, where :math:`\alpha_b` and :math:`\alpha_p` are the bulk volume and pore volume compressibility coefficients  defined in Bear (1972) as :math:`\alpha_b \equiv -\frac{1}{V_b}\frac{\partial V_b}{\partial p}` and :math:`\alpha_p \equiv -\frac{1}{V_p}\frac{\partial V_p}{\partial p}`.  Note that :math:`\alpha_b = (1-\porosity) \alpha_s + \porosity \alpha_p`.  Typically, :math:`\alpha_b` and :math:`\alpha_p` are negative numbers, and the resulting :math:`C_{\porosity}` is a positive number.  If you assume that the solid particles of the porous medium are incompressible (:math:`\alpha_s \approx 0`), then :math:`C_{\porosity} \approx -\frac{(1-\porosity)}{\porosity} \alpha_b`.   Use in conjuction with SOIL_COMPRESSIBILITY_FUNCTION POROSITY_EXPONENTIAL.
 
 
 ROCK_DENSITY <float>
@@ -172,15 +172,15 @@ SATURATION_FUNCTION <string>
 
 SOIL_COMPRESSIBILITY <float>
 
- Compressibility :math:`C_{s}` of the soil matrix [1/Pa] (i.e. non-void-space volume fraction).  :math:`C_{s} \equiv (\alpha_s - \alpha_b)`, where :math:`\alpha_s` and :math:`\alpha_b` are the solid volume and bulk volume compressibility coefficients defined in Bear (1972) as :math:`\alpha_s \equiv -\frac{1}{V_s}\frac{\partial V_s}{\partial p}` and :math:`\alpha_b \equiv -\frac{1}{V_b}\frac{\partial V_b}{\partial p}`.  Note that :math:`\alpha_b = (1-\phi) \alpha_s + \phi \alpha_p`.  Typically, :math:`\alpha_s` is positive while :math:`\alpha_b` is negative, and the resulting :math:`C_{s}` is a positive number.  If you assume that the solid particles of the porous medium are incompressible (:math:`\alpha_s \approx 0`), then :math:`C_{s} \approx -\alpha_b`.   Use in conjuction with SOIL_COMPRESSIBILITY_FUNCTION LEIJNSE (DEFAULT).
+ Compressibility :math:`C_{s}` of the soil matrix [1/Pa] (i.e. non-void-space volume fraction).  :math:`C_{s} \equiv (\alpha_s - \alpha_b)`, where :math:`\alpha_s` and :math:`\alpha_b` are the solid volume and bulk volume compressibility coefficients defined in Bear (1972) as :math:`\alpha_s \equiv -\frac{1}{V_s}\frac{\partial V_s}{\partial p}` and :math:`\alpha_b \equiv -\frac{1}{V_b}\frac{\partial V_b}{\partial p}`.  Note that :math:`\alpha_b = (1-\porosity) \alpha_s + \porosity \alpha_p`.  Typically, :math:`\alpha_s` is positive while :math:`\alpha_b` is negative, and the resulting :math:`C_{s}` is a positive number.  If you assume that the solid particles of the porous medium are incompressible (:math:`\alpha_s \approx 0`), then :math:`C_{s} \approx -\alpha_b`.   Use in conjuction with SOIL_COMPRESSIBILITY_FUNCTION LEIJNSE (DEFAULT).
 
 SOIL_COMPRESSIBILITY_FUNCTION <string>
 
  Name of soil compressibility function [DEFAULT, LEIJNSE, POROSITY_EXPONENTIAL].  Default corresponds to Leijnse. 
  
- The Leijnse function (see Bear and Verruijt 1987 or Leijnse 1992) calculates porosity as :math:`\frac{(1-\phi)}{(1-\phi_{ref})} = \exp[-C_s (p-p_{ref})]`, where :math:`C_s \equiv \frac{-1}{(1-\phi)} \frac{\partial (1-\phi)}{\partial p}` is assumed constant and is specified using the SOIL_COMPRESSIBILITY card.  :math:`p_{ref}` is specified using the SOIL_REFERENCE_PRESSURE card, and :math:`\phi_{ref}` corresponds to the porosity defined using the POROSITY card.
+ The Leijnse function (see Bear and Verruijt 1987 or Leijnse 1992) calculates porosity as :math:`\frac{(1-\porosity)}{(1-\porosity_{ref})} = \exp[-C_s (p-p_{ref})]`, where :math:`C_s \equiv \frac{-1}{(1-\porosity)} \frac{\partial (1-\porosity)}{\partial p}` is assumed constant and is specified using the SOIL_COMPRESSIBILITY card.  :math:`p_{ref}` is specified using the SOIL_REFERENCE_PRESSURE card, and :math:`\porosity_{ref}` corresponds to the porosity defined using the POROSITY card.
 
- The POROSITY_EXPONENTIAL function calculates porosity as :math:`\frac{\phi}{\phi_{ref}} = \exp[+C_{\phi} (p-p_{ref})]`, where :math:`C_{\phi} \equiv \frac{1}{\phi} \frac{\partial \phi}{\partial p}` is assumed constant and is specified using the POROSITY_COMPRESSIBILITY card.  :math:`p_{ref}` is specified using the SOIL_REFERENCE_PRESSURE card, and :math:`\phi_{ref}` corresponds to the porosity defined using the POROSITY card.
+ The POROSITY_EXPONENTIAL function calculates porosity as :math:`\frac{\porosity}{\porosity_{ref}} = \exp[+C_{\porosity} (p-p_{ref})]`, where :math:`C_{\porosity} \equiv \frac{1}{\porosity} \frac{\partial \porosity}{\partial p}` is assumed constant and is specified using the POROSITY_COMPRESSIBILITY card.  :math:`p_{ref}` is specified using the SOIL_REFERENCE_PRESSURE card, and :math:`\porosity_{ref}` corresponds to the porosity defined using the POROSITY card.
 
 
 SOIL_REFERENCE_PRESSURE [<float> or INITIAL_PRESSURE]

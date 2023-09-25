@@ -266,7 +266,7 @@ Porosity-Dependent Thermal Conductivity Definition
 The LINEAR_RESISTIVITY thermal conductivity model has three optional parameters. If these parameters are not specified, the model has no variation with porosity (see LINEAR_RESISTIVITY_COEFFICIENTS in :ref:`tcc-parameter-definitions`). All three optional parameters presented below must be specified to turn on this behavior. 
 
 REFERENCE_POROSITY <float>
- Maximum porosity expected (:math:`\phi_{\mathrm{ref}}`). Value used to normalize porosity values between 0 and 1. If porosity goes above REFERENCE_POROSITY, the normalized value is capped at 1.0.
+ Maximum porosity expected (:math:`\porosity_{\mathrm{ref}}`). Value used to normalize porosity values between 0 and 1. If porosity goes above REFERENCE_POROSITY, the normalized value is capped at 1.0.
 
 POROSITY_EXPONENT <float>
  A dimensionless exponent applied to the solid fraction (:math:`\xi`).
@@ -274,11 +274,11 @@ POROSITY_EXPONENT <float>
 INITIAL_LINEAR_COEFFICIENTS <float> <float>
  Two coefficients (:math:`b_1` and :math:`b_2`) used to express linear temperature dependence of the thermal conductivity of the pore space (:math:`b_1 + b_2 T`).
 
-The expression was developed for reconsolidation of granular salt with air-filled porosity (Bollingerfehr et al., 2012; Table B.4, Saltgrus), :math:`\kappa_T(s_l,T,\phi) = \kappa_T(s_l,T) (1-\frac{\phi}{\phi_{\mathrm{ref}}})^\xi + (\frac{\phi}{\phi_{\mathrm{ref}}}) \cdot (b_1 + b_2 T)`.
+The expression was developed for reconsolidation of granular salt with air-filled porosity (Bollingerfehr et al., 2012; Table B.4, Saltgrus), :math:`\kappa_T(s_l,T,\porosity) = \kappa_T(s_l,T) (1-\frac{\porosity}{\porosity_{\mathrm{ref}}})^\xi + (\frac{\porosity}{\porosity_{\mathrm{ref}}}) \cdot (b_1 + b_2 T)`.
 
 :math:`\kappa_T(s_l,T)` is the LINEAR_RESISTIVITY function presented previously (associated with LINEAR_RESISTIVITY_COEFFICIENTS without porosity variation).
 
-At :math:`\phi=0`, the thermal conductivity is equal to the LINEAR_RESISTIVITY model without porosity variation. At :math:`\phi\ge\phi_\mathrm{ref}` the thermal conductivity has a linear dependence on temperature, given by :math:`b_1` and :math:`b_2`. At porosities between these two endmembers, the porosity is interpolated as a combination of the two.
+At :math:`\porosity=0`, the thermal conductivity is equal to the LINEAR_RESISTIVITY model without porosity variation. At :math:`\porosity\ge\porosity_\mathrm{ref}` the thermal conductivity has a linear dependence on temperature, given by :math:`b_1` and :math:`b_2`. At porosities between these two endmembers, the porosity is interpolated as a combination of the two.
 
 .. _tcc-test:
 
@@ -288,13 +288,13 @@ TEST
  Including this keyword will produce output (.dat file) for a thermal characteristic curve that includes: 
   (a) temperature [C] :math:`(T)`,
   (b) liquid saturation [-] :math:`(s_l)`,
-  (c) porosity [-] :math:`(\phi)`
+  (c) porosity [-] :math:`(\porosity)`
   (d) thermal conductivity [W/m*K] :math:`(\kappa_T)`,
   (e) derivative of thermal conductivity with respect to liquid saturation :math:`(\frac{\partial \kappa_T}{\partial s_l})`,
   (f) derivative of thermal conductivity with respect to temperature :math:`(\frac{\partial \kappa_T}{\partial T})`,
   (g) numerical approximation to (e.),
   (h) numerical approximation to (f.), and
-  (i) numerical approximation to derivative of thermal conductivity with respect to porosity :math:`(\frac{\partial \kappa_T}{\partial \phi})`
+  (i) numerical approximation to derivative of thermal conductivity with respect to porosity :math:`(\frac{\partial \kappa_T}{\partial \porosity})`
 
  When the `FROZEN <tcc-frozen-input_>`_ model is in use with FREEZING active, there are additional parameters in the output:
    * ice saturation :math:`(s_i)`

@@ -13,7 +13,7 @@ form
 .. math::
    :label: mass-conservation-general
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi \Big(s_l^{} \rho_l^{} x_i^l + s_g^{} \rho_g^{} x_i^g \Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l^{} \rho_l^{} x_i^l + {\boldsymbol{q}}_g \rho_g^{} x_i^g -\varphi s_l^{} D_l^{} \rho_l^{} {\boldsymbol{\nabla}}x_i^l -\varphi s_g^{} D_g^{} \rho_g^{} {\boldsymbol{\nabla}}x_i^g \Big) = Q_i^{},
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \Big(s_l^{} \rho_l^{} x_i^l + s_g^{} \rho_g^{} x_i^g \Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l^{} \rho_l^{} x_i^l + {\boldsymbol{q}}_g \rho_g^{} x_i^g -\porosity s_l^{} D_l^{} \rho_l^{} {\boldsymbol{\nabla}}x_i^l -\porosity s_g^{} D_g^{} \rho_g^{} {\boldsymbol{\nabla}}x_i^g \Big) = Q_i^{},
 
 for liquid and gas saturation :math:`s_{l,\,g}^{}`, density
 :math:`\rho_{l,\,g}^{}`, diffusivity :math:`D_{l,\,g}^{}`, Darcy
@@ -24,7 +24,7 @@ the form
 .. math::
    :label: energy-conservation-general
    
-   \sum_{{{\alpha}}=l,\,g}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\varphi s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\varphi)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
+   \sum_{{{\alpha}}=l,\,g}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\porosity s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\porosity)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
 
 as the sum of contributions from liquid and gas fluid phases and rock,
 with internal energy :math:`U_{{\alpha}}` and enthalpy
@@ -238,7 +238,7 @@ A third mass conservation equation for a solute can additionally be solved:
 .. math::
    :label: solute-conservation-general
 
-   \frac{{{\partial}}}{{{\partial}}t} \varphi \Big(s_l \rho_l x_i^l + s_p \rho_p x_i^p\Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l\rho_l x_i^l -\varphi s_l D_l \rho_l {\boldsymbol{\nabla}}x_i^l\Big) = Q_i
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \Big(s_l \rho_l x_i^l + s_p \rho_p x_i^p\Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l\rho_l x_i^l -\porosity s_l D_l \rho_l {\boldsymbol{\nabla}}x_i^l\Big) = Q_i
 
 for liquid and solid precipitate saturation :math:`s_{l,\,p}`, density
 :math:`\rho_{l,\,p}`, diffusivity :math:`D_{l}`, Darcy
@@ -252,5 +252,5 @@ Alternatively, the rock matrix can be soluble, in which case the mass conservati
 .. math::
    :label: soluble-matrix-conservation-general
 
-   \frac{{{\partial}}}{{{\partial}}t} \Big(\varphi (s_l \rho_l x_i^l)+(1-\varphi)\Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l \rho_l x_i^l -\varphi s_l D_l \rho_l {\boldsymbol{\nabla}}x_i^l\Big) = Q_i
+   \frac{{{\partial}}}{{{\partial}}t} \Big(\porosity (s_l \rho_l x_i^l)+(1-\porosity)\Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l \rho_l x_i^l -\porosity s_l D_l \rho_l {\boldsymbol{\nabla}}x_i^l\Big) = Q_i
 

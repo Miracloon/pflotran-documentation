@@ -48,7 +48,7 @@ Glossary of Symbols
 Greek Symbols
 +++++++++++++
 
-:math:`\varphi` -porosity [-]
+:math:`\porosity` -porosity [-]
 
 :math:`\rho` -mass water density [kg m\ :math:`^{-3}`]
 

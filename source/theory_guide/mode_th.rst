@@ -19,14 +19,14 @@ The governing equations for mass and energy are given by
 .. math::
    :label: masseqn
 
-   \frac{{{\partial}}}{{{\partial}}t}\left(\varphi s\eta\right) + {\boldsymbol{\nabla}}\cdot\left(\eta{\boldsymbol{q}}\right) = Q_w,
+   \frac{{{\partial}}}{{{\partial}}t}\left(\porosity s\eta\right) + {\boldsymbol{\nabla}}\cdot\left(\eta{\boldsymbol{q}}\right) = Q_w,
 
 and
 
 .. math::
    :label: energy-th
 
-   \frac{{{\partial}}}{{{\partial}}t}\big(\varphi s\eta U + (1-\varphi) \rho_r c_p T\big) + {\boldsymbol{\nabla}}\cdot\big(\eta {\boldsymbol{q}}H -\kappa {\boldsymbol{\nabla}}T\big) = Q_e,
+   \frac{{{\partial}}}{{{\partial}}t}\big(\porosity s\eta U + (1-\porosity) \rho_r c_p T\big) + {\boldsymbol{\nabla}}\cdot\big(\eta {\boldsymbol{q}}H -\kappa {\boldsymbol{\nabla}}T\big) = Q_e,
 
 The Darcy flow velocity :math:`{\boldsymbol{q}}` is given by
 
@@ -35,7 +35,7 @@ The Darcy flow velocity :math:`{\boldsymbol{q}}` is given by
 
    {\boldsymbol{q}}= -\frac{kk_r}{\mu} {\boldsymbol{\nabla}}\left(P-\rho gz\right).
 
-Here, :math:`\varphi` denotes porosity, :math:`s` saturation,
+Here, :math:`\porosity` denotes porosity, :math:`s` saturation,
 :math:`\rho`, :math:`\eta` mixture mass and molar density, respectively, of the brine, :math:`{\boldsymbol{q}}`
 Darcy flux, :math:`k` intrinsic permeability, :math:`k_r` relative
 permeability, :math:`\mu` viscosity, :math:`P` pressure, :math:`g`
@@ -85,13 +85,13 @@ component are given by
 .. math::
    :label: eq:balance_eqns
 
-   {\dfrac{\partial{}}{\partial{t}}} \left[ \phi \left( s_l \eta_l X_w^l + s_g \eta_g X_w^g + s_i \eta_i X_w^i \right) \right] & + \boldsymbol{\nabla} \cdot \left[X_w^l \boldsymbol{q}_l \eta_l + X_w^g \eta_g \boldsymbol{q}_g \right] \nonumber\\
-   - \boldsymbol{\nabla} \cdot \left[\phi s_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, \\
-   {\dfrac{\partial{}}{\partial{t}}} \left[ \phi \left( s_l \eta_l U_l + s_g \eta_g U_g + s_i \eta_i U_i \right) + (1- \phi) \rho_r c_r T \right] & + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l + \boldsymbol{q}_g \eta_g H_g \right] \nonumber\\
+   {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( s_l \eta_l X_w^l + s_g \eta_g X_w^g + s_i \eta_i X_w^i \right) \right] & + \boldsymbol{\nabla} \cdot \left[X_w^l \boldsymbol{q}_l \eta_l + X_w^g \eta_g \boldsymbol{q}_g \right] \nonumber\\
+   - \boldsymbol{\nabla} \cdot \left[\porosity s_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, \\
+   {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( s_l \eta_l U_l + s_g \eta_g U_g + s_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] & + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l + \boldsymbol{q}_g \eta_g H_g \right] \nonumber\\
    - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e,
 
 where the subscripts :math:`l`, :math:`i`, :math:`g`
-denote the liquid, ice and gas phases, respectively; :math:`\phi` is the
+denote the liquid, ice and gas phases, respectively; :math:`\porosity` is the
 porosity; :math:`s_{\alpha} (\alpha = i, l, g)` is the saturation of the
 :math:`\alpha`-th phase; :math:`\eta_{\alpha} (\alpha = i, l, g)` is the
 molar density of the :math:`\alpha`-th phase; :math:`\rho_g`,
@@ -148,12 +148,12 @@ on the assumption that :math:`p_g` is hydrostatic i.e.,
 .. math::
    :label: eq:gov1
 
-   {\dfrac{\partial{}}{\partial{t}}}\left[ \phi \left( s_g \eta_g X_w^g +s_l \eta_l + s_i \eta_i \right) \right] + \boldsymbol{\nabla} \cdot \left[\boldsymbol{q}_l \eta_l \right] - \boldsymbol{\nabla} \cdot \left[\phi s_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, 
+   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( s_g \eta_g X_w^g +s_l \eta_l + s_i \eta_i \right) \right] + \boldsymbol{\nabla} \cdot \left[\boldsymbol{q}_l \eta_l \right] - \boldsymbol{\nabla} \cdot \left[\porosity s_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, 
    
 .. math::
    :label: eq:gov2
 
-   {\dfrac{\partial{}}{\partial{t}}}\left[ \phi \left( s_l \eta_l U_l + s_g \eta_g U_g + s_i \eta_i U_i \right) + (1- \phi) \rho_r c_r T \right] + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l \right] - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e, \\
+   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( s_l \eta_l U_l + s_g \eta_g U_g + s_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l \right] - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e, \\
    \boldsymbol{q}_l = - \frac{k_{rl}k}{\mu_l} \left[\boldsymbol{\nabla}p_l - \rho_l \boldsymbol{g} \right]. 
 
 In the above formulation, temperature and liquid pressure are chosen to

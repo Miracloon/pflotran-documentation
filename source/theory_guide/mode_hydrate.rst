@@ -13,7 +13,7 @@ conservation equations have the form
 .. math::
    :label: mass-conservation-hydrate
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi \sum_{{{\alpha}}=l,\,g,\,h,\,i} \Big(s_{\alpha}^{} \rho_{\alpha}^{} x_j^{\alpha} \Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l^{} \rho_l^{} x_j^l + {\boldsymbol{q}}_g \rho_g^{} x_j^g -\varphi s_l^{} D_l^{} \rho_l^{} {\boldsymbol{\nabla}}x_j^l -\varphi s_g^{} D_g^{} \rho_g^{} {\boldsymbol{\nabla}}x_j^g \Big) = Q_j^{},
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \sum_{{{\alpha}}=l,\,g,\,h,\,i} \Big(s_{\alpha}^{} \rho_{\alpha}^{} x_j^{\alpha} \Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l^{} \rho_l^{} x_j^l + {\boldsymbol{q}}_g \rho_g^{} x_j^g -\porosity s_l^{} D_l^{} \rho_l^{} {\boldsymbol{\nabla}}x_j^l -\porosity s_g^{} D_g^{} \rho_g^{} {\boldsymbol{\nabla}}x_j^g \Big) = Q_j^{},
 
 for liquid, gas, hydrate, and ice saturations :math:`s_{l,\,g,\,h,\,i}^{}`, 
 mobile phase density :math:`\rho_{l,\,g}^{}`, diffusivity :math:`D_{l,\,g}^{}`,
@@ -25,7 +25,7 @@ the form
 .. math::
    :label: energy-conservation-hydrate
    
-   \sum_{{{\alpha}}=l,\,g,\,h,\,i}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\varphi s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\varphi)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
+   \sum_{{{\alpha}}=l,\,g,\,h,\,i}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\porosity s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\porosity)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
 
 as the sum of contributions from liquid and fluid phases and solid hydrate, 
 ice, and rock phases; with internal energy :math:`U_{{\alpha}}` and enthalpy
@@ -42,10 +42,10 @@ Thermal conductivity :math:`\kappa` can be determined from :ref:`thermal-charact
 .. math::
    :label: cond-hydrate
       
-   \kappa = \kappa_{\rm dry} + {\phi}\sum_{{{\alpha}}=l,\,g,\,h,\,i}s_{{\alpha}}{\kappa}_{\alpha} ,
+   \kappa = \kappa_{\rm dry} + {\porosity}\sum_{{{\alpha}}=l,\,g,\,h,\,i}s_{{\alpha}}{\kappa}_{\alpha} ,
 
 where :math:`\kappa_{\rm dry}` is the dry thermal conductivity, an input
-parameter equivalent to :math:`(1-\phi)\kappa_{\rm rock}` and :math:`\kappa_{\rm sat}` are dry and
+parameter equivalent to :math:`(1-\porosity)\kappa_{\rm rock}` and :math:`\kappa_{\rm sat}` are dry and
 fully saturated rock thermal conductivities, respectively.
 
 The internal energy of the ice phase is computed by (Fukusako and Yamada, 1993):

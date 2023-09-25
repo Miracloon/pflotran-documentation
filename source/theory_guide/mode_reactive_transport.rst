@@ -27,7 +27,7 @@ aqueous primary or basis species with the form
 .. math::
    :label: rteqn
    
-   \frac{\partial}{\partial t}\big(\varphi 
+   \frac{\partial}{\partial t}\big(\porosity 
    \sum_{\alpha} s_{\alpha}\Psi_j^{\alpha}\big) +
    \nabla\cdot\sum_{\alpha}{\boldsymbol\Omega}_j^{\alpha}= Q_j - \sum_m\nu_{jm} I_m -\frac{\partial S_j}{\partial t},
 
@@ -36,10 +36,10 @@ and
 .. math::
    :label: rteqn2
    
-   \frac{{{\partial}}\varphi_m}{{{\partial}}t} = \overline{V}_m I_m,
+   \frac{{{\partial}}\porosity_m}{{{\partial}}t} = \overline{V}_m I_m,
 
 for minerals with molar volume :math:`\overline{V}_m`, reaction
-rate :math:`I_m` and volume fraction :math:`\varphi_m`
+rate :math:`I_m` and volume fraction :math:`\porosity_m`
 referenced to an REV. 
 The term involving  :math:`S_j` describes sorptive processes considered in more
 detail below.
@@ -145,7 +145,7 @@ species-independent diffusion is given by
 .. math::
    :label: dummy6
    
-   {\boldsymbol{\Omega}}_j^{\alpha}= \big({\boldsymbol{q}}_{\alpha}- \varphi s_{\alpha}{\boldsymbol{D}}_{\alpha} \cdot {\boldsymbol{\nabla}}\big)\Psi_j^{\alpha}.
+   {\boldsymbol{\Omega}}_j^{\alpha}= \big({\boldsymbol{q}}_{\alpha}- \porosity s_{\alpha}{\boldsymbol{D}}_{\alpha} \cdot {\boldsymbol{\nabla}}\big)\Psi_j^{\alpha}.
 
 The diffusion/dispersion tensor :math:`{\boldsymbol{D}}_{\alpha}`
 may be different for different phases, e.g. an aqueous electrolyte
@@ -187,7 +187,7 @@ according to the relation
 .. math::
    :label: dummy9
    
-   \varphi = 1 - \sum_m \varphi_m.
+   \porosity = 1 - \sum_m \porosity_m.
 
 The temperature dependence of the diffusion coefficient is defined
 through the relation
@@ -338,43 +338,43 @@ reactions through the change in porosity
 .. math::
    :label: porosity
    
-   \varphi = 1-\sum_m\varphi_m.
+   \porosity = 1-\sum_m\porosity_m.
 
 Change in permeability involves a phenomenological relation with porosity
 
 .. math::
    :label: permeability
    
-   k = k_0 f(\varphi,\,\varphi_0,\,\varphi_c,\,n),
+   k = k_0 f(\porosity,\,\porosity_0,\,\porosity_c,\,n),
 
 with
 
 .. math::
    :label: permf
    
-   f = \left(\frac{\varphi-\varphi_c}{\varphi_0-\varphi_c}\right)^n,
+   f = \left(\frac{\porosity-\porosity_c}{\porosity_0-\porosity_c}\right)^n,
    
 .. math::
    :label: fmin
    
-   = f_{\rm min} \ \ \ \text{if} \ \ \ \varphi \leq \varphi_c, 
+   = f_{\rm min} \ \ \ \text{if} \ \ \ \porosity \leq \porosity_c, 
 
 .. math::
    :label: tortuosity
    
-   \tau = \tau_0 \left(\frac{\varphi}{\varphi_0}\right)^b,
+   \tau = \tau_0 \left(\frac{\porosity}{\porosity_0}\right)^b,
 
 and
 
 .. math::
    :label: surface_area_vf
    
-   A_m = A_m^0 \left(\frac{\varphi_m}{\varphi_m^0}\right)^n  \left(\frac{1-\varphi}{1-\varphi_0}\right)^{n'},
+   A_m = A_m^0 \left(\frac{\porosity_m}{\porosity_m^0}\right)^n  \left(\frac{1-\porosity}{1-\porosity_0}\right)^{n'},
 
 where the super/subscript 0 denotes initial values, with a typical value
 for :math:`n` of :math:`2/3` reflecting the surface to volume ratio.
 Note that this relation only applies to primary minerals
-:math:`(\varphi_m^0 > 0)`. The quantity :math:`\varphi_c` refers to a
+:math:`(\porosity_m^0 > 0)`. The quantity :math:`\porosity_c` refers to a
 critical porosity below which the permeability is assumed to be constant
 with scale factor :math:`f_{\rm min}`.
 
@@ -397,7 +397,7 @@ The mineral volume fraction can be written in terms of the grain size as
 .. math::
    :label: vol_frac_lm
 
-   \phi_m = \frac{V_m}{V} = \frac{N_m v_m}{V} = \eta_m \ell_m^3,
+   \porosity_m = \frac{V_m}{V} = \frac{N_m v_m}{V} = \eta_m \ell_m^3,
 
 where the grain density given by
 
@@ -412,43 +412,43 @@ It follows that solving for :math:`\ell_m` gives
 .. math::
    :label: dum0
 
-   \ell_m = \left(\frac{\phi_m}{\eta_m}\right)^{1/3},
+   \ell_m = \left(\frac{\porosity_m}{\eta_m}\right)^{1/3},
 
 and thus squaring yields
 
 .. math::
    :label: dum1
 
-   \ell_m^2 = \left(\frac{\phi_m}{\eta_m}\right)^{2/3}.
+   \ell_m^2 = \left(\frac{\porosity_m}{\eta_m}\right)^{2/3}.
 
 Therefore the mineral surface area :math:`A_m` is given by
 
 .. math::
    :label: dum2
 
-   A_m = \eta_m a_m = 6 \eta_m \ell_m^{2} = 6 \eta_m \left(\frac{\phi_m}{\eta_m}\right)^{2/3}
-   = 6 \eta_m^{1/3} \phi_m^{2/3}.
+   A_m = \eta_m a_m = 6 \eta_m \ell_m^{2} = 6 \eta_m \left(\frac{\porosity_m}{\eta_m}\right)^{2/3}
+   = 6 \eta_m^{1/3} \porosity_m^{2/3}.
 
 A similar expression can be written for the initial surface area
 
 .. math::
    :label: dum3
 
-   A_m^0 = 6 \eta_m \left(\frac{\phi_m^0}{\eta_m}\right)^{2/3},
+   A_m^0 = 6 \eta_m \left(\frac{\porosity_m^0}{\eta_m}\right)^{2/3},
 
 using the same grain density :math:`\eta_m` by assumption. Taking their ratio then gives the desired result
 
 .. math::
    :label: dum4
 
-   A_m = A_m^0 \left(\frac{\phi_m}{\phi_m^0}\right)^{2/3},
+   A_m = A_m^0 \left(\frac{\porosity_m}{\porosity_m^0}\right)^{2/3},
 
-which is independent of the grain density. It should be noted, however, that this result only applies to primary minerals because of the restriction :math:`\phi_m^0 > 0`. For secondary minerals, or a primary mineral which has completely dissolved at a grid cell, Eqn. :eq:`dum2` must be used 
+which is independent of the grain density. It should be noted, however, that this result only applies to primary minerals because of the restriction :math:`\porosity_m^0 > 0`. For secondary minerals, or a primary mineral which has completely dissolved at a grid cell, Eqn. :eq:`dum2` must be used 
 (This formulation is currently not implemented in PFLOTRAN).
 
 In PFLOTRAN the solid is represented as an aggregate of minerals
-described quantitatively by specifying its porosity :math:`\varphi` and
-the volume fraction :math:`\varphi_m = V_m/V` of each primary mineral referenced
+described quantitatively by specifying its porosity :math:`\porosity` and
+the volume fraction :math:`\porosity_m = V_m/V` of each primary mineral referenced
 to the bulk volume :math:`V` of the porous medium. It is not
 necessary that Eqn. :eq:`porosity` relating porosity and
 mineral volume fractions holds, and often the porosity is kept constant during the simulation. 
@@ -460,15 +460,15 @@ rather than the bulk volume
 .. math::
    :label: solid_vol
 
-   \hat\varphi_m = \frac{V_m}{V_s} = \frac{V_m}{\sum_{m'} V_{m'}},
+   \hat\porosity_m = \frac{V_m}{V_s} = \frac{V_m}{\sum_{m'} V_{m'}},
 
-with :math:`\sum_m\hat\varphi_m=1`.
+with :math:`\sum_m\hat\porosity_m=1`.
 The two formulations are related by the porosity as given by
 
 .. math::
    :label: convert
 
-   \varphi_m = (1-\varphi) \hat\varphi_m.
+   \porosity_m = (1-\porosity) \hat\porosity_m.
 
 
 The solid composition may also be specified by giving the mass or 
@@ -480,15 +480,15 @@ expressions
 .. math::
    :label: dummy20
    
-   \varphi_m &= (1-\varphi) \frac{x_m \overline V_m}{\sum_{m'} x_{m'} \overline V_{m'}},\\
-   &= (1-\varphi) \frac{y_m^{} \rho_m^{-1}}{\sum_{m'} y_{m'}^{} \rho_{m'}^{-1}}.
+   \porosity_m &= (1-\porosity) \frac{x_m \overline V_m}{\sum_{m'} x_{m'} \overline V_{m'}},\\
+   &= (1-\porosity) \frac{y_m^{} \rho_m^{-1}}{\sum_{m'} y_{m'}^{} \rho_{m'}^{-1}}.
 
 The inverse relation is given by
 
 .. math::
    :label: dummy21
    
-   x_m = \frac{\varphi_m}{\overline V_m \eta_s(1-\varphi)},
+   x_m = \frac{\porosity_m}{\overline V_m \eta_s(1-\porosity)},
 
 and similarly for the mass fraction, where
 
@@ -536,7 +536,7 @@ mass balance equation
 .. math::
    :label: min_mass_bal
 
-   \frac{\partial\phi_m}{\partial t} = \overline V_m I_m
+   \frac{\partial\porosity_m}{\partial t} = \overline V_m I_m
 
 for stationary state conditions. The reaction rate :math:`I_m` is assumed to 
 have the typical form
@@ -554,7 +554,7 @@ of the mineral volume fraction
 .. math::
    :label: var_surf_area
 
-   A_m = A_m^0 \left(\frac{\phi_m}{\phi_m^0}\right)^n,
+   A_m = A_m^0 \left(\frac{\porosity_m}{\porosity_m^0}\right)^n,
 
 with constant :math:`n`. The affinity factor :math:`\Omega_m` is constant, for example, for a stationary state or at the inlet boundary. The mineral mass balance equation can then be written in the form
 
@@ -568,14 +568,14 @@ where :math:`\zeta_m` is defined as the ratio
 .. math::
    :label: zeta
 
-   \zeta_m = \frac{\phi_m}{\phi_m^0},
+   \zeta_m = \frac{\porosity_m}{\porosity_m^0},
 
-where :math:`\phi_m^0` refers to the initial mineral volume fraction at :math:`t=0` and :math:`\alpha_m` is given by
+where :math:`\porosity_m^0` refers to the initial mineral volume fraction at :math:`t=0` and :math:`\alpha_m` is given by
 
 .. math::
    :label: alpha
 
-   \alpha_m = \frac{\overline V_m k_m A_m^0 \Omega_m}{\phi_m^0}.
+   \alpha_m = \frac{\overline V_m k_m A_m^0 \Omega_m}{\porosity_m^0}.
 
 The equation for :math:`\zeta_m` can be solved analytically with the initial condition :math:`\zeta(0)=1` to give
 
@@ -610,9 +610,9 @@ which only allows precipitation to occur if :math:`K_m Q_m > f > 1`.
  .. math::
     :label: surface_armoring
    
-    a_m(t) = a_m^0 \left(\frac{\varphi_m}{\varphi_m^0}\right)^n  \left(\frac{1-\varphi}{1-\varphi_0}\right)^{n'} \left(\frac{\varphi_{m'}^c - \varphi_{m'}}{\varphi_{m'}^c}\right)^{n''},
+    a_m(t) = a_m^0 \left(\frac{\porosity_m}{\porosity_m^0}\right)^n  \left(\frac{1-\porosity}{1-\porosity_0}\right)^{n'} \left(\frac{\porosity_{m'}^c - \porosity_{m'}}{\porosity_{m'}^c}\right)^{n''},
  
- for :math:`\varphi_{m'} < \varphi_{m'}^c`, and
+ for :math:`\porosity_{m'} < \porosity_{m'}^c`, and
 
  .. math::
     :label: dummy27
@@ -620,8 +620,8 @@ which only allows precipitation to occur if :math:`K_m Q_m > f > 1`.
     a_m = 0,
    
 
- if :math:`\varphi_{m'}(t) \geq \varphi_{m'}^c`, where
- :math:`\varphi_{m'}^c` represents the critical volume fraction necessary
+ if :math:`\porosity_{m'}(t) \geq \porosity_{m'}^c`, where
+ :math:`\porosity_{m'}^c` represents the critical volume fraction necessary
   for complete blocking of the reaction of mineral
  :math:`{{\mathcal M}}_m`.
 
@@ -651,7 +651,7 @@ source/sink term in the transport equations as given by
 .. math::
    :label: isothrm
 
-   \frac{\partial}{\partial t} \varphi s_l \Psi_j + \vec\nabla\cdot\vec\Omega_j = 
+   \frac{\partial}{\partial t} \porosity s_l \Psi_j + \vec\nabla\cdot\vec\Omega_j = 
    -\frac{\partial S_j}{\partial t},
 
 with saturation :math:`s_l`. Combining time derivative terms the transport equations become
@@ -659,7 +659,7 @@ with saturation :math:`s_l`. Combining time derivative terms the transport equat
 .. math::
    :label: transport_eqn
 
-   \frac{\partial}{\partial t} \big(\varphi s_l\Psi_j + S_j \big) 
+   \frac{\partial}{\partial t} \big(\porosity s_l\Psi_j + S_j \big) 
    + \vec\nabla\cdot\vec\Omega_j = 0,
 
 This equation can be rewritten as
@@ -667,7 +667,7 @@ This equation can be rewritten as
 .. math::
    :label: retardeqn
 
-   \frac{\partial}{\partial t} \Big[\varphi s_l\Psi_j R_j \Big] 
+   \frac{\partial}{\partial t} \Big[\porosity s_l\Psi_j R_j \Big] 
    + \vec\nabla\cdot\vec\Omega_j = 0,
  
 where the local retardation factor :math:`R_j` is defined in terms of the distribution coefficient
@@ -677,7 +677,7 @@ where the local retardation factor :math:`R_j` is defined in terms of the distri
    :label: retard
 
    R_j &= 1 + K_j^D,\\
-   K_j^D &= \frac{S_j}{\varphi s_l\Psi_j}.
+   K_j^D &= \frac{S_j}{\porosity s_l\Psi_j}.
 
 For the case when :math:`R_j` = constant, the transport equation 
 can be written in the form
@@ -685,7 +685,7 @@ can be written in the form
 .. math::
    :label: reteqn
 
-   \frac{\partial}{\partial t} \Big[\varphi s_l\Psi_j\Big] 
+   \frac{\partial}{\partial t} \Big[\porosity s_l\Psi_j\Big] 
    + \vec\nabla\cdot\frac{1}{R_j}\vec\Omega_j = 0,
 
 resulting in retarded advective and diffusive/dispersive transport. Note that the retardation
@@ -722,7 +722,7 @@ its dimensionless counterpart :math:`K_j^D` [—] defined by
 .. math::
    :label: kdj
    
-   K_j^D = \frac{N_j^s}{N_j^{\rm aq}} = \frac{N_j^s/V}{N_j^{\rm aq}/V}= \frac{1}{\varphi s_l}\frac{S_j}{C_j},
+   K_j^D = \frac{N_j^s}{N_j^{\rm aq}} = \frac{N_j^s/V}{N_j^{\rm aq}/V}= \frac{1}{\porosity s_l}\frac{S_j}{C_j},
    
 by writing
 
@@ -730,10 +730,10 @@ by writing
    :label: dummy72
    
    K_j^D &= \frac{N_j^s}{M_s} \frac{M_s}{V_s} \frac{V_s}{V_p} \frac{V_p}{V_l} \frac{V_l}{N_j^{\rm aq}},\\
-   &= \rho_s \frac{1-\varphi}{\varphi s_l} \tilde K_j^D = \frac{\rho_b}{\varphi s_l} \tilde K_j^D,
+   &= \rho_s \frac{1-\porosity}{\porosity s_l} \tilde K_j^D = \frac{\rho_b}{\porosity s_l} \tilde K_j^D,
 
 with grain density :math:`\rho_s=M_s/V_s`, bulk density
-:math:`\rho_b=(1-\varphi)\rho_s`, porosity :math:`\varphi=V_p/V`, and
+:math:`\rho_b=(1-\porosity)\rho_s`, porosity :math:`\porosity=V_p/V`, and
 saturation :math:`s_l=V_l/V_p`.
 
 An alternative definition of the distribution coefficient denoted by
@@ -752,8 +752,8 @@ The local retardation coefficient :math:`R_j` can be expressed in the alternativ
    :label: dummy76
    
    R_j &= 1 + K_j^D, \ \ \ \ \ \ (\text{dimensionless)},\\
-   &= 1+ \frac{\rho_b}{\varphi s_l} \tilde K_j^D, \ \ \ \ \ \ (\text{conventional}),\\
-   &= 1+ \frac{1}{\varphi s_l \rho_w} \hat K_j^D, \ \ \ \ \ \ (\text{molality-based}).
+   &= 1+ \frac{\rho_b}{\porosity s_l} \tilde K_j^D, \ \ \ \ \ \ (\text{conventional}),\\
+   &= 1+ \frac{1}{\porosity s_l \rho_w} \hat K_j^D, \ \ \ \ \ \ (\text{molality-based}).
 
 Three distinct models are available for the sorption isotherm
 :math:`S_j` in PFLOTRAN:
@@ -763,7 +763,7 @@ Three distinct models are available for the sorption isotherm
    .. math::
       :label: linkd
       
-      S_j = \varphi s_l K_j^D C_j = \hat K_j^D m_j,
+      S_j = \porosity s_l K_j^D C_j = \hat K_j^D m_j,
 
    with distribution coefficient :math:`\hat K_j^D`.
 
@@ -897,8 +897,8 @@ combined with ion exchange reactions with reaction rates
 .. math::
    :label: refcat
 
-   \frac{\partial}{\partial t } \varphi \Psi_j + \vec\nabla\cdot\vec\Omega_j &= \sum_{i\ne j} z_i \Gamma_{ji},\\
-   \frac{\partial}{\partial t } \varphi \Psi_i + \vec\nabla\cdot\vec\Omega_i &= -z_j \Gamma_{ji},\\
+   \frac{\partial}{\partial t } \porosity \Psi_j + \vec\nabla\cdot\vec\Omega_j &= \sum_{i\ne j} z_i \Gamma_{ji},\\
+   \frac{\partial}{\partial t } \porosity \Psi_i + \vec\nabla\cdot\vec\Omega_i &= -z_j \Gamma_{ji},\\
    \frac{\partial S_j}{\partial t} &= -\sum_{i\ne j} z_i \Gamma_{ji},\\
    \frac{\partial S_i}{\partial t} &= z_j \Gamma_{ji}.
 
@@ -907,8 +907,8 @@ The ion exchange reaction rates may be eliminated from the aqueous transport equ
 .. math::
    :label: refcateq
 
-   \frac{\partial}{\partial t } \varphi \Psi_j + \vec\nabla\cdot\vec\Omega_j &= -\frac{\partial S_j}{\partial t},\\
-   \frac{\partial}{\partial t } \varphi \Psi_i + \vec\nabla\cdot\vec\Omega_i &= -\frac{\partial S_i}{\partial t}.
+   \frac{\partial}{\partial t } \porosity \Psi_j + \vec\nabla\cdot\vec\Omega_j &= -\frac{\partial S_j}{\partial t},\\
+   \frac{\partial}{\partial t } \porosity \Psi_i + \vec\nabla\cdot\vec\Omega_i &= -\frac{\partial S_i}{\partial t}.
 
 Assuming conditions of local equilibrium the ion exchange reaction rates may be eliminated and replaced by
 isotherms.
@@ -949,16 +949,16 @@ capacity :math:`Q_{\alpha}` (mol/kg) by the expression
 .. math::
    :label: dummy28
    
-   \omega_{{\alpha}}= \frac{N_{\rm site}}{V} = \frac{N_{\rm site}}{M_s} \frac{M_s}{V_s} \frac{V_s}{V} = (1-\phi) \rho_s Q_{{\alpha}},
+   \omega_{{\alpha}}= \frac{N_{\rm site}}{V} = \frac{N_{\rm site}}{M_s} \frac{M_s}{V_s} \frac{V_s}{V} = (1-\porosity) \rho_s Q_{{\alpha}},
 
-with solid density :math:`\rho_s` and porosity :math:`\varphi`. The
+with solid density :math:`\rho_s` and porosity :math:`\porosity`. The
 cation exchange capacity associated with the :math:`m`\ th mineral is
 defined on a molar basis as
 
 .. math::
    :label: dummy29
    
-   \omega_m^{\rm CEC} = \frac{N_m}{V} = \frac{N_m}{M_m} \frac{M_m}{V_m} \frac{V_m}{V} = Q_m^{\rm CEC} \rho_m \phi_m.
+   \omega_m^{\rm CEC} = \frac{N_m}{V} = \frac{N_m}{M_m} \frac{M_m}{V_m} \frac{V_m}{V} = Q_m^{\rm CEC} \rho_m \porosity_m.
 
 The site concentration :math:`\omega_{{\alpha}}` is related to the
 sorbed concentrations :math:`S_k^{{\alpha}}` by the expression
@@ -1331,7 +1331,7 @@ Then the transport equations become
 .. math::
    :label: totj
    
-   \frac{{{\partial}}}{{{\partial}}t}\left(\varphi \Psi_j + \sum_{{{\alpha}}}S_{j{{\alpha}}}\right) + {\boldsymbol{\nabla}}\cdot{\boldsymbol{\Omega}}_j = - \sum_m\nu_{jm}I_m.
+   \frac{{{\partial}}}{{{\partial}}t}\left(\porosity \Psi_j + \sum_{{{\alpha}}}S_{j{{\alpha}}}\right) + {\boldsymbol{\nabla}}\cdot{\boldsymbol{\Omega}}_j = - \sum_m\nu_{jm}I_m.
 
 The total sorbed concentrations are obtained from the equations
 
@@ -1388,7 +1388,7 @@ With the above reactions the transport equations for primary species have the fo
 .. math::
    :label: genrxn
 
-   \frac{\partial}{\partial t} \varphi \Psi_j + \vec\nabla\cdot\vec\Omega_j = \sum_r \nu_{jr}^{kin} \Gamma_r
+   \frac{\partial}{\partial t} \porosity \Psi_j + \vec\nabla\cdot\vec\Omega_j = \sum_r \nu_{jr}^{kin} \Gamma_r
    -\sum_m \nu_{jm} \Gamma_m,
 
 where :math:`\Psi_j` and :math:`\vec\Omega_j` are the total concentration and flux, 
@@ -1454,12 +1454,12 @@ colloids, read
 .. math::
    :label: rateform
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi s_l \Psi_j^l + {\boldsymbol{\nabla}}\cdot{\boldsymbol{\Omega}}_j^l = -\sum_k\nu_{jk}\big(I_k^{{\rm m}}+ I_k^{{\rm im}}+ \sum_s I_k^s\big) - \sum_s \nu_{js} I_s,
+   \frac{{{\partial}}}{{{\partial}}t} \porosity s_l \Psi_j^l + {\boldsymbol{\nabla}}\cdot{\boldsymbol{\Omega}}_j^l = -\sum_k\nu_{jk}\big(I_k^{{\rm m}}+ I_k^{{\rm im}}+ \sum_s I_k^s\big) - \sum_s \nu_{js} I_s,
 
 .. math::
    :label: mobile
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi s_l S_k^{{\rm m}} + {\boldsymbol{\nabla}}\cdot{\boldsymbol{q}}_c S_k^{{\rm m}} = I_k^{{\rm m}},
+   \frac{{{\partial}}}{{{\partial}}t} \porosity s_l S_k^{{\rm m}} + {\boldsymbol{\nabla}}\cdot{\boldsymbol{q}}_c S_k^{{\rm m}} = I_k^{{\rm m}},
 
 .. math::
    :label: immobile
@@ -1479,7 +1479,7 @@ eliminated and replaced by algebraic sorption isotherms to yield
 .. math::
    :label: eqform
    
-   \frac{{{\partial}}}{{{\partial}}t}\Big[ \varphi s_l \Psi_j^l + \sum_k \nu_{jk} \big(\varphi s_l S_k^{{\rm m}}+ S_k^{{\rm im}}+ \sum_s S_k^s\big) \Big] + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{\Omega}}_j^l + {\boldsymbol{q}}_c \sum_k \nu_{jk} S_k^{{\rm m}}\Big) = - \sum_s \nu_{js} I_s.
+   \frac{{{\partial}}}{{{\partial}}t}\Big[ \porosity s_l \Psi_j^l + \sum_k \nu_{jk} \big(\porosity s_l S_k^{{\rm m}}+ S_k^{{\rm im}}+ \sum_s S_k^s\big) \Big] + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{\Omega}}_j^l + {\boldsymbol{q}}_c \sum_k \nu_{jk} S_k^{{\rm m}}\Big) = - \sum_s \nu_{js} I_s.
 
 In the kinetic case either form of the primary species transport
 equations given by Eqn. :eq:`rateform` or :eq:`eqform` can be used 
@@ -1511,7 +1511,7 @@ advection-diffusion/dispersion equation for the mean age given by
 .. math::
    :label: dummy80
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi s AC + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}AC - \varphi s D {\boldsymbol{\nabla}}(AC)\Big) = \varphi s C,
+   \frac{{{\partial}}}{{{\partial}}t} \porosity s AC + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}AC - \porosity s D {\boldsymbol{\nabla}}(AC)\Big) = \porosity s C,
 
 where :math:`A` denotes the mean age of the tracer with concentration
 :math:`C`. Other quantities appearing in the age equation are identical
@@ -1733,7 +1733,7 @@ to
    \sigma_m' = \lambda_m\sigma_m.
 
 It should be noted that the mineral concentration
-:math:`(C_m' =({\overline V}_m^{-1})^{'} \phi_m = \lambda_m^{-1} C_m)`,
+:math:`(C_m' =({\overline V}_m^{-1})^{'} \porosity_m = \lambda_m^{-1} C_m)`,
 differs in the two formulations; however, mass density
 :math:`(\rho_m = W_m \overline V_m^{-1})` is an invariant, unlike molar
 density :math:`(\eta_m=\overline V_m^{-1})`. The scaling factor :math:`\lambda_m`

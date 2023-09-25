@@ -89,12 +89,12 @@ RATE_LIMITER <float>
 
 SURFACE_AREA_POROSITY_POWER <float>
  Exponent in equation for transient mineral surface area calculated as a 
- function of porosity, :math:`\phi`:
- :math:`a_m = a_m^0 (\phi/\phi_0)^n`, :math:`n` = SURFACE_AREA_POROSITY_POWER.
+ function of porosity, :math:`\porosity`:
+ :math:`a_m = a_m^0 (\porosity/\porosity_0)^n`, :math:`n` = SURFACE_AREA_POROSITY_POWER.
 
 SURFACE_AREA_VOL_FRAC_POWER <float>
- Exponent in equation for transient mineral surface area calculated as a function of the mineral volume fraction :math:`\phi_m`:  
- :math:`a_m = a_m^0 (\phi_m/\phi_m^0)^n`, :math:`n` = SURFACE_AREA_VOL_FRAC_POWER. Note that the volume fraction power can be applied only if :math:`\phi_m^0 > 0` corresponding to primary minerals.
+ Exponent in equation for transient mineral surface area calculated as a function of the mineral volume fraction :math:`\porosity_m`:  
+ :math:`a_m = a_m^0 (\porosity_m/\porosity_m^0)^n`, :math:`n` = SURFACE_AREA_VOL_FRAC_POWER. Note that the volume fraction power can be applied only if :math:`\porosity_m^0 > 0` corresponding to primary minerals.
 
 TEMKIN_CONSTANT
  Sigma in Eqn. :eq:`tst_rate_law` above.
