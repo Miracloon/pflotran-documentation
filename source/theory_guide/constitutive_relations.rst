@@ -18,7 +18,7 @@ relations, one of which is the van Genuchten (1980) relation
 .. math::
    :label: seff
    
-   s_e = \left[1+\left( \frac{p_c}{p_c^0} \right)^n\right]^{-m},
+   \saturation_e = \left[1+\left( \frac{p_c}{p_c^0} \right)^n\right]^{-m},
 
 where :math:`p_c` represents the capillary pressure [Pa], and the
 effective saturation :math:`s_e` is defined by
@@ -26,7 +26,7 @@ effective saturation :math:`s_e` is defined by
 .. math::
    :label: seff_2
 
-   s_e = \frac{s - s_r}{s_0 - s_r},
+   \saturation_e = \frac{s - \saturation_r}{s_0 - \saturation_r},
 
 where :math:`s_r` denotes the residual saturation, and :math:`s_0`
 denotes the maximum saturation. The inverse relation is given by
@@ -50,14 +50,14 @@ Genuchten relation for :math:`p_c/p_c^0 \gg 1`, with the form
 .. math::
    :label: bc-se
 
-   s_e = \left(\frac{p_c}{p_c^0}\right)^{-\lambda},
+   \saturation_e = \left(\frac{p_c}{p_c^0}\right)^{-\lambda},
 
 with :math:`\lambda=mn` and inverse relation
 
 .. math::
    :label: bc-pc
 
-   p_c = p_c^0 s_e^{-1/\lambda}.
+   p_c = p_c^0 \saturation_e^{-1/\lambda}.
 
    
 .. _relative-permeability-functions-richards:
@@ -92,7 +92,7 @@ saturation function is given by the expression
 .. math::
    :label: krl_mualem_vg
    
-   k_{r} = \sqrt{s_e} \left\{1 - \left[1- \left( s_e \right)^{1/m} \right]^m \right\}^2.
+   k_{r} = \sqrt{s_e} \left\{1 - \left[1- \left( \saturation_e \right)^{1/m} \right]^m \right\}^2.
 
 The Mualem relative permeability function based on the Brooks-Corey
 saturation function is defined by
@@ -112,7 +112,7 @@ Genuchten saturation function is given by the expression
 .. math::
    :label: krl_burdine_vg
    
-   k_{r} = s_e^2 \left\{1 - \left[1- \left( s_e \right)^{1/m} \right]^m \right\}.
+   k_{r} = \saturation_e^2 \left\{1 - \left[1- \left( \saturation_e \right)^{1/m} \right]^m \right\}.
 
 The Burdine relative permeability function based on the Brooks-Corey
 saturation function has the form
@@ -133,16 +133,16 @@ The liquid relative permeability is defined as
 .. math::
    :label: krl_modified_brooks_corey
    
-   s_{el} &= \left(\frac{s_l-s_{rl}}{1-s_{rl}-s_{rg}}\right) \\
-   k_{rl} &= k_{rl,\text{max}} s_{el}^{n_l}
+   \saturation_{el} &= \left(\frac{s_l-s_{rl}}{1-s_{rl}-s_{rg}}\right) \\
+   k_{rl} &= k_{rl,\text{max}} \saturation_{el}^{n_l}
 
 The gas phase relative permeability is defined as 
 
 .. math::
    :label: krg_modified_brooks_corey
 
-   s_{eg} &= \left(\frac{1-s_l-s_{rg}}{1-s_{rl}-s_{rg}}\right) \\
-   k_{rg} &= k_{rg,\text{max}} s_{eg}^{n_g}
+   \saturation_{eg} &= \left(\frac{1-s_l-s_{rg}}{1-s_{rl}-s_{rg}}\right) \\
+   k_{rg} &= k_{rg,\text{max}} \saturation_{eg}^{n_g}
 
 where :math:`k_{r\alpha,\text{max}}`, :math:`n_\alpha` and :math:`s_{e\alpha}` are the maximum relative permeability, modified Brooks Corey exponent and effective saturation for phase :math:`\alpha`.
 

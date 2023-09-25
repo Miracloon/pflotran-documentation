@@ -46,7 +46,7 @@ brine saturation, :math:`s`, according to:
 .. math::
    :label:
    
-   s_{eff} = s - s_{min} + \left({s_{wick}\left({1.0 - e^{\alpha B}}\right)}\right)
+   \saturation_{eff} = \saturation - \saturation_{min} + \left({s_{wick}\left({1.0 - e^{\alpha B}}\right)}\right)
    
    B = 200\left({max(s-s_{min},0)}\right)^{2}
    
@@ -62,9 +62,9 @@ and 1 with the following conditionals:
 .. math::
    :label:
    
-   s_{eff} = min(s_{eff},1)
+   \saturation_{eff} = min(s_{eff},1)
    
-   s_{eff} = max(s_{eff},0)
+   \saturation_{eff} = max(s_{eff},0)
    
 The conditionals are important because when :math:`s_{wick} > 0` it is possible 
 for :math:`s_{eff}` to be larger than unity, which is not physical.

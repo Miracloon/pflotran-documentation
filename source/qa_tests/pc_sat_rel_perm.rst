@@ -790,9 +790,9 @@ in the :ref:`characteristic-curves-card` card.
 
 .. math::
 
-   k^r_l =& s_{el}
+   k^r_l =& \saturation_{el}
    
-   k^r_g =& 1 - s_{eg}
+   k^r_g =& 1 - \saturation_{eg}
 
    S_{el} =& \frac{S_{l}-S_{rl}}{1-S_{rl}}
    

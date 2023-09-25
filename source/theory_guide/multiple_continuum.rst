@@ -255,7 +255,7 @@ The primary continuum equations have the form
 .. math::
    :label: pri_continuum
 
-   \frac{\partial}{\partial t} \Big(\epsilon_\alpha \porosity_\alpha \sum_p s_p^\alpha \Psi_{jp}^\alpha\Big) + \nabla\cdot\sum_p \epsilon_\alpha 
+   \frac{\partial}{\partial t} \Big(\epsilon_\alpha \porosity_\alpha \sum_p \saturation_p^\alpha \Psi_{jp}^\alpha\Big) + \nabla\cdot\sum_p \epsilon_\alpha 
    \Omega_{jp}^\alpha = 
    -\sum_{p\beta} A_{\alpha\beta} \Omega_{jp}^{\alpha\beta} - \epsilon_\alpha \sum_m \nu_{jm}^{} I_{mp}^\alpha - \epsilon_\alpha \frac{\partial S_{jp}^\alpha}{\partial t},
 
@@ -271,7 +271,7 @@ The secondary continuum mass conservation equations have a similar form but with
 .. math::
    :label: sec_continuum
 
-   \frac{\partial}{\partial t} \Big(\porosity_\beta \sum_p s_p^\beta\Psi_{jp}^\beta\Big) + \nabla_\xi\cdot\sum_p \Omega_{jp}^\beta = - \sum_m \nu_{jm}^{} I_{mp}^\beta - \frac{\partial S_{jp}^\beta}{\partial t},
+   \frac{\partial}{\partial t} \Big(\porosity_\beta \sum_p \saturation_p^\beta\Psi_{jp}^\beta\Big) + \nabla_\xi\cdot\sum_p \Omega_{jp}^\beta = - \sum_m \nu_{jm}^{} I_{mp}^\beta - \frac{\partial S_{jp}^\beta}{\partial t},
 
 where the gradient operator :math:`\nabla_\xi` refers to the effective one-dimensional secondary continuum geometry.
 Similar considerations apply to mass and heat flow for primary and secondary continuum conservation equations.

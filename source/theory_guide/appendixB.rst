@@ -50,7 +50,7 @@ grid cells connected to the :math:`n`\ th node with interfacial area
 .. math::
    :label: flux-fluid-soln
    
-   F_{j,nn'}^{{\alpha}}= \big(q_{{\alpha}}X_j^{{\alpha}}\big)_{nn'} - \big(\porosity s_{{\alpha}}\tau_{{\alpha}}D_{{\alpha}}\big)_{nn'}
+   F_{j,nn'}^{{\alpha}}= \big(q_{{\alpha}}X_j^{{\alpha}}\big)_{nn'} - \big(\porosity \saturation_{{\alpha}}\tau_{{\alpha}}D_{{\alpha}}\big)_{nn'}
    \frac{X_{jn'}^{{\alpha}}- X_{jn}^{{\alpha}}}{d_{n'}+d_n},
 
 with perpendicular distances to interface :math:`nn'` from nodes
@@ -354,7 +354,7 @@ equations
    :label: two-coupled1-soln
    
    \frac{{{\partial}}}{{{\partial}}t}\big(\porosity \sum_{{\alpha}}s_{{\alpha}}\Psi_j^{{\alpha}}\big) +
-   \nabla\cdot\sum_{{\alpha}}\big({\boldsymbol{q}}_{{\alpha}}- \porosity s_{{\alpha}}{\boldsymbol{D}}_{{\alpha}}{\boldsymbol{\nabla}}\big)\Psi_j^{{\alpha}}= Q_j,
+   \nabla\cdot\sum_{{\alpha}}\big({\boldsymbol{q}}_{{\alpha}}- \porosity \saturation_{{\alpha}}{\boldsymbol{D}}_{{\alpha}}{\boldsymbol{\nabla}}\big)\Psi_j^{{\alpha}}= Q_j,
 
 and
 

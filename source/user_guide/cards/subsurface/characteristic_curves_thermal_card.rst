@@ -134,7 +134,7 @@ THERMAL_CONDUCTIVITY_DRY <float>
 
  In the DEFAULT model, effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \sqrt{s_l}(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K]. [1]
 
- In the LINEAR model, effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + s_l(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K].
+ In the LINEAR model, effective thermal conductivity (:math:`\kappa_T`) at the given liquid saturation is computed as :math:`\kappa_T(s_l)=\kappa_T^{dry} + \saturation_l(\kappa_T^{wet} - \kappa_T^{dry})` [W/m-K].
 
 REFERENCE_TEMPERATURE <float>
  This temperature is subtracted from the actual temperature before the calculation (useful for conversion from Celsius to Kelvin, or to shift the zero a polynomial) [°C].
@@ -219,7 +219,7 @@ The wet thermal conductivity of the radial model takes into account the porosity
   * This model can be used on its own with the `ASM_WATER_FILLED <tcc-assembly-water-input_>`_ function.
   * A constant :math:`\kappa_{d}` may be specified to use the saturation dependence of the `DEFAULT <tcc-default-input_>`_ model.
 
-The axial model (`ASM_AXIAL <tcc-assembly-axial-input_>`_) assumes parallel conduction between solid constituents in the assembly and the surrounding water. When applied to an unsaturated system, it assumes that the thermal conductivity of gas is negligible. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of assembly solids and water (as opposed to dry and wet components): :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi s_{l}\kappa_{l}` [W/m-K].
+The axial model (`ASM_AXIAL <tcc-assembly-axial-input_>`_) assumes parallel conduction between solid constituents in the assembly and the surrounding water. When applied to an unsaturated system, it assumes that the thermal conductivity of gas is negligible. It differs from the DEFAULT curve by having linear saturation dependence and by using the thermal conductivities of assembly solids and water (as opposed to dry and wet components): :math:`\kappa_{axial}(s_{l})=(1-\Phi)\kappa_{s}+\Phi \saturation_{l}\kappa_{l}` [W/m-K].
 
 THERMAL_CONDUCTIVITY_WATER <float>
  The thermal conductivity of water (:math:`\kappa_{l}` [W/m-K]) contained in the assembly.
@@ -290,7 +290,7 @@ TEST
   (b) liquid saturation [-] :math:`(s_l)`,
   (c) porosity [-] :math:`(\porosity)`
   (d) thermal conductivity [W/m*K] :math:`(\kappa_T)`,
-  (e) derivative of thermal conductivity with respect to liquid saturation :math:`(\frac{\partial \kappa_T}{\partial s_l})`,
+  (e) derivative of thermal conductivity with respect to liquid saturation :math:`(\frac{\partial \kappa_T}{\partial \saturation_l})`,
   (f) derivative of thermal conductivity with respect to temperature :math:`(\frac{\partial \kappa_T}{\partial T})`,
   (g) numerical approximation to (e.),
   (h) numerical approximation to (f.), and
@@ -298,8 +298,8 @@ TEST
 
  When the `FROZEN <tcc-frozen-input_>`_ model is in use with FREEZING active, there are additional parameters in the output:
    * ice saturation :math:`(s_i)`
-   * :math:`\frac{\partial \kappa_T}{\partial s_i}`
-   * numerical approximation to :math:`\frac{\partial \kappa_T}{\partial s_i}`
+   * :math:`\frac{\partial \kappa_T}{\partial \saturation_i}`
+   * numerical approximation to :math:`\frac{\partial \kappa_T}{\partial \saturation_i}`
 
 Examples
 ********

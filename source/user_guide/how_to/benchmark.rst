@@ -616,7 +616,7 @@ and solute transport of a tracer
 
 .. math::
    
-   \frac{{{\partial}}}{{{\partial}}t}\porosity C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C - \porosity s \tau D {\boldsymbol{\nabla}}C\big) = Q_C.
+   \frac{{{\partial}}}{{{\partial}}t}\porosity C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C - \porosity \saturation \tau D {\boldsymbol{\nabla}}C\big) = Q_C.
    
 In these equations :math:`\porosity` denotes the spatially variable
 porosity of the porous medium assumed to constant within each
@@ -641,7 +641,7 @@ relative permeability according to the relation
 .. math::
    :label: kr
    
-   k_{r} = \sqrt{s_{\rm eff}} \left\{1 - \left[1- \left( s_l^{\rm
+   k_{r} = \sqrt{s_{\rm eff}} \left\{1 - \left[1- \left( \saturation_l^{\rm
    eff} \right)^{1/m} \right]^m \right\}^2,
    
 where :math:`s_{\rm eff}` is related to capillary pressure :math:`P_c`
@@ -650,7 +650,7 @@ by the equation
 .. math::
    :label: sat
   
-   s_{\rm eff} = \left[1+\left( \alpha |P_c| \right)^n
+   \saturation_{\rm eff} = \left[1+\left( \alpha |P_c| \right)^n
    \right]^{-m},
  
 where :math:`s_{\rm eff}` is defined by
@@ -658,7 +658,7 @@ where :math:`s_{\rm eff}` is defined by
 .. math::
    :label: seff1
    
-   s_{\rm eff} = \frac{s - s_r}{1 - s_r},
+   \saturation_{\rm eff} = \frac{s - \saturation_r}{1 - \saturation_r},
    
 and where :math:`s_r` denotes the residual saturation. The quantity
 :math:`n` is related to :math:`m` by the expression
@@ -787,7 +787,7 @@ and tortuosity was set to one.
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
     | :math:`\kappa_{\rm wet}` | [W m\ :math:`^{-1}` K\ :math:`^{-1}`]  |     2       |     2      |     2       |    2       |   2        | 
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
-    | :math:`\porosity`          | [---]                                  |  0.2585     |  0.3586    |   0.4223    | 0.2625     | 0.1643     |
+    | :math:`\porosity`        | [---]                                  |  0.2585     |  0.3586    |   0.4223    | 0.2625     | 0.1643     |
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
     | :math:`s_r`              | [---]                                  |  0.0774     | 0.0837     |   0.2595    | 0.2130     | 0.0609     |
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
@@ -1384,7 +1384,7 @@ Table [tco2].
 +-----------------------------+----------------------------------+----------------------------------------------------------+
 | Permeability                | :math:`k`                        | :math:`10^{-15}` m\ :math:`^2`                           |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
-| Porosity                    | :math:`\porosity`                  | 0.12                                                     |
+| Porosity                    | :math:`\porosity`                | 0.12                                                     |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
 | Tortuosity                  | :math:`\tau`                     | 1                                                        |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
@@ -1482,13 +1482,13 @@ and relative permeability :math:`k_{rl}`
 
 .. math::
    
-   k_{rl} = \sqrt{s_e}\left\{1-\left[1-\big( s_e \big)^{1/\lambda}\right]^\lambda\right\}^2,
+   k_{rl} = \sqrt{s_e}\left\{1-\left[1-\big( \saturation_e \big)^{1/\lambda}\right]^\lambda\right\}^2,
    
 with effective saturation :math:`s_e` defined by
 
 .. math::
    
-   s_e = \frac{s_l - s_{lr}}{1-s_{lr}}.
+   \saturation_e = \frac{s_l - \saturation_{lr}}{1-s_{lr}}.
    
 For the supercritical :math:`\mathrm{CO_2}` phase the Corey curve is
 used defined by

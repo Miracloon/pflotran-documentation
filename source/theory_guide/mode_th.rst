@@ -85,9 +85,9 @@ component are given by
 .. math::
    :label: eq:balance_eqns
 
-   {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( s_l \eta_l X_w^l + s_g \eta_g X_w^g + s_i \eta_i X_w^i \right) \right] & + \boldsymbol{\nabla} \cdot \left[X_w^l \boldsymbol{q}_l \eta_l + X_w^g \eta_g \boldsymbol{q}_g \right] \nonumber\\
-   - \boldsymbol{\nabla} \cdot \left[\porosity s_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, \\
-   {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( s_l \eta_l U_l + s_g \eta_g U_g + s_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] & + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l + \boldsymbol{q}_g \eta_g H_g \right] \nonumber\\
+   {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( \saturation_l \eta_l X_w^l + \saturation_g \eta_g X_w^g + \saturation_i \eta_i X_w^i \right) \right] & + \boldsymbol{\nabla} \cdot \left[X_w^l \boldsymbol{q}_l \eta_l + X_w^g \eta_g \boldsymbol{q}_g \right] \nonumber\\
+   - \boldsymbol{\nabla} \cdot \left[\porosity \saturation_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, \\
+   {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( \saturation_l \eta_l U_l + \saturation_g \eta_g U_g + \saturation_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] & + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l + \boldsymbol{q}_g \eta_g H_g \right] \nonumber\\
    - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e,
 
 where the subscripts :math:`l`, :math:`i`, :math:`g`
@@ -130,7 +130,7 @@ given by
 .. math::
    :label: sat-constraint-th
 
-   s_l + s_g + s_i = 1.
+   \saturation_l + \saturation_g + \saturation_i = 1.
 
 Furthermore, neglecting the amount of air in liquid and ice phases, it
 follows that
@@ -148,12 +148,12 @@ on the assumption that :math:`p_g` is hydrostatic i.e.,
 .. math::
    :label: eq:gov1
 
-   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( s_g \eta_g X_w^g +s_l \eta_l + s_i \eta_i \right) \right] + \boldsymbol{\nabla} \cdot \left[\boldsymbol{q}_l \eta_l \right] - \boldsymbol{\nabla} \cdot \left[\porosity s_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, 
+   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( \saturation_g \eta_g X_w^g +s_l \eta_l + \saturation_i \eta_i \right) \right] + \boldsymbol{\nabla} \cdot \left[\boldsymbol{q}_l \eta_l \right] - \boldsymbol{\nabla} \cdot \left[\porosity \saturation_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, 
    
 .. math::
    :label: eq:gov2
 
-   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( s_l \eta_l U_l + s_g \eta_g U_g + s_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l \right] - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e, \\
+   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( \saturation_l \eta_l U_l + \saturation_g \eta_g U_g + \saturation_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l \right] - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e, \\
    \boldsymbol{q}_l = - \frac{k_{rl}k}{\mu_l} \left[\boldsymbol{\nabla}p_l - \rho_l \boldsymbol{g} \right]. 
 
 In the above formulation, temperature and liquid pressure are chosen to
@@ -194,12 +194,12 @@ liquid pressure, the following two relations are used (see Painter,
 .. math::
    :label: sats1
    
-   \frac{s_l}{s_l + s_g} = S_{*}\left(P_{cgl}\right), 
+   \frac{s_l}{s_l + \saturation_g} = S_{*}\left(P_{cgl}\right), 
 
 .. math::
    :label: sats2
    
-   \frac{s_l}{s_l + s_i} = S_{*}\left[\frac{\sigma_{gl}}{\sigma_{il}} P_{cil} \right], 
+   \frac{s_l}{s_l + \saturation_i} = S_{*}\left[\frac{\sigma_{gl}}{\sigma_{il}} P_{cil} \right], 
    
 :math:`S_{*}` is the retention curve for unfrozen liquid-gas phases,
 :math:`P_{cgl}` is the gas-liquid capillary pressure, :math:`P_{cil}` is

@@ -13,7 +13,7 @@ conservation equations have the form
 .. math::
    :label: mass-conservation-hydrate
    
-   \frac{{{\partial}}}{{{\partial}}t} \porosity \sum_{{{\alpha}}=l,\,g,\,h,\,i} \Big(s_{\alpha}^{} \rho_{\alpha}^{} x_j^{\alpha} \Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l^{} \rho_l^{} x_j^l + {\boldsymbol{q}}_g \rho_g^{} x_j^g -\porosity s_l^{} D_l^{} \rho_l^{} {\boldsymbol{\nabla}}x_j^l -\porosity s_g^{} D_g^{} \rho_g^{} {\boldsymbol{\nabla}}x_j^g \Big) = Q_j^{},
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \sum_{{{\alpha}}=l,\,g,\,h,\,i} \Big(s_{\alpha}^{} \rho_{\alpha}^{} x_j^{\alpha} \Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l^{} \rho_l^{} x_j^l + {\boldsymbol{q}}_g \rho_g^{} x_j^g -\porosity \saturation_l^{} D_l^{} \rho_l^{} {\boldsymbol{\nabla}}x_j^l -\porosity \saturation_g^{} D_g^{} \rho_g^{} {\boldsymbol{\nabla}}x_j^g \Big) = Q_j^{},
 
 for liquid, gas, hydrate, and ice saturations :math:`s_{l,\,g,\,h,\,i}^{}`, 
 mobile phase density :math:`\rho_{l,\,g}^{}`, diffusivity :math:`D_{l,\,g}^{}`,
@@ -25,7 +25,7 @@ the form
 .. math::
    :label: energy-conservation-hydrate
    
-   \sum_{{{\alpha}}=l,\,g,\,h,\,i}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\porosity s_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\porosity)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
+   \sum_{{{\alpha}}=l,\,g,\,h,\,i}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\porosity \saturation_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\porosity)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
 
 as the sum of contributions from liquid and fluid phases and solid hydrate, 
 ice, and rock phases; with internal energy :math:`U_{{\alpha}}` and enthalpy
@@ -151,7 +151,7 @@ obtained from the effective liquid saturation by
 .. math::
    :label: liq-sat-hydrate
    
-   s_{l} = s_{el}s_0 - s_{el}s_{rl} + s_{rl},
+   \saturation_{l} = \saturation_{el}s_0 - \saturation_{el}s_{rl} + \saturation_{rl},
 
 where :math:`s_{rl}` denotes the liquid residual saturation, and :math:`s_0`
 denotes the maximum liquid saturation. The gas saturation can be obtained from
@@ -160,14 +160,14 @@ the relation
 .. math::
    :label: phase-sum-hydrate
 
-   s_l + s_g = 1
+   \saturation_l + \saturation_g = 1
 
 The effective gas saturation :math:`s_{eg}` is defined by the relation
 
 .. math::
-   :label: s_eg-hydrate
+   :label: \saturation_eg-hydrate
 
-   s_{eg} = 1 - \frac{s_l-s_{rl}}{1-s_{rl}-s_{rg}}
+   \saturation_{eg} = 1 - \frac{s_l-s_{rl}}{1-s_{rl}-s_{rg}}
    
 Additionally, a linear relationship between capillary pressure :math:`p_c` and 
 effective liquid saturation can be described as
@@ -175,7 +175,7 @@ effective liquid saturation can be described as
 .. math::
    :label: linear_pc_sat-hydrate
    
-   s_{el} = {{p_c-p_c^{max}}\over{\frac{1}{\alpha}-p_c^{max}}}
+   \saturation_{el} = {{p_c-p_c^{max}}\over{\frac{1}{\alpha}-p_c^{max}}}
    
 where :math:`\alpha` is a fitting parameter representing the air entry pressure
 [Pa]. The inverse relationship for capillary pressure is
@@ -217,9 +217,9 @@ given by the expressions
 .. math::
    :label: kr_mualem_vg-hydrate
    
-   k^{r}_{l} =& \sqrt{s_{el}} \left\{1 - \left[1- \left( s_{el} \right)^{1/m} \right]^m \right\}^2
+   k^{r}_{l} =& \sqrt{s_{el}} \left\{1 - \left[1- \left( \saturation_{el} \right)^{1/m} \right]^m \right\}^2
    
-   k^{r}_{g} =& \sqrt{1-s_{eg}} \left\{1 - \left( s_{eg} \right)^{1/m} \right\}^{2m}.
+   k^{r}_{g} =& \sqrt{1-s_{eg}} \left\{1 - \left( \saturation_{eg} \right)^{1/m} \right\}^{2m}.
 
 For the Mualem relative permeability function based on the Brooks-Corey
 saturation function, the liquid and gas relative permeability functions are 
@@ -250,9 +250,9 @@ functions are given by the expressions
 .. math::
    :label: kr_burdine_vg-hydrate
    
-   k^{r}_{l} =& s_{el}^2 \left\{1 - \left[1- \left( s_{el} \right)^{1/m} \right]^m \right\}
+   k^{r}_{l} =& \saturation_{el}^2 \left\{1 - \left[1- \left( \saturation_{el} \right)^{1/m} \right]^m \right\}
    
-   k^{r}_{g} =& (1-s_{eg})^2 \left\{1 - \left( s_{eg} \right)^{1/m} \right\}^{m}.
+   k^{r}_{g} =& (1-s_{eg})^2 \left\{1 - \left( \saturation_{eg} \right)^{1/m} \right\}^{m}.
  
 For the Burdine relative permeability function based on the Brooks-Corey
 saturation function, the liquid and gas relative permeability functions have the
@@ -272,8 +272,8 @@ expressions
 .. math::
    :label: kr_burdine_lin-hydrate
    
-   k^{r}_{l} =& s_{el}
+   k^{r}_{l} =& \saturation_{el}
 
-   k^{r}_{g} =& 1 - s_{eg}.
+   k^{r}_{g} =& 1 - \saturation_{eg}.
    
    

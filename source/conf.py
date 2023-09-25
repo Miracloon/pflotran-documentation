@@ -99,6 +99,7 @@ mathjax3_config = {
       # add latex macros (similar to \def, \newcommand) here and reference in
       # .rst as \porosity
       'porosity': '\phi',
+      'saturation': 's',
       'bulkelectricalconductivity': '\sigma',
       'sq': '{^{2}}',
       'cub': '{^{3}}',

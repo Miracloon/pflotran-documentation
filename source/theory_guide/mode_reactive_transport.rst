@@ -28,7 +28,7 @@ aqueous primary or basis species with the form
    :label: rteqn
    
    \frac{\partial}{\partial t}\big(\porosity 
-   \sum_{\alpha} s_{\alpha}\Psi_j^{\alpha}\big) +
+   \sum_{\alpha} \saturation_{\alpha}\Psi_j^{\alpha}\big) +
    \nabla\cdot\sum_{\alpha}{\boldsymbol\Omega}_j^{\alpha}= Q_j - \sum_m\nu_{jm} I_m -\frac{\partial S_j}{\partial t},
 
 and
@@ -145,7 +145,7 @@ species-independent diffusion is given by
 .. math::
    :label: dummy6
    
-   {\boldsymbol{\Omega}}_j^{\alpha}= \big({\boldsymbol{q}}_{\alpha}- \porosity s_{\alpha}{\boldsymbol{D}}_{\alpha} \cdot {\boldsymbol{\nabla}}\big)\Psi_j^{\alpha}.
+   {\boldsymbol{\Omega}}_j^{\alpha}= \big({\boldsymbol{q}}_{\alpha}- \porosity \saturation_{\alpha}{\boldsymbol{D}}_{\alpha} \cdot {\boldsymbol{\nabla}}\big)\Psi_j^{\alpha}.
 
 The diffusion/dispersion tensor :math:`{\boldsymbol{D}}_{\alpha}`
 may be different for different phases, e.g. an aqueous electrolyte
@@ -651,7 +651,7 @@ source/sink term in the transport equations as given by
 .. math::
    :label: isothrm
 
-   \frac{\partial}{\partial t} \porosity s_l \Psi_j + \vec\nabla\cdot\vec\Omega_j = 
+   \frac{\partial}{\partial t} \porosity \saturation_l \Psi_j + \vec\nabla\cdot\vec\Omega_j = 
    -\frac{\partial S_j}{\partial t},
 
 with saturation :math:`s_l`. Combining time derivative terms the transport equations become
@@ -659,7 +659,7 @@ with saturation :math:`s_l`. Combining time derivative terms the transport equat
 .. math::
    :label: transport_eqn
 
-   \frac{\partial}{\partial t} \big(\porosity s_l\Psi_j + S_j \big) 
+   \frac{\partial}{\partial t} \big(\porosity \saturation_l\Psi_j + S_j \big) 
    + \vec\nabla\cdot\vec\Omega_j = 0,
 
 This equation can be rewritten as
@@ -667,7 +667,7 @@ This equation can be rewritten as
 .. math::
    :label: retardeqn
 
-   \frac{\partial}{\partial t} \Big[\porosity s_l\Psi_j R_j \Big] 
+   \frac{\partial}{\partial t} \Big[\porosity \saturation_l\Psi_j R_j \Big] 
    + \vec\nabla\cdot\vec\Omega_j = 0,
  
 where the local retardation factor :math:`R_j` is defined in terms of the distribution coefficient
@@ -677,7 +677,7 @@ where the local retardation factor :math:`R_j` is defined in terms of the distri
    :label: retard
 
    R_j &= 1 + K_j^D,\\
-   K_j^D &= \frac{S_j}{\porosity s_l\Psi_j}.
+   K_j^D &= \frac{S_j}{\porosity \saturation_l\Psi_j}.
 
 For the case when :math:`R_j` = constant, the transport equation 
 can be written in the form
@@ -685,7 +685,7 @@ can be written in the form
 .. math::
    :label: reteqn
 
-   \frac{\partial}{\partial t} \Big[\porosity s_l\Psi_j\Big] 
+   \frac{\partial}{\partial t} \Big[\porosity \saturation_l\Psi_j\Big] 
    + \vec\nabla\cdot\frac{1}{R_j}\vec\Omega_j = 0,
 
 resulting in retarded advective and diffusive/dispersive transport. Note that the retardation
@@ -722,7 +722,7 @@ its dimensionless counterpart :math:`K_j^D` [—] defined by
 .. math::
    :label: kdj
    
-   K_j^D = \frac{N_j^s}{N_j^{\rm aq}} = \frac{N_j^s/V}{N_j^{\rm aq}/V}= \frac{1}{\porosity s_l}\frac{S_j}{C_j},
+   K_j^D = \frac{N_j^s}{N_j^{\rm aq}} = \frac{N_j^s/V}{N_j^{\rm aq}/V}= \frac{1}{\porosity \saturation_l}\frac{S_j}{C_j},
    
 by writing
 
@@ -730,7 +730,7 @@ by writing
    :label: dummy72
    
    K_j^D &= \frac{N_j^s}{M_s} \frac{M_s}{V_s} \frac{V_s}{V_p} \frac{V_p}{V_l} \frac{V_l}{N_j^{\rm aq}},\\
-   &= \rho_s \frac{1-\porosity}{\porosity s_l} \tilde K_j^D = \frac{\rho_b}{\porosity s_l} \tilde K_j^D,
+   &= \rho_s \frac{1-\porosity}{\porosity \saturation_l} \tilde K_j^D = \frac{\rho_b}{\porosity \saturation_l} \tilde K_j^D,
 
 with grain density :math:`\rho_s=M_s/V_s`, bulk density
 :math:`\rho_b=(1-\porosity)\rho_s`, porosity :math:`\porosity=V_p/V`, and
@@ -752,8 +752,8 @@ The local retardation coefficient :math:`R_j` can be expressed in the alternativ
    :label: dummy76
    
    R_j &= 1 + K_j^D, \ \ \ \ \ \ (\text{dimensionless)},\\
-   &= 1+ \frac{\rho_b}{\porosity s_l} \tilde K_j^D, \ \ \ \ \ \ (\text{conventional}),\\
-   &= 1+ \frac{1}{\porosity s_l \rho_w} \hat K_j^D, \ \ \ \ \ \ (\text{molality-based}).
+   &= 1+ \frac{\rho_b}{\porosity \saturation_l} \tilde K_j^D, \ \ \ \ \ \ (\text{conventional}),\\
+   &= 1+ \frac{1}{\porosity \saturation_l \rho_w} \hat K_j^D, \ \ \ \ \ \ (\text{molality-based}).
 
 Three distinct models are available for the sorption isotherm
 :math:`S_j` in PFLOTRAN:
@@ -763,7 +763,7 @@ Three distinct models are available for the sorption isotherm
    .. math::
       :label: linkd
       
-      S_j = \porosity s_l K_j^D C_j = \hat K_j^D m_j,
+      S_j = \porosity \saturation_l K_j^D C_j = \hat K_j^D m_j,
 
    with distribution coefficient :math:`\hat K_j^D`.
 
@@ -1454,12 +1454,12 @@ colloids, read
 .. math::
    :label: rateform
    
-   \frac{{{\partial}}}{{{\partial}}t} \porosity s_l \Psi_j^l + {\boldsymbol{\nabla}}\cdot{\boldsymbol{\Omega}}_j^l = -\sum_k\nu_{jk}\big(I_k^{{\rm m}}+ I_k^{{\rm im}}+ \sum_s I_k^s\big) - \sum_s \nu_{js} I_s,
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \saturation_l \Psi_j^l + {\boldsymbol{\nabla}}\cdot{\boldsymbol{\Omega}}_j^l = -\sum_k\nu_{jk}\big(I_k^{{\rm m}}+ I_k^{{\rm im}}+ \sum_s I_k^s\big) - \sum_s \nu_{js} I_s,
 
 .. math::
    :label: mobile
    
-   \frac{{{\partial}}}{{{\partial}}t} \porosity s_l S_k^{{\rm m}} + {\boldsymbol{\nabla}}\cdot{\boldsymbol{q}}_c S_k^{{\rm m}} = I_k^{{\rm m}},
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \saturation_l S_k^{{\rm m}} + {\boldsymbol{\nabla}}\cdot{\boldsymbol{q}}_c S_k^{{\rm m}} = I_k^{{\rm m}},
 
 .. math::
    :label: immobile
@@ -1479,7 +1479,7 @@ eliminated and replaced by algebraic sorption isotherms to yield
 .. math::
    :label: eqform
    
-   \frac{{{\partial}}}{{{\partial}}t}\Big[ \porosity s_l \Psi_j^l + \sum_k \nu_{jk} \big(\porosity s_l S_k^{{\rm m}}+ S_k^{{\rm im}}+ \sum_s S_k^s\big) \Big] + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{\Omega}}_j^l + {\boldsymbol{q}}_c \sum_k \nu_{jk} S_k^{{\rm m}}\Big) = - \sum_s \nu_{js} I_s.
+   \frac{{{\partial}}}{{{\partial}}t}\Big[ \porosity \saturation_l \Psi_j^l + \sum_k \nu_{jk} \big(\porosity \saturation_l S_k^{{\rm m}}+ S_k^{{\rm im}}+ \sum_s S_k^s\big) \Big] + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{\Omega}}_j^l + {\boldsymbol{q}}_c \sum_k \nu_{jk} S_k^{{\rm m}}\Big) = - \sum_s \nu_{js} I_s.
 
 In the kinetic case either form of the primary species transport
 equations given by Eqn. :eq:`rateform` or :eq:`eqform` can be used 
@@ -1511,7 +1511,7 @@ advection-diffusion/dispersion equation for the mean age given by
 .. math::
    :label: dummy80
    
-   \frac{{{\partial}}}{{{\partial}}t} \porosity s AC + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}AC - \porosity s D {\boldsymbol{\nabla}}(AC)\Big) = \porosity s C,
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \saturation AC + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}AC - \porosity \saturation D {\boldsymbol{\nabla}}(AC)\Big) = \porosity \saturation C,
 
 where :math:`A` denotes the mean age of the tracer with concentration
 :math:`C`. Other quantities appearing in the age equation are identical

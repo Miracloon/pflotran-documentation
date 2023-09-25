@@ -34,7 +34,7 @@ for the :math:`i`\ th component where the flux
 .. math::
    :label: flux-mphase
 
-   {\boldsymbol{F}}_i^{{\alpha}}= {\boldsymbol{q}}_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}} - \porosity s_{{\alpha}}^{} D_{{\alpha}}^{} \eta_{{\alpha}}^{} {\boldsymbol{\nabla}}x_i^{{\alpha}},
+   {\boldsymbol{F}}_i^{{\alpha}}= {\boldsymbol{q}}_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}} - \porosity \saturation_{{\alpha}}^{} D_{{\alpha}}^{} \eta_{{\alpha}}^{} {\boldsymbol{\nabla}}x_i^{{\alpha}},
 
 and
 
@@ -341,7 +341,7 @@ back to the MPHASE conservation equations.
 
 A further constraint on the reactive transport equations for aqueous
 :math:`\mathrm{CO_2}` is that it must be in equilibrium with
-supercritical :math:`\mathrm{CO_2}` in regions where :math:`0< s_g <1`.
+supercritical :math:`\mathrm{CO_2}` in regions where :math:`0< \saturation_g <1`.
 This is accomplished by replacing the :math:`\mathrm{CO_2}` mass
 conservation equations in those regions with the constraint
 :math:`m_{\rm CO_{\rm 2(aq)}} = m_{\rm CO_2}^{\rm eq}`.

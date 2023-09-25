@@ -18,7 +18,7 @@ solved by PIMS are given by
 .. math::
    :label:  mass
       
-   \frac{{{\partial}}}{{{\partial}}t}\big(\porosity\rho_{{\alpha}}^{} s_{{\alpha}}^{}\big) + {\boldsymbol{\nabla}}\cdot \big(\rho_{{\alpha}}^{} {\boldsymbol{q}}_{{\alpha}}\big) = Q_{{\alpha}},
+   \frac{{{\partial}}}{{{\partial}}t}\big(\porosity\rho_{{\alpha}}^{} \saturation_{{\alpha}}^{}\big) + {\boldsymbol{\nabla}}\cdot \big(\rho_{{\alpha}}^{} {\boldsymbol{q}}_{{\alpha}}\big) = Q_{{\alpha}},
 
 where the subscript :math:`{{\alpha}}` denotes an immiscible phase.
 
@@ -42,7 +42,7 @@ source/sink term. The selection of primary variables are pressure
 .. math::
    :label: variables-immis
    
-   \sum_{{{\alpha}}=1}^n s_{{\alpha}}= 1.
+   \sum_{{{\alpha}}=1}^n \saturation_{{\alpha}}= 1.
 
 The mass conservation equations are coupled to the energy balance
 equation given by
