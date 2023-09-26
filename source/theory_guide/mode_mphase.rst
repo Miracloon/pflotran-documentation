@@ -41,7 +41,7 @@ and
 .. math::
    :label: energy_equation
    
-   \frac{{{\partial}}}{{{\partial}}t} \bigg(\porosity \sum_{{\alpha}}s_{{\alpha}}\eta_{{\alpha}}U_{{\alpha}}+ (1-\porosity) \rho_r c_r T\bigg)
+   \frac{{{\partial}}}{{{\partial}}t} \bigg(\porosity \sum_{{\alpha}}s_{{\alpha}}\eta_{{\alpha}}U_{{\alpha}}+ (1-\porosity) \density_r c_r T\bigg)
    + {\boldsymbol{\nabla}}\cdot\bigg[\sum_{{\alpha}}{\boldsymbol{q}}_{{\alpha}}\eta_{{\alpha}}H_{{\alpha}}- \kappa{\boldsymbol{\nabla}}T\bigg] = Q_{e},
 
 for energy. In these equations :math:`{{\alpha}}` designates a fluid
@@ -75,20 +75,20 @@ phase :math:`{{\alpha}}` defined by
 .. math::
    :label: darcy-mphase
 
-   {\boldsymbol{q}}_{{\alpha}}= -\frac{kk_{{\alpha}}}{\mu_{{\alpha}}} {\boldsymbol{\nabla}}\big(P_{{\alpha}}-\rho_{{\alpha}}g {\boldsymbol{z}}\big),
+   {\boldsymbol{q}}_{{\alpha}}= -\frac{kk_{{\alpha}}}{\mu_{{\alpha}}} {\boldsymbol{\nabla}}\big(P_{{\alpha}}-\density_{{\alpha}}g {\boldsymbol{z}}\big),
 
 where :math:`k` refers to the intrinsic permeability,
 :math:`k_{{\alpha}}` denotes the relative permeability,
 :math:`\mu_{{\alpha}}` denotes the fluid viscosity,
 :math:`W_{{\alpha}}^{}` denotes the formula weight, :math:`g` denotes
 the acceleration of gravity, and :math:`z` designates the vertical of
-the position vector. The mass density :math:`\rho_{{\alpha}}` is related
+the position vector. The mass density :math:`\density_{{\alpha}}` is related
 to the molar density by the expression
 
 .. math::
    :label: mass-density-mphase
 
-   \rho_{{\alpha}}= W_{{\alpha}}\eta_{{\alpha}},
+   \density_{{\alpha}}= W_{{\alpha}}\eta_{{\alpha}},
 
 where the formula weight :math:`W_{{\alpha}}` is a function of
 composition according to the relation
@@ -96,9 +96,9 @@ composition according to the relation
 .. math::
    :label: formula-weight-mphase
 
-   W_{{\alpha}}= \frac{\rho_{{\alpha}}}{\eta_{{\alpha}}} = \sum_i W_i^{} x_i^{{\alpha}}.
+   W_{{\alpha}}= \frac{\density_{{\alpha}}}{\eta_{{\alpha}}} = \sum_i W_i^{} x_i^{{\alpha}}.
 
-The quantities :math:`\rho_r`, :math:`c_r`, and :math:`\kappa` refer to
+The quantities :math:`\density_r`, :math:`c_r`, and :math:`\kappa` refer to
 the mass density, heat capacity, and thermal conductivity of the porous
 rock.
 
@@ -114,7 +114,7 @@ mass rate injection/production well given by
    :label: source-sink-mphase
 
    Q_i &= \sum_n\sum_{{\alpha}}q_{{\alpha}}^V \eta_{{\alpha}}x_i^{{\alpha}}\delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),\\
-       &= \sum_n\sum_{{\alpha}}\frac{\eta_{{\alpha}}}{\rho_{{\alpha}}} q_{{\alpha}}^M x_i^{{\alpha}}\delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),\\
+       &= \sum_n\sum_{{\alpha}}\frac{\eta_{{\alpha}}}{\density_{{\alpha}}} q_{{\alpha}}^M x_i^{{\alpha}}\delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),\\
        &= \sum_n\sum_{{\alpha}}W_{{\alpha}}^{-1} q_{{\alpha}}^M x_i^{{\alpha}}\delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),
 
 where :math:`q_{{\alpha}}^V`, :math:`q_{{\alpha}}^M` refer to volume and
@@ -124,7 +124,7 @@ the density
 .. math::
    :label: vol-mass-rates-mphase
    
-   q_{{\alpha}}^M = \rho_{{\alpha}}q_{{\alpha}}^V.
+   q_{{\alpha}}^M = \density_{{\alpha}}q_{{\alpha}}^V.
 
 The position vector :math:`{\boldsymbol{r}}_{n}` refers to the location
 of the :math:`n`\ th source/sink.
@@ -136,7 +136,7 @@ is determined from the expression
 .. math::
    :label: mass-flow-mphase
    
-   q_{{\alpha}}^M = \Gamma \rho_{{\alpha}}\frac{k_{{\alpha}}}{\mu_{{\alpha}}} \big(p_{{\alpha}}-p_{{\alpha}}^{\rm bw}\big),
+   q_{{\alpha}}^M = \Gamma \density_{{\alpha}}\frac{k_{{\alpha}}}{\mu_{{\alpha}}} \big(p_{{\alpha}}-p_{{\alpha}}^{\rm bw}\big),
 
 with bottom well pressure :math:`p_{{\alpha}}^{\rm bw}`, and where
 :math:`\Gamma` denotes the well factor (production index) given by

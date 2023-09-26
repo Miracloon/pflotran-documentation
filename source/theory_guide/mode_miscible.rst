@@ -23,21 +23,21 @@ The molar density :math:`\eta` is related to the mass density by
 .. math::
    :label: molar-density-misc
    
-   \eta = W^{-1} \rho,
+   \eta = W^{-1} \density,
 
 and
 
 .. math::
    :label: W-misc
    
-   W_i\eta x_i = \rho y_i.
+   W_i\eta x_i = \density y_i.
 
 It follows that
 
 .. math::
    :label: W-misc2
    
-   W_i \eta {\boldsymbol{\nabla}}x_i = \rho {\boldsymbol{\nabla}}y_i + \rho y_i {\boldsymbol{\nabla}}\ln W.
+   W_i \eta {\boldsymbol{\nabla}}x_i = \density {\boldsymbol{\nabla}}y_i + \density y_i {\boldsymbol{\nabla}}\ln W.
 
 The second term on the right-hand side is ignored.
 
@@ -48,15 +48,15 @@ function of both composition are pressrue with the form
 .. math::
    :label: eos-misc
 
-   \rho(y_1,\,p) &= \rho(y_1,\,p_0) + \left.\frac{{{\partial}}\rho}{{{\partial}}p}\right|_{p=p_0} (p-p_0),\\
-                 &= \rho(y_1,\,p_0) \big(1+\beta (p-p_0)\big),
+   \density(y_1,\,p) &= \density(y_1,\,p_0) + \left.\frac{{{\partial}}\density}{{{\partial}}p}\right|_{p=p_0} (p-p_0),\\
+                 &= \density(y_1,\,p_0) \big(1+\beta (p-p_0)\big),
 
 with the compressibility :math:`\beta(y_1)` given by
 
 .. math::
    :label: comp-misc
 
-   \beta &= \left.\frac{1}{\rho}\frac{{{\partial}}\rho}{{{\partial}}p}\right|_{p=p_0},\\
+   \beta &= \left.\frac{1}{\density}\frac{{{\partial}}\density}{{{\partial}}p}\right|_{p=p_0},\\
          &= 4.49758\times 10^{-10} y_1 + 5\times 10^{-10}(1-y_1),
 
 and the mixture density at the reference pressure :math:`p_0` taken as
@@ -65,7 +65,7 @@ atmospheric pressure is given by
 .. math::
    :label: mix-density-misc
    
-   \rho(y_1,\,p_0) = \Big(\big((0.0806 y_1 - 0.203) y_1 + 0.0873\big) y_1 + 1.0341\Big)10^3,
+   \density(y_1,\,p_0) = \Big(\big((0.0806 y_1 - 0.203) y_1 + 0.0873\big) y_1 + 1.0341\Big)10^3,
 
 with mass fraction of water :math:`y_1`. The viscosity and diffusivity
 have the forms
@@ -120,4 +120,4 @@ In terms of mass fractions and mass density
 .. math::
    :label: Mi2-misc
    
-   M_i^m = W_i M_i = \int \porosity \rho y_i dV.
+   M_i^m = W_i M_i = \int \porosity \density y_i dV.

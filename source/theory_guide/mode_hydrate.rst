@@ -13,10 +13,10 @@ conservation equations have the form
 .. math::
    :label: mass-conservation-hydrate
    
-   \frac{{{\partial}}}{{{\partial}}t} \porosity \sum_{{{\alpha}}=l,\,g,\,h,\,i} \Big(s_{\alpha}^{} \rho_{\alpha}^{} x_j^{\alpha} \Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l^{} \rho_l^{} x_j^l + {\boldsymbol{q}}_g \rho_g^{} x_j^g -\porosity \saturation_l^{} D_l^{} \rho_l^{} {\boldsymbol{\nabla}}x_j^l -\porosity \saturation_g^{} D_g^{} \rho_g^{} {\boldsymbol{\nabla}}x_j^g \Big) = Q_j^{},
+   \frac{{{\partial}}}{{{\partial}}t} \porosity \sum_{{{\alpha}}=l,\,g,\,h,\,i} \Big(s_{\alpha}^{} \density_{\alpha}^{} x_j^{\alpha} \Big) + {\boldsymbol{\nabla}}\cdot\Big({\boldsymbol{q}}_l^{} \density_l^{} x_j^l + {\boldsymbol{q}}_g \density_g^{} x_j^g -\porosity \saturation_l^{} D_l^{} \density_l^{} {\boldsymbol{\nabla}}x_j^l -\porosity \saturation_g^{} D_g^{} \density_g^{} {\boldsymbol{\nabla}}x_j^g \Big) = Q_j^{},
 
 for liquid, gas, hydrate, and ice saturations :math:`s_{l,\,g,\,h,\,i}^{}`, 
-mobile phase density :math:`\rho_{l,\,g}^{}`, diffusivity :math:`D_{l,\,g}^{}`,
+mobile phase density :math:`\density_{l,\,g}^{}`, diffusivity :math:`D_{l,\,g}^{}`,
 Darcy velocity :math:`{\boldsymbol{q}}_{l,\,g}^{}` and liquid and gas mole 
 fractions :math:`x_j^{l,\,g}`. Mole fractions of components in the hydrate and
 ice phases are fixed. The energy conservation equation can be written in
@@ -25,7 +25,7 @@ the form
 .. math::
    :label: energy-conservation-hydrate
    
-   \sum_{{{\alpha}}=l,\,g,\,h,\,i}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\porosity \saturation_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\porosity)\rho_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
+   \sum_{{{\alpha}}=l,\,g,\,h,\,i}\left\{\frac{{{\partial}}}{{{\partial}}t} \big(\porosity \saturation_{{\alpha}}\density_{{\alpha}}U_{{\alpha}}\big) + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}_{{\alpha}}\density_{{\alpha}}H_{{\alpha}}\big) \right\} + \frac{{{\partial}}}{{{\partial}}t}\big( (1-\porosity)\density_r C_p T \big) - {\boldsymbol{\nabla}}\cdot (\kappa{\boldsymbol{\nabla}}T) = Q,
 
 as the sum of contributions from liquid and fluid phases and solid hydrate, 
 ice, and rock phases; with internal energy :math:`U_{{\alpha}}` and enthalpy
@@ -35,7 +35,7 @@ capacity :math:`C_p` and thermal conductivity :math:`\kappa`. Note that
 .. math::
    :label: internal-energy-hydrate
    
-   U_{{\alpha}}= H_{{\alpha}}-\frac{P_{{\alpha}}}{\rho_{{\alpha}}}.
+   U_{{\alpha}}= H_{{\alpha}}-\frac{P_{{\alpha}}}{\density_{{\alpha}}}.
 
 Thermal conductivity :math:`\kappa` can be determined from :ref:`thermal-characteristic-curves-card`, or through the HYDRATE block in :ref:`hydrate-card` :
 
@@ -121,7 +121,7 @@ permeability, :math:`k^{r}_{\alpha}` the relative permeability,
 .. math::
    :label: gamma-hydrate
 
-   \gamma_\alpha^{} = W_\alpha^{} \rho_\alpha^{},
+   \gamma_\alpha^{} = W_\alpha^{} \density_\alpha^{},
 
 with :math:`W_\alpha` the gram formula 
 weight of the :math:`\alpha^{th}` phase 

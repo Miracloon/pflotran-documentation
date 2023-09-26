@@ -101,6 +101,7 @@ mathjax3_config = {
       'porosity': '\phi',
       'saturation': 's',
       'tortuosity': '\tau',
+      'density': '\rho',
       'bulkelectricalconductivity': '\sigma',
       'sq': '{^{2}}',
       'cub': '{^{3}}',

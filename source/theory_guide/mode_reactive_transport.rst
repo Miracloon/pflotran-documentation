@@ -112,7 +112,7 @@ Ionic strength :math:`I` is defined as
 
 with molality :math:`m_j` and :math:`m_i` of primary and secondary
 species, respectively (note:
-:math:`C_i^l = \rho_l y_w^l m_i \simeq \rho_l m_i`, :math:`\rho_l` =
+:math:`C_i^l = \density_l y_w^l m_i \simeq \density_l m_i`, :math:`\density_l` =
 fluid density, :math:`y_w^l` = mass fraction of :math:`\mathrm{H_2O}`).
 
 Values in CGS units used for the various constants appearing in the expressions 
@@ -159,12 +159,12 @@ The Darcy velocity :math:`{\boldsymbol{q}}_{{\alpha}}` for phase
 .. math::
    :label: dummy7
    
-   {\boldsymbol{q}}_a = -\frac{kk_{{\alpha}}}{\mu_{{\alpha}}} {\boldsymbol{\nabla}}\big(p_{{\alpha}}-\rho_{{\alpha}}g z\big),
+   {\boldsymbol{q}}_a = -\frac{kk_{{\alpha}}}{\mu_{{\alpha}}} {\boldsymbol{\nabla}}\big(p_{{\alpha}}-\density_{{\alpha}}g z\big),
 
 with bulk permeability of the porous medium :math:`k` and relative
 permeability :math:`k_{{\alpha}}`, fluid viscosity
 :math:`\mu_{{\alpha}}`, pressure :math:`p_{{\alpha}}`, density
-:math:`\rho_{{\alpha}}`, and acceleration of gravity :math:`g`. The
+:math:`\density_{{\alpha}}`, and acceleration of gravity :math:`g`. The
 diffusivity/dispersivity tensor :math:`{\boldsymbol{D}}_{{\alpha}}` is
 the sum of contributions from molecular diffusion and dispersion which
 for an isotropic medium has the form
@@ -208,9 +208,9 @@ The quantity :math:`Q_j` denotes a source/sink term
 .. math::
    :label: dummy11
    
-   Q_j = \sum_n\frac{q_M}{\rho}\Psi_j \delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),
+   Q_j = \sum_n\frac{q_M}{\density}\Psi_j \delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),
 
-where :math:`q_M` denotes a mass rate in units of kg/s, :math:`\rho`
+where :math:`q_M` denotes a mass rate in units of kg/s, :math:`\density`
 denotes the fluid density in kg/m\ :math:`^3`, and
 :math:`{\boldsymbol{r}}_{n}` refers to the location of the :math:`n`\ th
 source/sink. The quantity :math:`S_j` represents the sorbed
@@ -218,12 +218,12 @@ concentration of the :math:`j`\ th primary species considered in more
 detail in the next section.
 
 Molality :math:`m_i` and molarity :math:`C_i` are related by the density
-of water :math:`\rho_w` according to
+of water :math:`\density_w` according to
 
 .. math::
    :label: dummy12
    
-   C_i = \rho_w m_i.
+   C_i = \density_w m_i.
 
 The activity of water is calculated from the approximate relation
 
@@ -481,7 +481,7 @@ expressions
    :label: dummy20
    
    \porosity_m &= (1-\porosity) \frac{x_m \overline V_m}{\sum_{m'} x_{m'} \overline V_{m'}},\\
-   &= (1-\porosity) \frac{y_m^{} \rho_m^{-1}}{\sum_{m'} y_{m'}^{} \rho_{m'}^{-1}}.
+   &= (1-\porosity) \frac{y_m^{} \density_m^{-1}}{\sum_{m'} y_{m'}^{} \density_{m'}^{-1}}.
 
 The inverse relation is given by
 
@@ -495,7 +495,7 @@ and similarly for the mass fraction, where
 .. math::
    :label: dummy22
    
-   \rho_m^{} = W_m^{} \overline V_m^{-1},
+   \density_m^{} = W_m^{} \overline V_m^{-1},
 
 and the solid molar density :math:`\eta_s` is given by
 
@@ -506,12 +506,12 @@ and the solid molar density :math:`\eta_s` is given by
 
 In these relations :math:`W_m` refers to the formula weight and
 :math:`\overline V_m` the molar volume of the :math:`m`\ th mineral.
-The solid molar density is related to the mass density :math:`\rho_s` by
+The solid molar density is related to the mass density :math:`\density_s` by
 
 .. math::
    :label: dummy24
    
-   \rho_s = W_s \eta_s,
+   \density_s = W_s \eta_s,
 
 with the mean molecular weight :math:`W_s` of the solid phase equal to
 
@@ -704,7 +704,7 @@ mass of solid as given by
    
    \tilde K_j^D &= \frac{S_j^M/M_s}{M_j^{\rm aq}/V_l},\\
    &= \frac{N_j^s/M_s}{N_j^{\rm aq}/V_l},\\
-   &= \frac{\tilde S_j}{C_j} = \frac{1}{\rho_w}\frac{\tilde S_j}{m_j},
+   &= \frac{\tilde S_j}{C_j} = \frac{1}{\density_w}\frac{\tilde S_j}{m_j},
 
 where :math:`S_j^M = W_j N_j^s`, :math:`M_j^{\rm aq} = W_j N_j^{\rm aq}`,
 refers to the mass and number of moles of sorbed and aqueous solute
@@ -713,7 +713,7 @@ related by the formula weight :math:`W_j` of the :math:`j`\ th species,
 aqueous volume, :math:`\tilde S_j=N_j^s/M_s` [mol kg\ :math:`^{-1}`]
 represents the sorbed concentration referenced to the mass of solid,
 :math:`C_j=N_j^{\rm aq}/V_l` denotes molarity, and
-:math:`m_j=C_j/\rho_w` represents molality, where :math:`\rho_w` is the
+:math:`m_j=C_j/\density_w` represents molality, where :math:`\density_w` is the
 density of pure water.
 
 The distribution coefficient :math:`\tilde K_j^D` may be related to
@@ -730,10 +730,10 @@ by writing
    :label: dummy72
    
    K_j^D &= \frac{N_j^s}{M_s} \frac{M_s}{V_s} \frac{V_s}{V_p} \frac{V_p}{V_l} \frac{V_l}{N_j^{\rm aq}},\\
-   &= \rho_s \frac{1-\porosity}{\porosity \saturation_l} \tilde K_j^D = \frac{\rho_b}{\porosity \saturation_l} \tilde K_j^D,
+   &= \density_s \frac{1-\porosity}{\porosity \saturation_l} \tilde K_j^D = \frac{\density_b}{\porosity \saturation_l} \tilde K_j^D,
 
-with grain density :math:`\rho_s=M_s/V_s`, bulk density
-:math:`\rho_b=(1-\porosity)\rho_s`, porosity :math:`\porosity=V_p/V`, and
+with grain density :math:`\density_s=M_s/V_s`, bulk density
+:math:`\density_b=(1-\porosity)\density_s`, porosity :math:`\porosity=V_p/V`, and
 saturation :math:`s_l=V_l/V_p`.
 
 An alternative definition of the distribution coefficient denoted by
@@ -752,8 +752,8 @@ The local retardation coefficient :math:`R_j` can be expressed in the alternativ
    :label: dummy76
    
    R_j &= 1 + K_j^D, \ \ \ \ \ \ (\text{dimensionless)},\\
-   &= 1+ \frac{\rho_b}{\porosity \saturation_l} \tilde K_j^D, \ \ \ \ \ \ (\text{conventional}),\\
-   &= 1+ \frac{1}{\porosity \saturation_l \rho_w} \hat K_j^D, \ \ \ \ \ \ (\text{molality-based}).
+   &= 1+ \frac{\density_b}{\porosity \saturation_l} \tilde K_j^D, \ \ \ \ \ \ (\text{conventional}),\\
+   &= 1+ \frac{1}{\porosity \saturation_l \density_w} \hat K_j^D, \ \ \ \ \ \ (\text{molality-based}).
 
 Three distinct models are available for the sorption isotherm
 :math:`S_j` in PFLOTRAN:
@@ -772,7 +772,7 @@ Three distinct models are available for the sorption isotherm
    .. math::
       :label: Langmuir
       
-      S_j= \frac{K_j^L b_j^L C_j/ \rho_w}{1+K_j^L C_j/ \rho_w} = \frac{K_j^L b_j^L m_j}{1+K_j^L m_j},
+      S_j= \frac{K_j^L b_j^L C_j/ \density_w}{1+K_j^L C_j/ \density_w} = \frac{K_j^L b_j^L m_j}{1+K_j^L m_j},
 
    with Langmuir coefficients :math:`K_j^L` and :math:`b_j^L`.
 
@@ -781,7 +781,7 @@ Three distinct models are available for the sorption isotherm
    .. math::
       :label: Freundlich
       
-      S_j = K_j^F \left(\frac{C_j}{\rho_w}\right)^{(1/n_j^F)}  = K_j^F \big(m_j\big)^{(1/n_j^F)},
+      S_j = K_j^F \left(\frac{C_j}{\density_w}\right)^{(1/n_j^F)}  = K_j^F \big(m_j\big)^{(1/n_j^F)},
 
    with coefficient :math:`K_j^F` and inverse power :math:`n_j^F`.
 
@@ -949,16 +949,16 @@ capacity :math:`Q_{\alpha}` (mol/kg) by the expression
 .. math::
    :label: dummy28
    
-   \omega_{{\alpha}}= \frac{N_{\rm site}}{V} = \frac{N_{\rm site}}{M_s} \frac{M_s}{V_s} \frac{V_s}{V} = (1-\porosity) \rho_s Q_{{\alpha}},
+   \omega_{{\alpha}}= \frac{N_{\rm site}}{V} = \frac{N_{\rm site}}{M_s} \frac{M_s}{V_s} \frac{V_s}{V} = (1-\porosity) \density_s Q_{{\alpha}},
 
-with solid density :math:`\rho_s` and porosity :math:`\porosity`. The
+with solid density :math:`\density_s` and porosity :math:`\porosity`. The
 cation exchange capacity associated with the :math:`m`\ th mineral is
 defined on a molar basis as
 
 .. math::
    :label: dummy29
    
-   \omega_m^{\rm CEC} = \frac{N_m}{V} = \frac{N_m}{M_m} \frac{M_m}{V_m} \frac{V_m}{V} = Q_m^{\rm CEC} \rho_m \porosity_m.
+   \omega_m^{\rm CEC} = \frac{N_m}{V} = \frac{N_m}{M_m} \frac{M_m}{V_m} \frac{V_m}{V} = Q_m^{\rm CEC} \density_m \porosity_m.
 
 The site concentration :math:`\omega_{{\alpha}}` is related to the
 sorbed concentrations :math:`S_k^{{\alpha}}` by the expression
@@ -1735,7 +1735,7 @@ to
 It should be noted that the mineral concentration
 :math:`(C_m' =({\overline V}_m^{-1})^{'} \porosity_m = \lambda_m^{-1} C_m)`,
 differs in the two formulations; however, mass density
-:math:`(\rho_m = W_m \overline V_m^{-1})` is an invariant, unlike molar
+:math:`(\density_m = W_m \overline V_m^{-1})` is an invariant, unlike molar
 density :math:`(\eta_m=\overline V_m^{-1})`. The scaling factor :math:`\lambda_m`
 can be found under MINERAL\_KINETICS with the option MINERAL\_SCALE\_FACTOR.
 

@@ -26,17 +26,17 @@ and
 .. math::
    :label: energy-th
 
-   \frac{{{\partial}}}{{{\partial}}t}\big(\porosity s\eta U + (1-\porosity) \rho_r c_p T\big) + {\boldsymbol{\nabla}}\cdot\big(\eta {\boldsymbol{q}}H -\kappa {\boldsymbol{\nabla}}T\big) = Q_e,
+   \frac{{{\partial}}}{{{\partial}}t}\big(\porosity s\eta U + (1-\porosity) \density_r c_p T\big) + {\boldsymbol{\nabla}}\cdot\big(\eta {\boldsymbol{q}}H -\kappa {\boldsymbol{\nabla}}T\big) = Q_e,
 
 The Darcy flow velocity :math:`{\boldsymbol{q}}` is given by
 
 .. math::
    :label: darcy-th
 
-   {\boldsymbol{q}}= -\frac{kk_r}{\mu} {\boldsymbol{\nabla}}\left(P-\rho gz\right).
+   {\boldsymbol{q}}= -\frac{kk_r}{\mu} {\boldsymbol{\nabla}}\left(P-\density gz\right).
 
 Here, :math:`\porosity` denotes porosity, :math:`s` saturation,
-:math:`\rho`, :math:`\eta` mixture mass and molar density, respectively, of the brine, :math:`{\boldsymbol{q}}`
+:math:`\density`, :math:`\eta` mixture mass and molar density, respectively, of the brine, :math:`{\boldsymbol{q}}`
 Darcy flux, :math:`k` intrinsic permeability, :math:`k_r` relative
 permeability, :math:`\mu` viscosity, :math:`P` pressure, :math:`g`
 gravity, and :math:`z` the vertical component of the position vector.
@@ -45,7 +45,7 @@ equation include van Genuchten, Books-Corey and Thomeer-Corey, while the
 saturation functions include Burdine and Mualem (see :ref:`mode-richards`). Water density and
 viscosity are computed as a function of temperature and pressure through
 an equation of state for water. 
-The quantity :math:`\rho_r` denotes the rock density,
+The quantity :math:`\density_r` denotes the rock density,
 :math:`c_p`, and :math:`\kappa` denote the heat capacity and
 thermal conductivity of the porous medium-fluid system. The internal
 energy and enthalpy of the fluid, :math:`U` and :math:`H`, are obtained
@@ -87,22 +87,22 @@ component are given by
 
    {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( \saturation_l \eta_l X_w^l + \saturation_g \eta_g X_w^g + \saturation_i \eta_i X_w^i \right) \right] & + \boldsymbol{\nabla} \cdot \left[X_w^l \boldsymbol{q}_l \eta_l + X_w^g \eta_g \boldsymbol{q}_g \right] \nonumber\\
    - \boldsymbol{\nabla} \cdot \left[\porosity \saturation_g \tortuosity_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, \\
-   {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( \saturation_l \eta_l U_l + \saturation_g \eta_g U_g + \saturation_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] & + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l + \boldsymbol{q}_g \eta_g H_g \right] \nonumber\\
+   {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( \saturation_l \eta_l U_l + \saturation_g \eta_g U_g + \saturation_i \eta_i U_i \right) + (1- \porosity) \density_r c_r T \right] & + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l + \boldsymbol{q}_g \eta_g H_g \right] \nonumber\\
    - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e,
 
 where the subscripts :math:`l`, :math:`i`, :math:`g`
 denote the liquid, ice and gas phases, respectively; :math:`\porosity` is the
 porosity; :math:`s_{\alpha} (\alpha = i, l, g)` is the saturation of the
 :math:`\alpha`-th phase; :math:`\eta_{\alpha} (\alpha = i, l, g)` is the
-molar density of the :math:`\alpha`-th phase; :math:`\rho_g`,
-:math:`\rho_l` are the mass densities of the gas and liquid phases;
+molar density of the :math:`\alpha`-th phase; :math:`\density_g`,
+:math:`\density_l` are the mass densities of the gas and liquid phases;
 :math:`Q_w` is the mass source of :math:`\mathrm{H_2O}`;
 :math:`X_w^{\alpha} (\alpha = i, l, g)` is the mole fraction of
 :math:`\mathrm{H_2O}` in the :math:`\alpha`-th phase; :math:`\tortuosity_g` is
 the tortuosity of the gas phase; :math:`D_g` is the diffusion
 coefficient in the gas phase; :math:`T` is the temperature (assuming all
 the phases and the rock are in thermal equilibrium); :math:`c_r` is the
-specific heat of the rock; :math:`\rho_r` is the density of the rock;
+specific heat of the rock; :math:`\density_r` is the density of the rock;
 :math:`U_{\alpha} (\alpha = i, l, g)` is the molar internal energy of
 the :math:`\alpha`-th phase; :math:`H_{\alpha} (\alpha = l, g)` is the
 molar enthalpy of the :math:`\alpha`-the phase; :math:`Q_e` is the heat
@@ -114,8 +114,8 @@ The Darcy velocity for the gas and liquid phases are given as follows:
 .. math::
    :label: eq:darcy
 
-   \boldsymbol{q}_g = - \frac{k_{rg}k}{\mu_g} \boldsymbol{\nabla}\left[p_g - \rho_g \boldsymbol{g} \right], \\
-   \boldsymbol{q}_l = - \frac{k_{rl}k}{\mu_l} \boldsymbol{\nabla}\left[p_l - \rho_l \boldsymbol{g} \right],
+   \boldsymbol{q}_g = - \frac{k_{rg}k}{\mu_g} \boldsymbol{\nabla}\left[p_g - \density_g \boldsymbol{g} \right], \\
+   \boldsymbol{q}_l = - \frac{k_{rl}k}{\mu_l} \boldsymbol{\nabla}\left[p_l - \density_l \boldsymbol{g} \right],
 
 where :math:`k` is the absolute permeability;
 :math:`k_{r \alpha} (\alpha = l, g)` is the relative permeability of the
@@ -143,7 +143,7 @@ follows that
 and so
 Eqns. :eq:`eq:balance_eqns`, :eq:`eq:darcy` based
 on the assumption that :math:`p_g` is hydrostatic i.e.,
-:math:`{p}_g = {({p}_g)}_0 + \rho_g gz`, reduce to [eq:gov]
+:math:`{p}_g = {({p}_g)}_0 + \density_g gz`, reduce to [eq:gov]
 
 .. math::
    :label: eq:gov1
@@ -153,8 +153,8 @@ on the assumption that :math:`p_g` is hydrostatic i.e.,
 .. math::
    :label: eq:gov2
 
-   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( \saturation_l \eta_l U_l + \saturation_g \eta_g U_g + \saturation_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l \right] - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e, \\
-   \boldsymbol{q}_l = - \frac{k_{rl}k}{\mu_l} \left[\boldsymbol{\nabla}p_l - \rho_l \boldsymbol{g} \right]. 
+   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( \saturation_l \eta_l U_l + \saturation_g \eta_g U_g + \saturation_i \eta_i U_i \right) + (1- \porosity) \density_r c_r T \right] + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l \right] - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e, \\
+   \boldsymbol{q}_l = - \frac{k_{rl}k}{\mu_l} \left[\boldsymbol{\nabla}p_l - \density_l \boldsymbol{g} \right]. 
 
 In the above formulation, temperature and liquid pressure are chosen to
 be primary variables. It is ensured that complete dry-out does not
@@ -210,10 +210,10 @@ tensions. Also,
 .. math::
    :label: pcil-th
 
-   P_{cil} = - {\rho}_i h_{iw} \vartheta,
+   P_{cil} = - {\density}_i h_{iw} \vartheta,
 
 where :math:`h_{iw}^0` is the heat of fusion of ice at 273.15 K,
-:math:`{\rho}_i` is the mass density of ice,
+:math:`{\density}_i` is the mass density of ice,
 :math:`\vartheta = \frac{T - T_0}{T_0}` with :math:`T_0 = 273.15` K.
 
 For :math:`S_{*}` the van Genuchten model is used:

@@ -12,7 +12,7 @@ expansion. The following governing equations are used:
 .. math::
    :label: Eq:mom
    
-   \nabla \cdot [{\boldsymbol{\sigma}}] + \rho {\boldsymbol{b}} = 0 \quad \mathrm{in} \; \Omega, 
+   \nabla \cdot [{\boldsymbol{\sigma}}] + \density {\boldsymbol{b}} = 0 \quad \mathrm{in} \; \Omega, 
    
 .. math::
    :label: diri

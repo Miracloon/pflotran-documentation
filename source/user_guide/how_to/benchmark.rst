@@ -21,14 +21,14 @@ mol/m\ :math:`^3` this was obtained from the formula
 .. math::
    
    \omega = \frac{N_s}{V} =
-   \frac{N_s}{M_s}\frac{M_s}{V_s}\frac{V_s}{V} = \rho_s (1-\porosity) {\rm CEC}.
+   \frac{N_s}{M_s}\frac{M_s}{V_s}\frac{V_s}{V} = \density_s (1-\porosity) {\rm CEC}.
    
-Using a porosity of 0.61, the solid grain density :math:`\rho_s` is
+Using a porosity of 0.61, the solid grain density :math:`\density_s` is
 given by
 
 .. math::
 
-   \rho_s = \frac{\porosity \rho_l}{1-\porosity} = 3.0344 \text{g/cm$^3$},
+   \density_s = \frac{\porosity \density_l}{1-\porosity} = 3.0344 \text{g/cm$^3$},
  
 .. figure:: ./figs/ionex.png
    :alt: Breakthrough curves for Ca2+, Mg2+ and Na+ compared with experimental results from Voegelin et al. (2000).
@@ -37,7 +37,7 @@ given by
    Breakthrough curves for Ca2+, Mg2+ and Na+ compared with experimental
    results from Voegelin et al. (2000).
 
-for the mass density per pore volume :math:`\rho_l` = 1.94
+for the mass density per pore volume :math:`\density_l` = 1.94
 g/cm\ :math:`^3` with values from Voegelin et al. (2000). This gives for
 the site density per bulk volume :math:`\omega = 71.004`
 mol/m\ :math:`^3`. The results of the simulation are shown in `Figure
@@ -610,7 +610,7 @@ fluid flow given by
 
 .. math::
 
-   \frac{{{\partial}}}{{{\partial}}t} \porosity s\rho + {\boldsymbol{\nabla}}\cdot{\boldsymbol{q}}\rho = Q,
+   \frac{{{\partial}}}{{{\partial}}t} \porosity s\density + {\boldsymbol{\nabla}}\cdot{\boldsymbol{q}}\density = Q,
    
 and solute transport of a tracer
 
@@ -621,7 +621,7 @@ and solute transport of a tracer
 In these equations :math:`\porosity` denotes the spatially variable
 porosity of the porous medium assumed to constant within each
 stratigraphic layer, :math:`s` gives the saturation state of the porous
-medium, :math:`\rho` represents the fluid density in general a function
+medium, :math:`\density` represents the fluid density in general a function
 of pressure and temperature, :math:`C` denotes the solute concentration,
 :math:`D` denotes the diffusion/dispersion coefficient, :math:`\tortuosity`
 represents tortuosity, :math:`Q` and :math:`Q_C` denote source/sink
@@ -630,7 +630,7 @@ by
 
 .. math::
    
-   {\boldsymbol{q}}= - \frac{k_{\rm sat}k_r}{\mu} {\boldsymbol{\nabla}}(p-\rho g z),
+   {\boldsymbol{q}}= - \frac{k_{\rm sat}k_r}{\mu} {\boldsymbol{\nabla}}(p-\density g z),
    
 with saturated permeability :math:`k_{\rm sat}`, relative permeability
 :math:`k_r`, fluid viscosity :math:`\mu`, pressure :math:`p`, formula
@@ -685,7 +685,7 @@ equation
 
 .. math::
    
-   \frac{d}{dz} \rho q_z = 0,
+   \frac{d}{dz} \density q_z = 0,
    
 or assuming an incompressible fluid
 
@@ -699,7 +699,7 @@ pressure is obtained as a function of :math:`z` by solving the ODE
 .. math::
    :label: dpdz
    
-   \frac{dp}{dz} = -\frac{\mu q_z^0}{k_{\rm sat} k_r} - \rho g,
+   \frac{dp}{dz} = -\frac{\mu q_z^0}{k_{\rm sat} k_r} - \density g,
    
 using Eqns. :eq:`kr` and :eq:`sat` to express
 the relative permeability :math:`k_r` as a function of pressure. For the
@@ -707,7 +707,7 @@ special case of zero infiltration it follows that
 
 .. math::
    
-   p(z) = p_0 - \rho g (z-z_0),
+   p(z) = p_0 - \density g (z-z_0),
    
 with :math:`p(z_0) = p_0`. The saturation profile is obtained from
 Eqns. :eq:`sat` and :eq:`seff1`.
@@ -726,7 +726,7 @@ case with no infiltration at the surface it follows that
 
 .. math::
    
-   z_{\rm wt} = z_0 + \frac{p_0-p_g}{\rho g},
+   z_{\rm wt} = z_0 + \frac{p_0-p_g}{\density g},
    
 with the boundary condition :math:`p(z_0) = p_0` and :math:`z_0` denotes
 the datum. If :math:`p_0` is set equal to :math:`p_g`, then
@@ -766,7 +766,7 @@ and tortuosity was set to one.
 .. _table-2:
 
 .. table:: Parameters for material and thermal properties for intrinsic rock
-    density :math:`\rho_s`, heat capacity :math:`c`, wet and dry thermal conductivity
+    density :math:`\density_s`, heat capacity :math:`c`, wet and dry thermal conductivity
     :math:`\kappa`, porosity :math:`\porosity`, residual water saturation
     :math:`s_r`, van Genuchten parameters :math:`\alpha` and
     :math:`\lambda`, and vertical water saturated permeability
@@ -779,7 +779,7 @@ and tortuosity was set to one.
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
     | Property                 |           [units]                      |     BF      |  HF        |    PP       |   URG      |    MRG     |
     +==========================+========================================+=============+============+=============+============+============+
-    | :math:`\rho_s`           | [g cm\ :math:`^{-3}`]                  |     2.8     |  2.8       |    2.8      |   2.8      |    2.8     |
+    | :math:`\density_s`       | [g cm\ :math:`^{-3}`]                  |     2.8     |  2.8       |    2.8      |   2.8      |    2.8     |
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
     | :math:`c`                | [J kg\ :math:`^{-1}` K\ :math:`^{-1}`] |    800      |    800     |    800      |   800      |    800     | 
     +--------------------------+----------------------------------------+-------------+------------+-------------+------------+------------+
@@ -1402,7 +1402,7 @@ Table [tco2].
 +-----------------------------+----------------------------------+----------------------------------------------------------+
 |                             | :math:`P_c^{\rm max}`            | :math:`10^7` Pa                                          |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
-| Rock Density                | :math:`\rho_r`                   | 2650 kg/m\ :math:`^3`                                    |
+| Rock Density                | :math:`\density_r`               | 2650 kg/m\ :math:`^3`                                    |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
 | Rock Specific Heat          | :math:`c_r`                      | 1000 J/kg/K                                              |
 +-----------------------------+----------------------------------+----------------------------------------------------------+

@@ -92,17 +92,17 @@ calculated according to:
 .. math::
    :label:
    
-   R_{CI} = \frac {r_{CI} D_{s} \rho_{Fe}} {W_{Fe}}
+   R_{CI} = \frac {r_{CI} D_{s} \density_{Fe}} {W_{Fe}}
    
 .. math::
    :label:
    
-   R_{CH} = \frac {r_{CH} D_{s} \rho_{Fe}} {W_{Fe}}
+   R_{CH} = \frac {r_{CH} D_{s} \density_{Fe}} {W_{Fe}}
    
 where :math:`r_{CI}` is the inundated corrosion rate in [m/s] (specified by 
 ``CORRMCO2`` in the input deck), :math:`r_{CH}` is the humid corrosion rate in 
 [m/s] (specified by ``HUMCORR`` in the input deck), :math:`D_s` is the
-available iron surface area concentration in [m2/m3], :math:`\rho_{Fe}` is
+available iron surface area concentration in [m2/m3], :math:`\density_{Fe}` is
 the density of iron in [kg/m3], and :math:`W_{Fe}` is the molecular weight of
 iron in [kg/mol]. The resulting units for the reaction rate
 :math:`K_{c}` are [mol-Fe/m3/s]. The value for :math:`D_s` is calculated as
