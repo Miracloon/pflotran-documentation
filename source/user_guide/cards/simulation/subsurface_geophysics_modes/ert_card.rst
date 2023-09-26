@@ -36,8 +36,10 @@ CALC_MAX_TRACER_CONCENTRATION
 CLAY_VOLUME_FACTOR
 
 COMPUTE_JACOBIAN
+ Toggles on the calculation of the ERT Jacobian (derivatives of ERT measurements with respectd to bulk electrical conductivity).
 
 CONDUCTIVITY_MAPPING_LAW
+ Approach to calculating bulk electrical conductivity. Options: ARCHIE, WAXMAN_SMITS
 
 MAX_TRACER_CONCENTRATION
 

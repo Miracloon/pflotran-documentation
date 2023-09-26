@@ -73,7 +73,8 @@ nitpicky = True
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'alabaster'
+#html_theme = 'alabaster'
+html_theme = 'nature'
 
 # image for sidebar
 html_logo = '_static/pflotran_logo.jpg' 
