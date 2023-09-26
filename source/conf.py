@@ -103,6 +103,8 @@ mathjax3_config = {
       'tortuosity': '\tau',
       'density': '\rho',
       'bulkelectricalconductivity': '\sigma',
+      'electricalpotential': '\psi',
+      # macros for variable units
       'sq': '{^{2}}',
       'cub': '{^{3}}',
       'inv': '{^{-1}}',
