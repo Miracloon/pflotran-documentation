@@ -86,7 +86,7 @@ component are given by
    :label: eq:balance_eqns
 
    {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( \saturation_l \eta_l X_w^l + \saturation_g \eta_g X_w^g + \saturation_i \eta_i X_w^i \right) \right] & + \boldsymbol{\nabla} \cdot \left[X_w^l \boldsymbol{q}_l \eta_l + X_w^g \eta_g \boldsymbol{q}_g \right] \nonumber\\
-   - \boldsymbol{\nabla} \cdot \left[\porosity \saturation_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, \\
+   - \boldsymbol{\nabla} \cdot \left[\porosity \saturation_g \tortuosity_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, \\
    {\dfrac{\partial{}}{\partial{t}}} \left[ \porosity \left( \saturation_l \eta_l U_l + \saturation_g \eta_g U_g + \saturation_i \eta_i U_i \right) + (1- \porosity) \rho_r c_r T \right] & + \boldsymbol{\nabla} \cdot \left[ \boldsymbol{q}_l \eta_l  H_l + \boldsymbol{q}_g \eta_g H_g \right] \nonumber\\
    - \boldsymbol{\nabla} \cdot \left[ \kappa \boldsymbol{\nabla} T\right] = Q_e,
 
@@ -98,7 +98,7 @@ molar density of the :math:`\alpha`-th phase; :math:`\rho_g`,
 :math:`\rho_l` are the mass densities of the gas and liquid phases;
 :math:`Q_w` is the mass source of :math:`\mathrm{H_2O}`;
 :math:`X_w^{\alpha} (\alpha = i, l, g)` is the mole fraction of
-:math:`\mathrm{H_2O}` in the :math:`\alpha`-th phase; :math:`\tau_g` is
+:math:`\mathrm{H_2O}` in the :math:`\alpha`-th phase; :math:`\tortuosity_g` is
 the tortuosity of the gas phase; :math:`D_g` is the diffusion
 coefficient in the gas phase; :math:`T` is the temperature (assuming all
 the phases and the rock are in thermal equilibrium); :math:`c_r` is the
@@ -148,7 +148,7 @@ on the assumption that :math:`p_g` is hydrostatic i.e.,
 .. math::
    :label: eq:gov1
 
-   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( \saturation_g \eta_g X_w^g +s_l \eta_l + \saturation_i \eta_i \right) \right] + \boldsymbol{\nabla} \cdot \left[\boldsymbol{q}_l \eta_l \right] - \boldsymbol{\nabla} \cdot \left[\porosity \saturation_g \tau_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, 
+   {\dfrac{\partial{}}{\partial{t}}}\left[ \porosity \left( \saturation_g \eta_g X_w^g +s_l \eta_l + \saturation_i \eta_i \right) \right] + \boldsymbol{\nabla} \cdot \left[\boldsymbol{q}_l \eta_l \right] - \boldsymbol{\nabla} \cdot \left[\porosity \saturation_g \tortuosity_g  \eta_g D_g \boldsymbol{\nabla} X^g_w \right] = Q_w, 
    
 .. math::
    :label: eq:gov2

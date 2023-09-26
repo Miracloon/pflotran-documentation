@@ -50,7 +50,7 @@ grid cells connected to the :math:`n`\ th node with interfacial area
 .. math::
    :label: flux-fluid-soln
    
-   F_{j,nn'}^{{\alpha}}= \big(q_{{\alpha}}X_j^{{\alpha}}\big)_{nn'} - \big(\porosity \saturation_{{\alpha}}\tau_{{\alpha}}D_{{\alpha}}\big)_{nn'}
+   F_{j,nn'}^{{\alpha}}= \big(q_{{\alpha}}X_j^{{\alpha}}\big)_{nn'} - \big(\porosity \saturation_{{\alpha}}\tortuosity_{{\alpha}}D_{{\alpha}}\big)_{nn'}
    \frac{X_{jn'}^{{\alpha}}- X_{jn}^{{\alpha}}}{d_{n'}+d_n},
 
 with perpendicular distances to interface :math:`nn'` from nodes

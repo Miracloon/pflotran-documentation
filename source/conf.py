@@ -100,6 +100,7 @@ mathjax3_config = {
       # .rst as \porosity
       'porosity': '\phi',
       'saturation': 's',
+      'tortuosity': '\tau',
       'bulkelectricalconductivity': '\sigma',
       'sq': '{^{2}}',
       'cub': '{^{3}}',

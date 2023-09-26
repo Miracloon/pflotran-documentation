@@ -616,14 +616,14 @@ and solute transport of a tracer
 
 .. math::
    
-   \frac{{{\partial}}}{{{\partial}}t}\porosity C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C - \porosity \saturation \tau D {\boldsymbol{\nabla}}C\big) = Q_C.
+   \frac{{{\partial}}}{{{\partial}}t}\porosity C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C - \porosity \saturation \tortuosity D {\boldsymbol{\nabla}}C\big) = Q_C.
    
 In these equations :math:`\porosity` denotes the spatially variable
 porosity of the porous medium assumed to constant within each
 stratigraphic layer, :math:`s` gives the saturation state of the porous
 medium, :math:`\rho` represents the fluid density in general a function
 of pressure and temperature, :math:`C` denotes the solute concentration,
-:math:`D` denotes the diffusion/dispersion coefficient, :math:`\tau`
+:math:`D` denotes the diffusion/dispersion coefficient, :math:`\tortuosity`
 represents tortuosity, :math:`Q` and :math:`Q_C` denote source/sink
 terms, and :math:`{\boldsymbol{q}}` denotes the Darcy velocity defined
 by
@@ -1386,7 +1386,7 @@ Table [tco2].
 +-----------------------------+----------------------------------+----------------------------------------------------------+
 | Porosity                    | :math:`\porosity`                | 0.12                                                     |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
-| Tortuosity                  | :math:`\tau`                     | 1                                                        |
+| Tortuosity                  | :math:`\tortuosity`              | 1                                                        |
 +-----------------------------+----------------------------------+----------------------------------------------------------+
 | Injection Rate              | :math:`Q_{{\rm CO_2}}`           | :math:`5\times 10^{-5}` kg/s, duration 0.4 y             |
 +-----------------------------+----------------------------------+----------------------------------------------------------+

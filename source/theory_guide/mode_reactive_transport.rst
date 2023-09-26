@@ -172,11 +172,11 @@ for an isotropic medium has the form
 .. math::
    :label: dummy8
    
-   {\boldsymbol{D}}_{{\alpha}}= \tau D_m {\boldsymbol{I}}+ a_T v{\boldsymbol{I}}+ \big(a_L-a_T\big)\frac{{\boldsymbol{v}}{\boldsymbol{v}}}{v},
+   {\boldsymbol{D}}_{{\alpha}}= \tortuosity D_m {\boldsymbol{I}}+ a_T v{\boldsymbol{I}}+ \big(a_L-a_T\big)\frac{{\boldsymbol{v}}{\boldsymbol{v}}}{v},
    
 
 with longitudinal and transverse dispersivity coefficients :math:`a_L`,
-:math:`a_T`, respectively, :math:`\tau` refers to tortuosity, and
+:math:`a_T`, respectively, :math:`\tortuosity` refers to tortuosity, and
 :math:`D_m` to the molecular diffusion coefficient. Currently, only
 a diagonal dispersion tensor with principal axes aligned with the grid for longitudinal and transverse 
 dispersion is implemented in PFLOTRAN.
@@ -362,7 +362,7 @@ with
 .. math::
    :label: tortuosity
    
-   \tau = \tau_0 \left(\frac{\porosity}{\porosity_0}\right)^b,
+   \tortuosity = \tortuosity_0 \left(\frac{\porosity}{\porosity_0}\right)^b,
 
 and
 
