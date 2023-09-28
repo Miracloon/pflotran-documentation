@@ -146,6 +146,7 @@ mathjax3_config = {
       'strmolfraction': ['{\strmol\,\\text{#1}\,\{\strmol\,\\text{#2}\}\inv}',2],
       'strmassfraction': ['{\strmass\,\\text{#1}\,\{\strmass\,\\text{#2}\}\inv}',2],
       'units':      ['{\\left[{#1}\\right]}',1],
+      'unitless':   ['{\\units{\strnull}}'],
       'unitsfrac':  ['{\\left[#1\{#2\}\inv\\right]}',2],
       'unitsfracN': ['{\\left[#1\{#2\}\invN{#3}\\right]}',3],
       'unitsfracstr': ['{\\left[\\text{#1}\{\\text{#2}\}^{-1}\\right]}',2],
