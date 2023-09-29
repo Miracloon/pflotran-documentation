@@ -46,7 +46,8 @@ help:
 
 .PHONY: clean
 clean:
-	rm -rf $(BUILDDIR)/*
+	@rm -rf $(BUILDDIR)/*
+	@find source -name '*.tmp' -delete
 
 .PHONY: html
 html: run_rst_compiling_scripts
