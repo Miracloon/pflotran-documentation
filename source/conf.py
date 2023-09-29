@@ -67,7 +67,14 @@ exclude_patterns = [
     'user_guide/cards/process_model_cards/wipp_source_sink*',
 ]
 
-pygment_style = 'sphinx'
+# output from 
+#from pygments.styles import get_all_styles
+#styles = list(get_all_styles())
+#print(styles)
+# ['default', 'emacs', 'friendly', 'friendly_grayscale', 'colorful', 'autumn', 'murphy', 'manni', 'material', 'monokai', 'perldoc', 'pastie', 'borland', 'trac', 'native', 'fruity', 'bw', 'vim', 'vs', 'tango', 'rrt', 'xcode', 'igor', 'paraiso-light', 'paraiso-dark', 'lovelace', 'algol', 'algol_nu', 'arduino', 'rainbow_dash', 'abap', 'solarized-dark', 'solarized-light', 'sas', 'stata', 'stata-light', 'stata-dark', 'inkpot', 'zenburn', 'gruvbox-dark', 'gruvbox-light', 'dracula', 'one-dark', 'lilypond']
+
+pygments_style = 'sphinx'
+#pygments_style = 'sas'
 nitpicky = True
 
 # -- Options for HTML output -------------------------------------------------
@@ -76,8 +83,9 @@ nitpicky = True
 # a list of builtin themes.
 #html_theme = 'alabaster'
 html_theme = 'nature'
-
-# image for sidebar
+html_theme_options = {
+    'sidebarwidth' : '350',
+}
 html_logo = '_static/pflotran_logo.jpg' 
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -92,7 +100,6 @@ html_sidebars = {'**': [
     'relations.html',
     'searchbox.html'
 ]}
-
 
 # -- Options for MathJax -----------------------------------------------------
 mathjax3_config = {
