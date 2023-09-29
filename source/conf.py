@@ -67,6 +67,7 @@ exclude_patterns = [
     'user_guide/cards/process_model_cards/wipp_source_sink*',
 ]
 
+pygment_style = 'sphinx'
 nitpicky = True
 
 # -- Options for HTML output -------------------------------------------------
@@ -85,10 +86,12 @@ html_logo = '_static/pflotran_logo.jpg'
 html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
-html_sidebars = {'**': ['globaltoc.html',
+html_sidebars = {'**': [
+    'globaltoc.html',
     'localtoc.html',
     'relations.html',
-    'searchbox.html']}
+    'searchbox.html'
+]}
 
 
 # -- Options for MathJax -----------------------------------------------------
