@@ -139,7 +139,7 @@ Guidelines
      PetscInt :: iarray(5)
      PetscReal, pointer :: array(:)
 
-* All pointers used in with PETSc Vec data structures have an :fortran:`_p` appended.
+* All pointers used in with PETSc Vec data structures have an `_p` appended.
 
   .. code-block:: fortran
 

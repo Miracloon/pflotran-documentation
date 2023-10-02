@@ -25,7 +25,7 @@ mass and energy conservation solved by PFLOTRAN have the general form:
 .. math::
    :label: mass_conservation_equation
    
-   \frac{\partial}{\partial t} \bigg(\varphi \sum_{\alpha}s_{\alpha}^{}\eta_{\alpha}^{} x_i^{\alpha}\bigg)
+   \frac{\partial}{\partial t} \bigg(\porosity \sum_{\alpha}s_{\alpha}^{}\eta_{\alpha}^{} x_i^{\alpha}\bigg)
    + {\boldsymbol{\nabla}}\cdot\sum_{\alpha} {\boldsymbol{F}}_i^{\alpha}= Q_{i},
 
 for the :math:`i`\ th component where the flux
@@ -34,14 +34,14 @@ for the :math:`i`\ th component where the flux
 .. math::
    :label: flux-mphase
 
-   {\boldsymbol{F}}_i^{{\alpha}}= {\boldsymbol{q}}_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}} - \varphi s_{{\alpha}}^{} D_{{\alpha}}^{} \eta_{{\alpha}}^{} {\boldsymbol{\nabla}}x_i^{{\alpha}},
+   {\boldsymbol{F}}_i^{{\alpha}}= {\boldsymbol{q}}_{{\alpha}}^{}\eta_{{\alpha}}^{} x_i^{{\alpha}} - \porosity \saturation_{{\alpha}}^{} D_{{\alpha}}^{} \eta_{{\alpha}}^{} {\boldsymbol{\nabla}}x_i^{{\alpha}},
 
 and
 
 .. math::
    :label: energy_equation
    
-   \frac{{{\partial}}}{{{\partial}}t} \bigg(\varphi \sum_{{\alpha}}s_{{\alpha}}\eta_{{\alpha}}U_{{\alpha}}+ (1-\varphi) \rho_r c_r T\bigg)
+   \frac{{{\partial}}}{{{\partial}}t} \bigg(\porosity \sum_{{\alpha}}s_{{\alpha}}\eta_{{\alpha}}U_{{\alpha}}+ (1-\porosity) \density_r c_r T\bigg)
    + {\boldsymbol{\nabla}}\cdot\bigg[\sum_{{\alpha}}{\boldsymbol{q}}_{{\alpha}}\eta_{{\alpha}}H_{{\alpha}}- \kappa{\boldsymbol{\nabla}}T\bigg] = Q_{e},
 
 for energy. In these equations :math:`{{\alpha}}` designates a fluid
@@ -49,7 +49,7 @@ phase (:math:`{{\alpha}}=l`, sc) at temperature :math:`T` and pressure
 :math:`P_{{\alpha}}` with the sums over all fluid phases present in the
 system, and source/sink terms :math:`Q_i` and :math:`Q_e` described in
 more detail below. Species are designated by the subscript :math:`i`
-(:math:`i=\mathrm{H_2O}`, :math:`\mathrm{CO_2}`); :math:`\varphi`
+(:math:`i=\mathrm{H_2O}`, :math:`\mathrm{CO_2}`); :math:`\porosity`
 denotes the porosity of the porous medium; :math:`s_{\alpha}` denotes
 the phase saturation state; :math:`x_i^{\alpha}` denotes the mole
 fraction of species :math:`i` satisfying
@@ -75,20 +75,20 @@ phase :math:`{{\alpha}}` defined by
 .. math::
    :label: darcy-mphase
 
-   {\boldsymbol{q}}_{{\alpha}}= -\frac{kk_{{\alpha}}}{\mu_{{\alpha}}} {\boldsymbol{\nabla}}\big(P_{{\alpha}}-\rho_{{\alpha}}g {\boldsymbol{z}}\big),
+   {\boldsymbol{q}}_{{\alpha}}= -\frac{kk_{{\alpha}}}{\mu_{{\alpha}}} {\boldsymbol{\nabla}}\big(P_{{\alpha}}-\density_{{\alpha}}g {\boldsymbol{z}}\big),
 
 where :math:`k` refers to the intrinsic permeability,
 :math:`k_{{\alpha}}` denotes the relative permeability,
 :math:`\mu_{{\alpha}}` denotes the fluid viscosity,
 :math:`W_{{\alpha}}^{}` denotes the formula weight, :math:`g` denotes
 the acceleration of gravity, and :math:`z` designates the vertical of
-the position vector. The mass density :math:`\rho_{{\alpha}}` is related
+the position vector. The mass density :math:`\density_{{\alpha}}` is related
 to the molar density by the expression
 
 .. math::
    :label: mass-density-mphase
 
-   \rho_{{\alpha}}= W_{{\alpha}}\eta_{{\alpha}},
+   \density_{{\alpha}}= W_{{\alpha}}\eta_{{\alpha}},
 
 where the formula weight :math:`W_{{\alpha}}` is a function of
 composition according to the relation
@@ -96,9 +96,9 @@ composition according to the relation
 .. math::
    :label: formula-weight-mphase
 
-   W_{{\alpha}}= \frac{\rho_{{\alpha}}}{\eta_{{\alpha}}} = \sum_i W_i^{} x_i^{{\alpha}}.
+   W_{{\alpha}}= \frac{\density_{{\alpha}}}{\eta_{{\alpha}}} = \sum_i W_i^{} x_i^{{\alpha}}.
 
-The quantities :math:`\rho_r`, :math:`c_r`, and :math:`\kappa` refer to
+The quantities :math:`\density_r`, :math:`c_r`, and :math:`\kappa` refer to
 the mass density, heat capacity, and thermal conductivity of the porous
 rock.
 
@@ -114,7 +114,7 @@ mass rate injection/production well given by
    :label: source-sink-mphase
 
    Q_i &= \sum_n\sum_{{\alpha}}q_{{\alpha}}^V \eta_{{\alpha}}x_i^{{\alpha}}\delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),\\
-       &= \sum_n\sum_{{\alpha}}\frac{\eta_{{\alpha}}}{\rho_{{\alpha}}} q_{{\alpha}}^M x_i^{{\alpha}}\delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),\\
+       &= \sum_n\sum_{{\alpha}}\frac{\eta_{{\alpha}}}{\density_{{\alpha}}} q_{{\alpha}}^M x_i^{{\alpha}}\delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),\\
        &= \sum_n\sum_{{\alpha}}W_{{\alpha}}^{-1} q_{{\alpha}}^M x_i^{{\alpha}}\delta({\boldsymbol{r}}-{\boldsymbol{r}}_{n}),
 
 where :math:`q_{{\alpha}}^V`, :math:`q_{{\alpha}}^M` refer to volume and
@@ -124,7 +124,7 @@ the density
 .. math::
    :label: vol-mass-rates-mphase
    
-   q_{{\alpha}}^M = \rho_{{\alpha}}q_{{\alpha}}^V.
+   q_{{\alpha}}^M = \density_{{\alpha}}q_{{\alpha}}^V.
 
 The position vector :math:`{\boldsymbol{r}}_{n}` refers to the location
 of the :math:`n`\ th source/sink.
@@ -136,7 +136,7 @@ is determined from the expression
 .. math::
    :label: mass-flow-mphase
    
-   q_{{\alpha}}^M = \Gamma \rho_{{\alpha}}\frac{k_{{\alpha}}}{\mu_{{\alpha}}} \big(p_{{\alpha}}-p_{{\alpha}}^{\rm bw}\big),
+   q_{{\alpha}}^M = \Gamma \density_{{\alpha}}\frac{k_{{\alpha}}}{\mu_{{\alpha}}} \big(p_{{\alpha}}-p_{{\alpha}}^{\rm bw}\big),
 
 with bottom well pressure :math:`p_{{\alpha}}^{\rm bw}`, and where
 :math:`\Gamma` denotes the well factor (production index) given by
@@ -217,7 +217,7 @@ where the molality at equilibrium is given by
 .. math::
    :label: eq-molality-mphase
    
-   m_{{\rm CO_2}}^{eq} = \left(1-\dfrac{P_{\rm sat}(T)}{p}\right)\frac{\phi_{{\rm CO_2}}p}{K_{{\rm CO_2}}\gamma_{{\rm CO_2}}},
+   m_{{\rm CO_2}}^{eq} = \left(1-\dfrac{P_{\rm sat}(T)}{p}\right)\frac{\porosity_{{\rm CO_2}}p}{K_{{\rm CO_2}}\gamma_{{\rm CO_2}}},
 
 where it is assumed that
 
@@ -236,7 +236,7 @@ phases as expressed by the relation
 .. math::
    :label: chem-pot-mphase
    
-   f_{{\rm CO_2}}^{} = y_{{\rm CO_2}}^{}\phi_{{\rm CO_2}}^{} p_g^{} = K_{{\rm CO_2}}^{} \big(\gamma_{{\rm CO_2}}^{} m_{{\rm CO_2}}^{}\big),
+   f_{{\rm CO_2}}^{} = y_{{\rm CO_2}}^{}\porosity_{{\rm CO_2}}^{} p_g^{} = K_{{\rm CO_2}}^{} \big(\gamma_{{\rm CO_2}}^{} m_{{\rm CO_2}}^{}\big),
 
 where
 
@@ -274,7 +274,7 @@ where
 .. math::
    :label: K-mphase
    
-   \widetilde K_{{\rm CO_2}}^{} = \frac{\gamma_{{\rm CO_2}}^{} K_{{\rm CO_2}}^{}}{\phi_{{\rm CO_2}}^{} p_g}\frac{m_{{\rm CO_2}}}{x_{{\rm CO_2}}}.
+   \widetilde K_{{\rm CO_2}}^{} = \frac{\gamma_{{\rm CO_2}}^{} K_{{\rm CO_2}}^{}}{\porosity_{{\rm CO_2}}^{} p_g}\frac{m_{{\rm CO_2}}}{x_{{\rm CO_2}}}.
 
 :math:`\bullet` A phase change to single liquid or gas phase occurs if
 :math:`s_g \leq 0` or :math:`s_g\geq 1`, respectively.
@@ -341,7 +341,7 @@ back to the MPHASE conservation equations.
 
 A further constraint on the reactive transport equations for aqueous
 :math:`\mathrm{CO_2}` is that it must be in equilibrium with
-supercritical :math:`\mathrm{CO_2}` in regions where :math:`0< s_g <1`.
+supercritical :math:`\mathrm{CO_2}` in regions where :math:`0< \saturation_g <1`.
 This is accomplished by replacing the :math:`\mathrm{CO_2}` mass
 conservation equations in those regions with the constraint
 :math:`m_{\rm CO_{\rm 2(aq)}} = m_{\rm CO_2}^{\rm eq}`.

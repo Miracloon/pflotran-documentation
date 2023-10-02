@@ -12,7 +12,7 @@ expansion. The following governing equations are used:
 .. math::
    :label: Eq:mom
    
-   \nabla \cdot [{\boldsymbol{\sigma}}] + \rho {\boldsymbol{b}} = 0 \quad \mathrm{in} \; \Omega, 
+   \nabla \cdot [{\boldsymbol{\sigma}}] + \density {\boldsymbol{b}} = 0 \quad \mathrm{in} \; \Omega, 
    
 .. math::
    :label: diri
@@ -51,7 +51,7 @@ deformation on the pore structure is accounted for via
 .. math::
    :label: pore-structure
    
-   \phi = \phi_0 +  \text{tr}({\boldsymbol{\varepsilon}}).
+   \porosity = \porosity_0 +  \text{tr}({\boldsymbol{\varepsilon}}).
 
 Note that the above equations are solved using the finite element method
 (Galerkin finite element) with the displacements solved for at the

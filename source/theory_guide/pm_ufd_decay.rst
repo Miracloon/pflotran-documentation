@@ -66,11 +66,11 @@ concentration is calculated according to,
 
 .. math::
 
-   C^{aq}_e = \frac {M^{total}_e} {1000 \left({1+Kd_e/(\rho \phi S_{l})}\right) V \phi S_{l} }
+   C^{aq}_e = \frac {M^{total}_e} {1000 \left({1+Kd_e/(\density \porosity S_{l})}\right) V \porosity S_{l} }
 
 where :math:`C^{aq}_e` is the aqueous concentration [mol/L] of each element
 :math:`e`, :math:`M^{total}_e` is the total mass [mol] of the element
-:math:`e`, :math:`\rho` is the water density [kg/m3], :math:`\phi` is the
+:math:`e`, :math:`\density` is the water density [kg/m3], :math:`\porosity` is the
 material porosity, :math:`S_l` is the pore water saturation, :math:`V` is the
 grid cell volume, and :math:`Kd_e` is the material-specific, elemental
 Kd value with units of [kg-water/m3-bulk]. If the aqueous concentration of the

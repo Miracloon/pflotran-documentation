@@ -28,7 +28,7 @@ equations may be written as
 .. math::
    :label: heat-cons-th
    
-   \frac{{{\partial}}}{{{\partial}}t} \epsilon_{{\alpha}}\Big[\varphi_{{\alpha}}\rho_{{\alpha}}U_{{\alpha}}+ (1-\varphi_{{\alpha}}) \rho_r C_r T_{{\alpha}}\Big] &+ {\boldsymbol{\nabla}}\cdot \Big({\boldsymbol{q}}_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}-
+   \frac{{{\partial}}}{{{\partial}}t} \epsilon_{{\alpha}}\Big[\porosity_{{\alpha}}\density_{{\alpha}}U_{{\alpha}}+ (1-\porosity_{{\alpha}}) \density_r C_r T_{{\alpha}}\Big] &+ {\boldsymbol{\nabla}}\cdot \Big({\boldsymbol{q}}_{{\alpha}}\density_{{\alpha}}H_{{\alpha}}-
    \kappa_a{\boldsymbol{\nabla}}T_{{\alpha}}\Big) \nonumber\\
    &= -\sum_\beta A_{{{\alpha}}{{\beta}}} \kappa_{{{\alpha}}{{\beta}}}\frac{{{\partial}}T_{{\beta}}}{{{\partial}}n},
 
@@ -37,7 +37,7 @@ and
 .. math::
    :label: heat-cons2-th
 
-   \frac{{{\partial}}}{{{\partial}}t} \rho_r C_r T_{{\beta}}+ \frac{{{\partial}}}{{{\partial}}\xi} \Big(-\kappa_{{\beta}}\frac{{{\partial}}T_{{\beta}}}{{{\partial}}\xi}\Big) = 0,
+   \frac{{{\partial}}}{{{\partial}}t} \density_r C_r T_{{\beta}}+ \frac{{{\partial}}}{{{\partial}}\xi} \Big(-\kappa_{{\beta}}\frac{{{\partial}}T_{{\beta}}}{{{\partial}}\xi}\Big) = 0,
 
 for fracture and matrix temperatures :math:`T_{{\alpha}}` and
 :math:`T_{{\beta}}`, respectively, where :math:`\xi` represents the
@@ -61,8 +61,8 @@ control volume is given by
 .. math::
    :label: pricont
    
-   &\Big[\varphi_{{\alpha}}\Big(\big(\rho_{{\alpha}}U_{{\alpha}}\big)_n^{k+1} - \big(\rho_{{\alpha}}U_{{\alpha}}\big)_n^{k}\Big) + (1-\varphi_{{\alpha}})\Big(\big(\rho_r C_r T_{{\alpha}}\big)_n^{k+1} - \big(\rho_r C_r T_{{\alpha}}\big)_n^{k}\Big)\Big] \frac{V_n^{{\alpha}}}{\Delta t} \nonumber\\
-   &\qquad + \sum_{n'} \Big[\big(q_{{\alpha}}\rho_{{\alpha}}H_{{\alpha}}\big)_{nn'} + \frac{\kappa_{nn'}^{{\alpha}}}{d_n+d_{n'}}\big(T_{{{\alpha}}n} - T_{{{\alpha}}n'}\big) \Big] A_{nn'}^{{\alpha}}\nonumber\\
+   &\Big[\porosity_{{\alpha}}\Big(\big(\density_{{\alpha}}U_{{\alpha}}\big)_n^{k+1} - \big(\density_{{\alpha}}U_{{\alpha}}\big)_n^{k}\Big) + (1-\porosity_{{\alpha}})\Big(\big(\density_r C_r T_{{\alpha}}\big)_n^{k+1} - \big(\density_r C_r T_{{\alpha}}\big)_n^{k}\Big)\Big] \frac{V_n^{{\alpha}}}{\Delta t} \nonumber\\
+   &\qquad + \sum_{n'} \Big[\big(q_{{\alpha}}\density_{{\alpha}}H_{{\alpha}}\big)_{nn'} + \frac{\kappa_{nn'}^{{\alpha}}}{d_n+d_{n'}}\big(T_{{{\alpha}}n} - T_{{{\alpha}}n'}\big) \Big] A_{nn'}^{{\alpha}}\nonumber\\
    &\qquad + \sum_{l = 1}^{N_{{\beta}}}\frac{\kappa_{nM}^{{{\alpha}}{{\beta}}_l}}{d_n+d_{M}}\big(T_{{{\alpha}}n}-T_{{{\beta}}_l M}\big) A_{nM}^{{{\beta}}_l} = 0,
 
 where :math:`V_n^{{\alpha}}` denotes the fracture volume, and
@@ -70,7 +70,7 @@ where :math:`V_n^{{\alpha}}` denotes the fracture volume, and
 .. math::
    :label: Big-th
    
-   \Big(\big(\rho_r C_r T_{{\beta}}\big)_m^{k+1} - \big(\rho_r C_r T_{{\beta}}\big)_m^{k}\Big) \frac{V_m^{{\beta}}}{\Delta t} &+ \sum_{m'} \frac{\kappa_{mm'}^{{\beta}}}{d_m+d_{m'}}\big(T_{{{\beta}}m} - T_{{{\beta}}m'}\big) A_{mm'}^{{\beta}}\nonumber\\
+   \Big(\big(\density_r C_r T_{{\beta}}\big)_m^{k+1} - \big(\density_r C_r T_{{\beta}}\big)_m^{k}\Big) \frac{V_m^{{\beta}}}{\Delta t} &+ \sum_{m'} \frac{\kappa_{mm'}^{{\beta}}}{d_m+d_{m'}}\big(T_{{{\beta}}m} - T_{{{\beta}}m'}\big) A_{mm'}^{{\beta}}\nonumber\\
    &+ \delta_{mM}^{}\frac{\kappa_{nM}^{{{\alpha}}{{\beta}}}}{d_n+d_{M}}\big(T_{{{\alpha}}n} - T_{{{\beta}}M}\big) A_{nM}^{{\beta}}= 0,
 
 for the :math:`m`\ th matrix node with volume :math:`V_m^{{\beta}}`. The
@@ -112,10 +112,10 @@ matrix nodes
 .. math::
    :label: matrix-nodes-th
    
-   \Delta \xi_m = \rho \,\Delta \xi_{m-1},
+   \Delta \xi_m = \density \,\Delta \xi_{m-1},
 
 specifying :math:`\Delta\xi_M` and :math:`l_M` for the outer most matrix
-node and matrix block size, respectively. The factor :math:`\rho` is
+node and matrix block size, respectively. The factor :math:`\density` is
 determined from the constraint
 
 .. math::
@@ -123,19 +123,19 @@ determined from the constraint
    
    l_M = 2\sum_{m=1}^{M} \Delta \xi_m,
 
-which requires that :math:`\rho` satisfy the equation
+which requires that :math:`\density` satisfy the equation
 
 .. math::
    :label: rho-th
    
-   \frac{l_M}{2\Delta \xi_1} = \frac{\rho^M-1}{\rho-1},
+   \frac{l_M}{2\Delta \xi_1} = \frac{\density^M-1}{\density-1},
 
 with the inner and outer grid spacing related by
 
 .. math::
    :label: grid-spacing-th
    
-   \Delta\xi_M = \rho^{M-1} \Delta \xi_1.
+   \Delta\xi_M = \density^{M-1} \Delta \xi_1.
 
 .. figure:: ./figs/mincl.png
    :alt: Control volumes in DCDM multiple continuum model with fracture aperture :math:`2\delta` and matrix block size :math:`d`.
@@ -255,7 +255,7 @@ The primary continuum equations have the form
 .. math::
    :label: pri_continuum
 
-   \frac{\partial}{\partial t} \Big(\epsilon_\alpha \varphi_\alpha \sum_p s_p^\alpha \Psi_{jp}^\alpha\Big) + \nabla\cdot\sum_p \epsilon_\alpha 
+   \frac{\partial}{\partial t} \Big(\epsilon_\alpha \porosity_\alpha \sum_p \saturation_p^\alpha \Psi_{jp}^\alpha\Big) + \nabla\cdot\sum_p \epsilon_\alpha 
    \Omega_{jp}^\alpha = 
    -\sum_{p\beta} A_{\alpha\beta} \Omega_{jp}^{\alpha\beta} - \epsilon_\alpha \sum_m \nu_{jm}^{} I_{mp}^\alpha - \epsilon_\alpha \frac{\partial S_{jp}^\alpha}{\partial t},
 
@@ -271,7 +271,7 @@ The secondary continuum mass conservation equations have a similar form but with
 .. math::
    :label: sec_continuum
 
-   \frac{\partial}{\partial t} \Big(\varphi_\beta \sum_p s_p^\beta\Psi_{jp}^\beta\Big) + \nabla_\xi\cdot\sum_p \Omega_{jp}^\beta = - \sum_m \nu_{jm}^{} I_{mp}^\beta - \frac{\partial S_{jp}^\beta}{\partial t},
+   \frac{\partial}{\partial t} \Big(\porosity_\beta \sum_p \saturation_p^\beta\Psi_{jp}^\beta\Big) + \nabla_\xi\cdot\sum_p \Omega_{jp}^\beta = - \sum_m \nu_{jm}^{} I_{mp}^\beta - \frac{\partial S_{jp}^\beta}{\partial t},
 
 where the gradient operator :math:`\nabla_\xi` refers to the effective one-dimensional secondary continuum geometry.
 Similar considerations apply to mass and heat flow for primary and secondary continuum conservation equations.

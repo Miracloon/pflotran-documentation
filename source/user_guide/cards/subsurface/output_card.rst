@@ -59,7 +59,173 @@ MASS_BALANCE_FILE), the variables to be saved can be specified:
 .. _output-variables:
 
  VARIABLES
-  Opens a block which lists variables to be included in the output file. Options include: PERMEABILITY, PERMEABILITY_X, PERMEABILITY_Y, PERMEABILITY_Z, PERMEABILITY_XY, PERMEABILITY_XZ, PERMEABILITY_YZ, LIQUID_PRESSURE, LIQUID_SATURATION, LIQUID_DENSITY, LIQUID_HEAD, LIQUID_MOBILITY, LIQUID_ENERGY, LIQUID_MOLE_FRACTIONS, LIQUID_MASS_FRACTIONS, GAS_PRESSURE, GAS_SATURATION, GAS_DENSITY, GAS_MOBILITY, GAS_ENERGY, GAS_MOLE_FRACTIONS, GAS_MASS_FRACTIONS, AIR_PRESSURE, CAPILLARY_PRESSURE, VAPOR_PRESSURE, SATURATION_PRESSURE, THERMODYNAMIC_STATE, TEMPERATURE, RESIDUAL, POROSITY, EFFECTIVE_POROSITY, TORTUOSITY, MINERAL_POROSITY, MAXIMUM_PRESSURE, OIL_PRESSURE, OIL_SATURATION, OIL_DENSITY, OIL_MOBILITY, OIL_ENERGY, SOIL_COMPRESSIBILITY, SOIL_REFERENCE_PRESSURE, PROCESS_ID, VOLUME, MATERIAL_ID, K_ORTHOGONALITY_ERROR.  To obtain the most up to date list, look in output.F90:OutputVariableRead().
+  Opens a block which lists variables to be included in the output file. Options include:
+
+   AIR_PRESSURE - Air partial pressure $\units{\strpressure}$
+
+   ARCHIE_CEMENTATION_EXPONENT - Archie's law cementation exponent $\units{\strnull}$
+
+   ARCHIE_SATURATION_EXPONENT - Archie's law saturation exponent $\units{\strnull}$
+
+   ARCHIE_TORTUOSITY_CONSTANT - Archie's law tortuosity exponent $\units{\strnull}$
+
+   CAPILLARY_PRESSURE - Capillary pressure $\units{\strpressure}$
+
+   COORDINATES - X, Y and Z coordinates $\units{\strlength}$
+
+   EFFECTIVE_POROSITY - Effective porosity $\units{\strporosity}$
+
+   ELECTRICAL_CONDUCTIVITY - Electrical conductivity $\units{\streleccond}$
+
+   ELECTRICAL_POTENTIAL_DIPOLE - Electrical potential dipole $\units{\strelecpotential}$
+
+   ELECTRICAL_POTENTIAL - Electrical potential $\units{\strelecpotential}$
+
+   GAS_DENSITY - Gas phase mass density $\units{\strmassdensity}$
+
+   GAS_DENSITY_MOLAR - Gas phase molar density $\units{\strmoldensity}$
+
+   GAS_ENERGY - Gas phase energy $\units{\strenergy}$
+
+   GAS_ENERGY_PER_VOLUME - Gas phase energy density $\units{\strenergydensity}$
+
+   GAS_MASS_FRACTIONS - Gas phase mass fractions $\units{\strmassfraction{componsnet}{gas}}$
+
+   GAS_MOBILITY - Gas phase mobility $\units{\strnull}$
+
+   GAS_MOLE_FRACTIONS - Gas phase mole fractions $\units{\strmolfraction{component}{gas}}$
+
+   GAS_PRESSURE - Gas phase pressure $\units{\strpressure}$
+
+   GAS_PERMEABILITY - Gas permeability (same as PERMEABILITY) $\units{\strarea}$
+
+   GAS_PERMEABILITY_X - Gas X permeability (same as PERMEABILITY_X) $\units{\strarea}$
+
+   GAS_PERMEABILITY_Y - Gas Y permeability (same as PERMEABILITY_Y) $\units{\strarea}$
+
+   GAS_PERMEABILITY_Z - Gas Z permeability (same as PERMEABILITY_Z) $\units{\strarea}$
+
+   GAS_RELATIVE_PERMEABILITY - Gas phase relative permeability $\units{\strnull}$
+
+   GAS_SATURATION - Gas phase saturation $\units{\strgassaturation}$
+
+   GAS_VISCOSITY - Gas phase viscosity $\units{\strviscosity}$
+
+   HYDRATE_SATURATION - Hydrate phase saturation $\units{\strsaturation{hydrate}}$
+
+   ICE_SATURATION - Ice phase saturation $\units{\strsaturation{ice}}$
+
+   K_ORTHOGONALITY_ERROR - 
+
+   LIQUID_DENSITY - Liquid phase mass density $\units{\strmassdensity}$
+
+   LIQUID_DENSITY_MOLAR - Liquid phase molar density $\units{\strmoldensity}$
+
+   LIQUID_ENERGY - Liquid phase energy $\units{\strenergy}$
+
+   LIQUID_ENERGY_PER_VOLUME - Gas phase energy density $\units{\strenergydensity}$
+
+   LIQUID_HEAD - Liquid phase pressure head $\units{\strlength}$
+
+   LIQUID_MASS_FRACTIONS - Liquid phase mass fractions $\units{\strmassfraction{component}{liquid}}$
+
+   LIQUID_MOBILITY - Liquid phase mobility $\units{\strinvviscosity}$
+
+   LIQUID_MOLE_FRACTIONS - Liquid phase mole fractions $\units{\strmolfraction{component}{liquid}}$
+
+   LIQUID_PRESSURE - Liquid phase pressure $\units{\strpressure}$
+
+   LIQUID_RELATIVE_PERMEABILITY - $\units{\strnull}$
+
+   LIQUID_SATURATION - $\units{\strliquidsaturation}$
+
+   LIQUID_VISCOSITY - $\units{\strviscosity}$
+
+   MINERAL_POROSITY - $\units{\strvolfrac{mineral}{bulk}}$
+
+   MATERIAL_ID - $\units{\strnull}$
+
+   MATERIAL_ID_KLUDGE_FOR_VISIT - $\units{\strnull}$
+
+   MAXIMUM_PRESSURE - $\units{\strpressure}$
+
+   MINERAL_POROSITY - $\units{\strvolfrac{mineral}{bulk}}$
+
+   NATURAL_ID - $\units{\strnull}$
+
+   PERMEABILITY - $\units{\strlength}$
+
+   PERMEABILITY_X - $\units{\strlength}$
+
+   PERMEABILITY_Y - $\units{\strlength}$
+
+   PERMEABILITY_Z - $\units{\strlength}$
+
+   PERMEABILITY_XY - $\units{\strlength}$
+
+   PERMEABILITY_XZ - $\units{\strlength}$
+
+   PERMEABILITY_YZ - $\units{\strlength}$
+
+   POROSITY - $\units{\strporosity}$
+
+   PRECIPITATE_SATURATION - $\units{\strsaturation{precipitate}}$
+
+   PROCESS_ID - $\units{\strnull}$
+
+   RESIDUAL - $\units{???}$
+
+   SALINITY - $\units{???}$
+
+   SATURATION_PRESSURE - $\units{\strpressure}$
+
+   SOIL_COMPRESSIBILITY - $\units{???}$
+
+   SOIL_REFERENCE_PRESSURE - $\units{\strpressure}$
+
+   SOLUTE_CONCENTRATION - $\units{\strinvvolume}$
+
+   SURFACE_ELECTRICAL_CONDUCTIVITY - $\units{\streleccond}$
+
+   TEMPERATURE - $\units{\strtemperature}$
+
+   THERMODYNAMIC_STATE - $\units{\strnull}$
+
+   TORTUOSITY - $\units{\strnull}$
+
+   VAPOR_PRESSURE - $\units{\strpressure}$
+
+   VOLUME - $\units{\strvolume}$
+
+   WAXMAN_SMITS_CLAY_CONDUCTIVITY - $\units{\strnull}$
+
+   WGG - $\units{\strmassfraction{air}{gas}}$
+
+   WGL - $\units{\strmassfraction{air}{liquid}}$
+
+   WLG - $\units{\strmassfraction{water}{gas}}$
+
+   WLL - $\units{\strmassfraction{water}{liquid}}$
+
+   WSL - $\units{\strmassfraction{salt}{gas}}$
+
+   X_COORDINATE - $\units{\strlength}$
+
+   XGG - $\units{\strmolfraction{air}{gas}}$
+
+   XGL - $\units{\strmolfraction{air}{liquid}}$
+
+   XLG - $\units{\strmolfraction{water}{gas}}$
+
+   XLL - $\units{\strmolfraction{water}{liquid}}$
+
+   XSL - $\units{\strmolfraction{salt}{liquid}}$
+
+   Y_COORDINATE - $\units{\strlength}$
+
+   Z_COORDINATE - $\units{\strlength}$
+
+To obtain the most up to date list, look in output.F90:OutputVariableRead().
   If you do not include the ``VARIABLES`` block, then a default list of variables
   will be populated dependent on the flow mode. However, if you prefer no
   default output, you can turn defaults off by including ``NO_FLOW_VARIABLES`` 

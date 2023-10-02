@@ -44,6 +44,7 @@ SIMULATION Block Cards
    /user_guide/cards/simulation/simulation_card.rst
    /user_guide/cards/simulation/subsurface_flow_card.rst
    /user_guide/cards/simulation/subsurface_transport_card.rst
+   /user_guide/cards/simulation/subsurface_geophysics_card.rst
    /user_guide/cards/simulation/checkpoint_card.rst
    /user_guide/cards/simulation/restart_card.rst
 
@@ -53,6 +54,7 @@ SIMULATION Block Cards
    /user_guide/cards/simulation/input_record_file_card.rst
    /user_guide/cards/simulation/subsurface_flow_mode_card.rst
    /user_guide/cards/simulation/subsurface_transport_mode_card.rst
+   /user_guide/cards/simulation/subsurface_geophysics_mode_card.rst
 
 *SUBSURFACE_FLOW Mode Cards*
 
@@ -69,6 +71,14 @@ SIMULATION Block Cards
    :glob:
 
    /user_guide/cards/simulation/subsurface_transport_modes/*
+
+*SUBSURFACE_GEOPHYSICS Mode Cards*
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   /user_guide/cards/simulation/subsurface_geophysics_modes/*
 
 .. _card-index-subsurface:
 
@@ -98,6 +108,15 @@ Geomechanics Cards
    :glob:
 
    /user_guide/cards/geomechanics/*
+   
+Geophysics Cards
+------------------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   /user_guide/cards/geophysics/*
    
 Utility Cards
 -------------

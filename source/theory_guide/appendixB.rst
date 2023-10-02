@@ -50,7 +50,7 @@ grid cells connected to the :math:`n`\ th node with interfacial area
 .. math::
    :label: flux-fluid-soln
    
-   F_{j,nn'}^{{\alpha}}= \big(q_{{\alpha}}X_j^{{\alpha}}\big)_{nn'} - \big(\varphi s_{{\alpha}}\tau_{{\alpha}}D_{{\alpha}}\big)_{nn'}
+   F_{j,nn'}^{{\alpha}}= \big(q_{{\alpha}}X_j^{{\alpha}}\big)_{nn'} - \big(\porosity \saturation_{{\alpha}}\tortuosity_{{\alpha}}D_{{\alpha}}\big)_{nn'}
    \frac{X_{jn'}^{{\alpha}}- X_{jn}^{{\alpha}}}{d_{n'}+d_n},
 
 with perpendicular distances to interface :math:`nn'` from nodes
@@ -353,15 +353,15 @@ equations
 .. math::
    :label: two-coupled1-soln
    
-   \frac{{{\partial}}}{{{\partial}}t}\big(\varphi \sum_{{\alpha}}s_{{\alpha}}\Psi_j^{{\alpha}}\big) +
-   \nabla\cdot\sum_{{\alpha}}\big({\boldsymbol{q}}_{{\alpha}}- \varphi s_{{\alpha}}{\boldsymbol{D}}_{{\alpha}}{\boldsymbol{\nabla}}\big)\Psi_j^{{\alpha}}= Q_j,
+   \frac{{{\partial}}}{{{\partial}}t}\big(\porosity \sum_{{\alpha}}s_{{\alpha}}\Psi_j^{{\alpha}}\big) +
+   \nabla\cdot\sum_{{\alpha}}\big({\boldsymbol{q}}_{{\alpha}}- \porosity \saturation_{{\alpha}}{\boldsymbol{D}}_{{\alpha}}{\boldsymbol{\nabla}}\big)\Psi_j^{{\alpha}}= Q_j,
 
 and
 
 .. math::
    :label: two-coupled2-soln
    
-   \frac{d}{d t}\big(\varphi \sum_{{\alpha}}s_{{\alpha}}\Psi_j^{{\alpha}}\big) = - \sum_m\nu_{jm} I_m -\frac{{{\partial}}S_j}{{{\partial}}t},
+   \frac{d}{d t}\big(\porosity \sum_{{\alpha}}s_{{\alpha}}\Psi_j^{{\alpha}}\big) = - \sum_m\nu_{jm} I_m -\frac{{{\partial}}S_j}{{{\partial}}t},
 
 The first set of equations are linear in :math:`\Psi_j` (for
 species-independent diffusion coeffients) and solved over over a time
@@ -399,7 +399,7 @@ The governing equation is given by
 .. math::
    :label: gov-soln
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C -\varphi D {\boldsymbol{\nabla}}C\big) = -\frac{{{\partial}}S}{{{\partial}}t}.
+   \frac{{{\partial}}}{{{\partial}}t} \porosity C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C -\porosity D {\boldsymbol{\nabla}}C\big) = -\frac{{{\partial}}S}{{{\partial}}t}.
 
 If :math:`C(x,\,t;\, {\boldsymbol{q}},\,D)` is the solution to the case
 with no retardation (i.e. :math:`K_d=0`), then
@@ -409,7 +409,7 @@ retardation :math:`(K_d>0)`, with
 .. math::
    :label: R-soln
    
-   R = 1+\frac{1}{\varphi}K_d.
+   R = 1+\frac{1}{\porosity}K_d.
 
 Thus propagation of a front is retarded by the retardation factor
 :math:`R`.
@@ -419,21 +419,21 @@ In operator splitting form this equation becomes
 .. math::
    :label: op-split1-soln
    
-   \frac{{{\partial}}}{{{\partial}}t} \varphi C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C -\varphi D {\boldsymbol{\nabla}}C\big) = 0,
+   \frac{{{\partial}}}{{{\partial}}t} \porosity C + {\boldsymbol{\nabla}}\cdot\big({\boldsymbol{q}}C -\porosity D {\boldsymbol{\nabla}}C\big) = 0,
 
 and
 
 .. math::
    :label: op-split2-soln
    
-   \frac{d}{d t} \varphi C = -\frac{d S}{d t}.
+   \frac{d}{d t} \porosity C = -\frac{d S}{d t}.
 
 The solution to the latter equation is given by
 
 .. math::
    :label: op-split3-soln
    
-   \varphi C^{t+\Delta t} - \varphi C^* = -\big(S^{t+\Delta t} - S^t\big),
+   \porosity C^{t+\Delta t} - \porosity C^* = -\big(S^{t+\Delta t} - S^t\big),
 
 where :math:`C^*` is the solution to the nonreactive transport equation.
 Using Eqn. :eq:`skd`, this result can be written as

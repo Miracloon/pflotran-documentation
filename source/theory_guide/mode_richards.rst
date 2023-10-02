@@ -12,20 +12,20 @@ systems. The governing mass conservation equation is given by
 .. math::
    :label: mass-conv-richards
 
-   \frac{{{\partial}}}{{{\partial}}t}\left(\varphi s\eta\right) + {\boldsymbol{\nabla}}\cdot\left(\eta{\boldsymbol{q}}\right) = Q_w,
+   \frac{{{\partial}}}{{{\partial}}t}\left(\porosity s\eta\right) + {\boldsymbol{\nabla}}\cdot\left(\eta{\boldsymbol{q}}\right) = Q_w,
 
 with Darcy flux :math:`{\boldsymbol{q}}` defined as
 
 .. math::
    :label: darcy-richards
 
-   {\boldsymbol{q}} = -\frac{kk_r(s)}{\mu} {\boldsymbol{\nabla}}\left(P-\rho gz\right).
+   {\boldsymbol{q}} = -\frac{kk_r(s)}{\mu} {\boldsymbol{\nabla}}\left(P-\density gz\right).
 
 Here, 
-:math:`\varphi` denotes porosity [-], 
+:math:`\porosity` denotes porosity [-], 
 :math:`s` saturation [m\ :math:`^3`  m\ :math:`^{-3}`], 
 :math:`\eta` molar water density [kmol m\ :math:`^{-3}`], 
-:math:`\rho` mass water density [kg m\ :math:`^{-3}`], 
+:math:`\density` mass water density [kg m\ :math:`^{-3}`], 
 :math:`{\boldsymbol{q}}` Darcy flux [m s\ :math:`^{-1}`], 
 :math:`k` intrinsic permeability [m\ :math:`^2`],
 :math:`k_r` relative permeability [-], 

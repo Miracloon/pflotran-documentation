@@ -644,9 +644,9 @@ SPACER_DEGRADATION_MECHANISM
  
  If this optional block is included, a time- and temperature-dependent spacer grid corrosion model will be evaluated as a means of terminating criticality events associated with the waste form. The model becomes active after the canister is breached. When the spacer grids have degraded below 1% of the original total mass, they are assumed to fail, which implies a loss of critical configuration.
  
- The spacer grid vitality :math:`V_{s}` is determined using the corrosion rate :math:`R` and initial spacer thickness :math:`\tau` over time steps :math:`t_{i}` to :math:`t_{i+1}`, where :math:`V_{s,0}=1` until the canister breach time:
+ The spacer grid vitality :math:`V_{s}` is determined using the corrosion rate :math:`R` and initial spacer thickness :math:`\tortuosity` over time steps :math:`t_{i}` to :math:`t_{i+1}`, where :math:`V_{s,0}=1` until the canister breach time:
  
- :math:`V_{s,i+1}=V_{s,i}-\frac{2R_{i+1}\cdot(t_{i+1}-t_{i})}{\tau}`
+ :math:`V_{s,i+1}=V_{s,i}-\frac{2R_{i+1}\cdot(t_{i+1}-t_{i})}{\tortuosity}`
  
  The areal weight gain :math:`W` of the oxide layer is governed by a scaling constant :math:`\mathcal{C}` and an Arrhenius term with the average temperature of the waste form :math:`\bar{T}`, the activation energy :math:`Q`, and the ideal gas constant :math:`\mathcal{R}`:
  
@@ -656,9 +656,9 @@ SPACER_DEGRADATION_MECHANISM
  
  :math:`R_{i+1}=f_{S}(S_{l,i+1})\cdot \alpha\cdot\beta\cdot W_{i+1}`
  
- The extent of original metal consumed in the oxide layer formation :math:`\Delta\tau|_{lab}` and the areal weight gain of oxide layer :math:`\Delta W|_{lab}`, as observed in the laboratory, are used to determine the metal loss ratio :math:`\alpha`, which is considered constant. The factor :math:`\beta` is used to adjust the rate based on the effects of prior irradiation.
+ The extent of original metal consumed in the oxide layer formation :math:`\Delta\tortuosity|_{lab}` and the areal weight gain of oxide layer :math:`\Delta W|_{lab}`, as observed in the laboratory, are used to determine the metal loss ratio :math:`\alpha`, which is considered constant. The factor :math:`\beta` is used to adjust the rate based on the effects of prior irradiation.
  
- :math:`\alpha=\frac{\Delta\tau|_{lab}}{\Delta W|_{lab}}`
+ :math:`\alpha=\frac{\Delta\tortuosity|_{lab}}{\Delta W|_{lab}}`
  
  The saturation-dependent term modifies the corrosion rate depending on an exposure level :math:`S_{l}^{exp}`, which is the saturation for which the spacer grids are considered fully-inundated with water. When the saturation of the waste form is at or above this limit, the corrosion rate is unaffected. Otherwise, the rate is reduced proportionally based on the saturation.  
  
@@ -677,7 +677,7 @@ SPACER_DEGRADATION_MECHANISM
 
  THICKNESS <double> <unit_string>
 
-  Initial thickness of the spacer grid metallic separators, :math:`\tau` [m] .
+  Initial thickness of the spacer grid metallic separators, :math:`\tortuosity` [m] .
 
  EXPOSURE_LEVEL <double> (optional)
 

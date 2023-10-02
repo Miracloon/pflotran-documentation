@@ -1,12 +1,12 @@
 .. PFLOTRAN documentation master file, created by Glenn Hammond on 2019-03-18
 
 .. raw:: html
-  :file: google_analytics.html
+   :file: google_analytics.html
   
 **********************
 PFLOTRAN Documentation
 **********************
-.. image:: /_static/pflotran_logo.jpg
+.. .. image:: /_static/pflotran_logo.jpg
 
 **This is the development version of the documentation.** 
 You may find the documentation for the latest release of PFLOTRAN at

@@ -75,9 +75,9 @@ NTRDC_OPTIONS or NTR_OPTIONS
  Opens a block for trust-region options and parameters (SNES_TYPE NTRDC or SNES_TYPE NTR required)
 
  * TR_TOL - trust-region tolerance (default: :math:`1.0^{-12}`)
- * ETA1 - trust-region parameter :math:`0.0 \le \eta_1 \le \eta_2`, :math:`\rho \ge \eta_1` breaks out of the inner iteration (default: :math:`\eta_1=0.001`)
- * ETA2 - trust-region parameter :math:`0.0 \le \eta_1 \le \eta_2`, :math:`\rho \ge \eta_2` shrinks the trust-region (default: :math:`\eta_2=0.25`)
- * ETA3 - trust-region parameter :math:`\eta_3 > \eta_2`, :math:`\rho \ge \eta_3` expands the trust-region (default: :math:`\eta_3=0.75`)
+ * ETA1 - trust-region parameter :math:`0.0 \le \eta_1 \le \eta_2`, :math:`\density \ge \eta_1` breaks out of the inner iteration (default: :math:`\eta_1=0.001`)
+ * ETA2 - trust-region parameter :math:`0.0 \le \eta_1 \le \eta_2`, :math:`\density \ge \eta_2` shrinks the trust-region (default: :math:`\eta_2=0.25`)
+ * ETA3 - trust-region parameter :math:`\eta_3 > \eta_2`, :math:`\density \ge \eta_3` expands the trust-region (default: :math:`\eta_3=0.75`)
  * T1 - trust-region parameter, shrinking factor of trust-region (default: 0.25)
  * T2 - trust-region parameter, initial size of trust-region, :math:`\Delta_0*\|x\|_2` (default: 0.1)
  * DELTA_M - trust-region parameter, max size of trust-region, :math:`\Delta_M*\|x\|_2` (default: 0.5)
