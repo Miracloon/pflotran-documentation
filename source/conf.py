@@ -111,8 +111,8 @@ mathjax3_config = {
       # .rst as \porosity
       'porosity': '\phi',
       'saturation': 's',
-      'tortuosity': '\tau',
-      'density': '\rho',
+      'tortuosity': '\\tau',
+      'density': '\\rho',
       'bulkelectricalconductivity': '\sigma',
       'electricalpotential': '\psi',
       # macros for variable units
