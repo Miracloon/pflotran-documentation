@@ -21,11 +21,18 @@ Examples
 Stop simulation after 12 hours
 ::
 
- WALLCLOCK_STOP 12
+  SUBSURFACE
+    ...
+    WALLCLOCK_STOP 12
+    ...
+  END SUBSURFACE
 
 
 Stop simulatoin after 60 minutes
 ::
 
- WALLCLOCK_STOP 60 min
-
+  SUBSURFACE
+    ...
+    WALLCLOCK_STOP 60 min
+    ...
+  END SUBSURFACE
