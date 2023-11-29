@@ -32,7 +32,6 @@ Examples:
        MODE ERT
        OPTIONS
          COMPUTE_JACOBIAN
-         OUTPUT_ALL_SURVEYS
        /
      /
    /
