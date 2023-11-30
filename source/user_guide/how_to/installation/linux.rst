@@ -35,7 +35,7 @@ Installation Instructions
 
         git clone https://gitlab.com/petsc/petsc petsc
         cd petsc
-        git checkout v3.19.4
+        git checkout v3.20.1
 
     3.2. Configure PETSc (see `PETSc installation instructions`_).
 
@@ -105,6 +105,7 @@ Installation Instructions
  ::
 
   cd pflotran/src/pflotran
+  git checkout maint/v5.0
   make pflotran
 
 .. _Git: http://git-scm.com/
