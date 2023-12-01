@@ -45,3 +45,12 @@ The following has changed in PFLOTRAN 5.0:
    longer ignored if the flow and transport process model is not defined, 
    respectively.
 
+ * Capillary pressure and relative permeability functions can now both be 
+   expressed using cubic splines.
+
+ * The Newton trust-region dogleg Cauchey (NTRDC) nonlinear solver is now fully
+   integrated with both the GIRT and NWT transport modes.
+
+ * Heat transfer within the multiple continuum formulation is now supported 
+   in the GENERAL flow mode.
+
