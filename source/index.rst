@@ -8,8 +8,7 @@ PFLOTRAN Documentation
 **********************
 .. .. image:: /_static/pflotran_logo.jpg
 
-The current version of PFLOTRAN is 5.0 and was released **November 01 2023**.
-
+The current version of PFLOTRAN is 5.0 and was released **November 01, 2023**.
 You may find the most up-to-date documentation for the development version of
 PFLOTRAN at
 `documentation.pflotran.org <https://documentation.pflotran.org>`_
