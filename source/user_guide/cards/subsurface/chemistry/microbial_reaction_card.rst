@@ -29,60 +29,64 @@ MONOD
  Specifies the Monod equation for the electron donor or acceptor.
 
   SPECIES NAME <string>
-   Name of species.
+   Name of the species in Monod expression
    
   HALF_SATURATION_CONSTANT <float>
-   Half saturation constant for the Monod expression.
+   Half saturation constant for the Monod expression
    
   THRESHOLD_CONCENTRATION <float>
-   Threshold concentration below which the reaction stops.
+   Threshold concentration below which the reaction stops
 
 INHIBITION
- Specifies inhibition based on species concentration and an inhibition 
- constant(s).  Three types of inhibition are currently supported:  MONOD, 
- INVERSE_MONOD, THRESHOLD.
+ Specifies inhibition ($I$) based on species concentration and inhibition 
+ constant(s).  Three types of inhibition are currently supported: MONOD, 
+ SMOOTHSTEP and THRESHOLD.
 
-  Monod Inhibition:
-    INHIBITION
-      SPECIES_NAME <string>
+ TYPE <string>
+  Type of inhibition: MONOD, SMOOTHSTEP or THRESHOLD
 
-      TYPE MONOD
-       Specifies the type of inhibition to be Monod.  The reaction proceeds as 
-       long as the species concentration is well below the half saturation 
-       constant: inhibition = C\ :sub:`th`\ / (C\ :sub:`th` \ + concentration) 
+  MONOD:
 
-      INHIBITION_CONSTANT <float>
-       Half saturation constant.
+   INHIBIT_ABOVE_THRESHOLD: $I = \frac{C_{th}}{C_{th} + C}$
 
+   INHIBIT_BELOW_THRESHOLD: $I = \frac{C}{C_{th} + C}$
 
-  Inverse Monod Inhibition:
-    INHIBITION
-      SPECIES_NAME <string>
+  SMOOTHSTEP:
 
-      TYPE INVERSE_MONOD
-       Specifies the type of inhibition to be inverse Monod.  The reaction 
-       proceeds as long as the species concentration is well above the half 
-       saturation constant: inhibition = concentration / (C\ :sub:`th` \ + 
-       concentration) 
+   $z = max\left(min\left(\frac{log_{10}(C)-log_{10}(C_{th})}{\eta}+0.5,1\right),0\right)$ 
+   where $\eta$ is the :math:`\text{log}_{10}` interval
 
-      INHIBITION_CONSTANT <float>
-       Half saturation constant.
+   INHIBIT_ABOVE_THRESHOLD: $I = 1-(3z^2-2z^3)$
 
+   INHIBIT_BELOW_THRESHOLD: $I = 3z^2-2z^3$
 
-  Threshold Inhibition:
-    INHIBITION
-      SPECIES_NAME <string>
+  THRESHOLD:
 
-      TYPE THRESHOLD <float>
-        Specifies the type of inhibition to be threshold and the scaling factor 
-        to be applied.  Inhibition is calculated based on the following 
-        equation: inhibition = 0.5 + sign(1.,C\ :sub:`th`\) * arctan((concentration - C\ :sub:`th`\) * f) / PI.  
-        Inhibition is above and below C\ :sub:`th` \ when the sign of 
-        C\ :sub:`th` \ is negative or positive, respectively. A good value 
-        for scaling factor f is 1.e4/abs(C\ :sub:`th`\).
+   INHIBIT_ABOVE_THRESHOLD: $I = 0.5 - atan((C-C_{th})*f)/\pi$
 
-      INHIBITION_CONSTANT <float>
-       Threshold concentration
+   INHIBIT_BELOW_THRESHOLD: $I = 0.5 + atan((C-C_{th})*f)/\pi$
+
+ SPECIES_NAME <string>
+  Name of the species in the inhibition term
+
+ THRESHOLD_CONCENTRATION <float>
+  Concentration ($C_{th}$) at which the inhibition factor is ${\sim}0.5$
+
+ INHIBIT_ABOVE_THESHOLD or INHIBIT_BELOW_THESHOLD
+  Inhibits the rate when the species concentration is above or below $C_{th}$.
+
+ Other required cards
+
+  For SMOOTHSTEP:
+
+   SMOOTHSTEP_INTERVAL <float>
+    Interval $\eta$ centered on $C_{th}$ in :math:`\text{log}_{10}` space 
+    over which $I$ ranges between 0-1. Default = 3.
+
+  For THRESHOLD:
+
+   SCALING_FACTOR
+    Scaling factor $f$. Default = $10^5 / C_{th}$.
 
 BIOMASS 
  Specifies the immobile biomass species to be included in the rate expression.
@@ -118,10 +122,11 @@ Examples:
         SPECIES_NAME B(aq)     ! B is the acceptor
         HALF_SATURATION_CONSTANT 1.d-4
       /
-      INHIBITION
+      INHIBITION ! inhibit at high C(aq) concentration
         SPECIES_NAME C(aq)
         TYPE MONOD
-        INHIBITION_CONSTANT 6.d-4   ! C is the product and inhibits when too high
+        INHIBIT_ABOVE_THRESHOLD
+        THRESHOLD_CONCENTRATION 6.d-4
       /
     /
   ...
@@ -151,10 +156,12 @@ Examples:
         HALF_SATURATION_CONSTANT 1.d-4        ! B is the acceptor
         THRESHOLD_CONCENTRATION 1.d-11
       /
-      INHIBITION
-        SPECIES_NAME C(aq)
-        TYPE INVERSE_MONOD
-        INHIBITION_CONSTANT 6.d-4   ! C is the product and inhibits when too high
+      INHIBITION ! inhibit at low A(aq) concentration
+        SPECIES_NAME A(aq)
+        TYPE SMOOTHSTEP
+        SMOOTHSTEP_INTERVAL 1.
+        INHIBIT_BELOW_THRESHOLD
+        THRESHOLD_CONCENTRATION 1.d-6
       /
       BIOMASS
         SPECIES_NAME D(im)
