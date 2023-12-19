@@ -41,8 +41,16 @@ Required Cards:
 CELL_IDS <integers> or COORDINATE <float,float,float>
  Specifies the cell or cells in which the source/sink is assigned.
 
+INHIBIT_FLOW_ABOVE_PRESSURE
+ Specifies that flow is inhibited when the cell pressure is above $P_max$.
+
+INHIBIT_FLOW_BELOW_PRESSURE
+ Specifies that flow is inhibited when the cell pressure is above $P_min$.
+
 MAXIMUM_MASS_RATE <float> <optional units>
- Specifies the maximum rate (e.g., kg/s). Positive for injection.
+ Specifies the maximum rate (e.g., kg/s). Positive for injection. Therefore, to
+ increase pressure, one must inject (positive rate), and to release pressure
+ on must extract (negative rate).
 
 PHASE <string>
  Specifies the fluid phase to which mass will be added/removed. LIQUID or GAS.
