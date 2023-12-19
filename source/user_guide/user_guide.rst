@@ -99,6 +99,7 @@ CHEMISTRY Block Cards
    :glob:
 
    /user_guide/cards/subsurface/chemistry/*
+   /user_guide/cards/subsurface/chemistry/reaction_sandbox/*
  
 Geomechanics Cards
 ------------------
@@ -146,6 +147,7 @@ GDSA Cards
    /user_guide/cards/subsurface/grids/*
    /user_guide/cards/subsurface/region/*
    /user_guide/cards/subsurface/material_property/*
+   /user_guide/cards/subsurface/source_sink_sandbox/*
    /user_guide/cards/gdsa/*
    /user_guide/cards/wipp/*
 
