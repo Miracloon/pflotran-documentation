@@ -6,3 +6,6 @@ MULTIPLE_CONTINUUM
 
 TEMPERATURE_DEPENDENT_DIFFUSION
  Turns on temperature-dependent diffusion.
+
+USE_MILLINGTON_QUIRK_TORTUOSITY
+ Turns on Millington and Quirk tortuosity model.
