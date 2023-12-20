@@ -18,7 +18,13 @@ where
 
 .. math::
 
-   \alpha = 1-\left(3z^2 - 2z^3\right)
+   \text{INHIBIT_FLOW_ABOVE_PRESSURE:}\hspace{0.5cm}\alpha = 1-\left(3z^2 - 2z^3\right)
+
+.. math::
+
+   \text{INHIBIT_FLOW_BELOW_PRESSURE:}\hspace{0.5cm}\alpha = 3z^2 - 2z^3
+
+and
 
 .. math::
 
@@ -32,6 +38,10 @@ where
 
    P_{min} = P_{max} - \text{PRESSURE_SPAN}
 
+
+Mass can be distributed across multiple grid cell using the following scaling
+algorithm:
+
 .. math::
 
    \gamma_i = 1 \text{ or } \frac{V_i}{\sum V_\text{CELL_IDS}} \text{ with SCALE_MAXIMUM_MASS_RATE}
@@ -42,10 +52,10 @@ CELL_IDS <integers> or COORDINATE <float,float,float>
  Specifies the cell or cells in which the source/sink is assigned.
 
 INHIBIT_FLOW_ABOVE_PRESSURE
- Specifies that flow is inhibited when the cell pressure is above $P_max$.
+ Specifies that flow is inhibited when the cell pressure is above $P_{max}$.
 
 INHIBIT_FLOW_BELOW_PRESSURE
- Specifies that flow is inhibited when the cell pressure is above $P_min$.
+ Specifies that flow is inhibited when the cell pressure is above $P_{min}$.
 
 MAXIMUM_MASS_RATE <float> <optional units>
  Specifies the maximum rate (e.g., kg/s). Positive for injection. Therefore, to
