@@ -2,7 +2,6 @@
 
 #. `How do I get help?`_
 #. `How can I contribute to or update the online documentation?`_
-#. `How do I resolve installation issues?`_
 #. `How do I make any sense of the screen output, in particular Newton iteration convergence?`_
 #. `How do I create datasets and are there examples?`_
 #. `Why does PFLOTRAN crash when printing provenance information to HDF5 formatted output?`_
@@ -149,64 +148,6 @@ How to push the modified branch back to the original repository?
 How to submit a pull request?
 
   `Google "How do I submit a pull request on Bitbucket? <https://lmgtfy.com/?q=How+do+I+submit+a+pull+request+on+Bitbucket%3F>`_
-
---------------------
-
-.. _How do I resolve installation issues?:
-
-How do I resolve installation issues?
-=====================================
-
-No such file /conf/variables
-----------------------------
-
-Problem: When I run "make pflotran" I get the message:
-
-::
-
-    $ make pflotran
-    "makefile:150: /conf/variables: No such file or directory"
-    "makefile:151: /conf/rules: No such file or directory"
-    "make: *** No rule to make target `/conf/rules'. Stop"
-
-Solution: You have not set your PETSC_DIR and PETSC_ARCH environment variables.
-
-In tcsh:
-
-.. sourcecode:: csh
-
-    setenv PETSC_DIR /path/to/petsc
-    setenv PETSC_ARCH whatever_arch_was_installed
-
-In bash:
-
-.. sourcecode:: bash
-
-    export PETSC_DIR=/path/to/petsc
-    export PETSC_ARCH=whatever_arch_was_installed
-
-To avoid having to type these commands in every shell, they should be added to 
-your .cshrc (tcsh) or .bashrc (bash) files.
-
-PFLOTRAN doesn't compile when I type ``make pflotran``.
--------------------------------------------------------
-
-Many times when PFLOTRAN doesn't compile correctly (e.g. ``make pflotran``
-does not complete due to errors), it is due to incorrect PETSc configuration.
-PFLOTRAN uses a snapshot of the PETSc 'maint' (release) branch, obtained
-by specifically checking out a changeset-id after cloning PETSc. The 
-changeset-id that PFLOTRAN uses changes occasionally. If PFLOTRAN does not
-compile, try reconfiguring PETSc, making sure you check out the correct
-changeset-id. Details are provided on the installation pages: 
-:ref:`installation`. An example is shown below. **The changeset-id shown below**
-**is not be the most current. Please use the changeset-id provided on the** 
-**installation pages:** :ref:`installation`.
-
-.. code-block:: bash
-
-    git clone https://gitlab.com/petsc/petsc petsc
-    cd petsc
-    git checkout 987thisisnotthecorrectchangesetid1234567
 
 --------------------
 
