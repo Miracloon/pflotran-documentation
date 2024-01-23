@@ -107,6 +107,16 @@ Installation Instructions
   cd pflotran/src/pflotran
   make pflotran
 
+Troubleshooting
+---------------
+
+Common issues with installing is found on the FAQ page:
+:ref:`How do I resolve installation issues?`
+
+
+
+
+
 .. _Git: http://git-scm.com/
 .. _PETSc: https://gitlab.com/petsc/petsc
 .. _PETSc installation instructions: https://petsc.org/release/installPETSC_HAVE_PARMETIS

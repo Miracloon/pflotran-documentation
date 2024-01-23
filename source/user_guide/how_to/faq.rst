@@ -157,6 +157,38 @@ How to submit a pull request?
 How do I resolve installation issues?
 =====================================
 
+PETSc fails to compile when I type ``make all``
+-----------------------------------------------
+
+Oftentimes this can be fixed by deleting the PETSC_ARCH and reconfiguring or starting from a clean installation of PETSc. If you are upgrading your PETSc build, you may get an error message similar to below:
+
+::
+
+    Error: Unexpected data declaration statement in INTERFACE block at (1)
+    /home/username/petsc/include/../src/ksp/f90-mod/ftn-auto-interfaces/petscpc.h90:1522:10:
+
+    1522 |        end subroutine PCASMCreateSubdomains2D
+         |          1
+    Error: Expecting END INTERFACE statement at (1)
+    gmake[3]: *** [gmakefile:225: gnu-c-debug/obj/src/ksp/f90-mod/petscpcmod.o] Error 1
+    gmake[2]: *** [/home/username/petsc/lib/petsc/conf/rules.doc:28: libs] Error 2
+    **************************ERROR*************************************
+    Error during compile, check gnu-c-debug/lib/petsc/conf/make.log
+    Send it and gnu-c-debug/lib/petsc/conf/configure.log to petsc-maint@mcs.anl.gov
+    ********************************************************************
+    gmake[1]: *** [makefile:45: all] Error 1
+    make: *** [GNUmakefile:9: all] Error 2
+
+This can be fixed by running the following commands:
+
+.. code-block :: bash
+
+    cd $PETSC_DIR
+    make deletefortranstubs
+    make allfortranstubs
+    make all 
+
+
 No such file /conf/variables
 ----------------------------
 
@@ -192,12 +224,13 @@ PFLOTRAN doesn't compile when I type ``make pflotran``.
 -------------------------------------------------------
 
 Many times when PFLOTRAN doesn't compile correctly (e.g. ``make pflotran``
-does not complete due to errors), it is due to incorrect PETSc configuration.
-PFLOTRAN uses a snapshot of the PETSc 'maint' (release) branch, obtained
-by specifically checking out a changeset-id after cloning PETSc. The 
-changeset-id that PFLOTRAN uses changes occasionally. If PFLOTRAN does not
-compile, try reconfiguring PETSc, making sure you check out the correct
-changeset-id. Details are provided on the installation pages: 
+does not complete due to errors), it is due to incorrect PETSc configuration,
+assuming the source code has not been modified. PFLOTRAN uses a snapshot of
+the PETSc 'maint' (release) branch, obtained by specifically checking out a
+changeset-id after cloning PETSc. The  changeset-id that PFLOTRAN uses
+changes occasionally. If PFLOTRAN does not compile, try reconfiguring PETSc,
+making sure you check out the correct changeset-id. Details are provided on
+the installation pages: 
 :ref:`installation`. An example is shown below. **The changeset-id shown below**
 **is not be the most current. Please use the changeset-id provided on the** 
 **installation pages:** :ref:`installation`.
@@ -208,7 +241,7 @@ changeset-id. Details are provided on the installation pages:
     cd petsc
     git checkout 987thisisnotthecorrectchangesetid1234567
 
---------------------
+-------------------- 
 
 .. _How do I make any sense of the screen output, in particular Newton iteration convergence?:
 
