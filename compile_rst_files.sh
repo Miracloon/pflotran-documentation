@@ -65,14 +65,14 @@ num_errors=$((num_errors + $?))
 # RT
 python3 ./tools/generate_tmp.py RT \
 $CARDS_DIR/simulation/subsurface_transport_modes/sim_rt.tmp \
-$CARDS_DIR/raw_txt/simulation/simulation_nuclear_waste_transport.txt \
+$CARDS_DIR/raw_txt/simulation/simulation_reactive_transport.txt \
 $CARDS_DIR/raw_txt/simulation/simulation.txt
 num_errors=$((num_errors + $?))
 
 # NWT
 python3 ./tools/generate_tmp.py NWT \
 $CARDS_DIR/simulation/subsurface_transport_modes/sim_nwt.tmp \
-$CARDS_DIR/raw_txt/simulation/simulation_reactive_transport.txt \
+$CARDS_DIR/raw_txt/simulation/simulation_nuclear_waste_transport.txt \
 $CARDS_DIR/raw_txt/simulation/simulation.txt
 num_errors=$((num_errors + $?))
 
