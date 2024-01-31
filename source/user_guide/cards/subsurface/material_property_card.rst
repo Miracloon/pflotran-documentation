@@ -228,6 +228,22 @@ TORTUOSITY_FUNCTION_OF_POROSITY <float>
 
  Specifies that tortuosity be calculated as a function of porosity, tor = por\ :sup:`t`, where exponent t [-] is specifed after the card.  Use in place of TORTUOSITY.  Porosity can be specified through a dataset or as a uniform value.
 
+ANISOTROPIC_TORTUOSITY
+
+ Toggles on anisotropic tortuosity (diagonal elements of tensor only)
+
+ TORTUOSITY_X
+
+  Tortusosity in x-direction [-]
+
+ TORTUOSITY_Y
+
+  Tortusosity in y-direction [-]
+
+ TORTUOSITY_Z
+
+  Tortusosity in z-direction [-]
+ 
 Examples
 --------
  ::
@@ -315,6 +331,25 @@ Tortuosity as a function
       PERM_ISO 1.d-19
     /
   END
+
+Anisotropic tortuosity
+
+ ::
+
+  MATERIAL_PROPERTY mat1
+    ID 1
+    POROSITY 0.3d0
+    PERMEABILITY 
+      PERM_ISO 1.d-12
+    /
+    ANISOTROPIC_TORTUOSITY
+      TORTUOSITY_X 1.1d0
+      TORTUOSITY_Y 0.6d0
+      TORTUOSITY_Z 2.d0
+    END
+    CHARACTERISTIC_CURVES default
+  END
+
 
 Associating datasets with material properties
 
