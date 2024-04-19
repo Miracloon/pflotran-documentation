@@ -41,8 +41,13 @@ SITE_FRACTION <float ... float>
  The number of SITE_FRACTIONs must match the number of RATES.
 
 MINERAL <string>
- The name of the mineral with which the sorption site density is associated 
- (required, but not yet linked to site density).
+ The name of the mineral with which the sorption site density is associated.
+ The mineral volume fraction $\phi_\text{mnrl}$
+ $\units{\frac{\strvolume_\text{mnrl}}{\strvolume_\text{bulk}}}$ 
+ scales the site density 
+ $\left[\omega=\omega^*\phi_\text{mnrl}\right]$ 
+ and the site density $\omega^*$ has units
+ $\units{\frac{\text{mol}}{\strvolume_\text{mnrl}}}$.
 
 MULTIRATE_SCALE_FACTOR <float>
  Floating point number that scales all rate constants for multirate kinetic 
@@ -53,10 +58,16 @@ COLLOID <string>
 
 ROCK_DENSITY
  A flag which allows the calculation of surface site concentration based on 
- rock density [i.e. (1-porosity)*soil_particle_density].
+ rock density. The rock density $\density_\text{rock}$
+ $\units{\frac{\strmass_\text{rock}}{\strvolume_\text{bulk}}}$ 
+ scales the site density 
+ $\left[\omega=\omega^*(1-\porosity)\density_\text{rock}\right]$ 
+ and the site density $\omega^*$ has units
+ $\units{\frac{\text{mol}}{\strmass_\text{rock}}}$. 
 
 SITE <string> <float>
- Name of site and site density [mol/m\ :sup:`3`\].
+ Name of site and site density 
+ $\omega \units{\frac{\text{mol}}{\strvolume_\text{bulk}}}$.
 
 COMPLEXES
  Opens a block listing the names of surface complexes associated with the 
