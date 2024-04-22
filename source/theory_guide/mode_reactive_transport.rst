@@ -328,6 +328,8 @@ the rate may be expressed alternatively as
    I_m^{\rm RL} = -A_m^{} \Big(\sum_l k_{ml}^{} {\mathcal P}_{ml}^{} \Big)
    \left|\frac{\Omega_m}{1+\frac{1}{f_m^{\rm lim}} \big(1-\Omega_m\big)}\right|^{\beta_m} {\rm sign}(1-K_m Q_m).
 
+.. _material-property-updates:
+
 Changes in Material Properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -339,6 +341,15 @@ reactions through the change in porosity
    :label: porosity
    
    \porosity = 1-\sum_m\porosity_m.
+
+In this case, the initial porosity is calculated as
+
+.. math::
+   :label: initial_porosity
+   
+   \porosity_0 = 1-\sum_m\porosity_m^0,
+
+where the super/subscript 0 denotes initial values.
 
 Change in permeability involves a phenomenological relation with porosity
 
@@ -371,7 +382,7 @@ and
    
    A_m = A_m^0 \left(\frac{\porosity_m}{\porosity_m^0}\right)^n  \left(\frac{1-\porosity}{1-\porosity_0}\right)^{n'},
 
-where the super/subscript 0 denotes initial values, with a typical value
+with a typical value
 for :math:`n` of :math:`2/3` reflecting the surface to volume ratio.
 Note that this relation only applies to primary minerals
 :math:`(\porosity_m^0 > 0)`. The quantity :math:`\porosity_c` refers to a

@@ -106,8 +106,11 @@ NO_CHECKPOINT_ACT_COEFS
  match identically if such checkpointing is disabled.
 
 UPDATE_POROSITY
- Update porosity after every time step.  Default minimum porosity is 0,
- make minimum porosity non-zero using MINIMUM_POROSITY.
+ Update porosity after every time step.  The default minimum porosity is 0,
+ and one can make minimum porosity non-zero using MINIMUM_POROSITY.
+ The initial porosity is calculated as a function of initial mineral volume
+ fractions.
+ See :ref:`material-property-updates` in the :ref:`theory-guide`.
 
 MINIMUM_POROSITY <float>
  Float specifies minimum porosity to which porosity is truncated if
@@ -115,15 +118,19 @@ MINIMUM_POROSITY <float>
 
 UPDATE_PERMEABILITY
  Update permeabilty after every time step.
+ See :ref:`material-property-updates` in the :ref:`theory-guide`.
 
 UPDATE_TORTUOSITY
  Update tortuosity after every time step.
+ See :ref:`material-property-updates` in the :ref:`theory-guide`.
 
 UPDATE_MINERAL_SURFACE_AREA
  Update mineral surface area after every time step.
+ See :ref:`material-property-updates` in the :ref:`theory-guide`.
 
 UPDATE_MNRL_SURF_AREA_WITH_POR
  Update mineral surface area as a function of porosity after every time step. See Eq. :eq:`surface_area_vf`.
+ See :ref:`material-property-updates` in the :ref:`theory-guide`.
 
 MOLAL, MOLALITY
  Print concentrations as molalities instead of molarities.
