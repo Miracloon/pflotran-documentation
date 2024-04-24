@@ -1,3 +1,5 @@
+.. _theory-guide:
+
 Theory Guide
 ============
 
