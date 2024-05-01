@@ -9,11 +9,11 @@ remote cluster or supercomputer.
 
 Required Cards:
 ---------------
-WALLCLOCK_STOP <float> <optional string>
- Specifies a wall clock time (and optional units, default = hours) at which the 
- simulation will shut down gracefully generating a restart file, if specified. 
- The option is especially useful when there is an upper limit of wall clock time 
- you can request on supercomputers and you are not sure if the run will be 
+WALLCLOCK_STOP <float> <string>
+ Specifies a wall-clock time and units at which the simulation will
+ shut down gracefully generating a restart file, if specified.  The option
+ is especially useful when there is an upper limit of wall clock time 
+ you can request on supercomputers, and you are not sure if the run will be 
  completed within the time.
 
 Examples
@@ -23,7 +23,7 @@ Stop simulation after 12 hours
 
   SUBSURFACE
     ...
-    WALLCLOCK_STOP 12
+    WALLCLOCK_STOP 12 h
     ...
   END SUBSURFACE
 
