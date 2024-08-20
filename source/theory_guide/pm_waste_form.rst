@@ -219,7 +219,23 @@ WIPP Mechanism
 ..............
 The Waste Isolation Pilot Plant (WIPP) mechanism simulates a waste panel in
 a mined salt repository. It is essentially identical to the DSNF (instantaneous)
-mechanism. 
+mechanism.
+
+ANALYTICAL Mechanism
+....................
+The ANALYTICAL mechanism calculates the waste form degredation rate by first
+calculating the mass remaining at the end of the time step,
+
+.. math::
+
+   N = N_0 e^{-F(t-b)}
+
+where F is the fractional degredation rate, t-b is the simulation time minus the
+waste package breach time for the specific waste package, N\ :sub:`0` and N are the waste
+form masses at the beginning and end of the time step. The overall degredation rate
+is then calculated as the differences in the masses at beginning and end of the time
+step by the time step size. The radionuclides released are directly added to the
+solution vector.
 
 CUSTOM Mechanism
 ................

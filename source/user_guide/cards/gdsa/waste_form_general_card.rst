@@ -43,7 +43,8 @@ MECHANISM <type_string>
  species, the waste form bulk material details, and the canister that contains the waste form. Several 
  different custom mechanisms can be defined, or chosen from pre-defined options. Each mechanism is given a 
  unique name, and later associated with specific listed waste forms. The following types are currently 
- supported: GLASS, DSNF, FMDM, FMDM_SURROGATE, FMDM_SURROGATE_KNNR, :ref:`WIPP<wipp_waste_form>`, and CUSTOM.
+ supported: GLASS, DSNF, FMDM, FMDM_SURROGATE, FMDM_SURROGATE_KNNR, :ref:`WIPP<wipp_waste_form>`, ANALYTICAL,
+ and CUSTOM.
 
  ::
 
