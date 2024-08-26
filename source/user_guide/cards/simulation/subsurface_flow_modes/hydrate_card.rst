@@ -8,7 +8,7 @@ Back to :ref:`subsurface-flow-mode-card`
 
 HYDRATE
 =======
-Defines options for the Hydrate subsurface flow mode.
+Defines options for the Hydrate subsurface flow mode. For more details and governing equations see the Theory Guide.
 
 :ref:`hydrate-simulation-options`
 
@@ -22,11 +22,15 @@ Defines options for the Hydrate subsurface flow mode.
 
 .. _hydrate-simulation-options:
 
-SIMULATION Options 
+SIMULATION Options
 ------------------
 *(under SUBSURFACE_FLOW in SIMULATION PROCESS_MODELS block)*
 
 .. include:: sim_hydrate.tmp
+
+LEGACY_FLUXES
+ Use fluxes from an earlier version of HYDRATE mode, similar to GENERAL mode flux formulation. Default
+ is to use fluxes similar to SCO2 mode.
 
 .. _hydrate-timestepper-options:
 
@@ -48,6 +52,14 @@ HYDRATE Block
 -------------
 *(within SUBSURFACE block)*
 
+GAS <string>
+  CO2
+    Use CO2 as the working gas
+  CH4
+    Use CH4 as the working gas (default)
+  AIR
+    Use air (non hydrate-forming gas) as the working gas.
+
 METHANOGENESIS
  Invokes a methanogenesis source term. Current source implementation (following Malinverno, 2010) requires:
   NAME <string>
@@ -62,8 +74,8 @@ METHANOGENESIS
     Depth to the sulfate-methane transition [m]
   K_ALPHA <float>
     Conversion factor from organic carbon to methane (typically 2241)
-  
-WITH_SEDIMENTATION 
+
+WITH_SEDIMENTATION
  Turns on sedimentation. Moves immobile pore species at the sedimentation rate specified in the METHANOGENESIS block and in the direction of gravity.
 
 WITH_GIBBS_THOMSON
@@ -78,17 +90,20 @@ ADJUST_SOLUBILITY_WITHIN_GHSZ
 NO_PC
   Turns off capillary pressure.
 
-EFFECTIVE_SAT_SCALING
- Scale saturations of mobile pore species by the total amount of mobile pore fluids. 
+NO_EFFECTIVE_SATURATION_SCALING
+ Turns off scaling of saturations of mobile pore species by the total amount of mobile pore fluids.
 
-HYDRATE_PHASE_BOUNDARY <string>
- Sets the gas hydrate phase boundary equation. Default is Kamath, 1984. Current options: MORIDIS, MORIDIS_SIMPLE
+NO_ICE_VOLUME_CHANGE
+ Turn off volume change due to ice freezing.
 
-SCALE_PERM_BY_HYD_SAT
- Scales the absolute permeability of the sediment matrix by hydrate saturation.
+NO_SOLID_SATURATION_PERM_SCALING
+ Turns off absolute permeability scaling by hydrate saturation.
 
 PERM_SCALING_FUNCTION <string>
  Selects the specific function used for absolute permeability scaling as a function of hydrate saturation. Current options: DAI_AND_SEOL
+
+HYDRATE_PHASE_BOUNDARY <string>
+ Sets the gas hydrate phase boundary equation for CH4-hydrate. Default is Kamath, 1984. Current options: MORIDIS, MORIDIS_SIMPLE
 
 HENRYS_CONSTANT <string>
  Set function for Henry's constant for methane. Current default: Carroll and Mather, 1997. Current options: CRAMER
@@ -98,6 +113,9 @@ SALINITY <float>
 
 THERMAL_CONDUCTIVITY <string>
  Set the thermal conductivity model. Default is a phase saturation weighted average. Current options: IGHCC2
+
+BC_REFERENCE_PRESSURE
+ Reference pressure for seepage boundary condition.
 
 
 .. _hydrate-examples:
@@ -111,9 +129,6 @@ Examples
    PROCESS_MODELS
      SUBSURFACE_FLOW flow
        MODE HYDRATE
-       OPTIONS
-         RESTRICT_STATE_CHANGE
-       /
      /
    /
  END
@@ -126,14 +141,11 @@ Examples
    /
    ...
    HYDRATE
-     SCALE_PERM_BY_HYD_SAT
+     GAS CH4
      PERM_SCALING_FUNCTION DAI_AND_SEOL
-     HYDRATE_PHASE_BOUNDARY MORIDIS
-     EFFECTIVE_SAT_SCALING
      WITH_GIBBS_THOMSON
      GT_3PHASE
      ADJUST_SOLUBILITY_WITHIN_GHSZ
-     NO_PC
      WITH_SEDIMENTATION
      METHANOGENESIS
       NAME ss_methanogenesis

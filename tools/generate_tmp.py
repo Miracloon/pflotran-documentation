@@ -4,8 +4,8 @@ min_args = 3
 if len(sys.argv) <= min_args:
     sys.exit('Number of arguments must be greater than {}.'.format(min_args))
 
-available_modes = ['RICHARDS','TH','GENERAL','MPHASE','HYDRATE','WIPP_FLOW',
-                   'RT','NWT','DUMMY']
+available_modes = ['RICHARDS','TH','GENERAL','MPHASE','HYDRATE','SCO2',
+                   'WIPP_FLOW','RT','NWT','DUMMY']
 
 filenames = sys.argv
 mode = sys.argv[1]
