@@ -51,6 +51,14 @@ $CARDS_DIR/raw_txt/simulation/simulation_subsurface_flow.txt \
 $CARDS_DIR/raw_txt/simulation/simulation.txt
 num_errors=$((num_errors + $?))
 
+# SCO2
+python3 ./tools/generate_tmp.py SCO2 \
+$CARDS_DIR/simulation/subsurface_flow_modes/sim_sco2.tmp \
+$CARDS_DIR/raw_txt/simulation/simulation_sco2.txt \
+$CARDS_DIR/raw_txt/simulation/simulation_subsurface_flow.txt \
+$CARDS_DIR/raw_txt/simulation/simulation.txt
+num_errors=$((num_errors + $?))
+
 # WIPP_FLOW 
 python3 ./tools/generate_tmp.py WIPP_FLOW \
 $CARDS_DIR/simulation/subsurface_flow_modes/sim_wipp_flow.tmp \
@@ -110,6 +118,12 @@ num_errors=$((num_errors + $?))
 # TH
 python3 ./tools/generate_tmp.py TH \
 $CARDS_DIR/simulation/subsurface_flow_modes/timestepper_th.tmp \
+$CARDS_DIR/raw_txt/timestepper/timestepper_subsurface_flow.txt
+num_errors=$((num_errors + $?))
+
+# SCO2
+python3 ./tools/generate_tmp.py SCO2 \
+$CARDS_DIR/simulation/subsurface_flow_modes/timestepper_sco2.tmp \
 $CARDS_DIR/raw_txt/timestepper/timestepper_subsurface_flow.txt
 num_errors=$((num_errors + $?))
 
@@ -185,6 +199,15 @@ $CARDS_DIR/raw_txt/newton/newton.txt
 ## TH
 python3 ./tools/generate_tmp.py TH \
 $CARDS_DIR/simulation/subsurface_flow_modes/newton_th.tmp \
+$CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
+$CARDS_DIR/raw_txt/newton/newton.txt
+num_errors=$((num_errors + $?))
+
+# SCO2
+python3 ./tools/generate_tmp.py SCO2 \
+$CARDS_DIR/simulation/subsurface_flow_modes/newton_sco2.tmp \
+$CARDS_DIR/raw_txt/newton/newton_sco2.txt \
+$CARDS_DIR/raw_txt/newton/newton_tolerances.txt \
 $CARDS_DIR/raw_txt/newton/newton_subsurface_flow.txt \
 $CARDS_DIR/raw_txt/newton/newton.txt
 num_errors=$((num_errors + $?))
