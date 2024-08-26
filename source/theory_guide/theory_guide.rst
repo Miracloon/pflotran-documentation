@@ -20,6 +20,7 @@ Flow Modes
    /theory_guide/mode_general.rst
    /theory_guide/mode_hydrate.rst
    /theory_guide/mode_mphase.rst
+   /theory_guide/mode_sco2.rst
    /theory_guide/constitutive_relations.rst
 
 Reactive Transport Mode (Keyword CHEMISTRY)
@@ -37,6 +38,14 @@ Geophysics Modes
    :maxdepth: 3
 
    /theory_guide/mode_ert.rst
+
+Well Models
+++++++++++++++++
+
+.. toctree::
+   :maxdepth: 3
+
+   /theory_guide/well.rst
 
 Process Models Under Development
 ++++++++++++++++++++++++++++++++
@@ -67,7 +76,7 @@ References
 .. The following are the hidden pages that are linked in the Theory Guide:
 .. toctree::
    :hidden:
-   
+
    /theory_guide/tg_intro.rst
    /theory_guide/mode_immis.rst
    /theory_guide/mode_miscible.rst
