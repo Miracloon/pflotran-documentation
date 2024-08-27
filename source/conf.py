@@ -40,7 +40,7 @@ author = ','.join([
 ])
 
 # The full version, including alpha/beta/rc tags
-release = 'v5.0'
+release = 'v6.0'
 
 
 # -- General configuration ---------------------------------------------------
