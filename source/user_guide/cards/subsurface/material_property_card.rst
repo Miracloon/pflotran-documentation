@@ -234,15 +234,15 @@ ANISOTROPIC_TORTUOSITY
 
  TORTUOSITY_X
 
-  Tortusosity in x-direction [-]
+  Tortuosity in x-direction [-]
 
  TORTUOSITY_Y
 
-  Tortusosity in y-direction [-]
+  Tortuosity in y-direction [-]
 
  TORTUOSITY_Z
 
-  Tortusosity in z-direction [-]
+  Tortuosity in z-direction [-]
  
 Examples
 --------
