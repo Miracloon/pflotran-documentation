@@ -15,6 +15,9 @@ REGION <string>
 
 Within the REGION block, one of:
 
+ INFINITE
+  Defines an infinite region that will capture all cells in the domain (spans -1.e20 to 1.e20 meters in each of the principal coordinates).
+
  COORDINATE <float float float>
   Defines the x, y, z location of a single point in space  (see note_ below)
    

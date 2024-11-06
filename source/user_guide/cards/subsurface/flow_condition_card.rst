@@ -5,7 +5,9 @@ Back to :ref:`card-index`
 FLOW_CONDITION
 ==============
 Sets flow parameters used in setting up flow boundary and initial conditions
-and source/sinks.
+and source/sinks. 
+
+**Note: For fluxes and rates, use positive values for mass/energy flow into the domain (injection) and negative values for flow out (extraction).**
 
 Required Cards:
 ---------------
