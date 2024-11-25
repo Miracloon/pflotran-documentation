@@ -52,7 +52,7 @@ deformation on the pore structure is accounted for via
    
    \porosity = \porosity_0 +  \text{tr}({\boldsymbol{\varepsilon}}).
 
-Given the bulk modulus (:math:`{E}`) and the Poissons ratio (:math:`{\nu}`) 
+Given Young's modulus (:math:`{E}`) and the Poissons ratio (:math:`{\nu}`) 
 of the material, the shear modulus and the Lame modulus are defined as follows:
 
 .. math::
