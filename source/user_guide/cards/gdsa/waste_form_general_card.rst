@@ -1,4 +1,4 @@
-Back to :ref:`card-index`
+back to :ref:`card-index`
 
 .. _waste-form-general-card:
 
@@ -363,7 +363,7 @@ MECHANISM <type_string>
    log10(Rv) = log10(Rv0) + C * (1/333.15[K] - 1/T[K])
 
    If option "a" is desired, the normal distribution for the reference rate is formed by providing the 
-   following block keywords (all required):
+   following block keywords:
 
     VITALITY_LOG10_MEAN
 
@@ -388,13 +388,17 @@ MECHANISM <type_string>
      Specifies the canister material constant (ex: 1500 for 316L stainless steel).
 
     ::
-
+       
      CANISTER_DEGRADATION_MODEL
        VITALITY_LOG10_MEAN -4.5
        VITALITY_LOG10_STDEV 0.5
        VITALITY_UPPER_TRUNCATION -3.0
        CANISTER_MATERIAL_CONSTANT 1500
      /
+     
+    :ref:`buffer-erosion-copper-corrosion-card` (optional)
+	 
+     Specifies parameters for the buffer erosion/copper corrosion model.
 
 Full examples of the MECHANISM sub-block (note some values may be unrealistic, these are just examples
 for form, not parameter values):
