@@ -25,6 +25,10 @@ CALCULATE_INITIAL_POROSITY
  Calculate the initial porosity as the sum of the initial mineral volume
  fractions.
 
+:ref:`override-mineral-mass-action-card`
+ Specifies reaction expressions and log Ks that will override what is 
+ defined in the database.
+
 PASSIVE_GAS_SPECIES
  List of gas species used as reference species (e.g. reaction database,
  transport constraints, basis swapping, etc.).
