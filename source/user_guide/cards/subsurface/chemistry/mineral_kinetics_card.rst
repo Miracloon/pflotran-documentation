@@ -74,12 +74,24 @@ AFFINITY_POWER
  ARMOR_PWR
  ARMOR_CRIT_VOL_FRAC
 
+DISSOLUTION_RATE_CONSTANT <float> <optional units_string>
+ Kinetic rate constant for dissolution that requires a complementary 
+ precipitation rate constant. 
+ If negative, then raised to power 10 (e.g. -12.d0 is converted to :math:`10^{-12}`) 
+ (default units [mol/m\ :sup:`2`\-sec])
+
 ..
  IRREVERSIBLE
  Flag indicating the reaction is irreversible
 
 MINERAL_SCALE_FACTOR
  :math:`\lambda_m` in equation above.
+
+PRECIPITATION_RATE_CONSTANT <float> <optional units_string>
+ Kinetic rate constant for precipitation that requires a complementary 
+ dissolution rate constant. 
+ If negative, then raised to power 10 (e.g. -12.d0 is converted to :math:`10^{-12}`) 
+ (default units [mol/m\ :sup:`2`\-sec])
 
 :ref:`prefactor-card`
  Parameters for reaction rate prefactors
