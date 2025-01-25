@@ -25,6 +25,9 @@ CALCULATE_INITIAL_POROSITY
  Calculate the initial porosity as the sum of the initial mineral volume
  fractions.
 
+:ref:`nucleation-kinetics-card`
+ Specifies nucleations reactions and associated parameters.
+
 :ref:`override-mineral-mass-action-card`
  Specifies reaction expressions and log Ks that will override what is 
  defined in the database.
