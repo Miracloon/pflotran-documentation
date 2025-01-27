@@ -223,6 +223,24 @@ Examples
     /
   END
 
+  CHEMISTRY
+    ...
+    MINERAL_KINETICS
+      Quartz
+        RATE_CONSTANT 2.d-11 mol/m^2-sec
+        NUCLEATION_KINETICS simplified
+        SURFACE_AREA_FUNCTION MINERAL_MASS
+        SPECIFIC_SURFACE_AREA 0.041 m^2/g
+      /
+    /
+    NUCLEATION_KINETICS
+      SIMPLIFIED simplified
+        RATE_CONSTANT 1.d-5
+        GAMMA 1.d10
+      /
+    /
+  END
+
 .. _Back to Quick Guide: ../QuickGuide
 .. _Back to CHEMISTRY: ../Chemistry
 .. _PREFACTOR: ./MineralKinetics/Prefactor
