@@ -26,7 +26,7 @@ CALCULATE_INITIAL_POROSITY
  fractions.
 
 :ref:`nucleation-kinetics-card`
- Specifies nucleations reactions and associated parameters.
+ Specifies nucleation reactions and associated parameters.
 
 :ref:`override-mineral-mass-action-card`
  Specifies reaction expressions and log Ks that will override what is 

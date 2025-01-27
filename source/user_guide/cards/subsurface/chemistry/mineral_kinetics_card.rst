@@ -88,7 +88,7 @@ MINERAL_SCALE_FACTOR <flaot>
  :math:`\lambda_m` in equation above.
 
 NUCLEATION_KINETICS <string>
- Name of nucleations kinetics reaction to be applied to the mineral 
+ Name of nucleation kinetics reaction to be applied to the mineral 
  (specified elsewhere in the NUCLEATION_KINETICS block).
 
 PRECIPITATION_RATE_CONSTANT <float> <optional units_string>
