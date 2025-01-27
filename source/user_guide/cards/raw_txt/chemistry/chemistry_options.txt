@@ -131,14 +131,6 @@ UPDATE_TORTUOSITY
  Update tortuosity after every time step.
  See :ref:`material-property-updates` in the :ref:`theory-guide`.
 
-UPDATE_MINERAL_SURFACE_AREA
- Update mineral surface area after every time step.
- See :ref:`material-property-updates` in the :ref:`theory-guide`.
-
-UPDATE_MNRL_SURF_AREA_WITH_POR
- Update mineral surface area as a function of porosity after every time step. See Eq. :eq:`surface_area_vf`.
- See :ref:`material-property-updates` in the :ref:`theory-guide`.
-
 MOLAL, MOLALITY
  Print concentrations as molalities instead of molarities.
 
