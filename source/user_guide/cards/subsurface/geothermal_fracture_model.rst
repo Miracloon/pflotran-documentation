@@ -24,6 +24,14 @@ THERMAL_EXPANSION_COEFFICIENT <float>
  however, no default value is provided so this parameter must be specified. This 
  parameter contributes to the calculation of the hydraulic aperture evolution 
  and the resulting changes in fracture permeability.
+
+FRACTURE_INTERSECTION_PERM <string>
+ Specifies how the permeability is treated at the intersection of one or more 
+ fractures. The options are: `MAXIMUM` (or `MAX`), `SUMMATION` (or `SUM`). If
+ `MAXIMUM` is chosen, the maximum permeability of the individual intersecting 
+ fractures is assigned at the fracture intersection. If `SUMMATION` is chosen, 
+ the sum of the individual intersecting fractures is assigned at the fracture 
+ intersection. 
  
 FRACTURE
  Opens a FRACTURE block, which defines parameters and controls for individual 
@@ -221,6 +229,7 @@ Examples
   GEOTHERMAL_FRACTURE_MODEL
     
     THERMAL_EXPANSION_COEFFICIENT 40.d-6 # [1/C]
+    FRACTURE_INTERSECTION_PERM MAXIMUM
 
     FRACTURE_FAMILY
       ID 1
