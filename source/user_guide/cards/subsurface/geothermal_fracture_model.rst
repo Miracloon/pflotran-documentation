@@ -24,6 +24,14 @@ THERMAL_EXPANSION_COEFFICIENT <float>
  however, no default value is provided so this parameter must be specified. This 
  parameter contributes to the calculation of the hydraulic aperture evolution 
  and the resulting changes in fracture permeability.
+
+FRACTURE_INTERSECTION_PERM <string>
+ Specifies how the permeability is treated at the intersection of one or more 
+ fractures. The options are: `MAXIMUM` (or `MAX`), `SUMMATION` (or `SUM`). If
+ `MAXIMUM` is chosen, the maximum permeability of the individual intersecting 
+ fractures is assigned at the fracture intersection. If `SUMMATION` is chosen, 
+ the sum of the individual intersecting fractures is assigned at the fracture 
+ intersection. 
  
 FRACTURE
  Opens a FRACTURE block, which defines parameters and controls for individual 
@@ -62,18 +70,6 @@ FRACTURE
   from the center of the fracture plane. While this is not a true radius, in 
   the traditional definition of a radius, one can think of it in the sense of a 
   radius for a cuboid shape.
-
- MAX_DISTANCE <float>
-  Specifies the maximum distance [m] between the grid cell center and the 
-  location of the defined fracture plane for which the algorithm will search when 
-  tagging which grid cells are occupied by a fracture. The default value is 
-  5.0d0 [m]. The value should be set to a number that is roughly on the order 
-  of the grid cell size. If you find that fractures at an angle are disconnected, 
-  then try increasing the value for MAX_DISTANCE. Do not increase it much larger 
-  than is required to get continuous fractures or the fractured zone will 
-  become unrealistically large (grid cells that are not occupied by the fracture 
-  plane will be tagged as containing a fracture because their neighbor was 
-  occupied by the fracture plane).
 
 
 FRACTURE_FAMILY
@@ -225,18 +221,6 @@ FRACTURE_FAMILY
    fracture network. Specifying the same seed will ensure that the same fracture 
    network is generated each time the input deck is run.
 
- MAX_DISTANCE <float>
-  Specifies the maximum distance [m] between the grid cell center and the 
-  location of the defined fracture plane for which the algorithm will search when 
-  tagging which grid cells are occupied by a fracture. The default value is 
-  5.0d0 [m]. The value should be set to a number that is roughly on the order 
-  of the grid cell size. If you find that fractures at an angle are disconnected, 
-  then try increasing the value for MAX_DISTANCE. Do not increase it much larger 
-  than is required to get continuous fractures or the fractured zone will 
-  become unrealistically large (grid cells that are not occupied by the fracture 
-  plane will be tagged as containing a fracture because their neighbor was 
-  occupied by the fracture plane).
-
 
 Examples
 --------
@@ -245,6 +229,7 @@ Examples
   GEOTHERMAL_FRACTURE_MODEL
     
     THERMAL_EXPANSION_COEFFICIENT 40.d-6 # [1/C]
+    FRACTURE_INTERSECTION_PERM MAXIMUM
 
     FRACTURE_FAMILY
       ID 1
@@ -276,7 +261,6 @@ Examples
         RAD_Z_STDEV 5.0d0  # [m]
         RADIUS_SEED 31  # [-] must be an integer
       /
-      MAX_DISTANCE 0.25 # [m]
     /
 
     FRACTURE_FAMILY
@@ -309,7 +293,6 @@ Examples
         RAD_Z_STDEV 3.0d0  # [m]
         RADIUS_SEED 5  # [-] must be an integer
       /
-      MAX_DISTANCE 0.31 # [m]
     /
     
     FRACTURE
