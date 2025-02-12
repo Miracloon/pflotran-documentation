@@ -38,7 +38,7 @@ SATURATION_FUNCTION <string>
     + FILE <string>
     + LIST
 
-  .. _cc-van-genuchten-card:s
+  .. _cc-van-genuchten-card:
 
   * VAN_GENUCHTEN (:ref:`see QA plot <vg-sat-pc>`)
     + ALPHA
