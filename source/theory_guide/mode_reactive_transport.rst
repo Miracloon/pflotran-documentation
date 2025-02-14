@@ -1591,7 +1591,7 @@ coefficients are entered directly from the input file. A standard
 database supplied with the code is referred to as ``hanford.dat`` and is
 found in the ``./database`` directory in the PFLOTRAN Git
 repository. This database is an ascii text file that can be edited by
-any editor and is equivalent to the EQ3/6 database:
+any editor and is equivalent to the EQ3/6 database (Delany and Lundeen, 1990):
 
 ::
 
@@ -1856,3 +1856,9 @@ species, gases and minerals is printed out at the end of the
     npri =  4  nsec =  14  ngas =  3  nmin =  9
 
     Finished!
+
+
+References
+++++++++++
+
+Delany, J.M. and S.R. Lundeen, 1990, The LLNL thermochemical database. Lawrence Livermore National Laboratory Report UCRL-21658, 150 p.
