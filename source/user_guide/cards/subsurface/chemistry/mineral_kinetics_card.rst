@@ -105,7 +105,7 @@ RATE_LIMITER <float>
 
 SPECIFIC_SURFACE_AREA <float>
  The specific surface area of the reacting mineral.
- (default units [m\ :sup:`2`\/g])
+ (default units [m\ :sup:`2`\/kg])
 
 SURFACE_AREA_FUNCTION <string>
  Specifies the function used to calculate the reacting surface area
