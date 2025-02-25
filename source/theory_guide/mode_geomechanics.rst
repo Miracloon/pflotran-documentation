@@ -28,8 +28,7 @@ expansion. The following governing equations are used:
    
 where :math:`{\boldsymbol{u}}` is the unknown displacement field,
 :math:`{\boldsymbol{\sigma}}` is the Cauchy stress tensor,
-:math:`\lambda`, :math:`\mu` are Lamé parameters (Young’s modulus and
-Poisson’s ratio can be related to these two parameters),
+:math:`\lambda` is the Lame modulus, :math:`\mu` is the shear modulus,
 :math:`{\boldsymbol{b}}` is the specific body force (which is gravity in
 most cases), :math:`{\boldsymbol{n}}` is the outward normal to the
 boundary :math:`\Gamma^N`. Also, :math:`{\boldsymbol{u}}^p` is the
@@ -52,6 +51,22 @@ deformation on the pore structure is accounted for via
    :label: pore-structure
    
    \porosity = \porosity_0 +  \text{tr}({\boldsymbol{\varepsilon}}).
+
+Given Young's modulus (:math:`{E}`) and the Poissons ratio (:math:`{\nu}`) 
+of the material, the shear modulus and the Lame modulus are defined as follows:
+
+.. math::
+   :label: eqn:shear_modulus
+
+   \mu = \frac{E}{2(1+\nu)},
+
+and
+
+.. math::
+   :label: eqn:lame_modulus
+
+   \lambda = \frac{\nu E}{(1+\nu)(1-2\nu)}.
+
 
 Note that the above equations are solved using the finite element method
 (Galerkin finite element) with the displacements solved for at the

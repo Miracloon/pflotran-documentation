@@ -4,12 +4,12 @@ Back to :ref:`card-index`
 
 BOUNDARY_CONDITION
 ==================
-This card links a particular :ref:`flow-condition-card` and 
+This card links a particular :ref:`flow-condition-card` and
 :ref:`transport-condition-card` to the appropriate :ref:`region-card` to
-define a boundary condition. 
-It is set up similar to the :ref:`initial-condition-card` card, 
-by first creating a list of flow and/or transport conditions, and then 
-appling them to appropriate REGIONs using this card.
+define a boundary condition.
+It is set up similar to the :ref:`initial-condition-card` card,
+by first creating a list of flow and/or transport conditions, and then
+applying them to appropriate REGIONs using this card.
 
 Required Cards:
 ---------------
@@ -21,7 +21,7 @@ FLOW_CONDITION <string>
 
 TRANSPORT_CONDITION <string>
  Name of the associated :ref:`transport-condition-card`
-  
+
 REGION <string>
  Name of the associated :ref:`region-card`
 

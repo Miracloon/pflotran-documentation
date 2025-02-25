@@ -172,11 +172,11 @@ for an isotropic medium has the form
 .. math::
    :label: dummy8
    
-   {\boldsymbol{D}}_{{\alpha}}= \tortuosity D_m {\boldsymbol{I}}+ a_T v{\boldsymbol{I}}+ \big(a_L-a_T\big)\frac{{\boldsymbol{v}}{\boldsymbol{v}}}{v},
+   {\boldsymbol{D}}_{{\alpha}}= {\boldsymbol{\tortuosity}} D_m {\boldsymbol{I}}+ a_T v{\boldsymbol{I}}+ \big(a_L-a_T\big)\frac{{\boldsymbol{v}}{\boldsymbol{v}}}{v},
    
 
 with longitudinal and transverse dispersivity coefficients :math:`a_L`,
-:math:`a_T`, respectively, :math:`\tortuosity` refers to tortuosity, and
+:math:`a_T`, respectively, :math:`{\boldsymbol{\tortuosity}}` refers to tortuosity, which can account for diagonal anisotropy, and
 :math:`D_m` to the molecular diffusion coefficient. Currently, only
 a diagonal dispersion tensor with principal axes aligned with the grid for longitudinal and transverse 
 dispersion is implemented in PFLOTRAN.
@@ -328,6 +328,8 @@ the rate may be expressed alternatively as
    I_m^{\rm RL} = -A_m^{} \Big(\sum_l k_{ml}^{} {\mathcal P}_{ml}^{} \Big)
    \left|\frac{\Omega_m}{1+\frac{1}{f_m^{\rm lim}} \big(1-\Omega_m\big)}\right|^{\beta_m} {\rm sign}(1-K_m Q_m).
 
+.. _material-property-updates:
+
 Changes in Material Properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -339,6 +341,15 @@ reactions through the change in porosity
    :label: porosity
    
    \porosity = 1-\sum_m\porosity_m.
+
+In this case, the initial porosity is calculated as
+
+.. math::
+   :label: initial_porosity
+   
+   \porosity_0 = 1-\sum_m\porosity_m^0,
+
+where the super/subscript 0 denotes initial values.
 
 Change in permeability involves a phenomenological relation with porosity
 
@@ -371,7 +382,7 @@ and
    
    A_m = A_m^0 \left(\frac{\porosity_m}{\porosity_m^0}\right)^n  \left(\frac{1-\porosity}{1-\porosity_0}\right)^{n'},
 
-where the super/subscript 0 denotes initial values, with a typical value
+with a typical value
 for :math:`n` of :math:`2/3` reflecting the surface to volume ratio.
 Note that this relation only applies to primary minerals
 :math:`(\porosity_m^0 > 0)`. The quantity :math:`\porosity_c` refers to a
@@ -1580,7 +1591,7 @@ coefficients are entered directly from the input file. A standard
 database supplied with the code is referred to as ``hanford.dat`` and is
 found in the ``./database`` directory in the PFLOTRAN Git
 repository. This database is an ascii text file that can be edited by
-any editor and is equivalent to the EQ3/6 database:
+any editor and is equivalent to the EQ3/6 database (Delany and Lundeen, 1990):
 
 ::
 
@@ -1845,3 +1856,9 @@ species, gases and minerals is printed out at the end of the
     npri =  4  nsec =  14  ngas =  3  nmin =  9
 
     Finished!
+
+
+References
+++++++++++
+
+Delany, J.M. and S.R. Lundeen, 1990, The LLNL thermochemical database. Lawrence Livermore National Laboratory Report UCRL-21658, 150 p.

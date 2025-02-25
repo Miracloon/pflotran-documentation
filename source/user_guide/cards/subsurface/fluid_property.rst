@@ -25,6 +25,12 @@ PHASE [LIQUID, GAS]
 DIFFUSION_COEFFICIENT <float>
  Molecular diffusion coefficient [m\ :sup:`2`\/s]
 
+Required for temperature-dependent diffusion:
+---------------------------------------------
+DIFFUSION_ACTIVATION_ENERGY <float>
+ Diffusion activation energy for temperature dependent diffusion calculated
+ with the Arrhenius equation. [J/mol]
+
 Examples
 --------
  ::
@@ -41,3 +47,9 @@ Examples
     PHASE GAS
     DIFFUSION_COEFFICIENT 2.1d-5
   /
+
+  FLUID_PROPERTY
+    DIFFUSION_COEFFICIENT 1.d-9
+    DIFFUSION_ACTIVATION_ENERGY 12.6 kJ/mol
+  /
+

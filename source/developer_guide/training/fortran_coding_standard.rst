@@ -10,6 +10,35 @@ Guidelines
 * Use :fortran:`&` for continuation
 * Use :fortran:`==`, :fortran:`>`, :fortran:`<`, :fortran:`>=`, :fortran:`<=` instead of :fortran:`.eq.`, :fortran:`.eqv.`, :fortran:`.gt.`, :fortran:`.lt.`, :fortran:`.ge.`, :fortran:`.le.`.
 * Do not use goto statements (may not be possible in legacy code blocks)
+* Avoid *optional* arguments in favor of procedure interfaces. E.g., use
+
+  .. code-block:: fortran
+
+   interface LookupTableEvaluateUniform
+     module procedure LookupTableEvaluateUniform1
+     module procedure LookupTableEvaluateUniform2
+     module procedure LookupTableEvaluateUniform3
+   end interface
+   ...
+   function LookupTableEvaluateUniform1(this,lookup1)
+   ...
+   function LookupTableEvaluateUniform2(this,lookup1,lookup2)
+   ...
+   function LookupTableEvaluateUniform3(this,lookup1,lookup2,lookup3)
+
+  instead of
+
+  .. code-block:: fortran
+
+   function LookupTableEvaluateUniform(this,lookup1,lookup2,lookup3)
+     ...
+     class(lookup_table_uniform_type) :: this
+     PetscReal :: lookup1
+     PetscReal, optional :: lookup2
+     PetscReal, optional :: lookup3
+
+  Yes, many exist in the code, but **we are trying eliminate them**.
+
 * Use two-space indentation with **no tabs**.
 
   .. code-block:: fortran

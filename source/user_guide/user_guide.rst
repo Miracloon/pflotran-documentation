@@ -1,12 +1,12 @@
 User's Guide
 ============
 
-PFLOTRAN: Getting Started 
+PFLOTRAN: Getting Started
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
-   
+
    /user_guide/how_to/introduction.rst
    /user_guide/how_to/linux_primer.rst
    /user_guide/how_to/installation/installation.rst
@@ -15,11 +15,11 @@ PFLOTRAN: Getting Started
    /user_guide/how_to/regression.rst
    /user_guide/how_to/visualization.rst
    /user_guide/how_to/benchmark.rst
-   
+
 .. The following are the hidden pages that are linked in the User's Guide:
 .. toctree::
    :hidden:
-   
+
    /user_guide/how_to/installation/linux.rst
    /user_guide/how_to/installation/windows_visual_studio.rst
    /user_guide/how_to/installation/windows_wsl.rst
@@ -28,12 +28,12 @@ PFLOTRAN: Getting Started
    /user_guide/how_to/installation/previous_petsc_releases.rst
    /user_guide/how_to/simple_flow_problem.rst
    /user_guide/how_to/running_fmdm.rst
-   
+
 .. _card-index:
-   
+
 Input Deck Cards
 ^^^^^^^^^^^^^^^^
-   
+
 SIMULATION Block Cards
 ----------------------
 
@@ -47,6 +47,7 @@ SIMULATION Block Cards
    /user_guide/cards/simulation/subsurface_geophysics_card.rst
    /user_guide/cards/simulation/checkpoint_card.rst
    /user_guide/cards/simulation/restart_card.rst
+   /user_guide/cards/simulation/well_model.rst
 
 .. toctree::
    :hidden:
@@ -100,7 +101,7 @@ CHEMISTRY Block Cards
 
    /user_guide/cards/subsurface/chemistry/*
    /user_guide/cards/subsurface/chemistry/reaction_sandbox/*
- 
+
 Geomechanics Cards
 ------------------
 
@@ -109,7 +110,7 @@ Geomechanics Cards
    :glob:
 
    /user_guide/cards/geomechanics/*
-   
+
 Geophysics Cards
 ------------------
 
@@ -118,7 +119,7 @@ Geophysics Cards
    :glob:
 
    /user_guide/cards/geophysics/*
-   
+
 Utility Cards
 -------------
 
@@ -136,12 +137,12 @@ GDSA Cards
    :glob:
 
    /user_guide/cards/gdsa/*
-   
+
 .. The following are hidden pages that are linked in the Input Deck Cards:
 .. toctree::
    :hidden:
    :glob:
-   
+
    /user_guide/cards/pages/*
    /user_guide/cards/simulation/subsurface_flow_modes/*
    /user_guide/cards/subsurface/grids/*
@@ -149,5 +150,6 @@ GDSA Cards
    /user_guide/cards/subsurface/material_property/*
    /user_guide/cards/subsurface/source_sink_sandbox/*
    /user_guide/cards/gdsa/*
+   /user_guide/cards/gdsa/waste_form/*
    /user_guide/cards/wipp/*
 
