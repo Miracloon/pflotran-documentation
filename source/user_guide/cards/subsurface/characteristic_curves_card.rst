@@ -318,8 +318,8 @@ KPC <integer>
  * KPC 1 ignores MAX_CAPILLARY_PRESSURE
  * KPC 2 Flat Set KPC to ``2`` to activate
  * KPC 3-5 Not used
- * KPC 6 Linear extention to MAX_CAPILLARY_PRESSURE
- * KPC 6 Exponential extention to MAX_CAPILLARY_PRESSURE
+ * KPC 6 Pc Linear extension from SATURATION_JUNCTION_SATURATION to 0.0 LIQUID SATURATION 
+ * KPC 7 Pc Exponential extension from SATURATION_JUNCTION_SATURATION to 0.0 LIQUID SATURATION 
 
 KR_MAX <float>
  Modified Brooks Corey relative permeability function maximum 
