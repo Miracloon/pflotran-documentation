@@ -4,49 +4,47 @@ Back to :ref:`card-index`
 
 CHARACTERISTIC_CURVES
 =====================
-Specifies the characteristic curves (e.g. relative permeability and saturation functions and associated parameters) to be associated with a material property. 
+Specifies the characteristic curves (i.e., relative permeability and saturation functions and associated parameters) to be associated with a material property. 
 **This card is currently only supported for the GENERAL, HYDRATE, RICHARDS, TH (non-ice) and WIPP_FLOW flow modes. The** :ref:`saturation-function-card` **card should be used in all other flow modes.**
 
-Required Blocks and Cards:
+Blocks and Cards:
 **************************
 SATURATION_FUNCTION <string>
-  Opens a saturation function block, where <string> indicates the type of saturation function to be employed. 
-  Commonly used saturation functions include :ref:`BROOKS_COREY<cc-brooks-corey-card>` and :ref:`VAN_GENUCHTEN<cc-van-genuchten-card>`, but many others are also available.
-  The available saturation functions are documented in the Theory Guide under 
+  Opens a saturation function block where <string> indicates the type of saturation function to be employed. Common saturation functions include :ref:`BROOKS_COREY<cc-brooks-corey-card>` and :ref:`VAN_GENUCHTEN<cc-van-genuchten-card>`, but many others are also available.  The available saturation functions are documented in the Theory Guide under 
   :ref:`pc-sat-functions-general`.  
 
-  Supported SATURATION_FUNCTIONs (along with their required cards):
+  Supported SATURATION_FUNCTIONs and their associated cards:
 
   .. _cc-brooks-corey-card:
 
   * BROOKS_COREY (:ref:`see QA plot <bc-sat-pc>`)
 
-    + LIQUID_RESIDUAL_SATURATION
     + ALPHA
     + LAMBDA
-    + SMOOTH (optional, but highly recommended, see :ref:`parameter-definitions`)
+    + SMOOTH
+
   * LINEAR (:ref:`see QA plot <lin-sat-pc>`)
 
-    + LIQUID_RESIDUAL_SATURATION
     + ALPHA
 
   * MODIFIED_KOSUGI (:ref:`see QA plot <mk_sat>`)
-
     + NPARAM
     + SIGMAZ
     + MUZ
     + RMAX
     + R0
 
+  * PCHIP
+    + FILE <string>
+    + LIST
+
   .. _cc-van-genuchten-card:
 
   * VAN_GENUCHTEN (:ref:`see QA plot <vg-sat-pc>`)
-
-    + LIQUID_RESIDUAL_SATURATION
     + ALPHA
     + M
 
-  WIPP-specific SATURATION_FUNCTIONs:
+  WIPP-specific SATURATION_FUNCTIONs and associated cards:
 
   * BRAGFLO_KRP1 (:ref:`see QA plot <krp1-sat-pc>`) 
     Note: If not running in the ``TWOPHASE_MODE``, ``PCT_A`` and ``PCT_EXP`` 
@@ -150,38 +148,30 @@ SATURATION_FUNCTION <string>
   R0, and SMOOTH are defined below under :ref:`parameter-definitions`.
 
 
+
 PERMEABILITY_FUNCTION <string>
-  Opens a relative permeability function block, where <string> indicates the
+  Opens a relative permeability function block where <string> indicates the
   type of liquid or gas relative permeability function. For multiphase flow,
-  (e.g. GENERAL MODE) a relative permeability block must be included for each
-  phase. For single phase variably saturated flow (e.g. RICHARDS MODE), only one
-  relative permeability block for the liquid phase relative permeability should
-  be specified.
+  (e.g. GENERAL MODE) a relative permeability function must be defined for each
+  phase. For single-phase variably saturated flow (e.g. RICHARDS MODE), only a liquid phase 
+  relative permeability function should be specified.
 
-  The liquid phase options include: MUALEM_BC_LIQ, BURDINE_BC_LIQ,
-  MUALEM_LINEAR_LIQ, BURDINE_LINEAR_LIQ, MUALEM_VG_LIQ, and BURDINE_VG_LIQ. The
-  gas phase options include: MUALEM_BC_GAS, BURDINE_BC_GAS, MUALEM_LINEAR_GAS,
-  BURDINE_LINEAR_GAS, MUALEM_VG_GAS, BURDINE_VG_GAS, several BRAGFLO-related
-  options, MODIFIED_KOSUGI_LIQ, MODIFIED_KOSUGI_GAS,
-  MODIFIED_BROOKS_COREY_LIQ and MODIFIED_BROOKS_COREY_GAS.
-  The available relative
-  permeability functions are documented in the Theory Guide under
+  The available relative permeability functions are documented in the Theory Guide under
   :ref:`relative-permeability-functions-general`.
-  (Note: BC = Brooks Corey; VG = van Genuchten)
+  (Note: BC = Brooks-Corey; VG = van Genuchten)
 
-  Supported liquid phase PERMEABILITY_FUNCTIONs (along with their 
-  required cards):
+  Supported liquid phase PERMEABILITY_FUNCTIONs and associated cards:
   
   * MUALEM_BC_LIQ (:ref:`see QA plot <bcm-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
      + LAMBDA
+     + LIQUID_RESIDUAL_SATURATION
   * BURDINE_BC_LIQ (:ref:`see QA plot <bcb-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
      + LAMBDA
+     + LIQUID_RESIDUAL_SATURATION
   * MUALEM_LINEAR_LIQ (:ref:`see QA plot <lm-rel-perm>`)
+     + ALPHA
      + LIQUID_RESIDUAL_SATURATION
      + MAX_CAPILLARY_PRESSURE
-     + ALPHA
   * BURDINE_LINEAR_LIQ (:ref:`see QA plot <lb-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
   * MUALEM_VG_LIQ (:ref:`see QA plot <vgm-rel-perm>`)
@@ -203,17 +193,19 @@ PERMEABILITY_FUNCTION <string>
      + GAS_RESIDUAL_SATURATION
      + KR_MAX
      + N
+  * PCHIP_LIQ
+    + FILE
+    + LIST
 
-  Supported gas phase PERMEABILITY_FUNCTIONs (along with their 
-  required cards):
+  Supported gas phase PERMEABILITY_FUNCTIONs and associated cards:
   
   * MUALEM_BC_GAS (:ref:`see QA plot <bcm-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
      + GAS_RESIDUAL_SATURATION
+     + LIQUID_RESIDUAL_SATURATION
      + LAMBDA
   * BURDINE_BC_GAS (:ref:`see QA plot <bcb-rel-perm>`)
-     + LIQUID_RESIDUAL_SATURATION
      + GAS_RESIDUAL_SATURATION
+     + LIQUID_RESIDUAL_SATURATION
      + LAMBDA
   * MUALEM_LINEAR_GAS (:ref:`see QA plot <lm-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
@@ -240,6 +232,9 @@ PERMEABILITY_FUNCTION <string>
      + GAS_RESIDUAL_SATURATION
      + KR_MAX
      + N
+  * PCHIP_GAS
+    + FILE
+    + LIST
 
   WIPP-specific liquid and gas phase PERMEABILITY_FUNCTIONs:
 
@@ -274,7 +269,6 @@ PERMEABILITY_FUNCTION <string>
      + LIQUID_RESIDUAL_SATURATION
      + GAS_RESIDUAL_SATURATION
      + LAMBDA
-
   * BRAGFLO_KRP1_GAS (:ref:`see QA plot <krp1-rel-perm>`)
      + LIQUID_RESIDUAL_SATURATION
      + GAS_RESIDUAL_SATURATION
@@ -307,8 +301,6 @@ PERMEABILITY_FUNCTION <string>
      + GAS_RESIDUAL_SATURATION
      + LAMBDA
 
-  The parameters LAMBDA, M, MAX_CAPILLARY_PRESSURE, LIQUID_RESIDUAL_SATURATION,
-  GAS_RESIDUAL_SATURATION, TOLC, SIGMAZ, and SMOOTH are defined below under
   :ref:`parameter-definitions`.
 
 .. _parameter-definitions:
@@ -316,7 +308,18 @@ PERMEABILITY_FUNCTION <string>
 Parameter Definitions
 ---------------------
 ALPHA <float>
- Inverse of the air entry pressure for the saturation function [Pa\ :sup:`-1`\].
+ Inverse of the air entry pressure for saturation function [Pa\ :sup:`-1`\].
+
+FILE <string>
+ Filepath to file containing saturation-capillary pressure or saturation-relative permeability pairs. Must be in ascending order of saturation and monotonic.
+
+KPC <integer>
+ WIPP-specific flag from BRAGFLO.
+ * KPC 1 ignores MAX_CAPILLARY_PRESSURE
+ * KPC 2 Flat Set KPC to ``2`` to activate
+ * KPC 3-5 Not used
+ * KPC 6 Pc Linear extension from SATURATION_JUNCTION_SATURATION to 0.0 LIQUID SATURATION 
+ * KPC 7 Pc Exponential extension from SATURATION_JUNCTION_SATURATION to 0.0 LIQUID SATURATION 
 
 KR_MAX <float>
  Modified Brooks Corey relative permeability function maximum 
@@ -325,28 +328,17 @@ KR_MAX <float>
 LAMBDA <float>
  Brooks-Corey \lambda parameter [-].
 
+LIST
+  Opens block to list saturaiton-capillary pressure or saturation-relative permeability value pairs. Must be in ascending order of saturation and monotonic.
 M <float>
- van Genuchten m parameter, as in (m = 1-1/n) or (m = 1 - 2/n) [-].
+ Exponential parameter m in van Genuchten models. Parameter n is calculated as follows:
+
+ * For van Genuchten capillary pressure, n=1/(1-m).
+ * For van Genuchten relative permeability with Burdine equations, n = ?
+ * For van Genuchten relative permeability with Mualem equations, n = ?
 
 N <float>
  Modified Brooks Corey relative permeability exponent "n" [-].
-
-GAS_RESIDUAL_SATURATION <float>
- Residual saturation for gas phase [-].
-
-LIQUID_RESIDUAL_SATURATION <float>
- Residual saturation for liquid phase [-].
-
-MAX_CAPILLARY_PRESSURE <float>
- Cut off for maximum capillary pressure [Pa].
-
-TOLC <float>
- A tolerance interval over which the relative permeability changes linearly
- from zero to one [-].
-
-KPC <float>
- This is a flag parameter from BRAGFLO. Set KPC to ``2`` to activate
- MAX_CAPILLARY_PRESSURE. Set KPC to ``1`` to ignore MAX_CAPILLARY_PRESSURE.
 
 S_MIN <float>
  This is a parameter from BRAGFLO. It is a cutoff in liquid saturation that is
@@ -369,6 +361,11 @@ SMOOTH
   * Brooks Corey (**highly recommended if saturated cells exist**)
   * Burdine (w/ van Genuchten liquid relative permeability)
   * Mualem (w/ van Genuchten liquid relative permeability)
+
+TOLC <float>
+ A tolerance interval over which the relative permeability changes linearly
+ from zero to one [-].
+
 
 MODIFIED_KOSUGI model
  This model is based on a truncated lognormal pore-size
@@ -407,8 +404,6 @@ MODIFIED_KOSUGI model
 
 Optional Cards under the CHARACTERISTIC_CURVES block:
 *****************************************************
-POWER <float>
- Placeholder. Currently not used.
 
 DEFAULT
  Sets up dummy saturation and permeability functions for saturated single phase
@@ -422,19 +417,41 @@ TEST
  gas relative permeability values for the range of liquid saturation. See
  :ref:`how-to-test-CCs` for detailed instructions on how to use this keyword.
 
+
 Optional Cards under the SATURATION_FUNCTION or PERMEABILITY_FUNCTION blocks:
 *****************************************************************************
-PHASE <string>
- If this card is included under the PERMEABILITY_FUNCTION block, then PHASE
- indicates which phase the permeability function applies to [options include:
- LIQUID, GAS]. By default, relative permeability functions that end with "_LIQ"
- imply "PHASE LIQUID," while relative permeability functions that end with
- "_GAS" imply "PHASE GAS," and PHASE does not have to be specified.
- However, this card can be used to apply a phase to a relative permeability
- function that is not phase-specific (under development).
+
+GAS_RESIDUAL_SATURATION <float>
+ Residual saturation of gas phase [-]. Where used, default 100%.
+
+LIQUID_JUNCTION_SATURATION <float>
+ Liquid saturation for UNSATURATED_EXTENSION extrapolations [-]. Default 5% effective saturation (.05*(1-Srg-Srl)+Srl).
+
+LIQUID_RESIDUAL_SATURATION <float>
+ Residual saturation of liquid phase [-]. Default 0%.
+
+LOOP_INVARIANT
+ Caches calculated intermediate parameters, depending on compiler options, may speed performance. This is a necessary selection to utilize UNSATURATED_EXTENSIONS.
 
 MAX_CAPILLARY_PRESSURE <float>
- Cut off for maximum capillary pressure (default = 10\ :sup:`9`\) [Pa].
+ Maximum capillary pressure in Pa. Default value is 10^9 Pa.
+ Default behaivor truncates capillary pressure to this value near and below residual saturation.
+ UNSATURATED_EXTENSIONs set this value at 0 liquid saturation and interpolate.
+
+SPLINE <integer>
+ Replace analytic model with Piecewise Cubic Hermite Interpolation Polynomials (PCHIP).
+ This may reduce computational time for complex saturation or relative permeability functions.
+
+UNSATURATED_EXTENSION <string>
+ Define capillary pressure behaivor near and below residual saturation. Options include:
+
+ * NONE - Asymptotically approach infinity at residual and remain undefined below residual.
+ * FCPC - Truncation to MAX_CAPILLARY_PRESSURE and extrapolation to 0 saturation. Default.
+ * FNOC - Truncation to value calculated at LIQUID_JUNCTION_SATURATION and extrapolation to 0 saturation.
+ * LCPC - Linear interpolation from MAX_CAPILLARY_PRESSURE at 0 to calculated junction.
+ * ECPC - Exponential interpolation from MAX_CAPILLARY_PRESSURE at 0 to calculated junction.
+ * LNOC - Linear extrapolation from LIQUID_JUNCTION_SATURATION to 0 saturation.
+ * ENOC - Exponential extrapolation from LIQUID_JUNCTION_SATURATION to 0 saturation.
 
 Examples
 ********
