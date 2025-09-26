@@ -51,18 +51,18 @@ Examples (data from Palandri and Kharaka (2004))
       K-Feldspar
         PREFACTOR
           RATE_CONSTANT -12.41d0 mol/m^2-sec
-          ACTIVATION_ENERGY 38.d0
+          ACTIVATION_ENERGY 38.d0 kJ/mol
         /
         PREFACTOR
           RATE_CONSTANT -10.06d0 mol/m^2-sec
-          ACTIVATION_ENERGY 51.7d0
+          ACTIVATION_ENERGY 51.7d0 kJ/mol
           PREFACTOR_SPECIES H+
             ALPHA 0.5d0
           /
         /
         PREFACTOR
           RATE_CONSTANT -21.20 mol/m^2-sec
-          ACTIVATION_ENERGY 94.1d0
+          ACTIVATION_ENERGY 94.1d0 kJ/mol
           PREFACTOR_SPECIES H+
             ALPHA -0.823d0
           /
