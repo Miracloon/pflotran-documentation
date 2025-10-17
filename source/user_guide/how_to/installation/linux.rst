@@ -35,13 +35,13 @@ Installation Instructions
 
         git clone https://gitlab.com/petsc/petsc petsc
         cd petsc
-        git checkout v3.21.5
+        git checkout v3.24.0
 
     3.2. Configure PETSc (see `PETSc installation instructions`_).
 
     .. code-block:: bash
  
-        ./configure --COPTFLAGS='-O3' --CXXOPTFLAGS='-O3' --FOPTFLAGS='-O3 -Wno-unused-function -fallow-argument-mismatch' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
+        ./configure --COPTFLAGS='-O3' --CXXOPTFLAGS='-O3' --FOPTFLAGS='-O3 -Wno-unused-function' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
 
     Note: To support HDF5 zlib compression, add ``--download-hdf5-configure-arguments="--with-zlib=yes"`` to the command line.
 
