@@ -144,12 +144,10 @@ GDSA Cards
    :glob:
 
    /user_guide/cards/pages/*
-   /user_guide/cards/simulation/subsurface_flow_modes/*
    /user_guide/cards/subsurface/grids/*
    /user_guide/cards/subsurface/region/*
    /user_guide/cards/subsurface/material_property/*
    /user_guide/cards/subsurface/source_sink_sandbox/*
-   /user_guide/cards/gdsa/*
    /user_guide/cards/gdsa/waste_form/*
    /user_guide/cards/wipp/*
 

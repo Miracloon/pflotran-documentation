@@ -17,4 +17,3 @@ Sometimes it is useful to clean out the _build directory. You can do this by typ
 > make clean
 
 Both the html files and the pdf file will be generated in the repo-name/documentation/_build directory. Note: This directory is ignored in the .hgignore file.
-
