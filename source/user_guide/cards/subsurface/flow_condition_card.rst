@@ -372,10 +372,21 @@ RATE Scaling Options:
 +++++++++++++++++++++
  * PERM: scaling weighted as a function of cell volume and X permeability
 
- * NEIGHBOR_PERM: scaling weighted as a function of the interfacial area
-   and permeability of neighboring cells (in x,y)
-
  * VOLUME: scaling weighted as a function of cell volume
+
+ * NEIGHBOR_PERM: equivalent to NEIGHBOR_PERM_XY
+
+ * NEIGHBOR_PERM_XY: scaling weighted as a function of the interfacial area
+   and permeability of neighboring cells in X and Y
+
+ * NEIGHBOR_PERM_XZ: scaling weighted as a function of the interfacial area
+   and permeability of neighboring cells in X and Z
+
+ * NEIGHBOR_PERM_YZ: scaling weighted as a function of the interfacial area
+   and permeability of neighboring cells in Y and Z
+
+ * NEIGHBOR_PERM_XYZ: scaling weighted as a function of the interfacial area
+   and permeability of neighboring cells in X, Y, and Z
 
 Value specification for all flow modes:
 +++++++++++++++++++++++++++++++++++++++
@@ -534,6 +545,13 @@ RICHARDS Mode Examples
   FLOW_CONDITION injection
     TYPE
       RATE SCALED_VOLUMETRIC_RATE NEIGHBOR_PERM
+    /
+    RATE 1 m^3/day
+  /
+
+  FLOW_CONDITION injection
+    TYPE
+      RATE SCALED_VOLUMETRIC_RATE NEIGHBOR_PERM_XZ
     /
     RATE 1 m^3/day
   /
